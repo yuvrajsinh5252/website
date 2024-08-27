@@ -1,24 +1,32 @@
 "use client"
 
-import { Moon, Sun } from 'lucide-react';
-import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import React, { useEffect, useState } from "react";
 
-const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
+export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) return <Sun size={24} />
+  if (!mounted) {
+    return (
+      <button className="p-2 absolute left-5 z-10 rounded-full bg-gray-200 dark:bg-gray-800">
+        <Sun size={24} className="animate-spin" />
+      </button>)
+  }
 
   return (
-    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
-      {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
+    <button
+      className="p-2 absolute left-5 z-10 rounded-full bg-gray-200 dark:bg-gray-800"
+      onClick={() => {
+        setTheme(theme === "light" ? "dark" : "light");
+      }}
+    >
+      {theme === "light" ? <Sun size={24} /> : <Moon size={24} />}
     </button>
   );
-};
-
-export default ThemeToggle;
+}
