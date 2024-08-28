@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react";
-import useDarkMode from "use-dark-mode";
+import { useTheme } from "next-themes";
 
 const debounce = (callback: any, delay = 250) => {
   let timeoutId: any;
@@ -29,8 +29,8 @@ const throttle = (callback: any, limit = 250) => {
 
 
 const COLORS = {
-  white: "#FFF",
-  midnightBlack: "#111"
+  white: "#FFFFFF",
+  midnightBlack: "#18181B"
 };
 
 const RADIUS_GROWTH_PER_MS = 0.025;
@@ -140,14 +140,14 @@ const m = {
 };
 
 const GrowingCircleAnimation = () => {
-  const darkMode = useDarkMode();
+  const { resolvedTheme: theme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
 
-    let stateMachine: any = m.createMachine(ctx, darkMode.value);
+    let stateMachine: any = m.createMachine(ctx, theme === "dark" ? true : false);
     let isStateMachinePowered = true;
 
     const stateMachineRunner = async () => {
@@ -166,7 +166,7 @@ const GrowingCircleAnimation = () => {
 
     const handleResize = () => {
       circleCenterCoordinates.resetMouseState();
-      stateMachine = m.createMachine(ctx, darkMode.value);
+      stateMachine = m.createMachine(ctx, theme === "dark" ? true : false);
       stateMachineRunner();
     };
 
@@ -183,7 +183,7 @@ const GrowingCircleAnimation = () => {
     };
   });
 
-  return <canvas className="w-screen h-screen fixed bg-[#111111] top-0 left-0" ref={canvasRef} />;
+  return <canvas className="w-screen h-screen fixed bg-[#18181B] top-0 left-0" ref={canvasRef} />;
 };
 
 export default GrowingCircleAnimation;

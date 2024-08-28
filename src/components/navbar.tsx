@@ -8,18 +8,18 @@ import GrowingCircleAnimation from "./theme/GrowingCircleAnimation";
 export default function Navbar() {
   return (
     <div className="flex justify-around items-center p-2 fixed w-full mt-5">
-      <div className="w-4 h-4 rounded-full border-none relative cursor-pointer focus:outline-none">
+      <div className="w-4 h-4 rounded-full border-none relative -z-50 focus:outline-none">
         <NoSSR>
           <GrowingCircleAnimation />
         </NoSSR>
         <DarkModeToggle />
       </div>
-      <nav
-        className="flex gap-5 justify-center items-center bg-tranparent backdrop-filter backdrop-blur-[5px] border-2 p-2 rounded-full"
-      >
-        <Link href="/" className="pl-3">About</Link>
-        <Link href="/about" >Projects</Link>
-        <Link href="/contact" className="pr-3">Skills</Link>
+      <nav className="pointer-events-auto gap-5 p-3 pr-5 pl-5 hidden md:inline-flex bg-gray-800/20 px-3.5 text-sm rounded-full font-medium shadow-xl shadow-black/20 ring-1 ring-inset ring-gray-700/30 backdrop-blur-lg">
+        <Link href="/about">About</Link>
+        <Link href="/projects">Projects</Link>
+        <Link href="/skills">Skills</Link>
+        <Link href="/blog">Blog</Link>
+        <Link href="/contact">Contact</Link>
       </nav>
     </div>
   )
