@@ -18,8 +18,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className + " overflow-hidden"}>
-        <ThemeProvider attribute="class">
+      <body className={inter.className}>
+        <ThemeProvider attribute="class" defaultTheme="light">
           <Navbar />
           {children}
         </ThemeProvider>
