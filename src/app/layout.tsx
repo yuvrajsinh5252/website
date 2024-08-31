@@ -6,7 +6,7 @@ import { ThemeProvider } from "next-themes";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: "600"
+  weight: "500"
 });
 
 export const metadata: Metadata = {

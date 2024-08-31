@@ -180,7 +180,7 @@ const GrowingCircleAnimation = () => {
     };
   });
 
-  return <canvas className="w-screen h-screen fixed bg-[#18181B] top-0 left-0" ref={canvasRef} />;
+  return <canvas className="w-[150vw] h-[150vh] fixed bg-[#18181B] top-0 left-0" ref={canvasRef} />;
 };
 
 export default GrowingCircleAnimation;

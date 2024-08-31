@@ -2,21 +2,12 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-* {
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  transition: color 0.3s ease;
-}
-
-@layer base {
-  body {
-    @apply dark:bg-[#18181B];
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
