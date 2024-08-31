@@ -1,12 +1,12 @@
 export default function Home() {
   return (
     <div className="flex justify-center flex-col h-screen">
-      <div className="z-10 flex justify-around">
+      <div className="flex z-10 justify-around">
         <div className="flex items-start flex-col gap-8">
           <div className="flex items-start flex-col">
 
             <span className="mt-2 font-semibold tracking-tight text-4xl md:text-5xl leading-tight md:leading-tight">
-              Hey there, I'm
+              Hey I'm
             </span>
             <h1 className="text-5xl font-bold highlight bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
               Yuvrajsinh Gohil
@@ -14,8 +14,8 @@ export default function Home() {
           </div>
 
           <div>
-            <p className="text-xl md:text-[17px] font-semibold text-gray-400 tracking-tight leading-relaxed w-[40rem]">
-              As a software developer, I enjoy building efficient solutions and staying updated on tech trends. I'm passionate about learning and contributing to open-source projects.
+            <p className="text-xl md:text-[17px] font-semibold text-gray-400 tracking-tight leading-relaxed">
+              Passionate about efficiency, tech, and open source
             </p>
           </div>
 

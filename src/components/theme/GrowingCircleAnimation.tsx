@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 
@@ -26,7 +24,6 @@ const throttle = (callback: any, limit = 250) => {
     }
   };
 };
-
 
 const COLORS = {
   white: "#FFFFFF",
