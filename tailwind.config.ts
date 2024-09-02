@@ -23,10 +23,21 @@ const config: Config = {
           "0%, 100%": { transform: "rotate(-4deg)" },
           "50%": { transform: "rotate(4deg)" },
         },
+        orbit: {
+          "0%": {
+            transform:
+              "rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg)",
+          },
+          "100%": {
+            transform:
+              "rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg)",
+          },
+        },
       },
       animation: {
         popout: "popout 0.2s ease-out",
         wiggle: "wiggle 1.5s ease-in-out infinite",
+        orbit: "orbit calc(var(--duration)*1s) linear infinite",
       },
     },
   },
