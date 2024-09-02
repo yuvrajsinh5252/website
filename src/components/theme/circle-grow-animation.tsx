@@ -1,4 +1,6 @@
-import { useEffect, useRef } from "react";
+"use client"
+
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 
 const debounce = (callback: any, delay = 250) => {
@@ -138,9 +140,13 @@ const m = {
 
 const GrowingCircleAnimation = () => {
   const { resolvedTheme: theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    setMounted(true);
+    if (!canvasRef.current) return;
+
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
 
@@ -179,6 +185,8 @@ const GrowingCircleAnimation = () => {
       );
     };
   });
+
+  // if (!mounted) return null;
 
   return <canvas className="w-[150vw] h-[150vh] fixed bg-[#18181B] top-0 left-0" ref={canvasRef} />;
 };

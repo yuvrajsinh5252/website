@@ -3,10 +3,11 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "next-themes";
+import GrowingCircleAnimation from "@/components/theme/circle-grow-animation";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: "500"
+  weight: "500",
 });
 
 export const metadata: Metadata = {
@@ -23,10 +24,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={poppins.className}>
         <ThemeProvider attribute="class" defaultTheme="dark">
-          <Navbar />
-          {children}
+          <GrowingCircleAnimation />
+          <div className="z-10 relative mix-blend-difference">
+            <Navbar />
+            {children}
+          </div>
         </ThemeProvider>
       </body>
-    </html >
+    </html>
   );
 }

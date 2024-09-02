@@ -38,12 +38,12 @@ export default function Navbar() {
   return (
     <MaxWidthWrapper>
       <div className="items-center fixed flex justify-start w-[inherit] h-fit mt-12">
-        <NavTitle />
+        {/* <NavTitle /> */}
 
-        <nav className="hidden md:inline-flex z-50 left-1/2 -translate-x-1/2 fixed max-auto items-center justify-center w-fit h-9 rounded-full dark:bg-gray-600/20 bg-gray-200/80 transition-transform duration-200 ease-linear outline-none">
+        <nav className="hidden md:inline-flex left-1/2 -translate-x-1/2 fixed max-auto items-center justify-center w-fit h-9 rounded-full bg-gray-600/10  transition-transform duration-200 ease-linear outline-none">
           <div
             id="active-bg"
-            className="dark:bg-gray-300/20 bg-gray-300/80 bg-opacity-10 h-9 rounded-full z-0 absolute bg transition-all duration-300 ease-linear flex items-center justify-center">
+            className="bg-gray-300/20 bg-opacity-10 h-9 rounded-full absolute bg transition-all duration-300 ease-linear flex items-center justify-center">
           </div>
           <NavLink text="home" href="/" />
           <NavLink text="projects" href="/projects" />
