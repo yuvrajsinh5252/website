@@ -39,7 +39,7 @@ export default function Navbar() {
       <div className="items-center fixed flex justify-start w-[inherit] h-fit mt-12">
         {/* <NavTitle /> */}
 
-        <nav className="hidden md:inline-flex left-1/2 -translate-x-1/2 fixed max-auto items-center justify-center w-fit h-9 rounded-full bg-gray-600/10  transition-transform duration-200 ease-linear outline-none">
+        <nav className="hidden md:inline-flex left-1/2 -translate-x-1/2 fixed max-auto items-center justify-center w-fit h-9 rounded-full bg-gray-600/10 transition-transform duration-200 ease-linear outline-none border border-gray-300/20 border-opacity-20">
           <div
             id="active-bg"
             className="bg-gray-300/20 bg-opacity-10 h-9 rounded-full absolute bg transition-all duration-300 ease-linear flex items-center justify-center">
