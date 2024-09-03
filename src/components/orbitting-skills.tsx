@@ -2,7 +2,10 @@
 
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import OrbitingCircles from "@/components/oribiting-cirlce";
+import { RiNextjsFill } from "react-icons/ri";
 import { Database, File, Phone } from "lucide-react";
+import { SiTailwindcss, SiTypescript } from "react-icons/si";
+import { TbBrandFramerMotion } from "react-icons/tb";
 
 export default function Orbitingskills() {
   return (
@@ -13,37 +16,46 @@ export default function Orbitingskills() {
             className="h-[30px] w-[30px] border-none bg-transparent"
             duration={20}
             delay={20}
-            radius={60}
+            radius={70}
           >
-            <Database className="text-white" size={30} />
+            <RiNextjsFill size={30} />
           </OrbitingCircles>
           <OrbitingCircles
             className="h-[30px] w-[30px] border-none bg-transparent"
             duration={20}
             delay={10}
-            radius={60}
+            radius={70}
           >
-            <Phone className="text-white" size={30} />
+            <SiTailwindcss size={30} />
           </OrbitingCircles>
 
           {/* Outer Circles (reverse) */}
           <OrbitingCircles
             className="h-[50px] w-[50px] border-none bg-transparent"
-            radius={120}
+            radius={130}
             duration={40}
-            delay={40}
+            delay={42}
             reverse
           >
-            <File size={30} />
+            <SiTypescript size={25} />
           </OrbitingCircles>
           <OrbitingCircles
             className="h-[50px] w-[50px] border-none bg-transparent"
-            radius={120}
+            radius={130}
             duration={40}
-            delay={20}
+            delay={15}
             reverse
           >
-            <File size={30} />
+            <TbBrandFramerMotion size={30} />
+          </OrbitingCircles>
+          <OrbitingCircles
+            className="h-[50px] w-[50px] border-none bg-transparent"
+            radius={130}
+            duration={40}
+            delay={30}
+            reverse
+          >
+            <TbBrandFramerMotion size={30} />
           </OrbitingCircles>
         </div>
       </div>

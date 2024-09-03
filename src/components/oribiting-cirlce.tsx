@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { SiGithub } from "react-icons/si";
 
 export default function OrbitingCircles({
   className,
@@ -35,7 +36,9 @@ export default function OrbitingCircles({
           />
         </svg>
       )}
-
+      <div className="absolute left-[48%]">
+        <SiGithub size={20} />
+      </div>
       <div
         style={
           {

@@ -18,7 +18,7 @@ export default function Home() {
                 <h1 className="text-5xl font-extrabold highlight pb-2 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
                   Yuvrajsinh Gohil
                 </h1>
-                <span className="text-4xl animate-wiggle">👋🏽</span>
+                <span className="text-4xl animate-wiggle mix-blend-normal">👋🏽</span>
               </div>
             </div>
 

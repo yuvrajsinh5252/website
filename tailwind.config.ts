@@ -16,7 +16,7 @@ const config: Config = {
       },
       keyframes: {
         popout: {
-          "0%": { transform: "scale(0) " },
+          "0%": { transform: "scale(0.9) " },
           "100%": { transform: "scale(1)" },
         },
         wiggle: {
@@ -35,7 +35,7 @@ const config: Config = {
         },
       },
       animation: {
-        popout: "popout 0.2s ease-out",
+        popout: "popout 0.1s ease-out",
         wiggle: "wiggle 1.5s ease-in-out infinite",
         orbit: "orbit calc(var(--duration)*1s) linear infinite",
       },

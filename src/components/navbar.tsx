@@ -2,18 +2,17 @@
 
 import { usePathname } from "next/navigation";
 import NavLink from "./navlink";
-import NavTitle from "./navtitle";
 import ThemeToggle from "./theme/toggle-theme";
 import React from "react";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 
 export default function Navbar() {
-  let path = usePathname();
+  const [activeNav, setActiveNav] = React.useState(usePathname());
 
   React.useEffect(() => {
     try {
       const activeBg = document.getElementById("active-bg");
-      const activeLink = document.querySelector(`[href="${path}"]`);
+      const activeLink = document.querySelector(`[href="${activeNav}"]`);
       const firstLink = document.querySelector(`[href="/"]`);
 
       if (activeLink && activeBg && firstLink) {
@@ -33,7 +32,7 @@ export default function Navbar() {
     } catch (error) {
       alert("Error in Navbar: " + error);
     }
-  }, [path])
+  }, [activeNav])
 
   return (
     <MaxWidthWrapper>
@@ -45,10 +44,10 @@ export default function Navbar() {
             id="active-bg"
             className="bg-gray-300/20 bg-opacity-10 h-9 rounded-full absolute bg transition-all duration-300 ease-linear flex items-center justify-center">
           </div>
-          <NavLink text="home" href="/" />
-          <NavLink text="projects" href="/projects" />
-          <NavLink text="skills" href="/skills" />
-          <NavLink text="blog" href="/blog" />
+          <NavLink setActiveNav={setActiveNav} text="home" href="/" />
+          <NavLink setActiveNav={setActiveNav} text="projects" href="/projects" />
+          <NavLink setActiveNav={setActiveNav} text="skills" href="/skills" />
+          <NavLink setActiveNav={setActiveNav} text="blog" href="/blog" />
         </nav>
 
         <ThemeToggle />
