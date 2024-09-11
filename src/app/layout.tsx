@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import { ThemeProvider } from "next-themes";
 import GrowingCircleAnimation from "@/components/theme/circle-grow-animation";
+import { Cursor } from "@/components/cursor";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -25,9 +26,10 @@ export default function RootLayout({
       <body className={poppins.className}>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <GrowingCircleAnimation />
-          <div className="z-10 relative mix-blend-difference">
+          <div className="relative mix-blend-difference">
             <Navbar />
-            {children}
+            <Cursor />
+            <div className="z-20">{children}</div>
           </div>
         </ThemeProvider>
       </body>

@@ -7,7 +7,7 @@ export default function Home() {
   return (
     // <MaxWidthWrapper>
     <div className="flex flex-col items-center h-screen no-scrollbar overflow-scroll">
-      <div className="flex flex-col max-sm:items-center max-w-screen-lg gap-10 mt-44">
+      <div className="flex flex-col max-sm:items-center max-w-screen-lg gap-10 mt-44 pb-10">
         <h1 className="text-5xl font-bold pl-2">Projects</h1>
         <div className="flex items-center max-sm:flex-col justify-center flex-wrap h-full">
           {PROJECTS.map((project, index) => {
