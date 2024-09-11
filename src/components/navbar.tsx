@@ -22,8 +22,8 @@ export default function Navbar() {
         const left = activeLinkRects.left - firstLinkRects.left;
 
         activeBg.style.width = `${activeLink.clientWidth}px`;
-        activeBg.style.height = `calc(${activeLink.clientHeight}px + 12px)`;
-        activeBg.style.top = `${top - 1}px`;
+        activeBg.style.height = `calc(${activeLink.clientHeight}px + 8px)`;
+        activeBg.style.top = `${top + 0.3}px`;
         activeBg.style.left = `${left}px`;
       } else if (activeBg) {
         activeBg.style.top = `0px`;
@@ -39,14 +39,14 @@ export default function Navbar() {
       <div className="items-center fixed flex justify-start w-[inherit] h-fit mt-12">
         {/* <NavTitle /> */}
 
-        <nav className="hidden md:inline-flex left-1/2 -translate-x-1/2 fixed max-auto items-center justify-center w-fit h-9 rounded-full bg-gray-600/10 transition-transform duration-200 ease-linear outline-none border border-gray-300/20 border-opacity-20">
+        <nav className="hidden md:inline-flex left-1/2 -translate-x-1/2 fixed max-auto items-center justify-center w-fit h-9 rounded-full bg-gray-600/10 transition-transform duration-200 ease-linear outline-none border-2 border-gray-300/20 border-opacity-20">
           <div
             id="active-bg"
             className="bg-gray-300/20 bg-opacity-10 h-9 rounded-full absolute bg transition-all duration-300 ease-linear flex items-center justify-center">
           </div>
           <NavLink setActiveNav={setActiveNav} text="home" href="/" />
           <NavLink setActiveNav={setActiveNav} text="projects" href="/projects" />
-          <NavLink setActiveNav={setActiveNav} text="skills" href="/skills" />
+          <NavLink setActiveNav={setActiveNav} text="about" href="/about" />
           <NavLink setActiveNav={setActiveNav} text="blog" href="/blog" />
         </nav>
 

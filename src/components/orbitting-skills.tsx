@@ -2,9 +2,9 @@
 
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import OrbitingCircles from "@/components/oribiting-cirlce";
+import { FaPython } from "react-icons/fa";
 import { RiNextjsFill } from "react-icons/ri";
-import { Database, File, Phone } from "lucide-react";
-import { SiTailwindcss, SiTypescript } from "react-icons/si";
+import { SiCplusplus, SiPostgresql, SiTailwindcss, SiTypescript } from "react-icons/si";
 import { TbBrandFramerMotion } from "react-icons/tb";
 
 export default function Orbitingskills() {
@@ -46,16 +46,16 @@ export default function Orbitingskills() {
             delay={15}
             reverse
           >
-            <TbBrandFramerMotion size={30} />
+            <FaPython size={30} />
           </OrbitingCircles>
           <OrbitingCircles
             className="h-[50px] w-[50px] border-none bg-transparent"
             radius={130}
             duration={40}
-            delay={30}
+            delay={28}
             reverse
           >
-            <TbBrandFramerMotion size={30} />
+            <SiCplusplus size={30} />
           </OrbitingCircles>
         </div>
       </div>

@@ -7,7 +7,7 @@ import GrowingCircleAnimation from "@/components/theme/circle-grow-animation";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: "500",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={poppins.className}>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <GrowingCircleAnimation />
-          <div className="z-10 relative mix-blend-difference">
+          <div className="z-10 relative">
             <Navbar />
             {children}
           </div>

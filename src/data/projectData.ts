@@ -14,6 +14,7 @@ export const PROJECTS = [
       "uploadthings",
       "cohere",
     ],
+    year: "2022",
   },
   {
     title: "Brilliant++",
@@ -32,6 +33,16 @@ export const PROJECTS = [
       "t3",
       "trpc",
     ],
+    year: "2022",
+  },
+  {
+    title: "Chess Game",
+    description:
+      "Chess Game is a real-time multiplayer platform that two players to engage in a seamless chess match. It features functionalities like resign, draw, and a timer, all within an intuitive drag-and-drop interface, providing a dynamic and interactive user experience.",
+    image: "../Mindhub.png",
+    link: "https://chessgame.vercel.app",
+    tag: ["react", "javascript", "socketio", "nodejs", "express"],
+    year: "2022",
   },
   {
     title: "Chess Game",
@@ -40,13 +51,6 @@ export const PROJECTS = [
     image: "../Mindhub.png",
     link: "https://chessgame.vercel.app",
     tag: ["react", "javascript", "socketio", "nodejs", "express"],
-  },
-  {
-    title: "Chess Game",
-    description:
-      "Chess Game is a real-time multiplayer platform I created using React, Node.js, and Socket.io, allowing two players to engage in a seamless chess match. It features functionalities like resign, draw, and a timer, all within an intuitive drag-and-drop interface, providing a dynamic and interactive user experience.",
-    image: "../Mindhub.png",
-    link: "https://chessgame.vercel.app",
-    tag: ["react", "javascript", "socketio", "nodejs", "express"],
+    year: "2022",
   },
 ];
