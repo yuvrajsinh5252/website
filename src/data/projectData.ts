@@ -2,7 +2,7 @@ export const PROJECTS = [
   {
     title: "WhispherDocs",
     description:
-      "A platform where users can upload PDFs and interact with them through AI-generated responses. This project required me to integrate OpenAI's API and handle complex data storage using a vector database, showcasing my ability to work with cutting-edge technologies.",
+      "A website that allows users to upload a PDF and interact with it via a chat interface, enabling questions and responses based on the content.",
     image: "../Mindhub.png",
     link: "https://whispher-docs.vercel.app",
     tag: [
@@ -14,17 +14,18 @@ export const PROJECTS = [
       "uploadthings",
       "cohere",
     ],
-    year: "2022",
+    year: "2024",
+    githubLink: "https://github.com/yuvrajsinh5252/WhispherDocs",
   },
   {
     title: "Brilliant++",
     description:
-      "Brilliant++ is an AI-driven educational platform I built using Next.js and TypeScript. It personalizes quizzes and auto-generates course subtitles, earning 2nd place out of 800+ in a 36-hour hackathon for its innovative approach to education.",
+      "An AI-powered educational platform that generates personalized quizzes for students and auto-generates subtitles for uploaded course materials.",
     image: "../Mindhub.png",
     link: "https://brilliantplusplus.vercel.app",
     tag: [
       "nextjs14",
-      "react",
+      "React",
       "typescript",
       "tailwindcss",
       "postgresql",
@@ -33,24 +34,36 @@ export const PROJECTS = [
       "t3",
       "trpc",
     ],
-    year: "2022",
+    year: "2024",
+    githubLink: "https://github.com/yuvrajsinh5252/brilliant-plus-plus",
   },
   {
     title: "Chess Game",
     description:
-      "Chess Game is a real-time multiplayer platform that two players to engage in a seamless chess match. It features functionalities like resign, draw, and a timer, all within an intuitive drag-and-drop interface, providing a dynamic and interactive user experience.",
+      "A real-time multiplayer chess game where two players can play and communicate in real time.",
     image: "../Mindhub.png",
     link: "https://chessgame.vercel.app",
-    tag: ["react", "javascript", "socketio", "nodejs", "express"],
+    tag: ["React", "javascript", "socketio", "nodejs", "express"],
     year: "2022",
+    githubLink: "https://github.com/yuvrajsinh5252/ChessGame",
   },
   {
-    title: "Chess Game",
+    title: "Taskflow",
     description:
-      "Chess Game is a real-time multiplayer platform I created using React, Node.js, and Socket.io, allowing two players to engage in a seamless chess match. It features functionalities like resign, draw, and a timer, all within an intuitive drag-and-drop interface, providing a dynamic and interactive user experience.",
+      "A website to visualize various scheduling algorithms with animations, helping users understand the concepts better.",
     image: "../Mindhub.png",
-    link: "https://chessgame.vercel.app",
-    tag: ["react", "javascript", "socketio", "nodejs", "express"],
+    link: "https://taskflow-gilt.vercel.app/",
+    tag: ["React", "OS Scheduling Algorithms", "Context API"],
     year: "2022",
+    githubLink: "https://github.com/yuvrajsinh5252/Taskflow",
+  },
+  {
+    title: "TODO App",
+    description:
+      "A GUI-based TODO application that allows users to manage tasks with user authentication and data storage.",
+    image: "../Mindhub.png",
+    tag: ["Java", "JavaFX", "MySQL", "JFoenix"],
+    year: "2023",
+    githubLink: "https://github.com/yuvrajsinh5252/TODO-app",
   },
 ];
