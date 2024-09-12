@@ -19,11 +19,13 @@ export function Cursor() {
     }
   }, [setPosition])
 
-  return <div
-    style={{
-      background: `radial-gradient(600px at ${position.x + 200}px ${position.y + 500}px, rgba(70, 0, 200, 0.15), transparent 80%)`,
-    }}
-    className="pointer-events-none fixed w-[120vw] -left-[200px] -top-[500px] -z-10 aspect-square rounded-full blur-3xl backdrop-blur-3xl"
-  >
-  </div>
+  return (
+    <div
+      style={{
+        background: `radial-gradient(600px at ${position.x + 200}px ${position.y + 500}px, rgba(70, 0, 200, 0.15), transparent 80%)`,
+      }}
+      className="pointer-events-none mix-blend-difference fixed w-[120vw] -left-[200px] -top-[500px] -z-10 aspect-square rounded-full blur-3xl backdrop-blur-3xl transition duration-300 ease-in-out"
+    >
+    </div>
+  )
 }
