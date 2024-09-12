@@ -11,6 +11,7 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "lucide-react": "^0.417.0",
+    "mo-js": "^0.288.2",
     "next": "14.2.5",
     "next-themes": "^0.3.0",
     "react": "^18",

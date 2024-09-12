@@ -8,6 +8,31 @@
   }
 }
 
+.magic:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 92%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: white;
+  z-index: -1;
+  transition: all 0.1s cubic-bezier(0, 0.59, 1, 0.26);
+}
+
+.magic:hover:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: white;
+  z-index: -1;
+}
+
 .box::after {
   content: "";
   height: 100%;
@@ -15,7 +40,7 @@
   transition: opacity 500ms;
   background: radial-gradient(
     600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.2),
+    rgba(100, 100, 200, 0.2),
     transparent 20%
   );
   z-index: -100;

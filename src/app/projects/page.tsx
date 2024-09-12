@@ -1,6 +1,5 @@
 "use client"
 
-import Overlay from "@/components/overlay";
 import { PROJECTS } from "@/data/projectData";
 import { SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
@@ -35,8 +34,8 @@ export default function Home() {
                 key={index}
                 className="flex max-sm:w-full w-1/2 justify-center p-2 gap-2 group"
               >
-                <div className="flex rounded-lg justify-between flex-col gap-4 p-1 box relative bg-gray-500/20 bg-clip-padding backdrop-filter backdrop-blur-lg">
-                  <div className="p-3 rounded-lg bg-gray-800/40">
+                <div className="flex rounded-lg justify-between flex-col gap-4 p-1 box relative">
+                  <div className="p-3 rounded-lg bg-gray-500/20 bg-clip-padding backdrop-filter backdrop-blur-lg hover:ring-1 ring-gray-400 hover:bg-gray-500 hover:bg-opacity-10">
                     <div className="flex flex-col justify-center gap-4">
 
                       <div className="flex justify-between items-center">
@@ -47,7 +46,7 @@ export default function Home() {
                           {
                             project.link ? (
                               <Link href={project.link} target="_blank" rel="noreferrer">
-                                <SquareArrowOutUpRight className="group-hover:text-teal-300 transition-transform duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                                <SquareArrowOutUpRight className="group-hover:text-teal-300 transition-transform duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1 cursor-pointer" />
                               </Link>
                             ) : null
                           }

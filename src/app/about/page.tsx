@@ -1,3 +1,4 @@
+import MagicLink from "@/components/magicLink";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 
 export default function Home() {
@@ -7,15 +8,19 @@ export default function Home() {
         <div className="flex flex-col gap-10 mt-44">
           <h1 className="text-5xl font-bold">About Me</h1>
           <div className="flex flex-col gap-5">
-            <p>
-              Hi, I’m Yuvrajsinh Gohil, a passionate and innovative software developer currently pursuing my B.Tech in Computer Science at Nirma University with a minor in Cyber Physical Systems. I specialize in full-stack web development and have a strong foundation in data structures, algorithms, and database management. My work focuses on creating efficient, scalable, and user-friendly applications using modern technologies.
+            <p className="text-lg">
+              <span>Hi, I’m Yuvrajsinh Gohil, a passionate and innovative software developer currently pursuing my B.Tech in Computer Science at </span>
+
+              <MagicLink href={"/home"}>Nirma University</MagicLink>
+
+              <span> with a minor in Cyber Physical Systems. I specialize in full-stack web development and have a strong foundation in data structures, algorithms, and database management. My work focuses on creating efficient, scalable, and user-friendly applications using modern technologies.</span>
             </p>
 
-            <p>
+            <p className="text-lg">
               I thrive in challenging environments where I can solve real-world problems through code, whether it’s building AI-powered educational platforms, crafting intuitive user interfaces, or creating multiplayer gaming experiences. With a deep interest in AI/ML, I enjoy working on projects that push the boundaries of technology.
             </p>
 
-            <p>
+            <p className="text-lg">
               In my spare time, I enjoy participating in hackathons, continuously improving my coding skills, and staying updated with the latest industry trends. I believe in lifelong learning and am always eager to take on new challenges.
             </p>
           </div>
