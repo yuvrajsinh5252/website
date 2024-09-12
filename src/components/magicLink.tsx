@@ -38,7 +38,7 @@ export default function MagicLink(
         top: itemDim.top + itemSize.y / 2,
         radiusX: itemSize.x,
         radiusY: itemSize.y,
-        count: 8,
+        count: 10,
 
         children: {
           shape: shapes[chosenS],
@@ -74,7 +74,7 @@ export default function MagicLink(
 
   return (
     <span className="mx-auto text-center md:w-3/4">
-      <a href={href} className="magic relative inline-block hover:text-black">
+      <a href={href} target='_blank' className="magic relative inline-block hover:text-black">
         {children}
         <span className="absolute inset-0 top-0 transition-all duration-100 ease-[cubic-bezier(0.000,0.590,1.000,0.260)] z-[-1]">
         </span>
