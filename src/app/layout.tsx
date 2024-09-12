@@ -26,8 +26,8 @@ export default function RootLayout({
       <body className={poppins.className}>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <GrowingCircleAnimation />
-          <div className="mix-blend-difference"><Cursor /></div>
-          <div className="relative z-20">
+          {/* <div className="dark:mix-blend-difference mix-blend-screen"><Cursor /></div> */}
+          <div className="relative z-20 mix-blend-difference">
             <Navbar />
             {children}
           </div>

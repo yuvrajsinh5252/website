@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   darkMode: "class",
@@ -41,7 +42,23 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/typography"),
+    plugin(
+      function ({ addVariant }: any) {
+        addVariant("glow", ".glow-capture .glow-overlay &");
+      },
+      {
+        theme: {
+          extend: {
+            colors: {
+              glow: "color-mix(in srgb, var(--glow-color) calc(<alpha-value> * 100%), transparent)",
+            },
+          },
+        },
+      }
+    ),
+  ],
 };
 
 export default config;

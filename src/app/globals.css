@@ -4,8 +4,25 @@
 
 @layer base {
   body {
-    @apply text-white;
+    color: white;
   }
+}
+
+.box::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  transition: opacity 500ms;
+  background: radial-gradient(
+    600px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.2),
+    transparent 20%
+  );
+  z-index: -100;
+  border-radius: 0.5rem;
+  top: 0px;
+  left: 0px;
+  position: absolute;
 }
 
 @layer utilities {

@@ -28,7 +28,7 @@ const throttle = (callback: any, limit = 250) => {
 };
 
 const COLORS = {
-  white: "#FFFFFF",
+  white: "#D3D3D3",
   midnightBlack: "#18181B"
 };
 
