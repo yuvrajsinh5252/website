@@ -5,7 +5,7 @@ const ContactUs = () => {
   return (
     <div className="min-h-screen flex flex-col gap-5 items-center justify-center p-5">
       <h1 className="text-4xl font-bold">
-        Let's build something amazing together!
+        Let&lsquo;s build something amazing together!
       </h1>
       <div className="flex justify-center items-center flex-col gap-10">
         <div className="text-lg text-centermb-4 flex flex-col justify-center items-center">

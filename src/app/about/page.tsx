@@ -49,7 +49,7 @@ export default function Home() {
             <h1 className="text-5xl font-bold">About Me</h1>
             <div className="flex flex-col gap-5">
               <p className="text-lg">
-                Hey, I&lsquo;m Yuvrajsinh! I&lsquo;m a 3rd-year student currently pursuing my B.Tech in Computer Science at <MagicLink href={"https://nirmauni.ac.in/"}>Nirma University</MagicLink>, with a minor in Cyber Physical Systems. I have a passion for creating innovative solutions that make a difference in people's lives.
+                Hey, I&lsquo;m Yuvrajsinh! I&lsquo;m a 3rd-year student currently pursuing my B.Tech in Computer Science at <MagicLink href={"https://nirmauni.ac.in/"}>Nirma University</MagicLink>, with a minor in Cyber Physical Systems. I have a passion for creating innovative solutions that make a difference in people&lsquo;s lives.
               </p>
 
               <p className="text-lg">
