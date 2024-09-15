@@ -1,9 +1,9 @@
 "use client"
 
+import React from "react";
 import { usePathname } from "next/navigation";
 import NavLink from "./navlink";
 import ThemeToggle from "./theme/toggle-theme";
-import React from "react";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 
 export default function Navbar() {
@@ -21,10 +21,18 @@ export default function Navbar() {
         const top = activeLinkRects.top - firstLinkRects.top;
         const left = activeLinkRects.left - firstLinkRects.left;
 
-        activeBg.style.width = `${activeLink.clientWidth}px`;
-        activeBg.style.height = `calc(${activeLink.clientHeight}px + 8px)`;
-        activeBg.style.top = `${top + 0.3}px`;
-        activeBg.style.left = `${left}px`;
+        activeBg.style.width = `${activeLink.clientWidth + 30}px`;
+        activeBg.style.height = `calc(${activeLink.clientHeight}px)`;
+
+        if (activeNav === "/") {
+          activeBg.style.top = `${top + 8}px`;
+          activeBg.style.left = `${left + 28}px`;
+        }
+        // else if (activeNav === "/blog") activeBg.style.top = `${top + 11}px`;
+        else {
+          activeBg.style.top = `${top + 11}px`;
+          activeBg.style.left = `${left + 15}px`;
+        }
       } else if (activeBg) {
         activeBg.style.top = `0px`;
         activeBg.style.left = `0px`;
@@ -36,20 +44,17 @@ export default function Navbar() {
 
   return (
     <MaxWidthWrapper>
-      <div className="items-center fixed flex justify-start w-[inherit] h-fit mt-12">
-        {/* <NavTitle /> */}
-
-        <nav className="hidden md:inline-flex left-1/2 -translate-x-1/2 fixed max-auto items-center justify-center w-fit h-9 rounded-full bg-gray-600/10 transition-transform duration-200 ease-linear outline-none border-2 border-gray-300/20 border-opacity-20 backdrop-filter backdrop-blur-md">
+      <div className="items-center fixed flex justify-start w-[inherit] h-fit mt-14">
+        <nav className="hidden md:inline-flex left-1/2 -translate-x-1/2 fixed max-auto items-center justify-center w-fit h-9 rounded-2xl bg-gray-600/10 transition-transform duration-200 ease-linear outline-none border-2 border-gray-300/20 border-opacity-20 backdrop-filter backdrop-blur-md gap-2 p-7">
           <div
             id="active-bg"
             className="bg-gray-300/20 bg-opacity-10 h-9 rounded-full absolute bg transition-all duration-300 ease-linear flex items-center justify-center">
           </div>
-          <NavLink setActiveNav={setActiveNav} text="home" href="/" />
-          <NavLink setActiveNav={setActiveNav} text="projects" href="/projects" />
-          <NavLink setActiveNav={setActiveNav} text="about" href="/about" />
-          <NavLink setActiveNav={setActiveNav} text="blog" href="/blog" />
+          <NavLink setActiveNav={setActiveNav} activeNav={activeNav} text="home" href="/" />
+          <NavLink setActiveNav={setActiveNav} activeNav={activeNav} text="projects" href="/projects" />
+          <NavLink setActiveNav={setActiveNav} activeNav={activeNav} text="about" href="/about" />
+          <NavLink setActiveNav={setActiveNav} activeNav={activeNav} text="blog" href="/blog" />
         </nav>
-
         <ThemeToggle />
       </div >
     </MaxWidthWrapper>
