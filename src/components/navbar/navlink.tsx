@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import React from "react";
 import { FaBlog, FaCode, FaHome, FaUser } from "react-icons/fa";
 
@@ -11,17 +10,9 @@ interface NavLinkProps {
 }
 
 export default function NavLink(props: NavLinkProps) {
-  const path = usePathname();
-
   return (
-    // onMouseOver={() =>
-    //   props.setActiveNav ? props.setActiveNav(props.href) : null
-    // }
-    // onMouseOver={() =>
-    //   props.setActiveNav ? props.setActiveNav(path) : null
-    // }
     <Link
-      className={"navlink z-30 " + (props.activeNav == props.href ? "m-4" : "")}
+      className={"navlink z-30 " + (props.activeNav == props.href ? "m-4 mr-5" : "")}
       onClick={() => {
         props.setActiveNav ? props.setActiveNav(props.href) : null;
       }}

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar";
 import { ThemeProvider } from "next-themes";
 import GrowingCircleAnimation from "@/components/theme/circle-grow-animation";
-import { Cursor } from "@/components/cursor";
+import { Cursor } from "@/components/theme/cursor";
+import Navbar from "@/components/navbar/navbar";
 
 const poppins = Poppins({
   subsets: ["latin"],

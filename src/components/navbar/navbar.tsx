@@ -2,9 +2,9 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
+import MaxWidthWrapper from "../MaxWidthWrapper";
 import NavLink from "./navlink";
-import ThemeToggle from "./theme/toggle-theme";
-import MaxWidthWrapper from "./MaxWidthWrapper";
+import ThemeToggle from "../theme/toggle-theme";
 
 export default function Navbar() {
   const [activeNav, setActiveNav] = React.useState(usePathname());
@@ -25,7 +25,7 @@ export default function Navbar() {
         activeBg.style.height = `calc(${activeLink.clientHeight}px)`;
 
         if (activeNav === "/") {
-          activeBg.style.top = `${top + 8}px`;
+          activeBg.style.top = `${top + 7.5}px`;
           activeBg.style.left = `${left + 28}px`;
         }
         // else if (activeNav === "/blog") activeBg.style.top = `${top + 11}px`;
@@ -45,10 +45,10 @@ export default function Navbar() {
   return (
     <MaxWidthWrapper>
       <div className="items-center fixed flex justify-start w-[inherit] h-fit mt-14">
-        <nav className="hidden md:inline-flex left-1/2 -translate-x-1/2 fixed max-auto items-center justify-center w-fit h-9 rounded-2xl bg-gray-600/10 transition-transform duration-200 ease-linear outline-none border-2 border-gray-300/20 border-opacity-20 backdrop-filter backdrop-blur-md gap-2 p-7">
+        <nav className="flex left-1/2 -translate-x-1/2 fixed max-auto items-center justify-center w-fit h-9 rounded-2xl bg-gray-600/10 transition-transform duration-200 ease-linear outline-none border-2 border-gray-300/20 border-opacity-20 backdrop-filter backdrop-blur-md gap-2 p-7">
           <div
             id="active-bg"
-            className="bg-gray-300/20 bg-opacity-10 h-9 rounded-full absolute bg transition-all duration-300 ease-linear flex items-center justify-center">
+            className="bg-gray-300/20 bg-opacity-10 h-9 rounded-2xl absolute bg transition-all duration-300 ease-linear flex items-center justify-center">
           </div>
           <NavLink setActiveNav={setActiveNav} activeNav={activeNav} text="home" href="/" />
           <NavLink setActiveNav={setActiveNav} activeNav={activeNav} text="projects" href="/projects" />
