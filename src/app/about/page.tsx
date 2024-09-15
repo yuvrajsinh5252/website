@@ -22,18 +22,18 @@ export default function Home() {
     return () => window.removeEventListener('resize', handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (sections.length > 0) {
-      scrollToSection(currentIndex);
-    }
-  }, [sections, currentIndex]);
-
   const scrollToSection = (index: number) => {
     if (index >= 0 && index < sections.length) {
       sections[index].scrollIntoView({ behavior: 'smooth' });
       setCurrentIndex(index);
     }
   };
+
+  useEffect(() => {
+    if (sections.length > 0) {
+      scrollToSection(currentIndex);
+    }
+  }, [sections, currentIndex]);
 
   const handleArrowDownClick = () => {
     if (currentIndex + 1 < sections.length) {
@@ -49,7 +49,7 @@ export default function Home() {
             <h1 className="text-5xl font-bold">About Me</h1>
             <div className="flex flex-col gap-5">
               <p className="text-lg">
-                Hey, I’m Yuvrajsinh! I’m a 3rd-year student currently pursuing my B.Tech in Computer Science at <MagicLink href={"https://nirmauni.ac.in/"}>Nirma University</MagicLink>, with a minor in Cyber Physical Systems. I have a passion for creating innovative solutions that make a difference in people's lives.
+                Hey, I&lsquo;m Yuvrajsinh! I&lsquo;m a 3rd-year student currently pursuing my B.Tech in Computer Science at <MagicLink href={"https://nirmauni.ac.in/"}>Nirma University</MagicLink>, with a minor in Cyber Physical Systems. I have a passion for creating innovative solutions that make a difference in people's lives.
               </p>
 
               <p className="text-lg">

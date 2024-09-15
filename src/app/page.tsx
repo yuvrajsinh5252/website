@@ -12,7 +12,7 @@ export default function Home() {
 
             <div className="flex items-start flex-col">
               <span className="mt-2 font-semibold tracking-tight text-4xl md:text-[2.7rem] leading-tight md:leading-tight">
-                Hey there, I’m
+                Hey there, I&lsquo;m
               </span>
               <div className="flex">
                 <h1 className="text-5xl font-extrabold highlight pb-2 bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">

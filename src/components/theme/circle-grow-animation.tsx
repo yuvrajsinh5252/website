@@ -140,11 +140,11 @@ const m = {
 
 const GrowingCircleAnimation = () => {
   const { resolvedTheme: theme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  // const [mounted, setMounted] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    setMounted(true);
+    // setMounted(true);
     if (!canvasRef.current) return;
 
     const canvas = canvasRef.current;
@@ -184,7 +184,7 @@ const GrowingCircleAnimation = () => {
         false
       );
     };
-  });
+  }, [theme]);
 
   // if (!mounted) return null;
 

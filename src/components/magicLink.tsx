@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect } from 'react';
 
 export default function MagicLink(
@@ -70,7 +68,7 @@ export default function MagicLink(
         link.removeEventListener('mouseenter', (e) => shootLines(e as MouseEvent, link));
       });
     };
-  }, []);
+  }, [colors, shapes]);
 
   return (
     <span className="mx-auto text-center md:w-3/4">

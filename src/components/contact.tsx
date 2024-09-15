@@ -9,7 +9,7 @@ const ContactUs = () => {
       </h1>
       <div className="flex justify-center items-center flex-col gap-10">
         <div className="text-lg text-centermb-4 flex flex-col justify-center items-center">
-          <p>I’m always open to new projects, collaborations, and opportunities.</p>
+          <p>I&lsquo;m always open to new projects, collaborations, and opportunities.</p>
           <p>Feel free to reach out to me if you have any questions or just want to say hi!</p>
         </div>
         <div className="flex gap-10">
