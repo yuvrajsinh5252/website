@@ -57,3 +57,11 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+::-moz-selection {
+  background: rgba(97, 177, 247, 0.6);
+}
+
+::selection {
+  background: rgba(97, 177, 247, 0.6);
+}

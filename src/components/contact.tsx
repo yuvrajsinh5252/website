@@ -3,7 +3,7 @@ import { SiGmail, SiLinkedin } from "react-icons/si";
 
 const ContactUs = () => {
   return (
-    <div className="min-h-screen flex flex-col gap-5 items-center justify-center p-5">
+    <div className="h-screen max-sm:mt-60 flex flex-col gap-5 items-center justify-center p-5">
       <h1 className="text-4xl font-bold">
         Let&lsquo;s build something amazing together!
       </h1>

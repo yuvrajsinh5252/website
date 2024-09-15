@@ -43,9 +43,9 @@ export default function Home() {
   };
 
   return (
-    <MaxWidthWrapper className="max-w-screen-lg">
+    <MaxWidthWrapper className="max-w-screen-lg max-sm:px-4">
       <section className="flex flex-col items-center justify-center h-screen" id="one">
-        <div className="flex justify-center h-screen">
+        <div className="flex justify-center max-sm:mt-60">
           <div className="flex flex-col gap-10 mt-44">
             <h1 className="text-5xl font-bold">About Me</h1>
             <div className="flex flex-col gap-5">

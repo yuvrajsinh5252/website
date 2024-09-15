@@ -4,12 +4,11 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import OrbitingCircles from "@/components/oribiting-cirlce";
 import { FaPython } from "react-icons/fa";
 import { RiNextjsFill } from "react-icons/ri";
-import { SiCplusplus, SiPostgresql, SiTailwindcss, SiTypescript } from "react-icons/si";
-import { TbBrandFramerMotion } from "react-icons/tb";
+import { SiCplusplus, SiTailwindcss, SiTypescript } from "react-icons/si";
 
 export default function Orbitingskills() {
   return (
-    <MaxWidthWrapper className="items-center h-80">
+    <MaxWidthWrapper className="items-center h-80 max-sm:hidden">
       <div className="text-center sm:ml-20 h-full w-full sm:text-left flex flex-col items-center sm:items-start">
         <div className="relative flex h-full w-full max-w-[32rem] items-center justify-center overflow-hidden rounded-lg">
           <OrbitingCircles
