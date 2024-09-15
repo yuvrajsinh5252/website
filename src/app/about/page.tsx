@@ -11,14 +11,16 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const handleScroll = () => {
+    const handleScroll = () => {
+      if (typeof self !== 'undefined') {
         const sectionElements = Array.from(document.querySelectorAll('section')) as HTMLElement[];
         setSections(sectionElements);
-      };
+      }
+    };
 
-      handleScroll();
+    handleScroll();
 
+    if (typeof window !== 'undefined') {
       window.addEventListener('resize', handleScroll);
       return () => window.removeEventListener('resize', handleScroll);
     }
@@ -26,8 +28,10 @@ export default function Home() {
 
   const scrollToSection = (index: number) => {
     if (index >= 0 && index < sections.length) {
-      sections[index].scrollIntoView({ behavior: 'smooth' });
-      setCurrentIndex(index);
+      if (sections[index]) {
+        sections[index].scrollIntoView({ behavior: 'smooth' });
+        setCurrentIndex(index);
+      }
     }
   };
 
