@@ -35,7 +35,7 @@ export default function ThemeToggle() {
   }, []);
 
   return (
-    <div className="w-4 h-4 rounded-full fixed right-[10%] max-sm:right-10 flex justify-center items-center border-none focus:outline-none">
+    <div className="w-4 h-4 rounded-full fixed right-[10%] max-sm:right-4 flex justify-center items-center border-none focus:outline-none">
       {
         !mounted ?
           <button className="p-3 relative animate-ping rounded-full bg-gray-600">

@@ -5,7 +5,7 @@ import SocialLinks from "@/components/socialLinks";
 export default function Home() {
   return (
     <MaxWidthWrapper>
-      <div className="flex justify-center flex-col h-screen max-sm:px-2">
+      <div className="flex justify-center flex-col h-screen max-sm:px-2 max-sm:overflow-hidden">
 
         <div className="flex max-sm:flex-col justify-between max-sm:gap-20 max-sm:mt-20">
           <div className="flex items-start justify-center flex-col w-full gap-5">

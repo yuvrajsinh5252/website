@@ -28,7 +28,6 @@ export default function Navbar() {
           activeBg.style.top = `${top + 7.5}px`;
           activeBg.style.left = `${left + 28}px`;
         }
-        // else if (activeNav === "/blog") activeBg.style.top = `${top + 11}px`;
         else {
           activeBg.style.top = `${top + 11}px`;
           activeBg.style.left = `${left + 15}px`;
