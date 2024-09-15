@@ -1,7 +1,8 @@
 "use client"
 
+import dynamic from 'next/dynamic';
 import ContactUs from "@/components/contact";
-import MagicLink from "@/components/magicLink";
+const MagicLink = dynamic(() => import("@/components/magicLink"), { ssr: false });
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { useEffect, useState } from "react";
 import { FaArrowDown } from "react-icons/fa6";
@@ -12,26 +13,20 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (typeof self !== 'undefined') {
-        const sectionElements = Array.from(document.querySelectorAll('section')) as HTMLElement[];
-        setSections(sectionElements);
-      }
+      const sectionElements = Array.from(document.querySelectorAll('section')) as HTMLElement[];
+      setSections(sectionElements);
     };
 
     handleScroll();
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', handleScroll);
-      return () => window.removeEventListener('resize', handleScroll);
-    }
+    window.addEventListener('resize', handleScroll);
+    return () => window.removeEventListener('resize', handleScroll);
   }, []);
 
   const scrollToSection = (index: number) => {
     if (index >= 0 && index < sections.length) {
-      if (sections[index]) {
-        sections[index].scrollIntoView({ behavior: 'smooth' });
-        setCurrentIndex(index);
-      }
+      sections[index].scrollIntoView({ behavior: 'smooth' });
+      setCurrentIndex(index);
     }
   };
 
@@ -66,9 +61,12 @@ export default function Home() {
               <p className="text-lg">
                 In my spare time, I enjoy participating in hackathons, continuously improving my coding skills, and staying updated with the latest industry trends. I believe in lifelong learning and am always eager to take on new challenges.
               </p>
-              <FaArrowDown
-                onClick={handleArrowDownClick} style={{ display: currentIndex + 1 === sections.length ? 'none' : 'block' }}
-                className="animate-bounce cursor-pointer text-4xl left-1/2 rounded-full bg-white p-2 text-black fixed bottom-0" />
+              {currentIndex + 1 < sections.length && (
+                <FaArrowDown
+                  onClick={handleArrowDownClick}
+                  className="animate-bounce cursor-pointer text-4xl left-1/2 rounded-full bg-white p-2 text-black fixed bottom-0"
+                />
+              )}
             </div>
           </div>
         </div>

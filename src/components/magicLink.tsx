@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import mojs from '@mojs/core'
 
 export default function MagicLink(
   {
@@ -14,6 +13,14 @@ export default function MagicLink(
   const colors = ['#2FB5F3', '#FF0A47', '#FF0AC2', '#47FF0A'];
 
   useEffect(() => {
+    let mojs: any;
+    const loadMojs = async () => {
+      const mod = await import('@mojs/core');
+      mojs = mod.default;
+    };
+
+    loadMojs();
+
     const shootLines = (e: MouseEvent, link: HTMLElement) => {
       const itemDim = link.getBoundingClientRect();
       const itemSize = {
