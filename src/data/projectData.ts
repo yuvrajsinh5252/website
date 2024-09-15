@@ -75,4 +75,49 @@ export const PROJECTS = [
     year: "2024",
     githubLink: "https://github.com/yuvrajsinh5252/dotfiles",
   },
+  {
+    title: "Arch Linux Dotfiles",
+    description:
+      "A customizable collection of configuration files for setting up and managing an efficient Arch Linux environment.",
+    image: "../Mindhub.png",
+    tag: ["hyprland", "kitty", "waybar", "archlinux", "dunst", "wofi"],
+    year: "2024",
+    githubLink: "https://github.com/yuvrajsinh5252/dotfiles",
+  },
+  {
+    title: "Arch Linux Dotfiles",
+    description:
+      "A customizable collection of configuration files for setting up and managing an efficient Arch Linux environment.",
+    image: "../Mindhub.png",
+    tag: ["hyprland", "kitty", "waybar", "archlinux", "dunst", "wofi"],
+    year: "2024",
+    githubLink: "https://github.com/yuvrajsinh5252/dotfiles",
+  },
+  {
+    title: "Arch Linux Dotfiles",
+    description:
+      "A customizable collection of configuration files for setting up and managing an efficient Arch Linux environment.",
+    image: "../Mindhub.png",
+    tag: ["hyprland", "kitty", "waybar", "archlinux", "dunst", "wofi"],
+    year: "2024",
+    githubLink: "https://github.com/yuvrajsinh5252/dotfiles",
+  },
+  {
+    title: "Arch Linux Dotfiles",
+    description:
+      "A customizable collection of configuration files for setting up and managing an efficient Arch Linux environment.",
+    image: "../Mindhub.png",
+    tag: ["hyprland", "kitty", "waybar", "archlinux", "dunst", "wofi"],
+    year: "2024",
+    githubLink: "https://github.com/yuvrajsinh5252/dotfiles",
+  },
+  {
+    title: "Arch Linux Dotfiles",
+    description:
+      "A customizable collection of configuration files for setting up and managing an efficient Arch Linux environment.",
+    image: "../Mindhub.png",
+    tag: ["hyprland", "kitty", "waybar", "archlinux", "dunst", "wofi"],
+    year: "2024",
+    githubLink: "https://github.com/yuvrajsinh5252/dotfiles",
+  },
 ];

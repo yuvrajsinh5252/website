@@ -49,11 +49,12 @@ export default function Home() {
             <h1 className="text-5xl font-bold">About Me</h1>
             <div className="flex flex-col gap-5">
               <p className="text-lg">
-                Hi, I’m Yuvrajsinh Gohil, a passionate and innovative software developer currently pursuing my B.Tech in Computer Science at <MagicLink href={"https://nirmauni.ac.in/"}>Nirma University</MagicLink> with a minor in Cyber Physical Systems. I specialize in full-stack web development and have a strong foundation in data structures, algorithms, and database management. My work focuses on creating efficient, scalable, and user-friendly applications using modern technologies.
+                Hey, I’m Yuvrajsinh! I’m a 3rd-year student currently pursuing my B.Tech in Computer Science at <MagicLink href={"https://nirmauni.ac.in/"}>Nirma University</MagicLink>, with a minor in Cyber Physical Systems. I have a passion for creating innovative solutions that make a difference in people's lives.
               </p>
 
               <p className="text-lg">
-                I thrive in challenging environments where I can solve real-world problems through code, whether it’s building AI-powered educational platforms, crafting intuitive user interfaces, or creating multiplayer gaming experiences. With a deep interest in AI/ML, I enjoy working on <MagicLink href={"/projects"}>projects</MagicLink> that push the boundaries of technology.
+                In addition to developing software, I have a keen interest in designing PCB circuits and creating models of larger systems. This passion for hardware and integration is one of the reasons I chose Cyber Physical Systems as my minor.
+                You can check out my projects here <MagicLink href={"https://www.youtube.com/@yuvrajsinh472/videos"}>@Yuvrajsinh</MagicLink> I enjoy exploring the intersection of software and hardware, which allows me to bring innovative ideas to life.
               </p>
 
               <p className="text-lg">

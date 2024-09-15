@@ -1,83 +1,25 @@
-"use client"
-
-import { useState } from "react";
+import Link from "next/link";
+import { SiGmail, SiLinkedin } from "react-icons/si";
 
 const ContactUs = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const handleChange = (e: any) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    // Handle form submission (e.g., send data to an API or email service)
-    console.log("Form submitted", formData);
-  };
-
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-5">
-      <div className="bg-white shadow-lg rounded-lg w-full max-w-lg p-6">
-        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">
-          Contact Us
-        </h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name Input */}
-          <div>
-            <label className="block mb-2 text-gray-600">Your Name</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-300"
-              placeholder="Enter your name"
-            />
-          </div>
-
-          {/* Email Input */}
-          <div>
-            <label className="block mb-2 text-gray-600">Your Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-300"
-              placeholder="Enter your email"
-            />
-          </div>
-
-          {/* Message Input */}
-          <div>
-            <label className="block mb-2 text-gray-600">Your Message</label>
-            <textarea
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              className="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-300 h-32"
-              placeholder="Enter your message"
-            ></textarea>
-          </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full bg-indigo-500 text-white p-3 rounded-lg hover:bg-indigo-600 transition duration-300"
-          >
-            Send Message
-          </button>
-        </form>
+    <div className="min-h-screen flex flex-col gap-5 items-center justify-center p-5">
+      <h1 className="text-4xl font-bold">
+        Let's build something amazing together!
+      </h1>
+      <div className="flex justify-center items-center flex-col gap-10">
+        <div className="text-lg text-centermb-4 flex flex-col justify-center items-center">
+          <p>I’m always open to new projects, collaborations, and opportunities.</p>
+          <p>Feel free to reach out to me if you have any questions or just want to say hi!</p>
+        </div>
+        <div className="flex gap-10">
+          <Link href="mailto:yuvrajsinh476@gmail.com" className="text-blue-500 hover:underline">
+            <SiGmail className="inline-block" size={30} />
+          </Link>
+          <Link href="https://linkedin.com/in/yuvrajsinh099" target="_blank" className="text-blue-500 hover:underline">
+            <SiLinkedin className="inline-block" size={30} />
+          </Link>
+        </div>
       </div>
     </div>
   );
