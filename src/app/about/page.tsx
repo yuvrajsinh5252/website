@@ -47,7 +47,7 @@ export default function Home() {
       <section className="flex flex-col items-center justify-center h-screen" id="one">
         <div className="flex justify-center  h-screen">
           <div className="flex flex-col gap-10 mt-44">
-            <h1 className="text-5xl font-bold text-center">About Me</h1>
+            <h1 className="text-5xl font-bold max-sm:text-center">About Me</h1>
             <div className="flex flex-col gap-5">
               <p className="text-lg">
                 Hey, I&lsquo;m Yuvrajsinh! I&lsquo;m a 3rd-year student currently pursuing my B.Tech in Computer Science at <MagicLink href={"https://nirmauni.ac.in/"}>Nirma University</MagicLink>, with a minor in Cyber Physical Systems. I have a passion for creating innovative solutions that make a difference in people&lsquo;s lives.

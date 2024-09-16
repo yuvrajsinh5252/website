@@ -44,14 +44,14 @@
   transition: opacity 500ms;
   background: radial-gradient(
     600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(100, 100, 200, 0.2),
-    transparent 20%
+    rgba(200, 200, 200, 0.2),
+    transparent 30%
   );
-  z-index: -100;
   border-radius: 0.5rem;
   top: 0px;
   left: 0px;
   position: absolute;
+  pointer-events: none;
 }
 
 ::-webkit-scrollbar {

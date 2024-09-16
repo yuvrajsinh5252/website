@@ -35,7 +35,7 @@ export default function ThemeToggle() {
   }, []);
 
   return (
-    <div className="w-4 h-4 rounded-full fixed right-[10%] max-sm:right-4 flex justify-center items-center border-none focus:outline-none">
+    <div className="w-4 h-4 rounded-full fixed right-[10%] max-sm:right-5 flex justify-center items-center border-none focus:outline-none">
       {
         !mounted ?
           <button className="p-3 relative animate-ping rounded-full bg-gray-600">
@@ -48,9 +48,7 @@ export default function ThemeToggle() {
               onClickWrapper(event)
             }}
           >
-            <div className={"absolute rounded-full left-1 bottom-1 w-5 h-5 transform  transition-all duration-700 "
-              + (theme === "light" ? "scale-100 bg-black" : "scale-0 bg-[#18181B]")}
-            >
+            <div className={`absolute rounded-full left-1 bottom-1 w-5 h-5 transform transition-all duration-700 ${theme === "light" ? "scale-100 bg-[#D3D3D3]" : "scale-0 bg-black"}`}>
             </div>
           </button>
       }

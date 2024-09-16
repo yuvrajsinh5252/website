@@ -2,11 +2,25 @@
 
 import { PROJECTS } from "@/data/projectData";
 import { SquareArrowOutUpRight } from "lucide-react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useEffect } from "react";
 import { SiGithub } from "react-icons/si";
 
 export default function Home() {
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    if (theme == "light") {
+      PROJECTS.map((project, index) => {
+        document.getElementById(project.title)?.classList.remove("box");
+      });
+    } else {
+      PROJECTS.map((project, index) => {
+        document.getElementById(project.title)?.classList.add("box");
+      });
+    }
+  }, [theme]);
 
   useEffect(() => {
     document.body.onmousemove = e => {
@@ -34,7 +48,9 @@ export default function Home() {
                 key={index}
                 className="flex max-sm:w-full w-1/2 justify-center p-2 gap-2 group"
               >
-                <div className="flex rounded-lg justify-between flex-col gap-4 p-1 box relative">
+                <div
+                  id={project.title}
+                  className="flex rounded-lg justify-between flex-col gap-4 p-1 box relative">
                   <div className="p-3 rounded-lg bg-gray-500/20 bg-clip-padding backdrop-filter backdrop-blur-lg hover:ring-1 ring-gray-400 hover:bg-gray-500 hover:bg-opacity-10">
                     <div className="flex flex-col justify-center gap-4">
 
