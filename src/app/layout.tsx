@@ -20,6 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <link rel="icon" href="/logo.png" />
       <body className={poppins.className}>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <GrowingCircleAnimation />
