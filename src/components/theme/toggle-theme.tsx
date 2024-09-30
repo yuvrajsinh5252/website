@@ -48,7 +48,7 @@ export default function ThemeToggle() {
               onClickWrapper(event)
             }}
           >
-            <div className={`absolute rounded-full left-1 bottom-1 w-5 h-5 transform transition-all duration-700 ${theme === "light" ? "scale-100 bg-[#D3D3D3]" : "scale-0 bg-black"}`}>
+            <div className={`absolute rounded-full left-1 bottom-1 w-5 h-5 transform transition-all duration-700 ${theme === "light" ? "scale-100 bg-[#F5F5F5]" : "scale-0 bg-black"}`}>
             </div>
           </button>
       }

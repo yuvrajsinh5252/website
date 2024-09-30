@@ -44,10 +44,10 @@ export default function Navbar() {
   return (
     <MaxWidthWrapper className="z-50 relative">
       <div className="items-center fixed flex justify-start w-[inherit] h-fit mt-14">
-        <nav className="flex left-1/2 -translate-x-1/2 fixed m-auto items-center justify-between w-fit h-9 rounded-2xl bg-gray-600/20 transition-transform duration-200 ease-linear outline-none border-2 border-gray-300/20 border-opacity-20 backdrop-filter backdrop-blur-xl gap-2 py-7 px-3">
+        <nav className="flex left-1/2 -translate-x-1/2 fixed m-auto items-center justify-between w-fit h-9 rounded-2xl bg-gray-600/20 duration-300 ease-linear outline-none border-2 border-gray-300/20 border-opacity-20 backdrop-filter backdrop-blur-md gap-2 py-7 px-3 dark:text-white text-black transition-all">
           <div
             id="active-bg"
-            className="bg-gray-300/20 -mx-5 bg-opacity-10 h-9 rounded-2xl absolute bg transition-all duration-300 ease-linear flex items-center justify-center">
+            className="dark:bg-gray-300/20 -mx-5 bg-opacity-10 h-9 rounded-2xl absolute bg transition-all duration-300 ease-linear flex items-center justify-center bg-black">
           </div>
           <NavLink setActiveNav={setActiveNav} activeNav={activeNav} text="home" href="/" />
           <NavLink setActiveNav={setActiveNav} activeNav={activeNav} text="projects" href="/projects" />

@@ -1,20 +1,17 @@
-import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import "./globals.css";
+import "./styles/globals.css";
 import { ThemeProvider } from "next-themes";
 import GrowingCircleAnimation from "@/components/theme/circle-grow-animation";
 import { Cursor } from "@/components/theme/cursor";
 import Navbar from "@/components/navbar/navbar";
+import { constructMetadata } from "@/lib/utils";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: "400",
 });
 
-export const metadata: Metadata = {
-  title: "My Website",
-  description: "This is my portfolio website built using next.js 14",
-};
+export const metadata = constructMetadata();
 
 export default function RootLayout({
   children,

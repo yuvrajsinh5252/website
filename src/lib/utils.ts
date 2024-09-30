@@ -6,39 +6,27 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function constructMetadata({
-  title = "WhispherDocs",
-  description = "Enjoy the best of the web with WhisperDocs and get best knowledge out of pdf files.",
-}: // noIndex = false,
-{
-  title?: string;
-  description?: string;
-  image?: string;
-  icons?: string;
-  noIndex?: boolean;
-} = {}): Metadata {
+export function constructMetadata(): Metadata {
   return {
-    title,
-    description,
+    metadataBase: new URL("https://yuvrajsinh.me"),
+    title: {
+      default: "Yuvrajsinh",
+      template: `%s | Yuvrajsinh`,
+    },
     openGraph: {
-      title,
-      description,
-      // images: [{ url: image }],
+      description: "Yuvrajsinh's personal website",
+      images: [
+        {
+          url: "/logo.png",
+          alt: "Yuvrajsinh's personal website",
+        },
+      ],
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      // images: [image],
-      creator: "@yuvrajsinh",
-    },
-    // icons,
-    // metadataBase: new URL("http://localhost:3000/"),
-    // ...(noIndex && {
-    //   robots: {
-    //     index: false,
-    //     follow: false,
-    //   },
-    // }),
+    keywords: [
+      "Yuvrajsinh",
+      "Yuvrajsinh5252",
+      "developer portfolio",
+      "personal website",
+    ],
   };
 }

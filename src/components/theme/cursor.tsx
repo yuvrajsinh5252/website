@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export function Cursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [color, setColor] = useState("rgba(70, 0, 200, 0.15)");
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
 
   useEffect(() => {
     const move = (event: MouseEvent) => {
