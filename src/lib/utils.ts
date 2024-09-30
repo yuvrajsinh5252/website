@@ -9,10 +9,8 @@ export function cn(...inputs: ClassValue[]) {
 export function constructMetadata({
   title = "WhispherDocs",
   description = "Enjoy the best of the web with WhisperDocs and get best knowledge out of pdf files.",
-  // image = "/thumbnail.png",
-  // icons = "/favicon.ico",
-  noIndex = false,
-}: {
+}: // noIndex = false,
+{
   title?: string;
   description?: string;
   image?: string;

@@ -28,8 +28,8 @@ const throttle = (callback: any, limit = 250) => {
 };
 
 const COLORS = {
-  white: "#D3D3D3",
-  midnightBlack: "#18181B"
+  white: "#F5F5F5",
+  midnightBlack: "#08080D"
 };
 
 const RADIUS_GROWTH_PER_MS = 0.025;
