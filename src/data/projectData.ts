@@ -67,12 +67,32 @@ export const PROJECTS = [
     githubLink: "https://github.com/yuvrajsinh5252/TODO-app",
   },
   {
-    title: "Arch Linux Dotfiles",
+    title: "Dynamic Scheduler",
     description:
-      "A customizable collection of configuration files for setting up and managing an efficient Arch Linux environment.",
-    image: "../Mindhub.png",
-    tag: ["hyprland", "kitty", "waybar", "archlinux", "dunst", "wofi"],
+      "A site where users can set their availability, and admins schedule events based on time slots using a calendar view",
+    image: "../dynamic-scheduler.png",
+    tag: ["nextjs14", "tailwindcss", "fullcalendar", "prisma", "mongodb"],
     year: "2024",
-    githubLink: "https://github.com/yuvrajsinh5252/dotfiles",
+    githubLink: "https://github.com/yuvrajsinh5252/dynamic-scheduler",
+  },
+  {
+    title: "Portfolio",
+    description:
+      "A portfolio website that showcases my projects, skills, and experiences.",
+    image: "../website.png",
+    link: "https://www.yuvrajsinh.me/",
+    tag: ["nextjs14", "tailwindcss"],
+    year: "2024",
+    githubLink: "https://github.com/yuvrajsinh5252/website",
+  },
+  {
+    title: "MyFlashcard",
+    description:
+      "A flashcard application, add custom data to each flashcard for personalized learning.",
+    image: "../FlashLearn.png",
+    link: "https://my-flashcard.vercel.app/",
+    tag: ["React", "ElysiaJs", "Context API", "postgresql"],
+    year: "2024",
+    githubLink: "https://github.com/yuvrajsinh5252/FlashLearn",
   },
 ];

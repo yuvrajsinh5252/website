@@ -1,6 +1,9 @@
+"use client"
+
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Orbitingskills from "@/components/orbitting-skills";
 import SocialLinks from "@/components/socialLinks";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
@@ -8,8 +11,12 @@ export default function Home() {
       <div className="flex justify-center flex-col h-screen max-sm:px-2 max-sm:overflow-hidden">
 
         <div className="flex max-sm:flex-col justify-between max-sm:gap-20 max-sm:mt-20">
-          <div className="flex items-start justify-center flex-col w-full gap-5">
-
+          <motion.div
+            className="flex items-start justify-center flex-col w-full gap-5"
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          >
             <div className="flex items-start flex-col">
               <span className="mt-2 font-semibold tracking-tight text-4xl md:text-[2.7rem] leading-tight md:leading-tight">
                 Hey there, I&lsquo;m
@@ -31,7 +38,7 @@ export default function Home() {
             <div className="flex gap-5">
               <SocialLinks />
             </div>
-          </div>
+          </motion.div>
 
           <Orbitingskills />
         </div>

@@ -51,7 +51,7 @@ export default function Home() {
                 <div
                   id={project.title}
                   className="flex rounded-lg justify-between flex-col gap-4 p-1 box relative">
-                  <div className="p-3 rounded-lg bg-gray-500/20 bg-clip-padding backdrop-filter backdrop-blur-lg hover:ring-1 ring-gray-400 hover:bg-gray-500 hover:bg-opacity-10">
+                  <div className="p-3 rounded-lg bg-gray-500/20 bg-clip-padding backdrop-filter backdrop-blur-lg hover:ring-1 ring-gray-400 hover:bg-opacity-10">
                     <div className="flex flex-col justify-center gap-4">
 
                       <div className="flex justify-between items-center">
