@@ -64,7 +64,7 @@ export default function Home() {
               {currentIndex + 1 < sections.length && (
                 <FaArrowDown
                   onClick={handleArrowDownClick}
-                  className="animate-bounce cursor-pointer text-4xl left-1/2 rounded-full bg-white p-2 text-black fixed bottom-0"
+                  className="animate-bounce cursor-pointer text-4xl left-1/2 rounded-full bg-white p-2 text-black fixed bottom-2"
                 />
               )}
             </div>
