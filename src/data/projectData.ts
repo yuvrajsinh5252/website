@@ -22,7 +22,7 @@ export const PROJECTS = [
     description:
       "An AI-powered educational platform that generates personalized quizzes for students and auto-generates subtitles for uploaded course materials.",
     image: "../Mindhub.png",
-    link: "https://brilliantplusplus.vercel.app",
+    link: "https://brilliant-plus-plus.vercel.app",
     tag: [
       "nextjs14",
       "React",
@@ -42,7 +42,7 @@ export const PROJECTS = [
     description:
       "A real-time multiplayer chess game where two players can play and communicate in real time.",
     image: "../Mindhub.png",
-    link: "https://chessgame.vercel.app",
+    link: "https://chessmate-ym.netlify.app/",
     tag: ["React", "javascript", "socketio", "nodejs", "express"],
     year: "2022",
     githubLink: "https://github.com/yuvrajsinh5252/ChessGame",
