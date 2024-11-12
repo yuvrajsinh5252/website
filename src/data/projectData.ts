@@ -42,7 +42,7 @@ export const PROJECTS = [
     description:
       "A real-time multiplayer chess game where two players can play and communicate in real time.",
     image: "../Mindhub.png",
-    link: "https://chessmate-ym.netlify.app/",
+    link: "https://chessmate-ym.vercel.app/",
     tag: ["React", "javascript", "socketio", "nodejs", "express"],
     year: "2022",
     githubLink: "https://github.com/yuvrajsinh5252/ChessGame",
