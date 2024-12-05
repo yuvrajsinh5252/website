@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import { usePathname } from "next/navigation";
@@ -34,7 +34,7 @@ export default function Navbar() {
     };
 
     updateActiveBgPosition();
-  }, [activeNav])
+  }, [activeNav]);
 
   return (
     <MaxWidthWrapper className="z-50 relative">
@@ -48,13 +48,28 @@ export default function Navbar() {
             id="active-bg"
             className="dark:bg-gray-300/20 -mx-5 bg-opacity-10 h-9 rounded-2xl absolute bg transition-all duration-300 ease-linear flex items-center justify-center bg-black"
           ></div>
-          <NavLink setActiveNav={setActiveNav} activeNav={activeNav} text="home" href="/" />
-          <NavLink setActiveNav={setActiveNav} activeNav={activeNav} text="projects" href="/projects" />
-          <NavLink setActiveNav={setActiveNav} activeNav={activeNav} text="about" href="/about" />
+          <NavLink
+            setActiveNav={setActiveNav}
+            activeNav={activeNav}
+            text="home"
+            href="/"
+          />
+          <NavLink
+            setActiveNav={setActiveNav}
+            activeNav={activeNav}
+            text="projects"
+            href="/projects"
+          />
+          <NavLink
+            setActiveNav={setActiveNav}
+            activeNav={activeNav}
+            text="about"
+            href="/about"
+          />
           {/* <NavLink setActiveNav={setActiveNav} activeNav={activeNav} text="blog" href="/blog" /> */}
         </motion.nav>
         <ThemeToggle />
       </div>
     </MaxWidthWrapper>
-  )
+  );
 }

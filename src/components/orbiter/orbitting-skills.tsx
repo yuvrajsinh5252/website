@@ -1,7 +1,7 @@
 "use client";
 
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import OrbitingCircles from "@/components/oribiting-cirlce";
+import OrbitingCircles from "@/components/orbiter/oribiting-cirlce";
 import { FaPython } from "react-icons/fa";
 import { RiNextjsFill } from "react-icons/ri";
 import { SiCplusplus, SiTailwindcss, SiTypescript } from "react-icons/si";

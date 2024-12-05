@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
@@ -28,8 +28,8 @@ const throttle = (callback: any, limit = 250) => {
 };
 
 const COLORS = {
-  white: "#F5F5F5",
-  midnightBlack: "#08080D"
+  white: "#CCCCCC",
+  midnightBlack: "#18181B",
 };
 
 const RADIUS_GROWTH_PER_MS = 0.025;
@@ -43,7 +43,7 @@ const circleCenterCoordinates = {
   resetMouseState: () => {
     circleCenterCoordinates.x = null;
     circleCenterCoordinates.y = null;
-  }
+  },
 };
 
 const m = {
@@ -135,22 +135,23 @@ const m = {
       };
       window.requestAnimationFrame(returnAfterAnimating);
     });
-  }
+  },
 };
 
 const GrowingCircleAnimation = () => {
   const { resolvedTheme: theme } = useTheme();
-  // const [mounted, setMounted] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    // setMounted(true);
     if (!canvasRef.current) return;
 
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
 
-    let stateMachine: any = m.createMachine(ctx, theme === "dark" ? true : false);
+    let stateMachine: any = m.createMachine(
+      ctx,
+      theme === "dark" ? true : false
+    );
     let isStateMachinePowered = true;
 
     const stateMachineRunner = async () => {
@@ -186,9 +187,12 @@ const GrowingCircleAnimation = () => {
     };
   }, [theme]);
 
-  // if (!mounted) return null;
-
-  return <canvas className="w-[150vw] h-[150vh] fixed bg-[#09090D] top-0 left-0" ref={canvasRef} />;
+  return (
+    <canvas
+      className="w-[150vw] h-[150vh] fixed bg-[#18181B] top-0 left-0"
+      ref={canvasRef}
+    />
+  );
 };
 
 export default GrowingCircleAnimation;

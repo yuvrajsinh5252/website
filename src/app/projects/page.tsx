@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { PROJECTS } from "@/data/projectData";
 import { SquareArrowOutUpRight } from "lucide-react";
@@ -23,7 +23,7 @@ export default function Home() {
   }, [theme]);
 
   useEffect(() => {
-    document.body.onmousemove = e => {
+    document.body.onmousemove = (e) => {
       const boxes: any = Array.from(document.getElementsByClassName("box"));
 
       for (const date of boxes) {
@@ -33,8 +33,8 @@ export default function Home() {
 
         date.style.setProperty("--mouse-x", `${x}px`);
         date.style.setProperty("--mouse-y", `${y}px`);
-      };
-    }
+      }
+    };
   }, []);
 
   return (
@@ -50,42 +50,51 @@ export default function Home() {
               >
                 <div
                   id={project.title}
-                  className="flex rounded-lg justify-between flex-col gap-4 p-1 box relative">
-                  <div className="p-3 rounded-lg bg-gray-500/20 bg-clip-padding backdrop-filter backdrop-blur-lg hover:ring-1 ring-gray-400 hover:bg-opacity-10">
+                  className="flex rounded-lg justify-between flex-col gap-4 p-1 box relative"
+                >
+                  <div className="p-3 rounded-lg bg-gray-500/10 bg-clip-padding backdrop-filter backdrop-blur-lg hover:ring-1 ring-gray-400 hover:bg-opacity-10">
                     <div className="flex flex-col justify-center gap-4">
-
                       <div className="flex justify-between items-center">
                         <div className="flex gap-4 items-center">
                           <h1 className="text-2xl font-bold">
                             {project.title}
                           </h1>
-                          {
-                            project.link ? (
-                              <Link href={project.link} target="_blank" rel="noreferrer">
-                                <SquareArrowOutUpRight className="group-hover:text-teal-300 transition-transform duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1 cursor-pointer" />
-                              </Link>
-                            ) : null
-                          }
-                          <Link href={project.githubLink} target="_blank" rel="noreferrer">
+                          {project.link ? (
+                            <Link
+                              href={project.link}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <SquareArrowOutUpRight className="group-hover:text-teal-300 transition-transform duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1 cursor-pointer" />
+                            </Link>
+                          ) : null}
+                          <Link
+                            href={project.githubLink}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
                             <SiGithub size={20} />
                           </Link>
                         </div>
                         <div>
-                          {
-                            project.year ? (
-                              <p className="text-gray-400 text-[14px] leading-2">
-                                {project.year}
-                              </p>
-                            ) : null
-                          }
+                          {project.year ? (
+                            <p className="text-gray-400 text-[14px] leading-2">
+                              {project.year}
+                            </p>
+                          ) : null}
                         </div>
                       </div>
-                      <p className="text-[14px] text-gray-400 leading-2 overflow-ellipsis overflow-hidden text-justify">{project.description}</p>
+                      <p className="text-[14px] text-gray-400 leading-2 overflow-ellipsis overflow-hidden text-justify">
+                        {project.description}
+                      </p>
                     </div>
                     <div className="flex mt-5 flex-wrap gap-2">
                       {project.tag.map((t, ind) => {
                         return (
-                          <div key={ind} className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs leading-5 text-teal-300 ">
+                          <div
+                            key={ind}
+                            className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs leading-5 text-teal-300 "
+                          >
                             {t}
                           </div>
                         );
@@ -97,7 +106,7 @@ export default function Home() {
             );
           })}
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 }
