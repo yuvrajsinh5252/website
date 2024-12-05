@@ -27,7 +27,7 @@ export function Cursor() {
       style={{
         background:
           theme === "dark"
-            ? `radial-gradient(400px at ${position.x + 200}px ${
+            ? `radial-gradient(300px at ${position.x + 200}px ${
                 position.y + 500
               }px, rgba(0, 0, 255, 0.2) 0%, transparent 100%)`
             : "",
