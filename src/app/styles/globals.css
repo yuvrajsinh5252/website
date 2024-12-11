@@ -43,8 +43,8 @@
   width: 100%;
   transition: opacity 500ms;
   background: radial-gradient(
-    600px circle at var(--mouse-x) var(--mouse-y),
-    rgba(140, 181, 253, 0.2),
+    200px circle at var(--mouse-x) var(--mouse-y),
+    rgba(207, 214, 215, 0.314),
     transparent 30%
   );
   border-radius: 0.5rem;

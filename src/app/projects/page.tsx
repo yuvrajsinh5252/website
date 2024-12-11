@@ -52,7 +52,7 @@ export default function Home() {
                   id={project.title}
                   className="flex rounded-lg justify-between flex-col gap-4 p-1 box relative"
                 >
-                  <div className="p-3 rounded-lg bg-gray-500/10 bg-clip-padding backdrop-filter backdrop-blur-lg hover:ring-1 ring-gray-400 hover:bg-opacity-10">
+                  <div className="p-3 rounded-lg dark:bg-gray-600/40 bg-gray-500/10 bg-clip-padding backdrop-filter backdrop-blur-lg hover:ring-1 ring-gray-400 hover:bg-opacity-10">
                     <div className="flex flex-col justify-center gap-4">
                       <div className="flex justify-between items-center">
                         <div className="flex gap-4 items-center">
@@ -78,13 +78,13 @@ export default function Home() {
                         </div>
                         <div>
                           {project.year ? (
-                            <p className="text-gray-400 text-[14px] leading-2">
+                            <p className="text-[14px] leading-2">
                               {project.year}
                             </p>
                           ) : null}
                         </div>
                       </div>
-                      <p className="text-[14px] text-gray-400 leading-2 overflow-ellipsis overflow-hidden text-justify">
+                      <p className="text-[14px] leading-2 overflow-ellipsis overflow-hidden text-justify">
                         {project.description}
                       </p>
                     </div>
