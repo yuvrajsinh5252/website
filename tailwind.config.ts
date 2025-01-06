@@ -24,41 +24,14 @@ const config: Config = {
           "0%, 100%": { transform: "rotate(-4deg)" },
           "50%": { transform: "rotate(4deg)" },
         },
-        orbit: {
-          "0%": {
-            transform:
-              "rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg)",
-          },
-          "100%": {
-            transform:
-              "rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg)",
-          },
-        },
       },
       animation: {
         popout: "popout 0.1s ease-out",
         wiggle: "wiggle 1.5s ease-in-out infinite",
-        orbit: "orbit calc(var(--duration)*1s) linear infinite",
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/typography"),
-    plugin(
-      function ({ addVariant }: any) {
-        addVariant("glow", ".glow-capture .glow-overlay &");
-      },
-      {
-        theme: {
-          extend: {
-            colors: {
-              glow: "color-mix(in srgb, var(--glow-color) calc(<alpha-value> * 100%), transparent)",
-            },
-          },
-        },
-      }
-    ),
-  ],
+  plugins: [require("@tailwindcss/typography")],
 };
 
 export default config;

@@ -1,10 +1,9 @@
 import { Poppins } from "next/font/google";
 import "./styles/globals.css";
 import GrowingCircleAnimation from "@/components/theme/circle-grow-animation";
-import { Cursor } from "@/components/theme/cursor";
 import Navbar from "@/components/navbar/navbar";
 import { constructMetadata } from "@/lib/utils";
-import { Providers } from "@/components/theme/providers";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -22,12 +21,16 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <link rel="icon" href="/logo.png" />
       <body className={poppins.className}>
-        <Providers>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <GrowingCircleAnimation />
           <Navbar />
-          <div className="dark:mix-blend-difference mix-blend-screen"><Cursor /></div>
           <div className="relative z-20 mix-blend-difference">{children}</div>
-        </Providers>
+        </ThemeProvider>
       </body>
     </html>
   );

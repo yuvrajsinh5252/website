@@ -2,26 +2,11 @@
 
 import { PROJECTS } from "@/data/projectData";
 import { SquareArrowOutUpRight } from "lucide-react";
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useEffect } from "react";
 import { SiGithub } from "react-icons/si";
 
 export default function Home() {
-  const { theme } = useTheme();
-
-  useEffect(() => {
-    if (theme == "light") {
-      PROJECTS.map((project, index) => {
-        document.getElementById(project.title)?.classList.remove("box");
-      });
-    } else {
-      PROJECTS.map((project, index) => {
-        document.getElementById(project.title)?.classList.add("box");
-      });
-    }
-  }, [theme]);
-
   useEffect(() => {
     document.body.onmousemove = (e) => {
       const boxes: any = Array.from(document.getElementsByClassName("box"));
@@ -50,7 +35,7 @@ export default function Home() {
               >
                 <div
                   id={project.title}
-                  className="flex rounded-lg justify-between flex-col gap-4 p-1 box relative"
+                  className="flex rounded-lg justify-between flex-col gap-4 p-1 relative"
                 >
                   <div className="p-3 rounded-lg dark:bg-gray-600/40 bg-gray-500/10 bg-clip-padding backdrop-filter backdrop-blur-lg hover:ring-1 ring-gray-400 hover:bg-opacity-10">
                     <div className="flex flex-col justify-center gap-4">
@@ -93,7 +78,7 @@ export default function Home() {
                         return (
                           <div
                             key={ind}
-                            className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs leading-5 text-teal-300 "
+                            className="flex items-center rounded-full px-3 py-1 text-xs leading-5 bg-[#50E3C2]/30 "
                           >
                             {t}
                           </div>
