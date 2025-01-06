@@ -54,16 +54,6 @@ export const TypewriterEffect = ({
       className={cn("flex flex-wrap items-center justify-center", className)}
     >
       <div ref={scope}>{renderWords()}</div>
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          duration: 0.8,
-          repeat: Infinity,
-          repeatType: "reverse",
-        }}
-        className="inline-block h-4 w-[2px] bg-blue-500 ml-1"
-      />
     </motion.div>
   );
 };

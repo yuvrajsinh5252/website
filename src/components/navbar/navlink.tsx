@@ -10,45 +10,54 @@ interface NavLinkProps {
   activeNav?: string;
 }
 
-export default function NavLink(props: NavLinkProps) {
+export default function NavLink({
+  href,
+  text,
+  activeNav,
+  setActiveNav,
+}: NavLinkProps) {
+  const isActive = activeNav === href;
+
+  const getIcon = (text: string) => {
+    switch (text) {
+      case "home":
+        return <FaHome />;
+      case "projects":
+        return <FaCode />;
+      case "about":
+        return <FaUser />;
+      case "blog":
+        return <FaBlog />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <Link
-      className={"navlink z-30 " + (props.activeNav == props.href ? "m-4" : "")}
-      onClick={() => {
-        props.setActiveNav ? props.setActiveNav(props.href) : null;
-      }}
-      href={props.href}
-    >
-      <span
-        className={`rounded-full flex items-center justify-between gap-2 py-2 bg-transparent`}
+    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+      <Link
+        href={href}
+        onClick={() => setActiveNav?.(href)}
+        className={`relative px-5 py-2 rounded-full capitalize transition-all duration-300 ${
+          isActive
+            ? "text-black dark:text-white font-medium"
+            : "text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
+        }`}
       >
-        <span>
-          {props.text == "home" ? <FaHome /> : <></>}
-          {props.text == "projects" ? <FaCode /> : <></>}
-          {props.text == "about" ? <FaUser /> : <></>}
-          {props.text == "blog" ? <FaBlog /> : <></>}
-        </span>
-        <span>
-          <span>
-            {props.activeNav == props.href ? (
-              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                {props.text.split("").map((char, index) => (
-                  <motion.span
-                    key={index}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </motion.span>
-            ) : (
-              <></>
-            )}
-          </span>
-        </span>
-      </span>
-    </Link>
+        <div className="rounded-full flex items-center gap-2 py-2">
+          {getIcon(text)}
+          {isActive && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {text}
+            </motion.div>
+          )}
+        </div>
+      </Link>
+    </motion.div>
   );
 }

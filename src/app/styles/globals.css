@@ -4,11 +4,12 @@
 
 @layer base {
   body {
-    color: rgb(200, 200, 200);
+    color: rgb(159, 159, 159);
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+    @apply dark:text-gray-200 text-gray-300;
   }
 }
 
