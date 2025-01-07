@@ -2,7 +2,7 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
-import MaxWidthWrapper from "../MaxWidthWrapper";
+import MaxWidthWrapper from "../ui/MaxWidthWrapper";
 import NavLink from "./navlink";
 import ThemeToggle from "../theme/toggle-theme";
 import { motion, AnimatePresence } from "framer-motion";
@@ -60,7 +60,7 @@ export default function Navbar() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, type: "spring", stiffness: 120 }}
-          className="flex max-sm:left-1/4 left-1/2 -translate-x-1/2 fixed m-auto items-center justify-between w-fit h-10 rounded-full dark:bg-gray-600/30 bg-white/70 duration-300 ease-linear outline-none border dark:border-gray-300/30 border-gray-800/30 backdrop-filter backdrop-blur-lg gap-4 px-4 py-6 dark:text-white text-black transition-all navbar hover:shadow-lg hover:dark:bg-gray-600/40 hover:bg-white/80"
+          className="flex max-sm:left-1/4 left-[45%] fixed m-auto items-center justify-between w-fit h-10 rounded-full dark:bg-gray-600/30 bg-white/70 duration-300 ease-linear outline-none border dark:border-gray-300/30 border-gray-800/30 backdrop-filter backdrop-blur-lg gap-4 px-4 py-6 dark:text-white text-black transition-all navbar hover:shadow-lg hover:dark:bg-gray-600/40 hover:bg-white/80"
         >
           <div
             id="active-bg"

@@ -1,41 +1,39 @@
 "use client";
 
 import { PROJECTS } from "@/data/projectData";
+import { motion } from "framer-motion";
 import { SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
-import { useEffect } from "react";
+import { IoIosArrowForward } from "react-icons/io";
 import { SiGithub } from "react-icons/si";
 
 export default function Home() {
-  useEffect(() => {
-    document.body.onmousemove = (e) => {
-      const boxes: any = Array.from(document.getElementsByClassName("box"));
-
-      for (const date of boxes) {
-        const rect = date.getBoundingClientRect(),
-          x = e.clientX - rect.left,
-          y = e.clientY - rect.top;
-
-        date.style.setProperty("--mouse-x", `${x}px`);
-        date.style.setProperty("--mouse-y", `${y}px`);
-      }
-    };
-  }, []);
-
   return (
     <div className="flex flex-col items-center h-screen no-scrollbar overflow-scroll">
       <div className="flex flex-col max-sm:items-center max-w-screen-lg gap-10 mt-44 pb-10">
-        <h1 className="text-5xl font-bold pl-2">Projects</h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center gap-2 sm:text-5xl text-4xl font-bold pl-2"
+        >
+          <IoIosArrowForward className="text-3xl max-sm:hidden sm:text-4xl" />
+          <span>Projects</span>
+        </motion.h1>
         <div className="flex items-center max-sm:flex-col justify-center flex-wrap h-full">
           {PROJECTS.map((project, index) => {
             return (
-              <div
+              <motion.div
                 key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.1, delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
                 className="flex max-sm:w-full w-1/2 justify-center p-2 gap-2 group"
               >
                 <div
                   id={project.title}
-                  className="flex rounded-lg justify-between flex-col gap-4 p-1 relative"
+                  className="flex rounded-lg justify-between flex-col gap-4 p-1 relative w-full"
                 >
                   <div className="p-3 rounded-lg dark:bg-gray-600/40 bg-gray-500/10 bg-clip-padding backdrop-filter backdrop-blur-lg hover:ring-1 ring-gray-400 hover:bg-opacity-10">
                     <div className="flex flex-col justify-center gap-4">
@@ -87,7 +85,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

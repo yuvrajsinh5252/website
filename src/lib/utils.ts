@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export function constructMetadata(): Metadata {
   return {
-    metadataBase: new URL("https://yuvrajsinh.me"),
+    metadataBase: new URL("https://www.yuvrajsinh.me"),
     title: {
       default: "Yuvrajsinh",
       template: `%s | Yuvrajsinh`,

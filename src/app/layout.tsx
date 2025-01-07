@@ -21,12 +21,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <link rel="icon" href="/logo.png" />
       <body className={poppins.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <GrowingCircleAnimation />
           <Navbar />
           <div className="relative z-20 mix-blend-difference">{children}</div>

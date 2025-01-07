@@ -1,6 +1,6 @@
 "use client";
 
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import MaxWidthWrapper from "@/components/ui/MaxWidthWrapper";
 import SocialLinks from "@/components/socialLinks";
 import { motion } from "framer-motion";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
@@ -19,18 +19,22 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="relative"
             >
-              <div className="w-[90vw] md:w-[40rem] h-[15rem] md:h-[20rem] relative">
+              <div className="w-[90vw] md:w-[40rem] h-[14rem] md:h-[12rem] relative">
                 <SparklesCore
                   background="transparent"
-                  minSize={0.4}
+                  minSize={0.8}
                   maxSize={1}
                   particleDensity={100}
                   className="w-full h-full"
                   particleColor="#4A90E2"
                 />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-[#4A90E2] to-[#50E3C2]">
-                    Yuvrajsinh Gohil
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <p className="mb-4 text-xl text-center dark:text-gray-300">
+                    Hey there, I&apos;m
+                  </p>
+                  <h1 className="flex max-sm:flex-col gap-3 text-6xl lg:text-7xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400 animate-text">
+                    <span>Yuvrajsinh</span>
+                    <span>Gohil</span>
                   </h1>
                 </div>
               </div>
