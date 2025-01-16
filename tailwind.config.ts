@@ -28,6 +28,7 @@ const config: Config = {
       animation: {
         popout: "popout 0.1s ease-out",
         wiggle: "wiggle 1.5s ease-in-out infinite",
+        gradient: "gradient 15s ease infinite",
       },
     },
   },

@@ -5,7 +5,7 @@ import Navbar from "@/components/navbar/navbar";
 import { constructMetadata } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import CustomCursor from "@/components/cursor/custom-cursor";
-import AnimatedBackground from "@/components/ui/animated-background";
+import { CustomBackground } from "@/components/ui/custom-background";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -32,7 +32,7 @@ export default function RootLayout({
       <body className={poppins.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <GrowingCircleAnimation />
-          {/* <AnimatedBackground /> */}
+          <CustomBackground />
           <CustomCursor />
           <Navbar />
           <div className="relative z-20">{children}</div>

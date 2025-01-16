@@ -45,22 +45,22 @@ export default function Home() {
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 },
+    transition: { duration: 0.8, ease: "easeOut" },
   };
 
   const skills = [
     {
-      icon: <FaCode className="text-3xl" />,
+      icon: <FaCode className="text-4xl text-blue-400" />,
       title: "Software Development",
       description: "Full-stack development with React, Next.js, and Node.js",
     },
     {
-      icon: <FaMicrochip className="text-3xl" />,
+      icon: <FaMicrochip className="text-4xl text-green-400" />,
       title: "PCB Design",
       description: "Designing and implementing PCB circuits",
     },
     {
-      icon: <FaTerminal className="text-3xl" />,
+      icon: <FaTerminal className="text-4xl text-purple-400" />,
       title: "Programming Languages",
       description: "TypeScript, Python, C, C++, Java, Rust, Go",
     },
@@ -69,15 +69,17 @@ export default function Home() {
   return (
     <MaxWidthWrapper className="max-w-screen-lg max-sm:px-4">
       <section
-        className="min-h-screen flex flex-col justify-center pt-28 sm:pt-44"
+        className="min-h-screen flex flex-col justify-center pt-28 sm:pt-44 relative"
         id="introduction"
       >
-        <motion.div {...fadeIn} className="space-y-8 sm:space-y-12">
-          <h1 className="flex gap-2 items-center text-4xl sm:text-5xl font-bold">
-            <IoIosArrowForward className="text-3xl sm:text-4xl max-sm:hidden" />
-            <span className="max-sm:mx-auto">About Me</span>
+        <motion.div {...fadeIn} className="space-y-8 sm:space-y-12 relative">
+          <h1 className="flex gap-2 items-center text-5xl sm:text-6xl font-bold">
+            <IoIosArrowForward className="text-4xl sm:text-5xl max-sm:hidden" />
+            <span className="max-sm:mx-auto dark:bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent bg-gray-700">
+              About Me
+            </span>
           </h1>
-          <div className="space-y-4 sm:space-y-6 mx-auto">
+          <div className="space-y-6 sm:space-y-8 mx-auto">
             <p className="text-base sm:text-lg">
               Hey, I&apos;m Yuvrajsinh! I&apos;m a 3rd-year Computer Science
               B.Tech student at{" "}
@@ -106,40 +108,40 @@ export default function Home() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
-          className="flex justify-center mt-8 sm:mt-10"
+          className="flex justify-center mt-12 sm:mt-16"
         >
           <FaArrowDown
             onClick={() => scrollToSection(1)}
-            className="cursor-pointer text-3xl sm:text-4xl rounded-full bg-white p-2 text-black"
+            className="cursor-pointer text-3xl sm:text-4xl rounded-full bg-white/10 backdrop-blur-sm p-3 text-white hover:bg-white/20 transition-colors"
           />
         </motion.div>
       </section>
 
       <section
-        className="min-h-screen flex flex-col max-sm:pt-20 justify-center"
+        className="min-h-screen flex flex-col max-sm:pt-20 justify-center relative"
         id="skills"
       >
         <motion.div {...fadeIn}>
-          <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-8 sm:mb-10">
+          <h2 className="text-3xl sm:text-4xl font-semibold text-center mb-12 sm:mb-16 bg-clip-text bg-gradient-to-r from-white to-gray-400">
             Skills & Expertise
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             {skills.map((skill, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.2 }}
-                className="p-4 sm:p-6 rounded-lg border border-gray-700 hover:border-gray-500 transition-colors"
+                className="p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition-all duration-300 backdrop-blur-sm bg-white/5 hover:bg-white/10 group"
               >
-                <div className="flex flex-col items-center text-center space-y-3 sm:space-y-4">
-                  {skill.icon}
-                  <h3 className="text-lg sm:text-xl font-semibold">
+                <div className="flex flex-col items-center text-center space-y-4 sm:space-y-5">
+                  <div className="transform group-hover:scale-110 transition-transform duration-300">
+                    {skill.icon}
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-semibold">
                     {skill.title}
                   </h3>
-                  <p className="text-sm sm:text-base text-gray-400">
-                    {skill.description}
-                  </p>
+                  <p className="text-base sm:text-lg">{skill.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -149,17 +151,17 @@ export default function Home() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
-          className="flex justify-center mt-8 sm:mt-10"
+          className="flex justify-center mt-12 sm:mt-16"
         >
           <FaArrowDown
             onClick={() => scrollToSection(2)}
-            className="cursor-pointer text-3xl sm:text-4xl rounded-full bg-white p-2 text-black"
+            className="cursor-pointer text-3xl sm:text-4xl rounded-full bg-white/10 backdrop-blur-sm p-3 text-white hover:bg-white/20 transition-colors"
           />
         </motion.div>
       </section>
 
       <section
-        className="min-h-screen flex flex-col justify-center"
+        className="min-h-screen flex flex-col justify-center relative"
         id="contact"
       >
         <ContactUs />

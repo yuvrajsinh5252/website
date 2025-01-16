@@ -75,7 +75,7 @@ export default function CustomCursor() {
         }}
       />
 
-      <AnimatePresence>
+      <AnimatePresence mode="sync">
         {hoveredElement && (
           <motion.div
             className="fixed top-0 left-0 border-2 border-blue-500/60 rounded-lg pointer-events-none z-40 mix-blend-difference"

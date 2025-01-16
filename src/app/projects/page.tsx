@@ -74,7 +74,7 @@ export default function Home() {
                       </Link>
                     </div>
                   </div>
-                  <p className="text-sm dark:text-gray-400 text-gray-900 leading-relaxed flex-grow">
+                  <p className="text-sm dark:text-gray-400 leading-relaxed flex-grow">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
