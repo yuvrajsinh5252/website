@@ -18,7 +18,11 @@ export default function Home() {
           className="flex items-center gap-2 sm:text-5xl text-4xl font-bold pl-2"
         >
           <IoIosArrowForward className="text-3xl max-sm:hidden sm:text-4xl text-blue-500/80" />
-          <span className="bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent">
+          <span
+            className="dark:bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent
+            bg-gray-700
+          "
+          >
             Projects
           </span>
         </motion.h1>
@@ -32,18 +36,24 @@ export default function Home() {
               whileHover={{ scale: 1.02 }}
               className="group h-full"
             >
-              <div className="h-full p-5 rounded-lg bg-gradient-to-br from-gray-800/40 via-gray-800/40 to-gray-800/40 backdrop-blur-md border border-gray-800/50 hover:border-gray-700/50 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300">
+              <div className="h-full p-5 rounded-lg dark:bg-gray-800/40 bg-gray-500/20 backdrop-blur-md border border-gray-800/50 hover:border-gray-700/50 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300">
                 <div className="flex flex-col h-full gap-5">
                   <div className="flex justify-between items-start">
                     <div className="space-y-2">
-                      <h2 className="text-2xl font-bold text-gray-200 group-hover:text-blue-400 transition-colors">
+                      <h2 className="text-2xl font-bold group-hover:text-blue-400 transition-colors">
                         {project.title}
                       </h2>
                       {project.year && (
-                        <p className="text-sm text-gray-400">{project.year}</p>
+                        <p
+                          className="text-sm
+                          dark:text-gray-400 text-gray-700
+                        "
+                        >
+                          {project.year}
+                        </p>
                       )}
                     </div>
-                    <div className="flex gap-3 text-gray-400">
+                    <div className="flex gap-3">
                       {project.link && (
                         <Link
                           href={project.link}
@@ -64,14 +74,14 @@ export default function Home() {
                       </Link>
                     </div>
                   </div>
-                  <p className="text-sm text-gray-400 leading-relaxed flex-grow">
+                  <p className="text-sm dark:text-gray-400 text-gray-900 leading-relaxed flex-grow">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {project.tag.map((tag, idx) => (
                       <div
                         key={idx}
-                        className="px-3 py-1 text-xs rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                        className="px-3 py-1 text-xs rounded-full bg-blue-500/10 dark:text-blue-400 text-blue-500 border border-blue-500/20"
                       >
                         {tag}
                       </div>
