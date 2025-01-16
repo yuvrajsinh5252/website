@@ -3,13 +3,77 @@
 @import "tailwindcss/utilities";
 
 @layer base {
+  :root {
+    --background: 255 255 255;
+    --foreground: 15 23 42;
+
+    --card: 255 255 255;
+    --card-foreground: 15 23 42;
+
+    --primary: 37 99 235;
+    --primary-foreground: 255 255 255;
+
+    --secondary: 241 245 249;
+    --secondary-foreground: 15 23 42;
+
+    --muted: 241 245 249;
+    --muted-foreground: 100 116 139;
+
+    --accent: 241 245 249;
+    --accent-foreground: 15 23 42;
+
+    --border: 226 232 240;
+
+    --gradient-start: 226 232 240;
+    --gradient-end: 241 245 249;
+  }
+
+  .dark {
+    --background: 15 23 42;
+    --foreground: 226 232 240;
+
+    --card: 30 41 59;
+    --card-foreground: 226 232 240;
+
+    --primary: 37 99 235;
+    --primary-foreground: 226 232 240;
+
+    --secondary: 30 41 59;
+    --secondary-foreground: 226 232 240;
+
+    --muted: 51 65 85;
+    --muted-foreground: 148 163 184;
+
+    --accent: 30 41 59;
+    --accent-foreground: 226 232 240;
+
+    --border: 51 65 85;
+
+    --gradient-start: 30 41 59;
+    --gradient-end: 51 65 85;
+  }
+
   body {
-    color: rgb(159, 159, 159);
+    color: rgb(var(--foreground));
+    background: rgb(var(--background));
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
-    @apply dark:text-gray-200 text-gray-300 transition-all duration-300 ease-in-out;
+    @apply transition-colors duration-300 ease-in-out;
+  }
+
+  * {
+    cursor: none !important;
+  }
+
+  @media (hover: none) {
+    * {
+      cursor: auto !important;
+    }
+    .custom-cursor {
+      display: none !important;
+    }
   }
 }
 
@@ -21,7 +85,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: white;
+  background: rgb(var(--primary));
   z-index: -1;
   transition: all 0.1s cubic-bezier(0, 0.59, 1, 0.26);
 }
@@ -34,7 +98,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background: white;
+  background: rgb(var(--primary));
   z-index: -1;
 }
 
@@ -43,9 +107,16 @@
 }
 
 ::-moz-selection {
-  background: rgba(97, 177, 247, 0.6);
+  background: rgba(var(--primary), 0.6);
 }
 
 ::selection {
-  background: rgba(97, 177, 247, 0.6);
+  background: rgba(var(--primary), 0.6);
 }
+
+/* @layer utilities {
+  .bg-noise {
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")
+      repeat;
+  }
+} */

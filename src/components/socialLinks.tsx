@@ -1,7 +1,7 @@
-import { Linkedin, Mail, Twitter } from "lucide-react";
+import { Mail, Twitter } from "lucide-react";
 import Link from "next/link";
 import { SOCIAL_LINKS } from "@/data/socialLink";
-import { SiGithub } from "react-icons/si";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 
 export default function SocialLinks() {
   return (
@@ -11,10 +11,10 @@ export default function SocialLinks() {
           key={social.name}
           href={social.name === "Email" ? social.url : { pathname: social.url }}
           target="_blank"
-          className="bg-gray-200 bg-opacity-5 p-2 rounded-lg"
+          className="bg-gray-200 bg-opacity-5 p-2 rounded-lg text-gray-800 dark:text-gray-300"
         >
           {social.icon === "Github" && <SiGithub size={23} />}
-          {social.icon === "Linkedin" && <Linkedin />}
+          {social.icon === "Linkedin" && <SiLinkedin size={23} />}
           {social.icon === "Mail" && <Mail />}
           {social.icon === "Twitter" && <Twitter />}
         </Link>

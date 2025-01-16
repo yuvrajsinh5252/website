@@ -17,77 +17,70 @@ export default function Home() {
           transition={{ duration: 0.5 }}
           className="flex items-center gap-2 sm:text-5xl text-4xl font-bold pl-2"
         >
-          <IoIosArrowForward className="text-3xl max-sm:hidden sm:text-4xl" />
-          <span>Projects</span>
+          <IoIosArrowForward className="text-3xl max-sm:hidden sm:text-4xl text-blue-500/80" />
+          <span className="bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent">
+            Projects
+          </span>
         </motion.h1>
-        <div className="flex items-center max-sm:flex-col justify-center flex-wrap h-full">
-          {PROJECTS.map((project, index) => {
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.1, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                className="flex max-sm:w-full w-1/2 justify-center p-2 gap-2 group"
-              >
-                <div
-                  id={project.title}
-                  className="flex rounded-lg justify-between flex-col gap-4 p-1 relative w-full"
-                >
-                  <div className="p-3 rounded-lg dark:bg-gray-600/40 bg-gray-500/10 bg-clip-padding backdrop-filter backdrop-blur-lg hover:ring-1 ring-gray-400 hover:bg-opacity-10">
-                    <div className="flex flex-col justify-center gap-4">
-                      <div className="flex justify-between items-center">
-                        <div className="flex gap-4 items-center">
-                          <h1 className="text-2xl font-bold">
-                            {project.title}
-                          </h1>
-                          {project.link ? (
-                            <Link
-                              href={project.link}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              <SquareArrowOutUpRight className="group-hover:text-teal-300 transition-transform duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1 cursor-pointer" />
-                            </Link>
-                          ) : null}
-                          <Link
-                            href={project.githubLink}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <SiGithub size={20} />
-                          </Link>
-                        </div>
-                        <div>
-                          {project.year ? (
-                            <p className="text-[14px] leading-2">
-                              {project.year}
-                            </p>
-                          ) : null}
-                        </div>
-                      </div>
-                      <p className="text-[14px] leading-2 overflow-ellipsis overflow-hidden text-justify">
-                        {project.description}
-                      </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full px-4">
+          {PROJECTS.map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.1, delay: index * 0.1 }}
+              whileHover={{ scale: 1.02 }}
+              className="group h-full"
+            >
+              <div className="h-full p-5 rounded-lg bg-gradient-to-br from-gray-800/40 via-gray-800/40 to-gray-800/40 backdrop-blur-md border border-gray-800/50 hover:border-gray-700/50 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300">
+                <div className="flex flex-col h-full gap-5">
+                  <div className="flex justify-between items-start">
+                    <div className="space-y-2">
+                      <h2 className="text-2xl font-bold text-gray-200 group-hover:text-blue-400 transition-colors">
+                        {project.title}
+                      </h2>
+                      {project.year && (
+                        <p className="text-sm text-gray-400">{project.year}</p>
+                      )}
                     </div>
-                    <div className="flex mt-5 flex-wrap gap-2">
-                      {project.tag.map((t, ind) => {
-                        return (
-                          <div
-                            key={ind}
-                            className="flex items-center rounded-full px-3 py-1 text-xs leading-5 bg-[#50E3C2]/30 "
-                          >
-                            {t}
-                          </div>
-                        );
-                      })}
+                    <div className="flex gap-3 text-gray-400">
+                      {project.link && (
+                        <Link
+                          href={project.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="hover:text-blue-400 transition-colors"
+                        >
+                          <SquareArrowOutUpRight className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                        </Link>
+                      )}
+                      <Link
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="hover:text-blue-400 transition-colors"
+                      >
+                        <SiGithub size={20} />
+                      </Link>
                     </div>
                   </div>
+                  <p className="text-sm text-gray-400 leading-relaxed flex-grow">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tag.map((tag, idx) => (
+                      <div
+                        key={idx}
+                        className="px-3 py-1 text-xs rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                      >
+                        {tag}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </motion.div>
-            );
-          })}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </div>
