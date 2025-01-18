@@ -26,13 +26,11 @@
   }
 
   body {
-    color: rgb(var(--foreground));
-    background: rgb(var(--background));
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
-    @apply transition-all duration-300 ease-in-out;
+    @apply text-foreground bg-background transition-all duration-300 ease-in-out;
   }
 
   * {

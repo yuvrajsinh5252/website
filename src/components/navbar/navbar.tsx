@@ -64,7 +64,7 @@ export default function Navbar() {
         >
           <div
             id="active-bg"
-            className="dark:bg-gray-300/20 bg-black/10 rounded-full absolute transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] flex items-center justify-center backdrop-blur-sm"
+            className="dark:bg-gray-300/20 bg-black/10 rounded-full absolute transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] flex items-center justify-center"
           />
           <AnimatePresence mode="wait">
             {[

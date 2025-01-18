@@ -54,61 +54,30 @@ export default function CustomCursor() {
     <>
       <motion.div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-3 h-3 bg-blue-500/60 rounded-full pointer-events-none z-[100] mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-[100] mix-blend-difference"
         style={{
           x: springX,
           y: springY,
           translateX: "-50%",
           translateY: "-50%",
         }}
-        animate={{
-          scale: isHovered ? 0.5 : 1,
-          opacity: 0.8,
-        }}
-        transition={{
-          scale: {
+      >
+        <motion.div
+          className="w-3 h-3 rounded-full border-2 border-blue-500"
+          animate={{
+            width: isHovered ? (hoveredElement?.width || 0) + 10 : 12,
+            height: isHovered ? (hoveredElement?.height || 0) + 10 : 12,
+            opacity: 0.8,
+            backgroundColor: isHovered ? "transparent" : "#3b82f6",
+          }}
+          transition={{
             type: "spring",
             damping: 15,
             stiffness: 1000,
             mass: 0.2,
-          },
-        }}
-      />
-
-      <AnimatePresence mode="sync">
-        {hoveredElement && (
-          <motion.div
-            className="fixed top-0 left-0 border-2 border-blue-500/60 rounded-lg pointer-events-none z-40 mix-blend-difference"
-            initial={{
-              width: hoveredElement.width + 6,
-              height: hoveredElement.height + 6,
-              x: hoveredElement.left - 3,
-              y: hoveredElement.top - 3,
-              scale: 0.9,
-              opacity: 0,
-            }}
-            animate={{
-              width: hoveredElement.width + 6,
-              height: hoveredElement.height + 6,
-              x: hoveredElement.left - 3,
-              y: hoveredElement.top - 3,
-              scale: 1,
-              opacity: 0.8,
-            }}
-            exit={{
-              scale: 0.9,
-              opacity: 0,
-              transition: { duration: 0.1 },
-            }}
-            transition={{
-              type: "spring",
-              damping: 15,
-              stiffness: 1000,
-              mass: 0.2,
-            }}
-          />
-        )}
-      </AnimatePresence>
+          }}
+        />
+      </motion.div>
     </>
   );
 }

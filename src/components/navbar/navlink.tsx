@@ -35,16 +35,8 @@ export default function NavLink({
 
   return (
     <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-      <Link
-        href={href}
-        onClick={() => setActiveNav?.(href)}
-        className={`relative px-5 py-2 rounded-full capitalize transition-all duration-300 ${
-          isActive
-            ? "text-black dark:text-white font-medium"
-            : "text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-        }`}
-      >
-        <div className="rounded-full flex items-center gap-2 py-2">
+      <Link href={href} onClick={() => setActiveNav?.(href)}>
+        <div className="rounded-full flex items-center gap-2">
           {getIcon(text)}
           {isActive && (
             <motion.div

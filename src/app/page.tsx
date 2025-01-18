@@ -28,7 +28,7 @@ export default function Home() {
                   particleColor="#4A90E2"
                 />
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <p className="mb-4 text-xl text-center dark:text-gray-300 text-gray-800">
+                  <p className="mb-4 text-xl text-center">
                     Hey there, I&apos;m
                   </p>
                   <h1 className="flex max-sm:flex-col gap-3 text-6xl lg:text-7xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400 animate-text">
@@ -52,7 +52,7 @@ export default function Home() {
                   },
                   { text: "tech, and open source." },
                 ]}
-                className="font-bold text-base md:text-xl text-gray-800 dark:text-gray-300"
+                className="font-bold text-base md:text-xl"
               />
             </motion.div>
 
