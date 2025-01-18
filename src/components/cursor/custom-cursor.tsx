@@ -1,24 +1,26 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import {
-  motion,
-  useSpring,
-  useMotionValue,
-  AnimatePresence,
-} from "framer-motion";
+import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 
 export default function CustomCursor() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
   const [hoveredElement, setHoveredElement] = useState<DOMRect | null>(null);
+  const [cursorType, setCursorType] = useState<"default" | "link" | "text">(
+    "default"
+  );
   const cursorRef = useRef<HTMLDivElement>(null);
 
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
 
-  const springConfig = { damping: 15, stiffness: 1000, mass: 0.2 };
+  const springConfig = { damping: 20, stiffness: 900, mass: 0.1 };
   const springX = useSpring(cursorX, springConfig);
   const springY = useSpring(cursorY, springConfig);
+
+  const scale = useSpring(1, springConfig);
+  const rotation = useSpring(0, springConfig);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -28,56 +30,100 @@ export default function CustomCursor() {
       const target = e.target as HTMLElement;
       if (target.closest("nav")) return;
 
-      const linkElement =
-        target.closest("a") ||
-        (target.tagName.toLowerCase() === "a" ? target : null);
+      const linkElement = target.closest("a");
+      const textElement = target.closest(
+        "p, h1, h2, h3, h4, h5, h6, span, input, textarea"
+      );
 
-      const isInteractive =
-        linkElement || target.classList.contains("hoverable");
-
-      if (isInteractive) {
-        const elementToMeasure = linkElement || target;
-        const rect = elementToMeasure.getBoundingClientRect();
+      if (linkElement) {
+        setCursorType("link");
+        const rect = linkElement.getBoundingClientRect();
+        setHoveredElement(rect);
+        setIsHovered(true);
+      } else if (textElement) {
+        setCursorType("text");
+        setIsHovered(true);
+        setHoveredElement(null);
+      } else if (target.classList.contains("hoverable")) {
+        setCursorType("default");
+        const rect = target.getBoundingClientRect();
         setHoveredElement(rect);
         setIsHovered(true);
       } else {
+        setCursorType("default");
         setHoveredElement(null);
         setIsHovered(false);
       }
     };
 
+    const handleMouseDown = () => {
+      setIsClicked(true);
+      scale.set(0.9);
+      rotation.set(15);
+    };
+
+    const handleMouseUp = () => {
+      setIsClicked(false);
+      scale.set(1);
+      rotation.set(0);
+    };
+
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [cursorX, cursorY]);
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [cursorX, cursorY, scale, rotation]);
 
   return (
-    <>
+    <motion.div
+      ref={cursorRef}
+      className="fixed top-0 left-0 pointer-events-none z-[100] mix-blend-difference"
+      style={{
+        x: springX,
+        y: springY,
+        translateX: "-50%",
+        translateY: "-50%",
+      }}
+    >
       <motion.div
-        ref={cursorRef}
-        className="fixed top-0 left-0 pointer-events-none z-[100] mix-blend-difference"
+        className="rounded-full border-2 backdrop-blur-sm"
         style={{
-          x: springX,
-          y: springY,
-          translateX: "-50%",
-          translateY: "-50%",
+          scale,
+          rotate: rotation,
         }}
-      >
-        <motion.div
-          className="w-3 h-3 rounded-full border-2 border-blue-500"
-          animate={{
-            width: isHovered ? (hoveredElement?.width || 0) + 10 : 12,
-            height: isHovered ? (hoveredElement?.height || 0) + 10 : 12,
-            opacity: 0.8,
-            backgroundColor: isHovered ? "transparent" : "#3b82f6",
-          }}
-          transition={{
-            type: "spring",
-            damping: 15,
-            stiffness: 1000,
-            mass: 0.2,
-          }}
-        />
-      </motion.div>
-    </>
+        animate={{
+          width: isHovered
+            ? cursorType === "link"
+              ? (hoveredElement?.width || 0) + 10
+              : 30
+            : 12,
+          height: isHovered
+            ? cursorType === "link"
+              ? (hoveredElement?.height || 0) + 10
+              : 30
+            : 12,
+          opacity: isClicked ? 1 : 0.8,
+          backgroundColor: isHovered
+            ? "transparent"
+            : "rgba(59, 130, 246, 0.5)",
+          borderColor: isHovered
+            ? cursorType === "text"
+              ? "#f8f8f8"
+              : "#3b82f6"
+            : "#3b82f6",
+          borderWidth: isHovered ? "2px" : "2px",
+        }}
+        transition={{
+          type: "spring",
+          damping: 20,
+          stiffness: 900,
+          mass: 0.1,
+        }}
+      />
+    </motion.div>
   );
 }

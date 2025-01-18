@@ -35,18 +35,17 @@ export default function Home() {
               transition={{ duration: 0.1, delay: index * 0.1 }}
               className="group h-full"
             >
-              <div className="h-full p-5 rounded-lg dark:bg-gray-800/40 bg-gray-500/20 backdrop-blur-md border border-gray-800/50 hover:border-gray-700/50 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300">
+              <div className="h-full p-5 rounded-lg dark:bg-gray-800/40 bg-gray-500/20 backdrop-blur-md border border-gray-800/50 hover:border-gray-700/50 hover:shadow-lg hover:shadow-blue-500/5">
                 <div className="flex flex-col h-full gap-5">
                   <div className="flex justify-between items-start">
                     <div className="space-y-2">
-                      <h2 className="text-2xl font-bold dark:group-hover:text-blue-400 group-hover:text-blue-600/80 transition-colors">
+                      <h2 className="text-2xl font-bold dark:group-hover:text-blue-400 group-hover:text-blue-600/80">
                         {project.title}
                       </h2>
                       {project.year && (
                         <p
                           className="text-sm
-                          dark:text-gray-400 text-gray-700
-                        "
+                          dark:text-gray-400 text-gray-700"
                         >
                           {project.year}
                         </p>
@@ -58,16 +57,16 @@ export default function Home() {
                           href={project.link}
                           target="_blank"
                           rel="noreferrer"
-                          className="dark:hover:text-blue-400 hover:text-blue-600 transition-colors"
+                          className="dark:hover:text-blue-400 hover:text-blue-600"
                         >
-                          <SquareArrowOutUpRight className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                          <SquareArrowOutUpRight className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
                         </Link>
                       )}
                       <Link
                         href={project.githubLink}
                         target="_blank"
                         rel="noreferrer"
-                        className="dark:hover:text-blue-400 hover:text-blue-600 transition-colors"
+                        className="dark:hover:text-blue-400 hover:text-blue-600"
                       >
                         <SiGithub size={24} />
                       </Link>

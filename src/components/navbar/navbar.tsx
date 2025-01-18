@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import MaxWidthWrapper from "../ui/MaxWidthWrapper";
 import NavLink from "./navlink";
 import ThemeToggle from "../theme/toggle-theme";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [activeNav, setActiveNav] = React.useState(usePathname());
@@ -22,21 +22,19 @@ export default function Navbar() {
       if (activeLink && activeBg && firstLink && navbar) {
         const firstLinkRects = firstLink.getBoundingClientRect();
         const activeLinkRects = activeLink.getBoundingClientRect();
-        const top = activeLinkRects.top - firstLinkRects.top;
         const left = activeLinkRects.left - firstLinkRects.left;
 
         activeBg.style.top = `4px`;
+        activeBg.style.height = `40px`;
+        activeBg.style.transition = "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
 
         if (activeNav === "/") {
-          activeBg.style.transition = "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)";
           activeBg.style.width = "90px";
-          activeBg.style.height = "40px";
           activeBg.style.left = "4px";
         }
 
         if (activeNav === "/projects") {
           activeBg.style.width = `110px`;
-          activeBg.style.height = `40px`;
           activeBg.style.left = `40px`;
         }
 
@@ -66,22 +64,20 @@ export default function Navbar() {
             id="active-bg"
             className="dark:bg-gray-300/20 bg-black/10 rounded-full absolute transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] flex items-center justify-center"
           />
-          <AnimatePresence mode="wait">
-            {[
-              { href: "/", text: "home" },
-              { href: "/projects", text: "projects" },
-              { href: "/about", text: "about" },
-            ].map((item) => (
-              <motion.div key={item.href}>
-                <NavLink
-                  setActiveNav={setActiveNav}
-                  activeNav={activeNav}
-                  text={item.text}
-                  href={item.href}
-                />
-              </motion.div>
-            ))}
-          </AnimatePresence>
+          {[
+            { href: "/", text: "home" },
+            { href: "/projects", text: "projects" },
+            { href: "/about", text: "about" },
+          ].map((item) => (
+            <motion.div key={item.href}>
+              <NavLink
+                setActiveNav={setActiveNav}
+                activeNav={activeNav}
+                text={item.text}
+                href={item.href}
+              />
+            </motion.div>
+          ))}
         </motion.nav>
         <ThemeToggle />
       </div>

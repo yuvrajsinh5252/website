@@ -11,7 +11,7 @@ export default function SocialLinks() {
           key={social.name}
           href={social.name === "Email" ? social.url : { pathname: social.url }}
           target="_blank"
-          className="bg-gray-200 bg-opacity-5 p-2 rounded-lg text-gray-800 dark:text-gray-300"
+          className="p-2 rounded-lg"
         >
           {social.icon === "Github" && <SiGithub size={23} />}
           {social.icon === "Linkedin" && <SiLinkedin size={23} />}
