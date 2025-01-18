@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { PROJECTS } from "@/data/projectData";
 import { motion } from "framer-motion";
 import { SquareArrowOutUpRight } from "lucide-react";
@@ -8,6 +9,16 @@ import { IoIosArrowForward } from "react-icons/io";
 import { SiGithub } from "react-icons/si";
 
 export default function Home() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const handleMouseEnter = (index: number) => {
+    setHoveredIndex(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIndex(null);
+  };
+
   return (
     <div className="flex flex-col items-center h-screen no-scrollbar overflow-scroll">
       <div className="flex flex-col max-sm:items-center max-w-screen-lg gap-10 mt-44 pb-10">
@@ -33,20 +44,25 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.1, delay: index * 0.1 }}
-              className="group h-full"
+              className="group h-full relative overflow-hidden rounded-lg"
+              onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
             >
               <div className="h-full p-5 rounded-lg dark:bg-gray-800/40 bg-gray-500/20 backdrop-blur-md border border-gray-800/50 hover:border-gray-700/50 hover:shadow-lg hover:shadow-blue-500/5">
-                <div className="flex flex-col h-full gap-5">
+                <div
+                  key={hoveredIndex === index ? "wave-active" : "wave-inactive"}
+                  className={`absolute inset-0 pointer-events-none transition-all duration-700 ${
+                    hoveredIndex === index ? "animate-wave" : ""
+                  }`}
+                />
+                <div className="flex flex-col h-full gap-5 relative">
                   <div className="flex justify-between items-start">
                     <div className="space-y-2">
                       <h2 className="text-2xl font-bold dark:group-hover:text-blue-400 group-hover:text-blue-600/80">
                         {project.title}
                       </h2>
                       {project.year && (
-                        <p
-                          className="text-sm
-                          dark:text-gray-400 text-gray-700"
-                        >
+                        <p className="text-sm dark:text-gray-400 text-gray-700">
                           {project.year}
                         </p>
                       )}

@@ -8,7 +8,6 @@ const MagicLink = dynamic(() => import("@/components/ui/magicLink"), {
 import MaxWidthWrapper from "@/components/ui/MaxWidthWrapper";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { FaArrowDown } from "react-icons/fa6";
 import { FaCode, FaMicrochip, FaTerminal } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 

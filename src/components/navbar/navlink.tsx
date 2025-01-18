@@ -1,22 +1,24 @@
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
-import { motion } from "framer-motion";
 import { FaBlog, FaCode, FaHome, FaUser } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 interface NavLinkProps {
   href: string;
   text: string;
-  setActiveNav?: (s: string) => void;
-  activeNav?: string;
+  className?: string;
+  activeClassName?: string;
 }
 
 export default function NavLink({
   href,
   text,
-  activeNav,
-  setActiveNav,
+  className = "",
+  activeClassName = "",
 }: NavLinkProps) {
-  const isActive = activeNav === href;
+  const pathname = usePathname();
+  const isActive = pathname === href;
 
   const getIcon = (text: string) => {
     switch (text) {
@@ -34,22 +36,25 @@ export default function NavLink({
   };
 
   return (
-    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-      <Link href={href} onClick={() => setActiveNav?.(href)}>
-        <div className="rounded-full flex items-center gap-2">
-          {getIcon(text)}
-          {isActive && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              {text}
-            </motion.div>
-          )}
-        </div>
-      </Link>
-    </motion.div>
+    <Link
+      href={href}
+      className={`${className} ${
+        isActive ? activeClassName : ""
+      } hover:opacity-80 transition-opacity`}
+    >
+      <div className="rounded-full flex items-center gap-2">
+        {getIcon(text)}
+        {isActive && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            {text}
+          </motion.div>
+        )}
+      </div>
+    </Link>
   );
 }
