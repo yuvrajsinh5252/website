@@ -10,7 +10,6 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [activeSection, setActiveSection] = useState<string>("introduction");
   const [sections, setSections] = useState<HTMLElement[]>([]);
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   useEffect(() => {
     const sectionElements = Array.from(
@@ -23,10 +22,6 @@ export default function Home() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id);
-            const index = sectionElements.findIndex(
-              (el) => el.id === entry.target.id
-            );
-            setCurrentIndex(index);
           }
         });
       },
@@ -42,7 +37,6 @@ export default function Home() {
   const scrollToSection = (index: number) => {
     if (index >= 0 && index < sections.length) {
       sections[index].scrollIntoView({ behavior: "smooth" });
-      setCurrentIndex(index);
     }
   };
 
@@ -75,14 +69,14 @@ export default function Home() {
       </nav>
 
       <section
-        className="min-h-screen flex flex-col justify-center pt-28 sm:pt-44 relative"
+        className="min-h-screen flex flex-col justify-center max-sm:pt-24 relative"
         id="introduction"
       >
         <Intro activeSection={activeSection} fadeIn={fadeIn} />
       </section>
 
       <section
-        className="min-h-screen flex flex-col max-sm:pt-20 justify-center relative"
+        className="min-h-screen flex flex-col justify-center relative"
         id="skills"
       >
         <Skills activeSection={activeSection} fadeIn={fadeIn} />

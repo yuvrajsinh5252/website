@@ -2,6 +2,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { FaBlog, FaCode, FaHome, FaUser } from "react-icons/fa";
+import { MdNoteAlt } from "react-icons/md";
+import { GiNotebook } from "react-icons/gi";
+
 import { motion } from "framer-motion";
 
 interface NavLinkProps {
@@ -22,7 +25,7 @@ export default function NavLink({ href, text }: NavLinkProps) {
       case "about":
         return <FaUser />;
       case "blog":
-        return <FaBlog />;
+        return <GiNotebook size={18} />;
       default:
         return null;
     }
