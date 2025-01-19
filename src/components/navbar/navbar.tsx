@@ -2,7 +2,6 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
-import MaxWidthWrapper from "../ui/MaxWidthWrapper";
 import NavLink from "./navlink";
 import ThemeToggle from "../theme/toggle-theme";
 import { motion } from "framer-motion";
@@ -43,37 +42,30 @@ export default function Navbar() {
   }, [updateActiveBgPosition]);
 
   return (
-    <MaxWidthWrapper>
-      <div className="fixed flex justify-start items-center w-full h-fit mt-14 z-50">
-        <motion.nav
-          ref={navRef}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, type: "spring" }}
-          className="fixed m-auto flex items-center gap-8 w-fit h-8 px-5 py-6 max-sm:left-1/4 left-[45%] rounded-full backdrop-blur-md dark:bg-gray-800/50 border dark:border-gray-300/20 hover:dark:bg-gray-800/50 hover:bg-white/90 group shadow-lg shadow-black/5 dark:shadow-white/5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-white/10"
-        >
-          <div
-            id="active-bg"
-            className="absolute inset-0 h-11 top-1/2 -translate-y-1/2 z-0 rounded-full transition-all duration-600 dark:bg-gray-300/20 bg-black/10 backdrop-blur-sm group-hover:dark:bg-gray-300/30 group-hover:bg-black/15 opacity-0"
-          />
-          {NAV_ITEMS.map((item) => (
-            <motion.div
-              key={item.href}
-              className="relative z-10"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 400 }}
-            >
-              <NavLink
-                href={item.href}
-                text={item.text}
-                className="px-3 py-2 relative capitalize"
-                activeClassName="font-medium"
-              />
-            </motion.div>
-          ))}
-        </motion.nav>
-        <ThemeToggle />
-      </div>
-    </MaxWidthWrapper>
+    <div className="fixed flex justify-center items-center w-full h-fit mt-10 z-50">
+      <motion.nav
+        ref={navRef}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, type: "spring" }}
+        className="flex items-center gap-8 w-fit h-8 px-5 py-6 rounded-full backdrop-blur-md dark:bg-gray-800/50 border dark:border-gray-300/20 hover:dark:bg-gray-800/50 hover:bg-white/90 group shadow-lg shadow-black/5 dark:shadow-white/5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-white/10"
+      >
+        <div
+          id="active-bg"
+          className="absolute inset-0 h-11 top-1/2 -translate-y-1/2 z-0 rounded-full transition-all duration-600 dark:bg-gray-300/20 bg-black/10 backdrop-blur-sm group-hover:dark:bg-gray-300/30 group-hover:bg-black/15 opacity-0"
+        />
+        {NAV_ITEMS.map((item) => (
+          <motion.div
+            key={item.href}
+            className="relative z-10"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400 }}
+          >
+            <NavLink href={item.href} text={item.text} />
+          </motion.div>
+        ))}
+      </motion.nav>
+      <ThemeToggle />
+    </div>
   );
 }

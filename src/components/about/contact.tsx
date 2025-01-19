@@ -2,9 +2,14 @@ import Link from "next/link";
 import { SiGmail, SiLinkedin, SiGithub } from "react-icons/si";
 import { motion } from "framer-motion";
 
-const ContactUs = () => {
+export function ContactUs({ activeSection }: { activeSection: string }) {
   return (
-    <div className="min-h-screen flex flex-col gap-8 items-center justify-center p-5 max-w-4xl mx-auto">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={activeSection === "contact" ? { opacity: 1 } : { opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen flex flex-col gap-8 items-center justify-center p-5 max-w-4xl mx-auto"
+    >
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -58,8 +63,6 @@ const ContactUs = () => {
           </Link>
         ))}
       </motion.div>
-    </div>
+    </motion.div>
   );
-};
-
-export default ContactUs;
+}

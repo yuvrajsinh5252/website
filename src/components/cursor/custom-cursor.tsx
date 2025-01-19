@@ -28,11 +28,12 @@ export default function CustomCursor() {
       cursorY.set(e.clientY);
 
       const target = e.target as HTMLElement;
-      if (target.closest("nav")) return;
+      if (target.closest("nav")) {
+      }
 
       const linkElement = target.closest("a");
       const textElement = target.closest(
-        "p, h1, h2, h3, h4, h5, h6, span, input, textarea"
+        "p, h1, h2, h3, h4, h5, h6, span, input, textarea, button"
       );
 
       if (linkElement) {
@@ -81,7 +82,7 @@ export default function CustomCursor() {
   return (
     <motion.div
       ref={cursorRef}
-      className="fixed top-0 left-0 pointer-events-none z-[100] mix-blend-difference"
+      className="fixed top-0 left-0 pointer-events-none z-[100]"
       style={{
         x: springX,
         y: springY,
@@ -90,7 +91,7 @@ export default function CustomCursor() {
       }}
     >
       <motion.div
-        className="rounded-full border-2 backdrop-blur-sm"
+        className="rounded-full border-2"
         style={{
           scale,
           rotate: rotation,
@@ -115,7 +116,7 @@ export default function CustomCursor() {
               ? "#f8f8f8"
               : "#3b82f6"
             : "#3b82f6",
-          borderWidth: isHovered ? "2px" : "2px",
+          borderWidth: "2px",
         }}
         transition={{
           type: "spring",

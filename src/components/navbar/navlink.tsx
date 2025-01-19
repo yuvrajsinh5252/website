@@ -7,16 +7,9 @@ import { motion } from "framer-motion";
 interface NavLinkProps {
   href: string;
   text: string;
-  className?: string;
-  activeClassName?: string;
 }
 
-export default function NavLink({
-  href,
-  text,
-  className = "",
-  activeClassName = "",
-}: NavLinkProps) {
+export default function NavLink({ href, text }: NavLinkProps) {
   const pathname = usePathname();
   const isActive = pathname === href;
 
@@ -36,13 +29,12 @@ export default function NavLink({
   };
 
   return (
-    <Link
-      href={href}
-      className={`${className} ${
-        isActive ? activeClassName : ""
-      } hover:opacity-80 transition-opacity`}
+    <div
+      className={`relative capitalize hover:opacity-80 transition-opacity ${
+        isActive ? "font-medium" : ""
+      } `}
     >
-      <div className="rounded-full flex items-center gap-2">
+      <Link href={href} className="rounded-full flex items-center gap-2">
         {getIcon(text)}
         {isActive && (
           <motion.div
@@ -54,7 +46,7 @@ export default function NavLink({
             {text}
           </motion.div>
         )}
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
