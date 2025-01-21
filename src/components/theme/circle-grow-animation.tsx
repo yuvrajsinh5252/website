@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 
 const debounce = (callback: any, delay = 250) => {
@@ -63,10 +63,6 @@ const m = {
     m.maxRadiusMultiplier =
       Math.max(m.width, m.height) ** (1.0 / GROWTH_FUNCTION_EXPONENTIAL);
     m.timeAtPreviousDraw = Date.now();
-
-    document.body.style.backgroundColor = m.isDark
-      ? COLORS.midnightBlack
-      : COLORS.white;
 
     const { width, height } = m.ctx.canvas.getBoundingClientRect();
     if (m.ctx.canvas.width !== width || m.ctx.canvas.height !== height) {
@@ -142,6 +138,8 @@ const GrowingCircleAnimation = () => {
   const { resolvedTheme: theme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  const [isVisibile, setIsVisible] = useState(false);
+
   useEffect(() => {
     if (!canvasRef.current) return;
 
@@ -189,7 +187,9 @@ const GrowingCircleAnimation = () => {
 
   return (
     <canvas
-      className="w-[150vw] h-[150vh] fixed bg-[#18181B] top-0 left-0"
+      className={`w-[150vw] h-[150vh] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-gray-900 to-[#18181B] dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-gray-900 dark:via-gray-900 dark:to-[#18181B] fixed top-0 left-0 z-10 ${
+        isVisibile ? "opacity-1" : "opacity-0"
+      }`}
       ref={canvasRef}
     />
   );
