@@ -3,28 +3,6 @@
 @import "tailwindcss/utilities";
 
 @layer base {
-  :root {
-    --background: 255 255 255;
-    --foreground: 15 23 42;
-
-    --primary: 37 99 235;
-    --primary-foreground: 255 255 255;
-
-    --secondary: 255 107 107;
-    --secondary-foreground: 255 255 255;
-  }
-
-  .dark {
-    --background: 15 23 42;
-    --foreground: 226 232 240;
-
-    --primary: 37 99 235;
-    --primary-foreground: 226 232 240;
-
-    --secondary: 255 107 107;
-    --secondary-foreground: 226 232 240;
-  }
-
   body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
@@ -32,12 +10,12 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  *,
+  /* *,
   *::before,
   *::after {
     transition: background-color 0.05s ease, color 0.05s ease,
       border-color 0.05s ease, box-shadow 0.05s ease;
-  }
+  } */
 
   * {
     cursor: none !important;
