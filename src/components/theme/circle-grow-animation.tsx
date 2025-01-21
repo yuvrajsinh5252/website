@@ -28,7 +28,8 @@ const throttle = (callback: any, limit = 250) => {
 };
 
 const COLORS = {
-  white: "#F0F0F0",
+  // white: "#F0F0F0",
+  white: "#FFFFFF",
   midnightBlack: "#18181B",
 };
 
@@ -101,7 +102,18 @@ const m = {
       (m.radiusMultiplier <= 0 && m.isDark) ||
       (m.radiusMultiplier >= m.maxRadiusMultiplier && !m.isDark)
     ) {
-      m.ctx.fillStyle = m.isDark ? COLORS.midnightBlack : COLORS.white;
+      const gradient = m.ctx.createRadialGradient(
+        m.width / 2,
+        0,
+        0,
+        m.width / 2,
+        0,
+        0
+      );
+      gradient.addColorStop(0, "#2d3748");
+      gradient.addColorStop(1, "#000000");
+      m.ctx.fillStyle = m.isDark ? gradient : COLORS.white;
+
       m.ctx.fillRect(0, 0, m.width, m.height);
       m.radiusMultiplier = m.isDark ? 0 : m.maxRadiusMultiplier;
       return null;
@@ -137,8 +149,6 @@ const m = {
 const GrowingCircleAnimation = () => {
   const { resolvedTheme: theme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  const [isVisibile, setIsVisible] = useState(false);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -187,9 +197,7 @@ const GrowingCircleAnimation = () => {
 
   return (
     <canvas
-      className={`w-[150vw] h-[150vh] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-gray-900 to-[#18181B] dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-gray-900 dark:via-gray-900 dark:to-[#18181B] fixed top-0 left-0 z-10 ${
-        isVisibile ? "opacity-1" : "opacity-0"
-      }`}
+      className={`w-[100vw] h-[100vh] max-sm:w-[150vw] max-sm:h-[150vh] dark:bg-gradient-to-b dark:from-gray-800 dark:to-black sm:dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] fixed top-0 left-0 z-10`}
       ref={canvasRef}
     />
   );

@@ -10,15 +10,9 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  /* *,
-  *::before,
-  *::after {
-    transition: background-color 0.05s ease, color 0.05s ease,
-      border-color 0.05s ease, box-shadow 0.05s ease;
-  } */
-
   * {
     cursor: none !important;
+    transition: color 0.1s ease, background-color 0.1s ease;
   }
 
   @media (hover: none) {

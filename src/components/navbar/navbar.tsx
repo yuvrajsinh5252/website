@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import NavLink from "./navlink";
 import ThemeToggle from "../theme/toggle-theme";
 import { motion } from "framer-motion";
+import MaxWidthWrapper from "../ui/MaxWidthWrapper";
 
 const NAV_ITEMS = [
   { href: "/", text: "home", width: 95 },
@@ -43,7 +44,8 @@ export default function Navbar() {
   }, [updateActiveBgPosition]);
 
   return (
-    <div className="fixed flex justify-center items-center w-full h-fit mt-10 z-50">
+    <MaxWidthWrapper className="fixed flex justify-between md:px-10 max-w-screen-lg items-center w-full h-fit mt-10 z-50 mx-auto left-0 right-0">
+      <div></div>
       <motion.nav
         ref={navRef}
         initial={{ opacity: 0, y: -20 }}
@@ -67,6 +69,6 @@ export default function Navbar() {
         ))}
       </motion.nav>
       <ThemeToggle />
-    </div>
+    </MaxWidthWrapper>
   );
 }

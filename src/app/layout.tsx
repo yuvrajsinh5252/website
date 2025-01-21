@@ -31,7 +31,7 @@ export default function RootLayout({
       <link rel="icon" href="/logo.png" />
       <body className={poppins.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {/* <GrowingCircleAnimation /> */}
+          <GrowingCircleAnimation />
           <CustomBackground />
           <CustomCursor />
           <Navbar />
