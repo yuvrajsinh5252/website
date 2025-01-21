@@ -6,7 +6,7 @@ export const SOCIAL_LINKS = [
   },
   {
     name: "LinkedIn",
-    url: "https://www.linkedin.com/in/yuvrajsinh-gohil099",
+    url: "https://www.linkedin.com/in/yuvrajsinh099",
     icon: "Linkedin",
   },
   {

@@ -19,13 +19,15 @@ export default function NavLink({ href, text }: NavLinkProps) {
   const getIcon = (text: string) => {
     switch (text) {
       case "home":
-        return <FaHome />;
+        return <FaHome className="text-blue-400 dark:text-blue-300" />;
       case "projects":
-        return <FaCode />;
+        return <FaCode className="text-blue-400 dark:text-blue-300" />;
       case "about":
-        return <FaUser />;
+        return <FaUser className="text-blue-400 dark:text-blue-300" />;
       case "blog":
-        return <GiNotebook size={18} />;
+        return (
+          <GiNotebook size={18} className="text-blue-400 dark:text-blue-300" />
+        );
       default:
         return null;
     }

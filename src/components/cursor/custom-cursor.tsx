@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
+import { motion, useSpring, useMotionValue } from "framer-motion";
 
 export default function CustomCursor() {
   const [isHovered, setIsHovered] = useState(false);
@@ -28,19 +28,23 @@ export default function CustomCursor() {
       cursorY.set(e.clientY);
 
       const target = e.target as HTMLElement;
-      if (target.closest("nav")) {
-      }
 
       const linkElement = target.closest("a");
       const textElement = target.closest(
         "p, h1, h2, h3, h4, h5, h6, span, input, textarea, button"
       );
 
-      if (linkElement) {
+      if (target.classList.contains("skill-tag")) {
+        setCursorType("link");
+        setHoveredElement(null);
+        setIsHovered(true);
+      } else if (linkElement) {
         setCursorType("link");
         const rect = linkElement.getBoundingClientRect();
         setHoveredElement(rect);
         setIsHovered(true);
+        cursorX.set(rect.left + rect.width / 2);
+        cursorY.set(rect.top + rect.height / 2);
       } else if (textElement) {
         setCursorType("text");
         setIsHovered(true);

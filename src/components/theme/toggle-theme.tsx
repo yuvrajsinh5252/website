@@ -27,9 +27,9 @@ export default function ThemeToggle() {
   };
 
   return (
-    <div className="w-4 h-4 rounded-full fixed right-[10%] max-sm:left-5 max-sm:top-[95%] flex justify-center items-center border-none focus:outline-none">
+    <div className="w-4 h-4 rounded-full fixed right-[10%] max-sm:right-5 max-sm:top-5 flex justify-center items-center border-none focus:outline-none">
       <button
-        className="p-3 flex rounded-full bg-gray-400 focus:outline-none focus:bg-blue-300"
+        className="p-3 max-sm:p-2 flex rounded-full bg-gray-400 focus:outline-none focus:bg-blue-300"
         onClick={(event) => {
           onClickWrapper(event);
         }}

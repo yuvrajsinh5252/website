@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaCode, FaMicrochip, FaTerminal } from "react-icons/fa";
+import { FaCode, FaTerminal, FaLightbulb } from "react-icons/fa";
 
 export function Skills({
   activeSection,
@@ -10,19 +10,22 @@ export function Skills({
 }) {
   const skills = [
     {
-      icon: <FaCode className="text-4xl text-blue-400" />,
+      icon: <FaCode className="text-5xl text-blue-400/90" />,
       title: "Software Development",
-      description: "Full-stack development with React, Next.js, and Node.js",
+      description: "I love to build web applications, APIs, and CLI/TUI tools",
+      type: "description",
     },
     {
-      icon: <FaMicrochip className="text-4xl text-green-400" />,
-      title: "PCB Design",
-      description: "Designing and implementing PCB circuits",
+      icon: <FaLightbulb className="text-4xl text-yellow-400" />,
+      title: "Areas of Interest",
+      tags: ["Web Development", "System Design", "Open Source", "IoT"],
+      type: "tags",
     },
     {
       icon: <FaTerminal className="text-4xl text-purple-400" />,
       title: "Programming Languages",
-      description: "TypeScript, Python, C, C++, Java, Rust, Go",
+      tags: ["TypeScript", "Python", "C++", "Rust", "Go"],
+      type: "tags",
     },
   ];
 
@@ -35,11 +38,12 @@ export function Skills({
       }}
       initial="hidden"
       animate={activeSection === "skills" ? "visible" : "hidden"}
+      className="max-w-5xl mx-auto px-4"
     >
-      <h2 className="text-3xl sm:text-4xl font-semibold text-center mb-12 sm:mb-16 bg-clip-text bg-gradient-to-r from-white to-gray-400">
+      <h2 className="text-4xl font-bold text-center mb-16 tracking-tight">
         Skills & Expertise
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
         {skills.map((skill, index) => (
           <motion.div
             key={index}
@@ -50,16 +54,44 @@ export function Skills({
                 : { opacity: 0, y: 20 }
             }
             transition={{ delay: index * 0.2 }}
-            className="p-6 sm:p-8 rounded-xl border border-gray-800 hover:border-gray-600 transition-all duration-300 backdrop-blur-sm bg-white/5 hover:bg-white/10 group"
+            className="relative p-6 rounded-lg border border-gray-800 hover:border-gray-700
+                     bg-gradient-to-b from-white/5 to-transparent
+                     transition-all duration-300 ease-out hover:-translate-y-1"
           >
-            <div className="flex flex-col items-center text-center space-y-4 sm:space-y-5">
-              <div className="transform group-hover:scale-110 transition-transform duration-300">
+            <div className="flex flex-col items-center gap-6">
+              <div className="p-3 rounded-full bg-gray-800/50">
                 {skill.icon}
               </div>
-              <h3 className="text-xl sm:text-2xl font-semibold">
-                {skill.title}
-              </h3>
-              <p className="text-base sm:text-lg">{skill.description}</p>
+              <div className="text-center">
+                <h3 className="text-xl font-semibold mb-3">{skill.title}</h3>
+                {skill.type === "description" ? (
+                  <p className="dark:text-gray-400 text-gray-500 text-sm leading-relaxed">
+                    {skill.description}
+                  </p>
+                ) : (
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {skill.tags?.map((tag, i) => (
+                      <motion.span
+                        key={i}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        whileHover={{
+                          scale: 1.05,
+                          boxShadow: "0 0 15px rgba(59, 130, 246, 0.5)",
+                          backgroundColor: "rgba(59, 130, 246, 0.2)",
+                          borderColor: "rgba(59, 130, 246, 0.8)",
+                        }}
+                        className="px-3 skill-tag py-1 text-xs rounded-full bg-gray-800/50
+                         text-gray-300 border border-gray-700/50
+                         transition-all duration-300 ease-in-out
+                         hover:text-blue-300 cursor-default"
+                      >
+                        {tag}
+                      </motion.span>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </motion.div>
         ))}

@@ -56,13 +56,22 @@ export const PROJECTS = [
     githubLink: "https://github.com/yuvrajsinh5252/ChessGame",
   },
   {
+    title: "Dynamic Scheduler",
+    description:
+      "A site where users can set their availability, and admins schedule events based on time slots using a calendar view",
+    image: "../dynamic-scheduler.png",
+    tag: ["Nextjs14", "Tailwind CSS", "Fullcalendar", "Prisma", "Mongodb"],
+    year: "2024",
+    githubLink: "https://github.com/yuvrajsinh5252/dynamic-scheduler",
+  },
+  {
     title: "Taskflow",
     description:
       "A website to visualize various scheduling algorithms with animations, helping users understand the concepts better.",
     image: "../Mindhub.png",
     link: "https://taskflow-gilt.vercel.app/",
     tag: ["React", "OS Scheduling Algorithms", "Context API"],
-    year: "2022",
+    year: "2023",
     githubLink: "https://github.com/yuvrajsinh5252/Taskflow",
   },
   {
@@ -73,15 +82,6 @@ export const PROJECTS = [
     tag: ["Java", "JavaFX", "MySQL", "JFoenix"],
     year: "2023",
     githubLink: "https://github.com/yuvrajsinh5252/TODO-app",
-  },
-  {
-    title: "Dynamic Scheduler",
-    description:
-      "A site where users can set their availability, and admins schedule events based on time slots using a calendar view",
-    image: "../dynamic-scheduler.png",
-    tag: ["Nextjs14", "Tailwind CSS", "Fullcalendar", "Prisma", "Mongodb"],
-    year: "2024",
-    githubLink: "https://github.com/yuvrajsinh5252/dynamic-scheduler",
   },
   {
     title: "Portfolio",
@@ -103,4 +103,22 @@ export const PROJECTS = [
     year: "2024",
     githubLink: "https://github.com/yuvrajsinh5252/FlashLearn",
   },
+  // {
+  //   title: "2048-Game",
+  //   description: "Merge the numbers and get to the 2048 tile!",
+  //   image: "../FlashLearn.png",
+  //   link: "https://yuvrajsinh5252.github.io/2048-Game/",
+  //   tag: ["2048", "Game"],
+  //   year: "2022",
+  //   githubLink: "https://github.com/yuvrajsinh5252/tic-tac-toe",
+  // },
+  // {
+  //   title: "Tic-Tac-Toe",
+  //   description: "A tic-tac-toe game implementing the minimax algorithm",
+  //   image: "../FlashLearn.png",
+  //   link: "https://yuvrajsinh5252.github.io/tic-tac-toe/",
+  //   tag: ["minimax"],
+  //   year: "2022",
+  //   githubLink: "https://github.com/yuvrajsinh5252/2048-Game",
+  // },
 ];
