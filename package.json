@@ -24,6 +24,7 @@
     "react-no-ssr": "^1.1.0",
     "resize-observer-polyfill": "^1.5.1",
     "tailwind-merge": "^2.5.2",
+    "tailwindcss-animate": "^1.0.7",
     "three": "^0.167.1"
   },
   "devDependencies": {

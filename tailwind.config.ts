@@ -9,6 +9,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+      },
       keyframes: {
         wave: {
           "0%": {
@@ -79,7 +83,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [require("@tailwindcss/typography"), require("tailwindcss-animate")],
 };
 
 export default config;

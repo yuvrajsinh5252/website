@@ -45,11 +45,13 @@ export default function CustomCursor() {
         setIsHovered(true);
         cursorX.set(rect.left + rect.width / 2);
         cursorY.set(rect.top + rect.height / 2);
-      } else if (textElement) {
-        setCursorType("text");
-        setIsHovered(true);
-        setHoveredElement(null);
-      } else if (target.classList.contains("hoverable")) {
+      }
+      // else if (textElement) {
+      //   setCursorType("text");
+      //   setIsHovered(true);
+      //   setHoveredElement(null);
+      // }
+      else if (target.classList.contains("hoverable")) {
         setCursorType("default");
         const rect = target.getBoundingClientRect();
         setHoveredElement(rect);

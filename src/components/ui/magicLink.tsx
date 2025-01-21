@@ -1,21 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
-export default function MagicLink(
-  {
-    children,
-    href
-  }: {
-    children: React.ReactNode,
-    href: string
-  }
-) {
-  const shapes = ['line'];
-  const colors = ['#2FB5F3', '#FF0A47', '#FF0AC2', '#47FF0A'];
+export default function MagicLink({
+  children,
+  href,
+}: {
+  children: React.ReactNode;
+  href: string;
+}) {
+  const shapes = ["line"];
+  const colors = ["#2FB5F3", "#FF0A47", "#FF0AC2", "#47FF0A"];
 
   useEffect(() => {
     let mojs: any;
     const loadMojs = async () => {
-      const mod = await import('@mojs/core');
+      const mod = await import("@mojs/core");
       mojs = mod.default;
     };
 
@@ -42,14 +40,14 @@ export default function MagicLink(
           shape: shapes[chosenS],
           radius: 10,
           scale: { 0.8: 1 },
-          fill: 'none',
+          fill: "none",
           points: 7,
           stroke: colors[chosenC],
-          strokeDasharray: '100%',
-          strokeDashoffset: { '-100%': '100%' },
+          strokeDasharray: "100%",
+          strokeDashoffset: { "-100%": "100%" },
           duration: 350,
           delay: 100,
-          easing: 'quad.out',
+          easing: "quad.out",
           isShowEnd: false,
         },
       });
@@ -57,26 +55,33 @@ export default function MagicLink(
       burst.play();
     };
 
-    const links = document.querySelectorAll<HTMLAnchorElement>('.magic');
+    const links = document.querySelectorAll<HTMLAnchorElement>(".magic");
 
     links.forEach((link) => {
-      link.addEventListener('mouseenter', (e) => shootLines(e as MouseEvent, link));
+      link.addEventListener("mouseenter", (e) =>
+        shootLines(e as MouseEvent, link)
+      );
     });
 
     return () => {
       links.forEach((link) => {
-        link.removeEventListener('mouseenter', (e) => shootLines(e as MouseEvent, link));
+        link.removeEventListener("mouseenter", (e) =>
+          shootLines(e as MouseEvent, link)
+        );
       });
     };
   }, [colors, shapes]);
 
   return (
     <span className="mx-auto text-center md:w-3/4">
-      <a href={href} target='_blank' className="magic relative inline-block hover:text-black">
+      <a
+        href={href}
+        target="_blank"
+        className="magic relative inline-block hover:text-black"
+      >
         {children}
-        <span className="absolute inset-0 top-0 transition-all duration-100 ease-[cubic-bezier(0.000,0.590,1.000,0.260)] z-[-1]">
-        </span>
+        <span className="absolute inset-0 top-0 transition-all duration-100 ease-&lsqb;cubic-bezier(0.000,0.590,1.000,0.260)&rsqb; z-[-1]"></span>
       </a>
     </span>
-  )
+  );
 }

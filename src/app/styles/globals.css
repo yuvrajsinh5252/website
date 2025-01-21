@@ -3,16 +3,32 @@
 @import "tailwindcss/utilities";
 
 @layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --primary: 37 99 235;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --primary: 37 99 235;
+  }
+}
+
+@layer base {
   body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 
   * {
     cursor: none !important;
-    transition: color 0.1s ease, background-color 0.1s ease;
+    transition: all 0.029s ease-in-out;
   }
 
   @media (hover: none) {
