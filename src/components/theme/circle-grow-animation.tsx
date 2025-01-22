@@ -28,14 +28,13 @@ const throttle = (callback: any, limit = 250) => {
 };
 
 const COLORS = {
-  // white: "#F0F0F0",
   white: "#FFFFFF",
   midnightBlack: "#18181B",
 };
 
 const RADIUS_GROWTH_PER_MS = 0.025;
 const GROWTH_FUNCTION_EXPONENTIAL = 2.9;
-const PIXEL_SCALING_FACTOR = 0.5;
+const PIXEL_SCALING_FACTOR = 0.4;
 
 const circleCenterCoordinates = {
   x: null,
@@ -102,14 +101,22 @@ const m = {
       (m.radiusMultiplier <= 0 && m.isDark) ||
       (m.radiusMultiplier >= m.maxRadiusMultiplier && !m.isDark)
     ) {
-      const gradient = m.ctx.createRadialGradient(
+
+      const gradient = m.width > 600 ? m.ctx.createRadialGradient(
         m.width / 2,
         0,
         0,
         m.width / 2,
         0,
         0
-      );
+      ) : m.ctx.createRadialGradient(
+        m.width,
+        0,
+        0,
+        m.width,
+        0,
+        0,
+      )
       gradient.addColorStop(0, "#2d3748");
       gradient.addColorStop(1, "#000000");
       m.ctx.fillStyle = m.isDark ? gradient : COLORS.white;

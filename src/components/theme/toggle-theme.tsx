@@ -5,40 +5,33 @@ import { useTheme } from "next-themes";
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
 
-  const onClickWrapper = (event: any) => {
-    setTheme(theme === "light" ? "dark" : "light");
-    const bodyRect = document.body.getBoundingClientRect();
-    const elemRect = event.target.getBoundingClientRect();
-    const offsetTop = elemRect.top - bodyRect.top;
-    const offsetLeft = elemRect.left - bodyRect.left;
+  const handleThemeToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const target = event.currentTarget;
+    const rect = target.getBoundingClientRect();
 
-    const deviceZoomRatio =
-      document.documentElement.clientWidth / window.innerWidth;
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
 
-    const customEventState = {
-      x: offsetLeft + elemRect.width / 2,
-      y: (deviceZoomRatio > 1 ? offsetTop : elemRect.top) + elemRect.height / 2,
-    };
-
-    const darkModeToggleEvent = new CustomEvent("darkModeToggle", {
-      detail: customEventState,
+    const customEvent = new CustomEvent("darkModeToggle", {
+      detail: { x, y }
     });
-    dispatchEvent(darkModeToggleEvent);
+    window.dispatchEvent(customEvent);
+
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
     <div className="relative rounded-full justify-center items-center border-none focus:outline-none">
       <button
-        className="p-3 flex rounded-full bg-gray-400 focus:outline-none focus:bg-blue-300"
-        onClick={(event) => {
-          onClickWrapper(event);
-        }}
+        className="p-3 flex rounded-full bg-gray-400/40 backdrop-blur-sm focus:outline-none hover:bg-gray-400/60 transition-colors"
+        onClick={handleThemeToggle}
+        aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
       >
         <div
-          className={`absolute rounded-full left-2 bottom-[5%] w-5 h-5 transform transition-all duration-700 ${
+          className={`absolute rounded-full left-2 bottom-2 w-5 h-5 transform transition-all duration-700 ${
             theme === "light" ? "scale-100 bg-white" : "scale-0 bg-black"
           }`}
-        ></div>
+        />
       </button>
     </div>
   );

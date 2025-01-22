@@ -48,7 +48,7 @@ export default function Home() {
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="h-full p-5 rounded-lg dark:bg-gray-800/40 bg-gray-500/20 backdrop-blur-md border border-gray-800/50 hover:border-gray-700/50 hover:shadow-lg hover:shadow-blue-500/5">
+              <div className="h-full p-5 rounded-lg dark:bg-gray-800/50 bg-gray-500/20 backdrop-blur-md border border-gray-800/50 dark:border-gray-500/20 hover:border-gray-700/50 hover:dark:border-gray-300/40 hover:shadow-lg hover:shadow-blue-500/5">
                 <div
                   key={hoveredIndex === index ? "wave-active" : "wave-inactive"}
                   className={`absolute inset-0 pointer-events-none ${

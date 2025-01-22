@@ -31,8 +31,8 @@ export default function Navbar() {
     const left = rect.left - navRect.left;
 
     Object.assign(activeBg.style, {
-      left: `${left - 18}px`,
-      width: `${item.width + 12}px`,
+      left: `${left - 6}px`,
+      width: `${item.width + 6}px`,
       opacity: "1",
     });
   }, [activeNav]);
@@ -50,12 +50,12 @@ export default function Navbar() {
         ref={navRef}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, type: "spring" }}
-        className="flex items-center gap-8 w-fit h-8 px-5 py-6 rounded-full backdrop-blur-md bg-gray-100/20 dark:bg-gray-700/80 border dark:border-gray-300/20 border-gray-300 hover:bg-white/40 group shadow-lg shadow-black/5 dark:shadow-white/5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-white/10"
+        transition={{ duration: 0.6, type: "spring", stiffness: "500" }}
+        className="flex items-center gap-4 w-fit h-5 px-2 py-5 rounded-full backdrop-blur-md bg-gray-100/20 dark:bg-gray-700/80 border dark:border-gray-300/20 border-gray-300 hover:bg-white/40 group shadow-lg shadow-black/5 dark:shadow-white/5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-white/10"
       >
         <div
           id="active-bg"
-          className="absolute inset-0 h-11 top-1/2 -translate-y-1/2 z-0 rounded-full transition-all duration-600 dark:bg-gray-300/20 bg-black/10 backdrop-blur-sm group-hover:dark:bg-gray-300/30 group-hover:bg-black/15 opacity-0"
+          className="absolute inset-0 h-9 top-1/2 -translate-y-1/2 z-0 rounded-full transition-all duration-500 dark:bg-gray-300/20 bg-black/10 backdrop-blur-sm group-hover:dark:bg-gray-300/30 group-hover:bg-black/15 opacity-0"
         />
         {NAV_ITEMS.map((item) => (
           <motion.div
