@@ -24,7 +24,7 @@
   }
 
   * {
-    cursor: none !important;
+    transition: all 0.1s cubic-bezier(0, 0.59, 1, 0.26);
   }
 
   @media (hover: none) {

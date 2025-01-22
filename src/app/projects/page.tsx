@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { PROJECTS } from "@/data/projectData";
 import { motion } from "framer-motion";
 import { SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 import { SiGithub } from "react-icons/si";
+import { PROJECTS } from "@/data/project";
 
 export default function Home() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -29,11 +29,7 @@ export default function Home() {
           className="flex items-center gap-2 sm:text-5xl text-4xl font-bold pl-2"
         >
           <IoIosArrowForward className="text-3xl max-sm:hidden sm:text-4xl text-blue-500/80" />
-          <span
-            className="dark:bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent
-            bg-gray-700
-          "
-          >
+          <span className="text-foreground dark:text-gray-300 transition-all">
             Projects
           </span>
         </motion.h1>
@@ -48,7 +44,7 @@ export default function Home() {
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="h-full p-5 rounded-lg dark:bg-gray-800/50 bg-gray-500/20 backdrop-blur-md border border-gray-800/50 dark:border-gray-500/20 hover:border-gray-700/50 hover:dark:border-gray-300/40 hover:shadow-lg hover:shadow-blue-500/5">
+              <div className="h-full p-5 rounded-lg dark:bg-gray-800/50 bg-gray-500/20 backdrop-blur-md transition-colors">
                 <div
                   key={hoveredIndex === index ? "wave-active" : "wave-inactive"}
                   className={`absolute inset-0 pointer-events-none ${
@@ -62,7 +58,7 @@ export default function Home() {
                         {project.title}
                       </h2>
                       {project.year && (
-                        <p className="text-sm dark:text-gray-400 text-gray-700">
+                        <p className="text-sm dark:text-gray-400 text-gray-700 transition-colors">
                           {project.year}
                         </p>
                       )}
@@ -75,7 +71,7 @@ export default function Home() {
                           rel="noreferrer"
                           className="dark:hover:text-blue-400 hover:text-blue-600"
                         >
-                          <SquareArrowOutUpRight className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                          <SquareArrowOutUpRight className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                         </Link>
                       )}
                       <Link
@@ -88,7 +84,7 @@ export default function Home() {
                       </Link>
                     </div>
                   </div>
-                  <p className="text-sm dark:text-gray-400 text-foreground leading-relaxed flex-grow">
+                  <p className="text-sm dark:text-gray-400 text-foreground transition-colors leading-relaxed flex-grow">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">

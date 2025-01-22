@@ -2,10 +2,10 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
-import NavLink from "./navlink";
-import ThemeToggle from "../theme/toggle-theme";
 import { motion } from "framer-motion";
-import MaxWidthWrapper from "../ui/MaxWidthWrapper";
+import MaxWidthWrapper from "../ui/max-width-wrapper";
+import NavLink from "./navlink";
+import ThemeToggle from "../themes/theme-toggle";
 
 const NAV_ITEMS = [
   { href: "/", text: "home", width: 95 },
@@ -44,7 +44,7 @@ export default function Navbar() {
   }, [updateActiveBgPosition]);
 
   return (
-    <MaxWidthWrapper className="fixed flex justify-between md:px-10 max-w-screen-lg items-center w-full h-fit mt-10 z-50 mx-auto left-0 right-0">
+    <MaxWidthWrapper className="fixed flex justify-between md:px-10 items-center w-full h-fit mt-10 z-50 mx-auto left-0 right-0">
       <div></div>
       <motion.nav
         ref={navRef}

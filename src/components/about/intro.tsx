@@ -1,7 +1,7 @@
 import { IoIosArrowForward } from "react-icons/io";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-const MagicLink = dynamic(() => import("@/components/ui/magicLink"), {
+const MagicLink = dynamic(() => import("@/components/effects/magiclink"), {
   ssr: false,
 });
 

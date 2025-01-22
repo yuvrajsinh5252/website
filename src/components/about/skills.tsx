@@ -55,15 +55,15 @@ export function Skills({
             }
             transition={{ delay: index * 0.2 }}
             className="relative p-6 rounded-lg border border-gray-800/30 hover:border-gray-700/50
-                 backdrop-blur-md dark:bg-gray-500/5 bg-black/10 transition-all duration-300 ease-out hover:-translate-y-1"
+                 backdrop-blur-md dark:bg-gray-500/5 bg-black/10 hover:-translate-y-1 transition-colors"
           >
             <div className="flex flex-col items-center gap-6">
-              <div className="p-3 rounded-full
+              <div
+                className="p-3 rounded-full
                 bg-gradient-to-br from-gray-100/90 to-gray-50/90
                 dark:from-gray-800/90 dark:to-gray-900/90
                 shadow-inner shadow-gray-500/10 dark:shadow-black/20
-                group-hover:shadow-gray-500/20 dark:group-hover:shadow-black/30
-                transition duration-300"
+                group-hover:shadow-gray-500/20 dark:group-hover:shadow-black/30 transition-colors"
               >
                 {skill.icon}
               </div>
@@ -86,7 +86,7 @@ export function Skills({
                           backgroundColor: "rgba(59, 130, 246, 0.2)",
                           borderColor: "rgba(59, 130, 246, 0.8)",
                         }}
-                        className="px-3 skill-tag py-1 text-xs rounded-full bg-gray-800/30 backdrop-blur-sm text-gray-200 border border-gray-700/30 transition-all duration-300 ease-in-out dark:hover:text-blue-300 hover:text-blue-500 cursor-default"
+                        className="px-3 skill-tag py-1 text-xs rounded-full bg-gray-800/30 backdrop-blur-sm text-gray-200 border border-gray-700/30 transition-all ease-in-out dark:hover:text-blue-300 hover:text-blue-500 cursor-default"
                       >
                         {tag}
                       </motion.span>

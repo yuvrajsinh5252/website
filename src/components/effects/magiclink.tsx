@@ -11,7 +11,7 @@ export default function MagicLink({
   const colors = ["#2FB5F3", "#FF0A47", "#FF0AC2", "#47FF0A"];
 
   useEffect(() => {
-    let mojs: any;
+    let mojs: typeof import("@mojs/core")["default"];
     const loadMojs = async () => {
       const mod = await import("@mojs/core");
       mojs = mod.default;

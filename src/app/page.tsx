@@ -1,10 +1,10 @@
 "use client";
 
-import MaxWidthWrapper from "@/components/ui/MaxWidthWrapper";
-import SocialLinks from "@/components/socialLinks";
+import { SparklesCore } from "@/components/effects/sparkles";
+import { TypewriterEffect } from "@/components/effects/typewritter";
+import SocialLinks from "@/components/social/links";
+import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { motion } from "framer-motion";
-import { TypewriterEffect } from "@/components/ui/typewriter-effect";
-import { SparklesCore } from "@/components/ui/sparkles";
 
 export default function Home() {
   return (

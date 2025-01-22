@@ -31,15 +31,16 @@ export default function NavLink({ href, text }: NavLinkProps) {
 
   return (
     <div
-      className={`relative capitalize transition-all duration-300 ${
+      className={`relative capitalize ${
         isActive ? "font-medium" : "opacity-70 hover:opacity-100"
       }`}
     >
       <Link
         href={href}
         className={`rounded-full flex items-center gap-2
-          hover:text-blue-500 dark:hover:text-blue-400
-          transition-colors duration-300 ${!isActive ? "py-1" : ""}`}
+          hover:text-blue-500 dark:hover:text-blue-400 ${
+            !isActive ? "py-1" : ""
+          }`}
       >
         <motion.div
           className="px-1"
@@ -48,32 +49,32 @@ export default function NavLink({ href, text }: NavLinkProps) {
         >
           {getIcon(text)}
         </motion.div>
-          {isActive && (
-            <motion.div
-              initial={{ opacity: 0, x: -10, width: 0 }}
-              animate={{
-                opacity: 1,
-                x: 0,
-                width: "auto",
-                transition: {
-                  duration: 0.3,
-                  ease: [0.23, 1, 0.32, 1]
-                }
-              }}
-              exit={{
-                opacity: 0,
-                x: 10,
-                width: 0,
-                transition: {
-                  duration: 0.2,
-                  ease: [0.23, 1, 0.32, 1]
-                }
-              }}
-              className="font-medium pr-2 overflow-hidden whitespace-nowrap"
-            >
-              {text}
-            </motion.div>
-          )}
+        {isActive && (
+          <motion.div
+            initial={{ opacity: 0, x: -10, width: 0 }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              width: "auto",
+              transition: {
+                duration: 0.3,
+                ease: [0.23, 1, 0.32, 1],
+              },
+            }}
+            exit={{
+              opacity: 0,
+              x: 10,
+              width: 0,
+              transition: {
+                duration: 0.2,
+                ease: [0.23, 1, 0.32, 1],
+              },
+            }}
+            className="font-medium pr-2 overflow-hidden whitespace-nowrap"
+          >
+            {text}
+          </motion.div>
+        )}
       </Link>
     </div>
   );

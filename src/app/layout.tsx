@@ -1,18 +1,18 @@
+import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import "./styles/globals.css";
-import GrowingCircleAnimation from "@/components/theme/circle-grow-animation";
-import Navbar from "@/components/navbar/navbar";
+import "./globals.css";
+import { Provider } from "@/components/themes/provides";
 import { constructMetadata } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme/theme-provider";
-import CustomCursor from "@/components/cursor/custom-cursor";
-import { CustomBackground } from "@/components/ui/custom-background";
+import Navbar from "@/components/navbar/navbar";
+import { CircleAnimation } from "@/components/effects/growing-circle";
+import { Background } from "@/components/effects/background";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: "400",
 });
 
-export const metadata = constructMetadata();
+export const metadata: Metadata = constructMetadata();
 
 export default function RootLayout({
   children,
@@ -21,22 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script
-          defer
-          src="https://cloud.umami.is/script.js"
-          data-website-id="af1b100f-9515-440f-9a17-f9a50a32eb6f"
-        ></script>
-      </head>
-      <link rel="icon" href="/logo.png" />
       <body className={poppins.className}>
-        <ThemeProvider>
-          <GrowingCircleAnimation />
-          <CustomBackground />
-          <CustomCursor />
+        <Provider>
+          <CircleAnimation />
+          <Background />
           <Navbar />
-          <div className="relative z-20">{children}</div>
-        </ThemeProvider>
+          <div className="z-20 relative">{children}</div>
+        </Provider>
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 
 const debounce = (callback: any, delay = 250) => {
@@ -141,7 +141,7 @@ const m = {
   },
 };
 
-const GrowingCircleAnimation = () => {
+export function CircleAnimation() {
   const { resolvedTheme: theme } = useTheme();
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -196,6 +196,4 @@ const GrowingCircleAnimation = () => {
       ref={canvasRef}
     />
   );
-};
-
-export default GrowingCircleAnimation;
+}

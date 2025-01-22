@@ -1,9 +1,9 @@
 "use client";
 
-import MaxWidthWrapper from "@/components/ui/MaxWidthWrapper";
-import { Intro } from "@/components/about/intro";
 import { ContactUs } from "@/components/about/contact";
+import { Intro } from "@/components/about/intro";
 import { Skills } from "@/components/about/skills";
+import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -47,7 +47,7 @@ export default function Home() {
   };
 
   return (
-    <MaxWidthWrapper className="max-w-screen-lg max-sm:px-4">
+    <MaxWidthWrapper className="max-sm:px-4">
       <nav className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 hidden lg:block">
         <motion.div
           className="space-y-4"
