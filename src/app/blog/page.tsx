@@ -1,14 +1,32 @@
-export default function Page() {
+import { getBlogPosts } from "@/lib/blog";
+import { BlogCard } from "@/components/blog/blog-card";
+import { BlogHeader } from "@/components/blog/blog-header";
+import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
+
+export const revalidate = 3600; // Revalidate every hour
+
+export default async function BlogPage() {
+  const posts = getBlogPosts();
+
   return (
-    <main className="min-h-screen flex justify-center items-center">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold mb-4">Blog</h1>
+    <MaxWidthWrapper>
+      <div className="container mx-auto px-4 pt-44">
+        <BlogHeader title="Blogs" />
+        <div className="flex mt-10 px-4">
+          {posts.map((post, index) => (
+            <BlogCard key={post.slug} post={post} index={index} />
+          ))}
         </div>
-        <div className="text-center py-8">
-          <p>coming soon!</p>
-        </div>
+
+        {/* Empty State */}
+        {posts.length === 0 && (
+          <div className="text-center py-20">
+            <p className="text-gray-400 text-lg">
+              No blog posts yet. Check back soon!
+            </p>
+          </div>
+        )}
       </div>
-    </main>
+    </MaxWidthWrapper>
   );
 }

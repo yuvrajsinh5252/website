@@ -1,68 +1,196 @@
-import Link from "next/link";
-import { SiGmail, SiLinkedin, SiGithub } from "react-icons/si";
 import { motion } from "framer-motion";
+import {
+  FaEnvelope,
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaDiscord,
+  FaArrowRight,
+  FaSpotify,
+  FaPlay,
+  FaPause,
+} from "react-icons/fa";
+import { useState, useEffect } from "react";
 
-export function ContactUs({ activeSection }: { activeSection: string }) {
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 },
+};
+
+const socialLinks = [
+  {
+    name: "GitHub",
+    icon: <FaGithub className="text-2xl" />,
+    url: "https://github.com/yuvrajsinh5252",
+    color: "#06090C",
+  },
+  {
+    name: "LinkedIn",
+    icon: <FaLinkedin className="text-2xl" />,
+    url: "https://www.linkedin.com/in/yuvrajsinh099",
+    color: "#3498db",
+  },
+  {
+    name: "Twitter",
+    icon: <FaTwitter className="text-2xl" />,
+    url: "https://x.com/Yuvrajsinh_099",
+    color: "#00acee",
+  },
+  {
+    name: "Discord",
+    icon: <FaDiscord className="text-2xl" />,
+    url: "https://discord.com/users/yourusername",
+    color: "#7289da",
+  },
+];
+
+export function ContactUs({
+  activeSection,
+  fadeIn,
+}: {
+  activeSection: string;
+  fadeIn: any;
+}) {
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const email = "yuvrajsinh476@gmail.com";
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={activeSection === "contact" ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen flex flex-col gap-8 items-center justify-center p-5 max-w-4xl mx-auto"
+      {...fadeIn}
+      initial="hidden"
+      animate={activeSection === "contact" ? "visible" : "hidden"}
+      className="max-w-7xl mx-auto px-4 py-16 relative"
     >
-      <motion.h1
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-4xl max-sm:text-3xl font-bold text-center"
-      >
-        Let&lsquo;s build something amazing together!
-      </motion.h1>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="text-lg max-sm:text-[16px] text-center mb-8"
-      >
-        <p className="mb-2">
-          I&lsquo;m always open to new projects, collaborations, and
-          opportunities.
-        </p>
-        <p>
-          Feel free to reach out if you have any questions or just want to say
-          hi!
-        </p>
+      <motion.div className="text-center mb-16 relative">
+        <motion.h2
+          {...fadeInUp}
+          className="text-5xl font-bold mb-6 bg-clip-text"
+        >
+          Let's Connect
+        </motion.h2>
+        <motion.p
+          {...fadeInUp}
+          className="text-lg text-gray-400/90 max-w-2xl mx-auto leading-relaxed"
+        >
+          I'm always open to new opportunities, collaborations, and interesting
+          conversations. Feel free to reach out!
+        </motion.p>
       </motion.div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-        className="flex flex-wrap gap-6 justify-center mb-8"
-      >
-        {[
-          {
-            icon: SiGmail,
-            href: "mailto:yuvrajsinh476@gmail.com",
-          },
-          {
-            icon: SiLinkedin,
-            href: "https://linkedin.com/in/yuvrajsinh099",
-          },
-          {
-            icon: SiGithub,
-            href: "https://github.com/YourUsername",
-          },
-        ].map((social, index) => (
-          <Link
-            key={index}
-            href={social.href}
-            className="flex flex-col items-center gap-2 group"
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        {/* Email Card */}
+        <motion.div
+          {...fadeInUp}
+          transition={{ delay: 0.1 }}
+          className="relative group"
+        >
+          <a href={`mailto:${email}`} className="block">
+            <div
+              className={`
+                p-8 rounded-2xl h-full
+                bg-gray-400/40 dark:bg-white/[0.03] backdrop-blur-lg
+                border border-white/10
+                transition-colors duraiton-200
+                group-hover:border-white/20
+                group-hover:shadow-lg group-hover:shadow-blue-500/10
+                overflow-hidden
+                relative
+              `}
+            >
+              {/* Animated background gradient */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 -z-10"
+                style={{
+                  background:
+                    "radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.7), transparent 70%)",
+                  filter: "blur(24px)",
+                }}
+              />
+
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-xl bg-blue-500/10 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                  <FaEnvelope className="text-3xl text-blue-400" />
+                </div>
+                <div className="flex-grow">
+                  <h3 className="text-xl font-semibold mb-2">Email Me</h3>
+                  <div className="flex items-center gap-2 group/email">
+                    <span className="text-sm font-medium text-gray-400 group-hover:text-blue-400 transition-colors">
+                      {email}
+                    </span>
+                    <FaArrowRight className="text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-0 group-hover:translate-x-1 text-blue-400" />
+                  </div>
+                  <p className="text-xs text-gray-500 mt-2">
+                    Click to open your mail client
+                  </p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </motion.div>
+
+        {/* Social Links Card */}
+        <motion.div
+          {...fadeInUp}
+          transition={{ delay: 0.2 }}
+          className="relative group"
+        >
+          <div
+            className={`
+              p-8 rounded-2xl h-full
+              bg-gray-400/40 dark:bg-white/[0.03] backdrop-blur-lg
+              transition-colors duraiton-200
+              border border-white/10
+              hover:border-white/20
+              hover:shadow-lg hover:shadow-purple-500/10
+              overflow-hidden
+            `}
           >
-            <social.icon className="w-8 h-8 text-blue-500 group-hover:text-blue-600 transition-colors" />
-          </Link>
-        ))}
-      </motion.div>
+            {/* Animated background gradient */}
+            <div
+              className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 -z-10"
+              style={{
+                background:
+                  "radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.7), transparent 70%)",
+                filter: "blur(24px)",
+              }}
+            />
+
+            <h3 className="text-xl font-semibold mb-6 text-center">
+              Social Media
+            </h3>
+            <div className="grid grid-cols-2 gap-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onMouseEnter={() => setHoveredCard(social.name)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  className="group/social flex flex-col gap-2 p-3 rounded-xl hover:bg-white/[0.05]
+                    relative overflow-hidden"
+                >
+                  <div className="flex items-center gap-3">
+                    <div
+                      className="transition-transform group-hover/social:scale-110"
+                      style={{
+                        color:
+                          hoveredCard === social.name
+                            ? social.color
+                            : "currentColor",
+                      }}
+                    >
+                      {social.icon}
+                    </div>
+                    <span className="text-sm font-medium">{social.name}</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </motion.div>
   );
 }

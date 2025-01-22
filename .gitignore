@@ -37,6 +37,7 @@ yarn-error.log*
 node_modules
 bun.lockb
 next-env.d.ts
+temp.md
 
 # vercel
 .vercel

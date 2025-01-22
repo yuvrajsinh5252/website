@@ -12,7 +12,7 @@ interface NavLinkProps {
 
 export default function NavLink({ href, text }: NavLinkProps) {
   const pathname = usePathname();
-  const isActive = pathname === href;
+  const isActive = pathname.split("/")[1] === href.split("/")[1];
 
   const getIcon = (text: string) => {
     switch (text) {

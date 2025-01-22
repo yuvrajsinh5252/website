@@ -15,15 +15,15 @@ const NAV_ITEMS = [
 ] as const;
 
 export default function Navbar() {
-  const activeNav = usePathname();
+  const activeNav = usePathname().split("/")[1];
   const navRef = React.useRef<HTMLElement>(null);
 
   const updateActiveBgPosition = React.useCallback(() => {
     const activeBg = document.getElementById("active-bg");
-    const activeLink = document.querySelector(`[href="${activeNav}"]`);
+    const activeLink = document.querySelector(`[href="/${activeNav}"]`);
     if (!activeLink || !activeBg || !navRef.current) return;
 
-    const item = NAV_ITEMS.find((item) => item.href === activeNav);
+    const item = NAV_ITEMS.find((item) => item.href === "/" + activeNav);
     if (!item) return;
 
     const rect = activeLink.getBoundingClientRect();

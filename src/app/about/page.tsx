@@ -86,7 +86,7 @@ export default function Home() {
         className="min-h-screen flex flex-col justify-center relative"
         id="contact"
       >
-        <ContactUs activeSection={activeSection} />
+        <ContactUs activeSection={activeSection} fadeIn={fadeIn} />
       </section>
     </MaxWidthWrapper>
   );

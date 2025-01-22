@@ -25,9 +25,7 @@ export function Intro({
     >
       <h1 className="flex gap-2 items-center text-4xl sm:text-5xl font-bold">
         <IoIosArrowForward className="text-4xl text-blue-400 sm:text-5xl max-sm:hidden" />
-        <span className="max-sm:mx-auto dark:bg-gradient-to-r from-gray-200 to-gray-400 bg-clip-text text-transparent bg-gray-700">
-          About Me
-        </span>
+        <span className="max-sm:mx-auto ">About Me</span>
       </h1>
       <div className="space-y-6 sm:space-y-8 mx-auto">
         <p className="text-base sm:text-lg">
