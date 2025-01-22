@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { FaBlog, FaCode, FaHome, FaUser } from "react-icons/fa";
-import { MdNoteAlt } from "react-icons/md";
+import { FaCode, FaHome, FaUser } from "react-icons/fa";
 import { GiNotebook } from "react-icons/gi";
 
 import { motion } from "framer-motion";
@@ -19,15 +18,13 @@ export default function NavLink({ href, text }: NavLinkProps) {
   const getIcon = (text: string) => {
     switch (text) {
       case "home":
-        return <FaHome className="text-blue-400 dark:text-blue-300" />;
+        return <FaHome />;
       case "projects":
-        return <FaCode className="text-blue-400 dark:text-blue-300" />;
+        return <FaCode />;
       case "about":
-        return <FaUser className="text-blue-400 dark:text-blue-300" />;
+        return <FaUser />;
       case "blog":
-        return (
-          <GiNotebook size={18} className="text-blue-400 dark:text-blue-300" />
-        );
+        return <GiNotebook size={18} />;
       default:
         return null;
     }

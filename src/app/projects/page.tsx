@@ -51,7 +51,7 @@ export default function Home() {
               <div className="h-full p-5 rounded-lg dark:bg-gray-800/40 bg-gray-500/20 backdrop-blur-md border border-gray-800/50 hover:border-gray-700/50 hover:shadow-lg hover:shadow-blue-500/5">
                 <div
                   key={hoveredIndex === index ? "wave-active" : "wave-inactive"}
-                  className={`absolute inset-0 pointer-events-none transition-all duration-700 ${
+                  className={`absolute inset-0 pointer-events-none ${
                     hoveredIndex === index ? "animate-wave" : ""
                   }`}
                 />
@@ -88,7 +88,7 @@ export default function Home() {
                       </Link>
                     </div>
                   </div>
-                  <p className="text-sm dark:text-gray-400 leading-relaxed flex-grow">
+                  <p className="text-sm dark:text-gray-400 text-foreground leading-relaxed flex-grow">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">

@@ -51,7 +51,7 @@ export default function Navbar() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, type: "spring" }}
-        className="flex items-center gap-8 w-fit h-8 px-5 py-6 rounded-full backdrop-blur-md bg-gray-100/20 dark:bg-gray-800/50 border dark:border-gray-300/20 border-gray-300 hover:bg-white/40 group shadow-lg shadow-black/5 dark:shadow-white/5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-white/10"
+        className="flex items-center gap-8 w-fit h-8 px-5 py-6 rounded-full backdrop-blur-md bg-gray-100/20 dark:bg-gray-700/80 border dark:border-gray-300/20 border-gray-300 hover:bg-white/40 group shadow-lg shadow-black/5 dark:shadow-white/5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-white/10"
       >
         <div
           id="active-bg"
