@@ -3,8 +3,6 @@ import { BlogCard } from "@/components/blog/blog-card";
 import { BlogHeader } from "@/components/blog/blog-header";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 
-export const revalidate = 3600; // Revalidate every hour
-
 export default async function BlogPage() {
   const posts = getBlogPosts();
 
