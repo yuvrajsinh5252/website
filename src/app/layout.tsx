@@ -21,6 +21,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="canonical" href="https://yuvrajsinh.me" />
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="af1b100f-9515-440f-9a17-f9a50a32eb6f"
+        ></script>
+      </head>
       <body className={poppins.className}>
         <Provider>
           <CircleAnimation />
