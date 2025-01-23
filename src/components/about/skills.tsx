@@ -11,6 +11,7 @@ import {
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
+  viewport: { once: true },
   animate: { opacity: 1, y: 0 },
   transition: { duration: 0.5 },
 };
@@ -26,7 +27,6 @@ export function Skills({
     {
       icon: <FaCode />,
       title: "Frontend",
-      description: "Creating beautiful & responsive web applications",
       tags: ["React", "Next.js", "TypeScript", "TailwindCSS"],
       color: "from-cyan-400 to-blue-500",
       shadowColor: "cyan",
@@ -34,7 +34,6 @@ export function Skills({
     {
       icon: <FaDatabase />,
       title: "Backend",
-      description: "Building robust & scalable server solutions",
       tags: ["Node.js", "ElysiaJS", "Trpc", "PostgreSQL", "MongoDB"],
       color: "from-green-400 to-emerald-500",
       shadowColor: "green",
@@ -42,7 +41,6 @@ export function Skills({
     {
       icon: <FaTerminal />,
       title: "Programming Languages",
-      description: "Languages I'm proficient in",
       tags: ["TypeScript", "C++", "Python", "Rust", "Go", "Java"],
       color: "from-purple-400 to-indigo-500",
       shadowColor: "purple",
@@ -50,7 +48,6 @@ export function Skills({
     {
       icon: <MonitorCog />,
       title: "Tools",
-      description: "Utilizing modern development tools",
       tags: ["Git", "VS Code", "Linux", "Docker", "Shell"],
       color: "from-amber-400 to-orange-500",
       shadowColor: "amber",
@@ -58,7 +55,6 @@ export function Skills({
     {
       icon: <FaLightbulb />,
       title: "Interests",
-      description: "Exploring emerging tech & research areas",
       tags: ["Webdev", "Automation", "SystemDesign"],
       color: "from-violet-400 to-fuchsia-500",
       shadowColor: "violet",
@@ -66,7 +62,6 @@ export function Skills({
     {
       icon: <FaCloud />,
       title: "IoT & Embedded",
-      description: "Working with connected devices and systems",
       tags: ["Arduino", "Raspberry Pi", "ESP32"],
       color: "from-blue-400 to-sky-500",
       shadowColor: "blue",
@@ -78,7 +73,7 @@ export function Skills({
       {...fadeIn}
       initial="hidden"
       animate={activeSection === "skills" ? "visible" : "hidden"}
-      className="max-w-7xl mx-auto px-4 py-16"
+      className="max-w-7xl py-16 max-sm:pl-6"
     >
       <motion.h2
         {...fadeInUp}
@@ -89,6 +84,7 @@ export function Skills({
 
       <motion.div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        viewport={{ once: true }}
         variants={{
           hidden: { opacity: 0 },
           visible: {
@@ -100,6 +96,7 @@ export function Skills({
         {skills.map((skill, index) => (
           <motion.div
             key={index}
+            viewport={{ once: true }}
             variants={{
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 },
@@ -114,7 +111,6 @@ export function Skills({
               hover:shadow-lg hover:shadow-${skill.shadowColor}-500/20
             `}
           >
-            {/* Glow Effect */}
             <div
               className={`
               absolute inset-0 rounded-xl opacity-0
@@ -125,7 +121,6 @@ export function Skills({
             />
 
             <div className="relative flex flex-col gap-4">
-              {/* Icon */}
               <div className="flex justify-between items-center">
                 <h3
                   className={`
@@ -147,12 +142,7 @@ export function Skills({
                   {skill.icon}
                 </div>
               </div>
-
-              {/* Content */}
               <div>
-                <p className="text-sm mb-4">{skill.description}</p>
-
-                {/* Tags */}
                 <div className="flex flex-wrap gap-2">
                   {skill.tags.map((tag, i) => (
                     <span

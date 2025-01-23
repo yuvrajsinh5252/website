@@ -8,7 +8,7 @@ export default async function BlogPage() {
 
   return (
     <MaxWidthWrapper>
-      <div className="container mx-auto px-4 pt-44">
+      <div className="container mx-auto px-4 max-sm:px-0 pt-44">
         <BlogHeader title="Blogs" />
         <div className="flex mt-10 px-4">
           {posts.map((post, index) => (

@@ -43,16 +43,18 @@ export default function Home() {
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
+    viewport: { once: true },
     transition: { duration: 0.8, ease: "easeOut" },
   };
 
   return (
-    <MaxWidthWrapper className="max-sm:px-4">
+    <MaxWidthWrapper className="max-sm:px-0">
       <nav className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 hidden lg:block">
         <motion.div
           className="space-y-4"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.5 }}
         >
           {["introduction", "skills", "contact"].map((section, index) => (
@@ -62,6 +64,7 @@ export default function Home() {
                 activeSection === section ? "bg-white scale-125" : "bg-gray-600"
               }`}
               onClick={() => scrollToSection(index)}
+              viewport={{ once: true }}
               whileHover={{ scale: 1.2 }}
             />
           ))}

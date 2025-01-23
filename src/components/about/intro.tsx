@@ -19,9 +19,10 @@ export function Intro({
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 },
       }}
+      viewport={{ once: true }}
       initial="hidden"
       animate={activeSection === "introduction" ? "visible" : "hidden"}
-      className="space-y-8 sm:space-y-12 relative"
+      className="space-y-8 sm:space-y-12 relative max-sm:pl-6"
     >
       <h1 className="flex gap-2 items-center text-4xl sm:text-5xl font-bold">
         <IoIosArrowForward className="text-4xl text-blue-400 sm:text-5xl max-sm:hidden" />

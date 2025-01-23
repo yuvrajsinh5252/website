@@ -75,12 +75,11 @@ export function ContactUs({
         </motion.p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        {/* Email Card */}
+      <div className="flex max-sm:flex-col gap-4 max-w-lg mx-auto">
         <motion.div
           {...fadeInUp}
           transition={{ delay: 0.1 }}
-          className="relative group"
+          className="relative group flex"
         >
           <a href={`mailto:${email}`} className="block">
             <div
@@ -95,18 +94,17 @@ export function ContactUs({
                 relative
               `}
             >
-              {/* Animated background gradient */}
               <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 -z-10"
-                style={{
-                  background:
-                    "radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.7), transparent 70%)",
-                  filter: "blur(24px)",
-                }}
+                className={`
+              absolute inset-0 rounded-xl opacity-0
+              group-hover:opacity-20 transition-opacity
+              bg-gradient-to-r from-blue-400 to-sky-500
+              blur-xl
+            `}
               />
 
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-xl bg-blue-500/10 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                <div className="p-3 rounded-xl bg-blue-500/10 group-hover:scale-110 group-hover:rotate-3 transition-transform">
                   <FaEnvelope className="text-3xl text-blue-400" />
                 </div>
                 <div className="flex-grow">
@@ -126,15 +124,15 @@ export function ContactUs({
           </a>
         </motion.div>
 
-        {/* Social Links Card */}
         <motion.div
           {...fadeInUp}
           transition={{ delay: 0.2 }}
-          className="relative group"
+          className="relative group flex justify-center w-full items-center"
         >
           <div
             className={`
-              p-8 rounded-2xl h-full
+              flex justify-center items-center
+              rounded-2xl h-full w-full max-sm:py-4
               bg-gray-400/40 dark:bg-white/[0.03] backdrop-blur-lg
               transition-colors duraiton-200
               border border-white/10
@@ -143,19 +141,15 @@ export function ContactUs({
               overflow-hidden
             `}
           >
-            {/* Animated background gradient */}
             <div
-              className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 -z-10"
-              style={{
-                background:
-                  "radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.7), transparent 70%)",
-                filter: "blur(24px)",
-              }}
+              className={`
+              absolute inset-0 rounded-xl opacity-0
+              group-hover:opacity-20
+              bg-gradient-to-r from-purple-400 to-pink-500
+              blur-xl
+            `}
             />
 
-            <h3 className="text-xl font-semibold mb-6 text-center">
-              Social Media
-            </h3>
             <div className="grid grid-cols-2 gap-4">
               {socialLinks.map((social) => (
                 <a
@@ -180,7 +174,17 @@ export function ContactUs({
                     >
                       {social.icon}
                     </div>
-                    <span className="text-sm font-medium">{social.name}</span>
+                    <div
+                      className="text-sm sm:hidden font-medium transition-colors"
+                      style={{
+                        color:
+                          hoveredCard === social.name
+                            ? social.color
+                            : "currentColor",
+                      }}
+                    >
+                      {social.name}
+                    </div>
                   </div>
                 </a>
               ))}

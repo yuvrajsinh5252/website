@@ -30,37 +30,37 @@ export function BlogCard({ post, index }: BlogCardProps) {
           group-hover:shadow-lg group-hover:shadow-blue-500/10
         `}
         >
-          <div className="p-6">
-            <div className="flex justify-between items-center mb-4">
+          <div className="p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 sm:gap-0 mb-4">
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
                     className="inline-flex items-center gap-1 rounded-full
-                  bg-blue-500/10 px-3 py-1 text-xs
-                  text-blue-400 transition-colors
-                  group-hover:bg-blue-500/20"
+                    bg-blue-500/10 px-2 sm:px-3 py-1 text-[10px] sm:text-xs
+                    text-blue-400 transition-colors
+                    group-hover:bg-blue-500/20"
                   >
-                    <FaTag className="text-[10px]" />
+                    <FaTag className="text-[8px] sm:text-[10px]" />
                     {tag}
                   </span>
                 ))}
               </div>
-              <div className="flex items-center gap-4 text-xs text-gray-400">
+              <div className="flex items-center gap-3 sm:gap-4 text-[10px] sm:text-xs text-gray-400">
                 <time dateTime={post.date}>
                   {format(new Date(post.date), "MMMM d, yyyy")}
                 </time>
                 <span className="flex items-center gap-1">
-                  <FaClock className="text-[10px]" />
+                  <FaClock className="text-[8px] sm:text-[10px]" />
                   {post.readingTime}
                 </span>
               </div>
             </div>
-            <h2 className="mb-2 text-xl font-bold">{post.title}</h2>
-            <p className="mb-4 text-sm text-gray-400/90 line-clamp-2">
+            <h2 className="mb-2 text-lg sm:text-xl font-bold">{post.title}</h2>
+            <p className="mb-4 text-xs sm:text-sm text-gray-400/90 line-clamp-2">
               {post.description}
             </p>
-            <p className="mt-4 text-sm text-blue-400 group-hover:text-blue-300 transition-colors">
+            <p className="mt-4 text-xs sm:text-sm text-blue-400 group-hover:text-blue-300 transition-colors">
               Continue reading →
             </p>
           </div>
