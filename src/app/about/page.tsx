@@ -48,7 +48,7 @@ export default function Home() {
   };
 
   return (
-    <MaxWidthWrapper className="max-sm:px-0">
+    <MaxWidthWrapper>
       <nav className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 hidden lg:block">
         <motion.div
           className="space-y-4"

@@ -73,7 +73,7 @@ export function Skills({
       {...fadeIn}
       initial="hidden"
       animate={activeSection === "skills" ? "visible" : "hidden"}
-      className="max-w-7xl py-16 max-sm:pl-6"
+      className="max-w-7xl py-16"
     >
       <motion.h2
         {...fadeInUp}

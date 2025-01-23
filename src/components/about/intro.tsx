@@ -22,11 +22,11 @@ export function Intro({
       viewport={{ once: true }}
       initial="hidden"
       animate={activeSection === "introduction" ? "visible" : "hidden"}
-      className="space-y-8 sm:space-y-12 relative max-sm:pl-6"
+      className="space-y-8 sm:space-y-12 relative"
     >
       <h1 className="flex gap-2 items-center text-4xl sm:text-5xl font-bold">
         <IoIosArrowForward className="text-4xl text-blue-400 sm:text-5xl max-sm:hidden" />
-        <span className="max-sm:mx-auto ">About Me</span>
+        <span className="max-sm:mx-auto">About Me</span>
       </h1>
       <div className="space-y-6 sm:space-y-8 mx-auto">
         <p className="text-base sm:text-lg">
