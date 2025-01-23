@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { BlogPost, BlogMeta } from "@/types/blog";
 import readingTime from "reading-time";
 
-const POSTS_PATH = path.join(process.cwd(), "content/blog");
+const POSTS_PATH = path.join(process.cwd(), "src/content/blog");
 
 export const getBlogPosts = (): BlogMeta[] => {
   const files = fs.readdirSync(POSTS_PATH);

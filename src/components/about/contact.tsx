@@ -6,11 +6,8 @@ import {
   FaTwitter,
   FaDiscord,
   FaArrowRight,
-  FaSpotify,
-  FaPlay,
-  FaPause,
 } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -23,25 +20,25 @@ const socialLinks = [
     name: "GitHub",
     icon: <FaGithub className="text-2xl" />,
     url: "https://github.com/yuvrajsinh5252",
-    color: "#06090C",
+    color: "#8a8a8a",
   },
   {
     name: "LinkedIn",
     icon: <FaLinkedin className="text-2xl" />,
     url: "https://www.linkedin.com/in/yuvrajsinh099",
-    color: "#3498db",
+    color: "#63b3e5",
   },
   {
     name: "Twitter",
     icon: <FaTwitter className="text-2xl" />,
     url: "https://x.com/Yuvrajsinh_099",
-    color: "#00acee",
+    color: "#4dc6ff",
   },
   {
     name: "Discord",
     icon: <FaDiscord className="text-2xl" />,
-    url: "https://discord.com/users/yourusername",
-    color: "#7289da",
+    url: "https://discord.com/users/1035138685689139311",
+    color: "#9eb3ea",
   },
 ];
 
@@ -67,14 +64,14 @@ export function ContactUs({
           {...fadeInUp}
           className="text-5xl font-bold mb-6 bg-clip-text"
         >
-          Let's Connect
+          Let&apos;s Connect
         </motion.h2>
         <motion.p
           {...fadeInUp}
           className="text-lg text-gray-400/90 max-w-2xl mx-auto leading-relaxed"
         >
-          I'm always open to new opportunities, collaborations, and interesting
-          conversations. Feel free to reach out!
+          I&apos;m always open to new opportunities, collaborations, and
+          interesting conversations. Feel free to reach out!
         </motion.p>
       </motion.div>
 

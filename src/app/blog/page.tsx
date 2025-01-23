@@ -16,7 +16,6 @@ export default async function BlogPage() {
           ))}
         </div>
 
-        {/* Empty State */}
         {posts.length === 0 && (
           <div className="text-center py-20">
             <p className="text-gray-400 text-lg">

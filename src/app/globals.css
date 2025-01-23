@@ -48,11 +48,3 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
-
-::-moz-selection {
-  background: rgba(var(--primary), 0.6);
-}
-
-::selection {
-  background: rgba(var(--primary), 0.6);
-}

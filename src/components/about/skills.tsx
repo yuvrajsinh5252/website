@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { MonitorCog } from "lucide-react";
 import {
   FaCode,
   FaTerminal,
@@ -34,41 +35,41 @@ export function Skills({
       icon: <FaDatabase />,
       title: "Backend",
       description: "Building robust & scalable server solutions",
-      tags: ["Node.js", "Python", "PostgreSQL", "MongoDB"],
+      tags: ["Node.js", "ElysiaJS", "Trpc", "PostgreSQL", "MongoDB"],
       color: "from-green-400 to-emerald-500",
       shadowColor: "green",
     },
     {
-      icon: <FaCloud />,
-      title: "DevOps",
-      description: "Managing cloud infrastructure & deployment",
-      tags: ["AWS", "Docker", "CI/CD", "Kubernetes"],
+      icon: <FaTerminal />,
+      title: "Programming Languages",
+      description: "Languages I'm proficient in",
+      tags: ["TypeScript", "C++", "Python", "Rust", "Go", "Java"],
       color: "from-purple-400 to-indigo-500",
       shadowColor: "purple",
     },
     {
-      icon: <FaMobile />,
-      title: "Mobile",
-      description: "Developing cross-platform mobile apps",
-      tags: ["React Native", "Flutter", "iOS", "Android"],
-      color: "from-pink-400 to-rose-500",
-      shadowColor: "pink",
-    },
-    {
-      icon: <FaTerminal />,
+      icon: <MonitorCog />,
       title: "Tools",
       description: "Utilizing modern development tools",
-      tags: ["Git", "VS Code", "Figma", "Postman"],
+      tags: ["Git", "VS Code", "Linux", "Docker", "Shell"],
       color: "from-amber-400 to-orange-500",
       shadowColor: "amber",
     },
     {
       icon: <FaLightbulb />,
-      title: "Soft Skills",
-      description: "Bringing ideas to life with collaboration",
-      tags: ["Leadership", "Communication", "Agile", "Problem Solving"],
-      color: "from-red-400 to-rose-500",
-      shadowColor: "red",
+      title: "Interests",
+      description: "Exploring emerging tech & research areas",
+      tags: ["Webdev", "Automation", "SystemDesign"],
+      color: "from-violet-400 to-fuchsia-500",
+      shadowColor: "violet",
+    },
+    {
+      icon: <FaCloud />,
+      title: "IoT & Embedded",
+      description: "Working with connected devices and systems",
+      tags: ["Arduino", "Raspberry Pi", "ESP32"],
+      color: "from-blue-400 to-sky-500",
+      shadowColor: "blue",
     },
   ];
 
@@ -83,7 +84,7 @@ export function Skills({
         {...fadeInUp}
         className="text-4xl font-bold text-center mb-16 tracking-tight"
       >
-        Skills & Expertise
+        Technical Proficiencies
       </motion.h2>
 
       <motion.div
@@ -137,7 +138,7 @@ export function Skills({
                 </h3>
                 <div
                   className={`
-                w-12 h-12 flex items-center justify-center
+                min-w-12 h-12 flex items-center justify-center
                 rounded-lg text-2xl
                 bg-gradient-to-r ${skill.color}
                 group-hover:scale-110 transition-transform
