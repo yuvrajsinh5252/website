@@ -57,7 +57,7 @@ export function ContactUs({
       {...fadeIn}
       initial="hidden"
       animate={activeSection === "contact" ? "visible" : "hidden"}
-      className="max-w-7xl mx-auto px-4 py-16 relative"
+      className="max-w-7xl mx-auto py-16 relative"
     >
       <motion.div className="text-center mb-16 relative">
         <motion.h2
@@ -75,16 +75,16 @@ export function ContactUs({
         </motion.p>
       </motion.div>
 
-      <div className="flex max-sm:flex-col gap-4 max-w-lg mx-auto">
+      <div className="flex max-sm:flex-col justify-center gap-4 mx-auto">
         <motion.div
           {...fadeInUp}
           transition={{ delay: 0.1 }}
-          className="relative group flex"
+          className="relative group flex justify-center"
         >
           <a href={`mailto:${email}`} className="block">
             <div
               className={`
-                p-8 rounded-2xl h-full
+                p-8 max-sm:p-4 rounded-2xl h-full
                 bg-gray-400/40 dark:bg-white/[0.03] backdrop-blur-lg
                 border border-white/10
                 transition-colors duraiton-200
@@ -96,15 +96,15 @@ export function ContactUs({
             >
               <div
                 className={`
-              absolute inset-0 rounded-xl opacity-0
-              group-hover:opacity-20 transition-opacity
-              bg-gradient-to-r from-blue-400 to-sky-500
-              blur-xl
-            `}
+                  absolute inset-0 rounded-xl opacity-0
+                  group-hover:opacity-20 transition-opacity
+                  bg-gradient-to-r from-blue-400 to-sky-500
+                  blur-xl
+                `}
               />
 
               <div className="flex items-start gap-4">
-                <div className="p-3 rounded-xl bg-blue-500/10 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+                <div className="p-3 max-sm:p-2 rounded-xl bg-blue-500/10 group-hover:scale-110 group-hover:rotate-3 transition-transform">
                   <FaEnvelope className="text-3xl text-blue-400" />
                 </div>
                 <div className="flex-grow">
@@ -127,11 +127,11 @@ export function ContactUs({
         <motion.div
           {...fadeInUp}
           transition={{ delay: 0.2 }}
-          className="relative group flex justify-center w-full items-center"
+          className="relative group flex justify-center items-center"
         >
           <div
             className={`
-              flex justify-center items-center
+              flex justify-center items-center max-w-[300px]
               rounded-2xl h-full w-full max-sm:py-4
               bg-gray-400/40 dark:bg-white/[0.03] backdrop-blur-lg
               transition-colors duraiton-200
@@ -150,7 +150,7 @@ export function ContactUs({
             `}
             />
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 px-4">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}

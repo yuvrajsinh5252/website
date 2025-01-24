@@ -1,87 +1,113 @@
-import { useEffect } from "react";
+"use client";
 
-export default function MagicLink({
-  children,
-  href,
-}: {
-  children: React.ReactNode;
+import { useState, useRef } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+
+interface MagicLinkProps {
   href: string;
-}) {
-  const shapes = ["line"];
-  const colors = ["#2FB5F3", "#FF0A47", "#FF0AC2", "#47FF0A"];
+  children: React.ReactNode;
+  className?: string;
+  external?: boolean;
+}
 
-  useEffect(() => {
-    let mojs: typeof import("@mojs/core")["default"];
-    const loadMojs = async () => {
-      const mod = await import("@mojs/core");
-      mojs = mod.default;
+export function MagicLink({
+  href,
+  children,
+  className = "",
+  external = false,
+}: MagicLinkProps) {
+  const [isHovered, setIsHovered] = useState(false);
+  const linkRef = useRef<HTMLAnchorElement>(null);
+
+  const particles = Array.from({ length: 24 }).map(() => {
+    const edge = Math.floor(Math.random() * 4);
+
+    let startX = "10%";
+    let startY = "10%";
+    let angle = 0;
+
+    switch (edge) {
+      case 0:
+        startX = `${Math.random() * 100}%`;
+        startY = "0%";
+        angle = Math.random() * 60 - 30; // -30 to 30 degrees
+        break;
+      case 1:
+        startX = "100%";
+        startY = `${Math.random() * 100}%`;
+        angle = Math.random() * 60 + 150; // 150 to 210 degrees
+        break;
+      case 2:
+        startX = `${Math.random() * 100}%`;
+        startY = "100%";
+        angle = Math.random() * 60 + 330; // 330 to 390 degrees
+        break;
+      case 3:
+        startX = "0%";
+        startY = `${Math.random() * 100}%`;
+        angle = Math.random() * 60 + 30; // 30 to 90 degrees
+        break;
+    }
+
+    return {
+      startX,
+      startY,
+      angle,
+      length: Math.random() * 20 + 10,
+      delay: Math.random() * 0.2,
+      duration: Math.random() * 0.3 + 0.3,
     };
+  });
 
-    loadMojs();
-
-    const shootLines = (e: MouseEvent, link: HTMLElement) => {
-      const itemDim = link.getBoundingClientRect();
-      const itemSize = {
-        x: itemDim.right - itemDim.left,
-        y: itemDim.bottom - itemDim.top,
-      };
-
-      const chosenC = Math.floor(Math.random() * colors.length);
-      const chosenS = Math.floor(Math.random() * shapes.length);
-
-      const burst = new mojs.Burst({
-        left: itemDim.left + itemSize.x / 2,
-        top: itemDim.top + itemSize.y / 2,
-        radiusX: itemSize.x,
-        radiusY: itemSize.y,
-        count: 10,
-
-        children: {
-          shape: shapes[chosenS],
-          radius: 10,
-          scale: { 0.8: 1 },
-          fill: "none",
-          points: 7,
-          stroke: colors[chosenC],
-          strokeDasharray: "100%",
-          strokeDashoffset: { "-100%": "100%" },
-          duration: 350,
-          delay: 100,
-          easing: "quad.out",
-          isShowEnd: false,
-        },
-      });
-
-      burst.play();
-    };
-
-    const links = document.querySelectorAll<HTMLAnchorElement>(".magic");
-
-    links.forEach((link) => {
-      link.addEventListener("mouseenter", (e) =>
-        shootLines(e as MouseEvent, link)
-      );
-    });
-
-    return () => {
-      links.forEach((link) => {
-        link.removeEventListener("mouseenter", (e) =>
-          shootLines(e as MouseEvent, link)
-        );
-      });
-    };
-  }, [colors, shapes]);
+  const LinkComponent = external ? "a" : Link;
+  const externalProps = external
+    ? { target: "_blank", rel: "noopener noreferrer" }
+    : {};
 
   return (
-    <span className="mx-auto text-center md:w-3/4">
-      <a
+    <span className="relative inline-block">
+      <LinkComponent
         href={href}
-        target="_blank"
-        className="magic relative inline-block hover:text-black"
+        ref={linkRef}
+        className={`relative inline-block ${className}`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        {...externalProps}
       >
-        {children}
-        <span className="absolute inset-0 top-0 transition-all ease-&lsqb;cubic-bezier(0.000,0.590,1.000,0.260)&rsqb; z-[-1]"></span>
-      </a>
+        <span className="relative z-10 magic">{children}</span>
+
+        <span className="absolute -inset-4 overflow-hidden pointer-events-none">
+          {isHovered &&
+            particles.map((particle, index) => (
+              <motion.span
+                key={index}
+                className="absolute bg-current"
+                style={{
+                  width: particle.length,
+                  height: "4px",
+                  left: particle.startX,
+                  top: particle.startY,
+                  rotate: `${particle.angle}deg`,
+                  originX: 0,
+                  originY: 0.5,
+                }}
+                initial={{ scale: 0, opacity: 1 }}
+                animate={{
+                  scale: 1,
+                  opacity: 0,
+                  x: Math.cos((particle.angle * Math.PI) / 180) * 50,
+                  y: Math.sin((particle.angle * Math.PI) / 180) * 50,
+                }}
+                transition={{
+                  duration: particle.duration,
+                  delay: particle.delay,
+                  ease: "easeOut",
+                }}
+              />
+            ))}
+        </span>
+      </LinkComponent>
     </span>
   );
 }

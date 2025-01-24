@@ -4,7 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AnimatedPost } from "@/components/effects/animated-post";
 import { IoIosArrowBack } from "react-icons/io";
-import { MDXComponents } from "@/components/blog/mdx-components";
+import { MagicLink } from "@/components/effects/magiclink";
+import { CalendarIcon } from "lucide-react";
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -14,7 +15,14 @@ export async function generateStaticParams() {
 }
 
 const components = {
-  MDXComponents,
+  a: (props: any) => (
+    <MagicLink
+      className="no-underline"
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+    />
+  ),
 };
 
 export default async function BlogPostPage({
@@ -40,10 +48,12 @@ export default async function BlogPostPage({
             Back to Blog
           </Link>
 
-          <header className="mb-12">
-            <h1 className="text-4xl font-bold mb-6 bg-clip-text">
-              {post.title}
-            </h1>
+          <header className="mb-12 flex justify-between items-center">
+            <h1 className="text-4xl font-bold bg-clip-text">{post.title}</h1>
+            <p className="max-sm:hidden text-sm font-semibold text-gray-500 dark:text-gray-400 flex items-center gap-2 transition-colors">
+              <CalendarIcon className="inline-block mr-2" size={18} />
+              {post.date}
+            </p>
           </header>
 
           <div

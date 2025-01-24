@@ -37,11 +37,11 @@ export function BlogCard({ post, index }: BlogCardProps) {
                   <span
                     key={tag}
                     className="inline-flex items-center gap-1 rounded-full
-                    bg-blue-500/10 px-2 sm:px-3 py-1 text-[10px] sm:text-xs
-                    text-blue-400 transition-colors
+                    bg-blue-500/10 px-1.5 sm:px-3 py-0.5 sm:py-1 text-[11px] sm:text-xs
+                    text-blue-400 transition-colors whitespace-nowrap
                     group-hover:bg-blue-500/20"
                   >
-                    <FaTag className="text-[8px] sm:text-[10px]" />
+                    <FaTag className="text-[9px] sm:text-[10px]" />
                     {tag}
                   </span>
                 ))}
