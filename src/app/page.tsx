@@ -2,9 +2,12 @@
 
 import { SparklesCore } from "@/components/effects/sparkles";
 import { TypewriterEffect } from "@/components/effects/typewritter";
-import SocialLinks from "@/components/social/links";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
+import { SOCIAL_LINKS } from "@/data/social-links";
 import { motion } from "framer-motion";
+import { Mail, Twitter } from "lucide-react";
+import Link from "next/link";
+import { SiGithub, SiLinkedin } from "react-icons/si";
 
 export default function Home() {
   return (
@@ -62,7 +65,25 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="mt-8"
             >
-              <SocialLinks />
+              <div className="flex gap-5 justify-center items-center">
+                {SOCIAL_LINKS.map((social) => (
+                  <Link
+                    key={social.name}
+                    href={
+                      social.name === "Email"
+                        ? social.url
+                        : { pathname: social.url }
+                    }
+                    target="_blank"
+                    className="p-2 rounded-lg expand-cursor"
+                  >
+                    {social.icon === "Github" && <SiGithub size={23} />}
+                    {social.icon === "Linkedin" && <SiLinkedin size={23} />}
+                    {social.icon === "Mail" && <Mail />}
+                    {social.icon === "Twitter" && <Twitter />}
+                  </Link>
+                ))}
+              </div>
             </motion.div>
           </div>
         </div>

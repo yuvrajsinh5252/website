@@ -6,6 +6,7 @@ import { constructMetadata } from "@/lib/utils";
 import Navbar from "@/components/navbar/navbar";
 import { CircleAnimation } from "@/components/effects/growing-circle";
 import { Background } from "@/components/effects/background";
+import CustomCursor from "@/components/cursor/custom-cursor";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function RootLayout({
         <Provider>
           <CircleAnimation />
           <Background />
+          <CustomCursor />
           <Navbar />
           <div className="z-20 relative">{children}</div>
         </Provider>
