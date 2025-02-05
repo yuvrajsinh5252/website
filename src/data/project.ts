@@ -56,6 +56,15 @@ export const PROJECTS = [
     githubLink: "https://github.com/yuvrajsinh5252/ChessGame",
   },
   {
+    title: "RBT-visualizer",
+    description:
+      "Interactive Red-Black Tree visualizer built with rust. Users can insert, delete, nodes in the tree and includes step-by-step updation of nodes.",
+    image: "../FlashLearn.png",
+    tag: ["Rust", "Dioxus", "Red-Black Tree", "Tailwind CSS"],
+    year: "2024",
+    githubLink: "https://github.com/yuvrajsinh5252/rbt-visualizer",
+  },
+  {
     title: "Dynamic Scheduler",
     description:
       "A site where users can set their availability, and admins schedule events based on time slots using a calendar view",
@@ -65,14 +74,14 @@ export const PROJECTS = [
     githubLink: "https://github.com/yuvrajsinh5252/dynamic-scheduler",
   },
   {
-    title: "Taskflow",
+    title: "scheduling-algorithms",
     description:
       "A website to visualize various scheduling algorithms with animations, helping users understand the concepts better.",
     image: "../Mindhub.png",
-    link: "https://taskflow-gilt.vercel.app/",
+    link: "https://scheduling-algo.vercel.app",
     tag: ["React", "OS Scheduling Algorithms", "Context API"],
     year: "2023",
-    githubLink: "https://github.com/yuvrajsinh5252/Taskflow",
+    githubLink: "https://github.com/yuvrajsinh5252/scheduling-algorithms",
   },
   {
     title: "TODO App",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
@@ -44,7 +44,7 @@ export default function Home() {
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="h-full p-5 rounded-lg dark:bg-gray-800/50 bg-gray-500/20 backdrop-blur-md transition-colors duration-100">
+              <div className="h-full p-5 rounded-lg dark:bg-gray-700/20 bg-gray-500/20 backdrop-blur-xl transition-colors">
                 <div
                   key={hoveredIndex === index ? "wave-active" : "wave-inactive"}
                   className={`absolute inset-0 pointer-events-none ${

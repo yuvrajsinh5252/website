@@ -192,7 +192,7 @@ export function CircleAnimation() {
 
   return (
     <canvas
-      className={`w-[100vw] h-[100vh] max-sm:w-[150vw] max-sm:h-[150vh] dark:bg-gradient-to-b dark:from-gray-800 dark:to-black sm:dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] fixed top-0 left-0 z-10`}
+      className={`w-[100vw] h-[100vh] max-sm:w-[150vw] max-sm:h-[150vh] dark:bg-gradient-to-b dark:from-blue-700/15 dark:to-black sm:dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] fixed top-0 left-0 z-10`}
       ref={canvasRef}
     />
   );

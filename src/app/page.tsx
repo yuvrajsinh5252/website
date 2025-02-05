@@ -4,7 +4,7 @@ import { SparklesCore } from "@/components/effects/sparkles";
 import { TypewriterEffect } from "@/components/effects/typewritter";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { SOCIAL_LINKS } from "@/data/social-links";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Mail, Twitter } from "lucide-react";
 import Link from "next/link";
 import { SiGithub, SiLinkedin } from "react-icons/si";

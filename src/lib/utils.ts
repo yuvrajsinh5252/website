@@ -14,6 +14,7 @@ export function constructMetadata({
   authors = [{ name: "Yuvrajsinh" }],
 } = {}) {
   return {
+    metadataBase: new URL("https://www.yuvrajsinh.me/"),
     title,
     description,
     keywords,

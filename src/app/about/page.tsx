@@ -4,8 +4,8 @@ import { ContactUs } from "@/components/about/contact";
 import { Intro } from "@/components/about/intro";
 import { Skills } from "@/components/about/skills";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<string>("introduction");

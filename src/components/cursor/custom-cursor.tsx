@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import { motion, useSpring, useMotionValue } from "motion/react";
 
 export default function CustomCursor() {
   const [isHovered, setIsHovered] = useState(false);
@@ -53,9 +53,9 @@ export default function CustomCursor() {
         animate={{
           width: isHovered ? (hoveredElement?.width || 0) + 10 : 12,
           height: isHovered ? (hoveredElement?.height || 0) + 10 : 12,
-          backgroundColor: "transparent",
           borderColor: "#3b82f6",
           opacity: 0.8,
+          backgroundColor: isHovered ? "transparent" : "#3b82f6",
         }}
         transition={springConfig}
       />

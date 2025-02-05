@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import MaxWidthWrapper from "../ui/max-width-wrapper";
 import NavLink from "./navlink";
 import ThemeToggle from "../themes/theme-toggle";
@@ -21,7 +21,15 @@ export default function Navbar() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="flex items-center w-fit h-5 py-5 rounded-full backdrop-blur-lg bg-white/10 dark:bg-slate-800/40 border dark:border-gray-500/20 border-gray-200/60 hover:bg-white/20 dark:hover:bg-slate-700/50 group shadow-lg shadow-black/5 dark:shadow-white/5 hover:shadow-xl hover:shadow-black/10 dark:hover:shadow-white/10 transition-colors"
+        className="flex items-center w-fit h-5 py-5 rounded-full
+          backdrop-blur-md
+          bg-gradient-to-r from-white/40 via-blue-50/30 to-white/40
+          dark:from-slate-800/60 dark:via-slate-800/40 dark:to-slate-800/60
+          border border-white/40 dark:border-slate-700/40
+          hover:border-blue-200/40 dark:hover:border-blue-500/20
+          shadow-lg shadow-black/5 dark:shadow-black/20
+          hover:shadow-xl hover:shadow-blue-100/20 dark:hover:shadow-blue-300/40
+          transition-all duration-300"
       >
         {NAV_ITEMS.map((item) => (
           <motion.div
