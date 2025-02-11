@@ -19,6 +19,7 @@ export const SparklesCore = ({
   particleColor?: string;
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const mousePosition = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -29,6 +30,14 @@ export const SparklesCore = ({
 
     const particles: Particle[] = [];
     let animationFrameId: number;
+
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mousePosition.current = {
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top,
+      };
+    };
 
     const createParticles = () => {
       const particleCount = particleDensity || 50;
@@ -53,9 +62,26 @@ export const SparklesCore = ({
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         ctx.fill();
 
+        // Calculate direction to mouse
+        const dx = mousePosition.current.x - particle.x;
+        const dy = mousePosition.current.y - particle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        // Add mouse attraction
+        if (distance < 200) {
+          const forceFactor = 0.02;
+          particle.speedX += (dx / distance) * forceFactor;
+          particle.speedY += (dy / distance) * forceFactor;
+        }
+
+        // Add friction to stabilize movement
+        particle.speedX *= 0.98;
+        particle.speedY *= 0.98;
+
         particle.x += particle.speedX;
         particle.y += particle.speedY;
 
+        // Bounce off walls
         if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
         if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
       });
@@ -73,9 +99,11 @@ export const SparklesCore = ({
     drawParticles();
 
     window.addEventListener("resize", resizeCanvas);
+    canvas.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
+      canvas.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(animationFrameId);
     };
   }, [maxSize, minSize, particleColor, particleDensity]);

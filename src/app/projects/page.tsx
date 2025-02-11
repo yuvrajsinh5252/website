@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "motion/react";
 import { SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
@@ -9,16 +8,6 @@ import { SiGithub } from "react-icons/si";
 import { PROJECTS } from "@/data/project";
 
 export default function Home() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-  const handleMouseEnter = (index: number) => {
-    setHoveredIndex(index);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredIndex(null);
-  };
-
   return (
     <div className="flex flex-col items-center h-screen no-scrollbar overflow-scroll">
       <div className="flex flex-col max-sm:items-center max-w-screen-lg gap-10 mt-44 pb-10">
@@ -39,26 +28,41 @@ export default function Home() {
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.1, delay: index * 0.1 }}
-              className="group h-full relative overflow-hidden rounded-lg"
-              onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={handleMouseLeave}
+              transition={{
+                delay: index * 0.1,
+                duration: 0.4,
+                ease: "easeOut",
+              }}
+              whileHover={{ y: -4 }}
+              className="group relative w-full"
             >
-              <div className="h-full p-5 rounded-lg dark:bg-gray-700/20 bg-gray-500/20 backdrop-blur-xl transition-colors">
-                <div
-                  key={hoveredIndex === index ? "wave-active" : "wave-inactive"}
-                  className={`absolute inset-0 pointer-events-none ${
-                    hoveredIndex === index ? "animate-wave" : ""
-                  }`}
-                />
-                <div className="flex flex-col h-full gap-5 relative">
+              <div
+                className={`
+                  relative overflow-hidden rounded-2xl
+                  h-full
+                  dark:bg-white/[0.04] bg-gray-400/10
+                  backdrop-blur-lg
+                  dark:border-white/10 border-gray-200
+                  transition-all
+                  dark:group-hover:border-white/20 group-hover:border-gray-300
+                  group-hover:shadow-xl
+                  dark:group-hover:shadow-blue-500/20 group-hover:shadow-gray-200/50
+                  after:absolute after:inset-0
+                  after:bg-gradient-to-r
+                  after:from-transparent
+                  dark:after:via-white/10 after:via-gray-100/50
+                  after:to-transparent
+                  after:animate-shimmer
+                `}
+              >
+                <div className="p-5 sm:p-7 relative flex flex-col h-full">
                   <div className="flex justify-between items-start">
                     <div className="space-y-2">
-                      <h2 className="text-2xl font-bold dark:group-hover:text-blue-400 group-hover:text-blue-600/80">
+                      <h2 className="text-2xl font-bold dark:group-hover:text-blue-50 group-hover:text-blue-700 transition-colors">
                         {project.title}
                       </h2>
                       {project.year && (
-                        <p className="text-sm dark:text-gray-400 text-gray-700 transition-colors">
+                        <p className="text-sm dark:text-gray-400 text-gray-700 transition-colors dark:group-hover:text-gray-300 group-hover:text-gray-900">
                           {project.year}
                         </p>
                       )}
@@ -84,20 +88,32 @@ export default function Home() {
                       </Link>
                     </div>
                   </div>
-                  <p className="text-sm dark:text-gray-400 text-foreground transition-colors leading-relaxed flex-grow">
+                  <p className="text-sm dark:text-gray-400 text-gray-600 transition-colors leading-relaxed flex-grow mt-4 dark:group-hover:text-gray-300 group-hover:text-gray-900">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mt-4">
                     {project.tag.map((tag, idx) => (
                       <div
                         key={idx}
-                        className="px-3 py-1 text-xs rounded-full bg-blue-500/10 dark:text-blue-400 text-blue-600 border border-blue-500/20"
+                        className="inline-flex items-center gap-1.5 rounded-full
+                        dark:bg-blue-500/10 bg-blue-50 px-2.5 py-1
+                        text-xs font-medium
+                        dark:text-blue-400 text-blue-600 transition-colors
+                        dark:group-hover:bg-blue-500/20 group-hover:bg-blue-100
+                        dark:group-hover:text-blue-300 group-hover:text-blue-700"
                       >
                         {tag}
                       </div>
                     ))}
                   </div>
                 </div>
+
+                <div
+                  className="absolute inset-0 rounded-2xl opacity-0
+                  dark:group-hover:opacity-20 group-hover:opacity-10 transition-opacity duration-300
+                  dark:bg-gradient-to-br dark:from-blue-400 dark:via-blue-500 dark:to-purple-600
+                  bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 -z-10"
+                />
               </div>
             </motion.div>
           ))}

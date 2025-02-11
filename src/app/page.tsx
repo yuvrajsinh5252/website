@@ -8,8 +8,12 @@ import { motion } from "motion/react";
 import { Mail, Twitter } from "lucide-react";
 import Link from "next/link";
 import { SiGithub, SiLinkedin } from "react-icons/si";
+import { GravityBox } from "@/components/effects/gravity-box";
+import { useState } from "react";
 
 export default function Home() {
+  const [isGravityActive, setIsGravityActive] = useState(false);
+
   return (
     <div className="relative w-full">
       <MaxWidthWrapper>
@@ -21,11 +25,15 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="relative"
             >
-              <div className="w-[90vw] md:w-[40rem] h-[14rem] md:h-[12rem] relative">
+              <div
+                className="w-[90vw] md:w-[40rem] h-[14rem] md:h-[12rem] relative cursor-pointer"
+                onClick={() => setIsGravityActive(true)}
+              >
+                {/* <GravityBox isActive={isGravityActive}> */}
                 <SparklesCore
                   background="transparent"
                   minSize={0.8}
-                  maxSize={1}
+                  maxSize={1.5}
                   particleDensity={100}
                   className="w-full h-full"
                   particleColor="#4A90E2"
@@ -39,6 +47,7 @@ export default function Home() {
                     <span>Gohil</span>
                   </h1>
                 </div>
+                {/* </GravityBox> */}
               </div>
             </motion.div>
 
@@ -65,7 +74,7 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="mt-8"
             >
-              <div className="flex gap-5 justify-center items-center">
+              <div className="flex gap-6 justify-center items-center">
                 {SOCIAL_LINKS.map((social) => (
                   <Link
                     key={social.name}
@@ -75,12 +84,12 @@ export default function Home() {
                         : { pathname: social.url }
                     }
                     target="_blank"
-                    className="p-2 rounded-lg expand-cursor"
+                    className="p-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 expand-cursor hover:scale-110 hover:-translate-y-1"
                   >
-                    {social.icon === "Github" && <SiGithub size={23} />}
-                    {social.icon === "Linkedin" && <SiLinkedin size={23} />}
-                    {social.icon === "Mail" && <Mail />}
-                    {social.icon === "Twitter" && <Twitter />}
+                    {social.icon === "Github" && <SiGithub size={24} />}
+                    {social.icon === "Linkedin" && <SiLinkedin size={24} />}
+                    {social.icon === "Mail" && <Mail size={24} />}
+                    {social.icon === "Twitter" && <Twitter size={24} />}
                   </Link>
                 ))}
               </div>

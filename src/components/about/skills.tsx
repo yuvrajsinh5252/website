@@ -104,8 +104,7 @@ export function Skills({
             whileHover={{ y: -5 }}
             className={`
               relative p-6 rounded-xl
-              bg-gray-800/10 dark:bg-gray-800/30 backdrop-blur-sm
-              border border-gray-800/50
+              bg-gray-600/10 dark:bg-gray-600/20 backdrop-blur-sm
               hover:border-${skill.shadowColor}-500/50
               group
               hover:shadow-lg hover:shadow-${skill.shadowColor}-500/20

@@ -23,8 +23,7 @@ export default function Navbar() {
         transition={{ duration: 0.4, ease: "easeOut" }}
         className="flex items-center w-fit h-5 py-5 rounded-full
           backdrop-blur-md
-          bg-gradient-to-r from-white/40 via-blue-50/30 to-white/40
-          dark:from-slate-800/60 dark:via-slate-800/40 dark:to-slate-800/60
+          bg-white/40 dark:bg-slate-600/40
           border border-white/40 dark:border-slate-700/40
           hover:border-blue-200/40 dark:hover:border-blue-500/20
           shadow-lg shadow-black/5 dark:shadow-black/20

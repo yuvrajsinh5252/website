@@ -36,7 +36,7 @@ export function BlogCard({ post, index }: BlogCardProps) {
           group-hover:shadow-xl
           dark:group-hover:shadow-blue-500/20 group-hover:shadow-gray-200/50
           before:absolute before:inset-0
-          before:-translate-x-full before:animate-[shimmer_2s_infinite]
+          before:-translate-x-full before:animate-shimmer
           before:bg-gradient-to-r
           before:from-transparent
           dark:before:via-white/10 before:via-gray-100

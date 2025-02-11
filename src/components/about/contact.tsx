@@ -85,7 +85,7 @@ export function ContactUs({
             <div
               className={`
                 p-8 max-sm:p-4 rounded-2xl h-full
-                bg-gray-400/40 dark:bg-white/[0.03] backdrop-blur-lg
+                bg-gray-100 dark:bg-gray-600/20 backdrop-blur-lg
                 border border-white/10
                 transition-colors duraiton-200
                 group-hover:border-white/20
@@ -133,7 +133,7 @@ export function ContactUs({
             className={`
               flex justify-center items-center max-w-[300px]
               rounded-2xl h-full w-full max-sm:py-4
-              bg-gray-400/40 dark:bg-white/[0.03] backdrop-blur-lg
+              bg-gray-100 dark:bg-gray-600/20 backdrop-blur-lg
               transition-colors duraiton-200
               border border-white/10
               hover:border-white/20
