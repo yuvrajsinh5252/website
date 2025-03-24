@@ -32,11 +32,11 @@ export default function RootLayout({
       </head>
       <body className={poppins.className}>
         <Provider>
-          <CircleAnimation />
           <Background />
+          <CircleAnimation />
           <CustomCursor />
           <Navbar />
-          <div className="z-20 relative">{children}</div>
+          <div className="z-30 relative">{children}</div>
         </Provider>
       </body>
     </html>

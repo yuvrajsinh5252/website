@@ -74,6 +74,15 @@ export const PROJECTS = [
     githubLink: "https://github.com/yuvrajsinh5252/dynamic-scheduler",
   },
   {
+    title: "LeetCode CLI",
+    description:
+      "A sleek command-line tool for LeetCode - solve, test, and submit problems directly from your terminal.",
+    image: "../Mindhub.png",
+    tag: ["Python", "CLI", "Typer", "LeetCode"],
+    year: "2024",
+    githubLink: "https://github.com/yuvrajsinh5252/leetcode-cli",
+  },
+  {
     title: "scheduling-algorithms",
     description:
       "A website to visualize various scheduling algorithms with animations, helping users understand the concepts better.",
