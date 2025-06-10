@@ -1,6 +1,5 @@
 "use client";
 
-import { SparklesCore } from "@/components/effects/sparkles";
 import { TypewriterEffect } from "@/components/effects/typewritter";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { SOCIAL_LINKS } from "@/data/social-links";
@@ -8,12 +7,9 @@ import { motion } from "motion/react";
 import { Mail, Twitter } from "lucide-react";
 import Link from "next/link";
 import { SiGithub, SiLinkedin } from "react-icons/si";
-import { GravityBox } from "@/components/effects/gravity-box";
-import { useState } from "react";
+import { GlowText } from "@/components/effects/glow-text";
 
 export default function Home() {
-  const [isGravityActive, setIsGravityActive] = useState(false);
-
   return (
     <div className="relative w-full">
       <MaxWidthWrapper>
@@ -25,29 +21,26 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="relative"
             >
-              <div
-                className="w-[90vw] md:w-[40rem] h-[14rem] md:h-[12rem] relative cursor-pointer"
-                onClick={() => setIsGravityActive(true)}
-              >
-                {/* <GravityBox isActive={isGravityActive}> */}
-                <SparklesCore
-                  background="transparent"
-                  minSize={0.8}
-                  maxSize={1.5}
-                  particleDensity={100}
-                  className="w-full h-full"
-                  particleColor="#4A90E2"
-                />
+              <div className="w-[90vw] md:w-[40rem] h-[14rem] md:h-[12rem] relative cursor-pointer">
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <p className="mb-4 text-xl text-center">
                     Hey there, I&apos;m
                   </p>
-                  <h1 className="flex max-sm:flex-col gap-3 text-6xl lg:text-7xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400 animate-text">
-                    <span>Yuvrajsinh</span>
-                    <span>Gohil</span>
+                  <h1 className="flex max-sm:flex-col -gap-3 text-6xl lg:text-7xl font-extrabold text-center">
+                    <GlowText
+                      text="Yuvrajsinh"
+                      colorFrom="#3B82F6"
+                      colorTo="#06B6D4"
+                      animationSpeed={1.2}
+                    />
+                    <GlowText
+                      text="Gohil"
+                      colorFrom="#06B6D4"
+                      colorTo="#10B981"
+                      animationSpeed={1.5}
+                    />
                   </h1>
                 </div>
-                {/* </GravityBox> */}
               </div>
             </motion.div>
 
@@ -84,7 +77,7 @@ export default function Home() {
                         : { pathname: social.url }
                     }
                     target="_blank"
-                    className="p-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 expand-cursor hover:scale-110 hover:-translate-y-1"
+                    className="p-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 expand-cursor hover:scale-110 hover:-translate-y-1 transition-all duration-300"
                   >
                     {social.icon === "Github" && <SiGithub size={24} />}
                     {social.icon === "Linkedin" && <SiLinkedin size={24} />}
