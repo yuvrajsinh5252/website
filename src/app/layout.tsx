@@ -22,7 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="canonical" href="https://yuvrajsinh.me" />
+        <link rel="canonical" href="https://www.yuvrajsinh.me" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <script
           defer
           src="https://cloud.umami.is/script.js"

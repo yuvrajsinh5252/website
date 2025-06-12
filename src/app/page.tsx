@@ -1,95 +1,75 @@
-"use client";
-
-import { TypewriterEffect } from "@/components/effects/typewritter";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
-import { SOCIAL_LINKS } from "@/data/social-links";
-import { motion } from "motion/react";
-import { Mail, Twitter } from "lucide-react";
-import Link from "next/link";
-import { SiGithub, SiLinkedin } from "react-icons/si";
-import { GlowText } from "@/components/effects/glow-text";
+import { constructMetadata } from "@/lib/utils";
+import { HeroSection } from "@/components/home/hero-section";
+import { SkillsSection } from "@/components/home/skills-section";
+import { ContactSection } from "@/components/home/contact-section";
+import { ProjectsSection } from "@/components/home/projects-section";
+import { Metadata } from "next";
+import { personSchema, websiteSchema } from "@/lib/schemas";
+import { AboutSection } from "@/components/home/about-section";
+
+export const metadata: Metadata = constructMetadata({
+  title: "Yuvrajsinh Gohil - Full-Stack Developer & Software Engineer",
+  description:
+    "Yuvrajsinh Gohil is a passionate Computer Science student at Nirma University, specializing in full-stack development, web technologies, and system design. Explore my projects, skills, and experience in React, Next.js, TypeScript, and more.",
+  keywords:
+    "Yuvrajsinh Gohil, Yuvrajsinh, software developer, full-stack developer, web developer, Computer Science, Nirma University, React, Next.js, TypeScript, JavaScript, portfolio, projects, programming, tech, engineering student",
+});
+
+const structuredData = [personSchema, websiteSchema];
 
 export default function Home() {
   return (
-    <div className="relative w-full">
-      <MaxWidthWrapper>
-        <div className="flex flex-col min-h-screen">
-          <div className="flex flex-col items-center justify-center h-screen text-center px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="relative"
-            >
-              <div className="w-[90vw] md:w-[40rem] h-[14rem] md:h-[12rem] relative cursor-pointer">
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <p className="mb-4 text-xl text-center">
-                    Hey there, I&apos;m
-                  </p>
-                  <h1 className="flex max-sm:flex-col -gap-3 text-6xl lg:text-7xl font-extrabold text-center">
-                    <GlowText
-                      text="Yuvrajsinh"
-                      colorFrom="#3B82F6"
-                      colorTo="#06B6D4"
-                      animationSpeed={1.2}
-                    />
-                    <GlowText
-                      text="Gohil"
-                      colorFrom="#06B6D4"
-                      colorTo="#10B981"
-                      animationSpeed={1.5}
-                    />
-                  </h1>
-                </div>
-              </div>
-            </motion.div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-4 px-4 md:px-0"
-            >
-              <TypewriterEffect
-                words={[
-                  {
-                    text: "Passionate about efficiency, ",
-                  },
-                  { text: "tech, and open source." },
-                ]}
-                className="font-bold text-base md:text-xl"
-              />
-            </motion.div>
+      <div className="relative w-full">
+        <MaxWidthWrapper>
+          <div className="flex flex-col">
+            <div className="sr-only">
+              <h1>
+                Yuvrajsinh Gohil - Full-Stack Developer and Software Engineer
+              </h1>
+              <p>
+                Yuvrajsinh Gohil is a passionate Computer Science B.Tech student
+                at Nirma University with a minor in Cyber Physical Systems.
+                Specializing in full-stack web development, he creates
+                innovative solutions using modern technologies like React,
+                Next.js, TypeScript, Node.js, and various databases. His
+                expertise spans frontend development, backend systems, IoT
+                projects, and system design.
+              </p>
+              <p>
+                As an experienced developer, Yuvrajsinh has built multiple
+                projects including WhispherDocs (AI-powered PDF interaction
+                platform), Brilliant++ (educational technology platform),
+                ChessGame (multiplayer chess with ELO rating), and various other
+                innovative applications. He actively participates in hackathons
+                and has secured notable positions including 2nd place at
+                HackNUthon 5.0.
+              </p>
+              <p>
+                Skills include: React, Next.js, TypeScript, JavaScript, Node.js,
+                Python, C++, Rust, Go, Java, PostgreSQL, MongoDB, Docker, Git,
+                Linux, Arduino, Raspberry Pi, ESP32, and more. Passionate about
+                web development, automation, system design, and open source
+                contributions.
+              </p>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-8"
-            >
-              <div className="flex gap-6 justify-center items-center">
-                {SOCIAL_LINKS.map((social) => (
-                  <Link
-                    key={social.name}
-                    href={
-                      social.name === "Email"
-                        ? social.url
-                        : { pathname: social.url }
-                    }
-                    target="_blank"
-                    className="p-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 expand-cursor hover:scale-110 hover:-translate-y-1 transition-all duration-300"
-                  >
-                    {social.icon === "Github" && <SiGithub size={24} />}
-                    {social.icon === "Linkedin" && <SiLinkedin size={24} />}
-                    {social.icon === "Mail" && <Mail size={24} />}
-                    {social.icon === "Twitter" && <Twitter size={24} />}
-                  </Link>
-                ))}
-              </div>
-            </motion.div>
+            <HeroSection />
+            <AboutSection />
+            <SkillsSection />
+            <ProjectsSection />
+            <ContactSection />
           </div>
-        </div>
-      </MaxWidthWrapper>
-    </div>
+        </MaxWidthWrapper>
+      </div>
+    </>
   );
 }

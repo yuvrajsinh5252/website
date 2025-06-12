@@ -34,19 +34,18 @@ export default function NavLink({ href, text }: NavLinkProps) {
       {isActive && (
         <motion.div
           layoutId="nav-background"
-          className="absolute inset-0 bg-gradient-to-r from-blue-50 to-blue-100/80
-            dark:from-blue-500/20 dark:to-blue-300/20 rounded-full"
+          className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-300/20 rounded-full"
           initial={false}
           transition={{ duration: 0.3 }}
         />
       )}
       <Link
         href={href}
-        className={`relative rounded-full flex items-center gap-2 px-3 py-2
-          hover:text-blue-600 transition-all duration-300 ${
+        className={`relative rounded-full flex items-center gap-2 expand-cursor px-3 py-2
+          hover:text-blue-300 transition-all duration-300 ${
             isActive
-              ? "text-blue-600 dark:text-blue-300 font-medium"
-              : "text-gray-600 dark:text-gray-300 hover:opacity-100"
+              ? "text-blue-300 font-medium"
+              : "text-gray-300 hover:opacity-100"
           }`}
       >
         <motion.div

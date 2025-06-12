@@ -27,19 +27,19 @@ export function BlogCard({ post, index }: BlogCardProps) {
       <Link href={`/blog/${post.slug}`} className="block">
         <div
           className={`
-          relative overflow-hidden rounded-2xl
-          dark:bg-white/[0.04] bg-gray-400/10
+          relative overflow-hidden rounded-2xl border
+          bg-white/[0.04]
           backdrop-blur-lg
-          dark:border-white/10 border-gray-200
+          border-white/10
           transition-all
-          dark:group-hover:border-white/20 group-hover:border-gray-300
+          group-hover:border-white/20
           group-hover:shadow-xl
-          dark:group-hover:shadow-blue-500/20 group-hover:shadow-gray-200/50
+          group-hover:shadow-blue-500/20
           before:absolute before:inset-0
           before:-translate-x-full before:animate-shimmer
           before:bg-gradient-to-r
           before:from-transparent
-          dark:before:via-white/10 before:via-gray-100
+          before:via-white/10
           before:to-transparent
           group-hover:before:translate-x-full
         `}
@@ -51,25 +51,25 @@ export function BlogCard({ post, index }: BlogCardProps) {
                   <span
                     key={tag}
                     className="inline-flex items-center gap-1.5 rounded-full
-                    dark:bg-blue-500/10 bg-blue-50 px-2.5 sm:px-3.5 py-1 sm:py-1.5
+                    bg-blue-500/10 px-2.5 sm:px-3.5 py-1 sm:py-1.5
                     text-[11px] sm:text-xs font-medium
-                    dark:text-blue-400 text-blue-600 transition-colors whitespace-nowrap
-                    dark:group-hover:bg-blue-500/20 group-hover:bg-blue-100
-                    dark:group-hover:text-blue-300 group-hover:text-blue-700"
+                    text-blue-400 transition-colors whitespace-nowrap
+                    group-hover:bg-blue-500/20
+                    group-hover:text-blue-300"
                   >
                     <FaTag className="text-[9px] sm:text-[10px]" />
                     {tag}
                   </span>
                 ))}
               </div>
-              <div className="flex items-center gap-4 text-[11px] sm:text-xs dark:text-gray-400 text-gray-600">
+              <div className="flex items-center gap-4 text-[11px] sm:text-xs text-gray-400">
                 <time
                   dateTime={post.date}
-                  className="dark:group-hover:text-gray-300 group-hover:text-gray-900 transition-colors"
+                  className="group-hover:text-gray-300 transition-colors"
                 >
                   {format(new Date(post.date), "MMMM d, yyyy")}
                 </time>
-                <span className="flex items-center gap-1.5 dark:group-hover:text-gray-300 group-hover:text-gray-900 transition-colors">
+                <span className="flex items-center gap-1.5 group-hover:text-gray-300 transition-colors">
                   <FaClock className="text-[9px] sm:text-[10px]" />
                   {post.readingTime}
                 </span>
@@ -77,19 +77,19 @@ export function BlogCard({ post, index }: BlogCardProps) {
             </div>
             <h2
               className="mb-3 text-lg sm:text-xl font-bold tracking-tight
-              dark:group-hover:text-blue-50 group-hover:text-blue-700 transition-colors"
+              group-hover:text-blue-50 transition-colors"
             >
               {post.title}
             </h2>
             <p
-              className="mb-4 text-xs sm:text-sm dark:text-gray-400 text-gray-600
-              line-clamp-2 dark:group-hover:text-gray-300 group-hover:text-gray-900 transition-colors"
+              className="mb-4 text-xs sm:text-sm text-gray-400
+              line-clamp-2 group-hover:text-gray-300 transition-colors"
             >
               {post.description}
             </p>
             <p
-              className="mt-4 text-xs sm:text-sm font-medium dark:text-blue-400 text-blue-600
-              dark:group-hover:text-blue-300 group-hover:text-blue-700 transition-colors flex items-center gap-2"
+              className="mt-4 text-xs sm:text-sm font-medium text-blue-400
+              group-hover:text-blue-300 transition-colors flex items-center gap-2"
             >
               Continue reading
               <svg
@@ -111,9 +111,8 @@ export function BlogCard({ post, index }: BlogCardProps) {
 
           <div
             className="absolute inset-0 rounded-2xl opacity-0
-            dark:group-hover:opacity-20 group-hover:opacity-10 transition-opacity duration-300
-            dark:bg-gradient-to-br dark:from-blue-400 dark:via-blue-500 dark:to-purple-600
-            bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 -z-10"
+            group-hover:opacity-20 transition-opacity duration-300
+            bg-gradient-to-br from-blue-400 via-blue-500 to-purple-600 -z-10"
           />
         </div>
       </Link>

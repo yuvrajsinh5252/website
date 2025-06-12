@@ -10,8 +10,9 @@ export function Provider({
   return (
     <NextThemesProvider
       attribute={"class"}
-      defaultTheme="system"
-      enableSystem
+      defaultTheme="dark"
+      forcedTheme="dark"
+      enableSystem={false}
       {...props}
     >
       {children}
