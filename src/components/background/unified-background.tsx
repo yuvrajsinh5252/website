@@ -11,7 +11,6 @@ interface GradientCache {
 
 const TARGET_FPS = 60;
 const FRAME_TIME = 1000 / TARGET_FPS;
-const NEBULA_UPDATE_INTERVAL = 48;
 
 export function UnifiedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -149,12 +148,8 @@ export function UnifiedBackground() {
       width: number;
       height: number;
       rotation: number;
-      rotationSpeed: number;
       opacity: number;
       color: string;
-      driftX: number;
-      driftY: number;
-      driftSpeed: number;
       baseSize: number;
       subClouds: Array<{
         offsetX: number;
@@ -220,12 +215,8 @@ export function UnifiedBackground() {
           width: cloudWidth,
           height: cloudHeight,
           rotation: Math.random() * Math.PI * 2,
-          rotationSpeed: (Math.random() - 0.5) * 0.0005,
           opacity: Math.random() * 0.4 + 0.5,
           color: nebulaColors[Math.floor(Math.random() * nebulaColors.length)],
-          driftX: (Math.random() - 0.5) * 0.2,
-          driftY: (Math.random() - 0.5) * 0.1,
-          driftSpeed: Math.random() * 0.3 + 0.1,
           baseSize,
           subClouds,
         });
@@ -281,23 +272,6 @@ export function UnifiedBackground() {
     };
 
     const drawNebula = () => {
-      if (frameCountRef.current % NEBULA_UPDATE_INTERVAL === 0) {
-        nebulaClouds.forEach((cloud) => {
-          cloud.centerX += cloud.driftX * cloud.driftSpeed;
-          cloud.centerY += cloud.driftY * cloud.driftSpeed;
-          cloud.rotation += cloud.rotationSpeed;
-
-          if (cloud.centerX < -cloud.width)
-            cloud.centerX = canvas.width + cloud.width;
-          if (cloud.centerX > canvas.width + cloud.width)
-            cloud.centerX = -cloud.width;
-          if (cloud.centerY < -cloud.height)
-            cloud.centerY = canvas.height + cloud.height;
-          if (cloud.centerY > canvas.height + cloud.height)
-            cloud.centerY = -cloud.height;
-        });
-      }
-
       ctx.save();
       ctx.globalCompositeOperation = "screen";
 

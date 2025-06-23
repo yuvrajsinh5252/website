@@ -1,204 +1,127 @@
 "use client";
 
 import { motion } from "motion/react";
-import {
-  FaEnvelope,
-  FaGithub,
-  FaLinkedin,
-  FaTwitter,
-  FaDiscord,
-} from "react-icons/fa";
-import { useState } from "react";
+import { Mail } from "lucide-react";
+import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
 import { useInView } from "motion/react";
 import { useRef } from "react";
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 },
-};
 
 const socialLinks = [
   {
     name: "GitHub",
-    icon: <FaGithub className="text-2xl" />,
+    icon: <SiGithub className="text-lg" />,
     url: "https://github.com/yuvrajsinh5252",
-    color: "#8a8a8a",
+    username: "@yuvrajsinh5252",
   },
   {
     name: "LinkedIn",
-    icon: <FaLinkedin className="text-2xl" />,
+    icon: <SiLinkedin className="text-lg" />,
     url: "https://www.linkedin.com/in/yuvrajsinh099",
-    color: "#63b3e5",
+    username: "yuvrajsinh099",
   },
   {
     name: "Twitter",
-    icon: <FaTwitter className="text-2xl" />,
+    icon: <SiX className="text-lg" />,
     url: "https://x.com/Yuvrajsinh_099",
-    color: "#4dc6ff",
-  },
-  {
-    name: "Discord",
-    icon: <FaDiscord className="text-2xl" />,
-    url: "https://discord.com/users/1035138685689139311",
-    color: "#9eb3ea",
+    username: "@Yuvrajsinh_099",
   },
 ];
 
 export function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const email = "yuvrajsinh476@gmail.com";
-
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.8, ease: "easeOut" },
-  };
 
   return (
     <section
       ref={ref}
-      className="min-h-screen flex flex-col justify-center px-4 py-16"
+      className="min-h-screen flex flex-col justify-center px-4 py-24"
       id="contact"
     >
-      <motion.div
-        {...fadeIn}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        className="max-w-7xl mx-auto py-16 relative"
-      >
-        <motion.div className="text-center mb-16 relative">
-          <motion.h2
-            {...fadeInUp}
-            className="text-5xl font-bold mb-6 bg-clip-text"
-          >
-            Let&apos;s Connect
-          </motion.h2>
-          <motion.p
-            {...fadeInUp}
-            className="text-lg text-gray-400/90 max-w-2xl mx-auto leading-relaxed"
-          >
-            I&apos;m always open to new opportunities, collaborations, and
-            interesting conversations. Feel free to reach out!
-          </motion.p>
+      <div className="max-w-4xl mx-auto">
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Get In Touch
+          </h2>
+          <div className="w-16 h-0.5 bg-gray-600 mx-auto mb-4"></div>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            I'm always open to discussing new opportunities and interesting
+            projects.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <motion.div
-            {...fadeInUp}
-            transition={{ delay: 0.1 }}
-            className="relative group flex justify-center"
-          >
-            <a href={`mailto:${email}`} className="block w-full">
-              <div
-                className={`
-                  p-8 max-sm:p-4 rounded-2xl h-full w-full
-                  bg-gray-600/20 backdrop-blur-lg
-                  border border-white/10
-                  transition-colors duraiton-200
-                  group-hover:border-white/20
-                  group-hover:shadow-lg group-hover:shadow-blue-500/10
-                  overflow-hidden
-                  relative
-                `}
-              >
-                <div
-                  className={`
-                    absolute inset-0 rounded-xl opacity-0
-                    group-hover:opacity-20 transition-opacity
-                    bg-gradient-to-r from-blue-400 to-sky-500
-                    blur-xl
-                  `}
-                />
-
-                <div className="relative z-10 text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-blue-500/20 flex items-center justify-center">
-                    <FaEnvelope className="text-2xl text-blue-400" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">
-                    Send me an email
-                  </h3>
-                  <p className="text-gray-300 mb-4">{email}</p>
-                  <p className="text-sm text-gray-400">
-                    Click to open your email client
-                  </p>
-                </div>
+        {/* Contact content */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          className="grid md:grid-cols-2 gap-8 items-center"
+        >
+          {/* Email section */}
+          <div className="text-center md:text-left">
+            <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
+              <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                <Mail size={20} className="text-blue-400" />
               </div>
-            </a>
-          </motion.div>
-
-          <motion.div
-            {...fadeInUp}
-            transition={{ delay: 0.2 }}
-            className="relative group flex justify-center items-center"
-          >
-            <div
-              className={`
-                flex justify-center items-center w-full
-                rounded-2xl h-full max-sm:py-4
-                bg-gray-600/20 backdrop-blur-lg
-                transition-colors duraiton-200
-                border border-white/10
-                hover:border-white/20
-                hover:shadow-lg hover:shadow-purple-500/10
-                overflow-hidden
-              `}
-            >
-              <div
-                className={`
-                absolute inset-0 rounded-xl opacity-0
-                group-hover:opacity-20
-                bg-gradient-to-r from-purple-400 to-pink-500
-                blur-xl
-              `}
-              />
-
-              <div className="relative z-10 grid grid-cols-2 gap-4 p-6">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onMouseEnter={() => setHoveredCard(social.name)}
-                    onMouseLeave={() => setHoveredCard(null)}
-                    className="group/social flex flex-col gap-2 p-3 rounded-xl hover:bg-white/[0.05]
-                      relative overflow-hidden text-center"
-                  >
-                    <div className="flex flex-col items-center gap-2">
-                      <div
-                        className="transition-transform group-hover/social:scale-110"
-                        style={{
-                          color:
-                            hoveredCard === social.name
-                              ? social.color
-                              : "currentColor",
-                        }}
-                      >
-                        {social.icon}
-                      </div>
-                      <div
-                        className="text-sm font-medium transition-colors"
-                        style={{
-                          color:
-                            hoveredCard === social.name
-                              ? social.color
-                              : "currentColor",
-                        }}
-                      >
-                        {social.name}
-                      </div>
-                    </div>
-                  </a>
-                ))}
+              <div>
+                <h3 className="text-lg font-semibold text-white">Email</h3>
+                <p className="text-gray-400 text-sm">Drop me a message</p>
               </div>
             </div>
-          </motion.div>
-        </div>
-      </motion.div>
+            <a
+              href={`mailto:${email}`}
+              className="inline-block text-blue-400 hover:text-blue-300 font-medium transition-colors duration-300"
+            >
+              {email}
+            </a>
+          </div>
+
+          {/* Social links */}
+          <div className="text-center md:text-right">
+            <h3 className="text-lg font-semibold text-white mb-4">
+              Find me on
+            </h3>
+            <div className="flex justify-center md:justify-end gap-4">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={
+                    isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                  }
+                  transition={{
+                    duration: 0.6,
+                    delay: 0.3 + index * 0.1,
+                    ease: "easeOut",
+                  }}
+                  className="flex flex-col items-center gap-2 p-4 rounded-lg bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors duration-300 group"
+                >
+                  <div className="text-gray-400 group-hover:text-white transition-colors duration-300">
+                    {social.icon}
+                  </div>
+                  <div className="text-center">
+                    <p className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors duration-300">
+                      {social.name}
+                    </p>
+                    <p className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors duration-300">
+                      {social.username}
+                    </p>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }

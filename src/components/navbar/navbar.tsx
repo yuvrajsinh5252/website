@@ -7,7 +7,6 @@ import NavLink from "./navlink";
 
 const NAV_ITEMS = [
   { href: "/", text: "home", width: 95 },
-  { href: "/about", text: "about", width: 95 },
   { href: "/projects", text: "projects", width: 115 },
   { href: "/blog", text: "blog", width: 82 },
 ] as const;

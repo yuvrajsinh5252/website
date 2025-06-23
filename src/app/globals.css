@@ -8,6 +8,10 @@
   --primary: 37, 99, 235;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);

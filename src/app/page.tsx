@@ -1,12 +1,10 @@
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { constructMetadata } from "@/lib/utils";
 import { HeroSection } from "@/components/home/hero-section";
-import { SkillsSection } from "@/components/home/skills-section";
+import { AboutSection } from "@/components/home/about-section";
 import { ContactSection } from "@/components/home/contact-section";
-import { ProjectsSection } from "@/components/home/projects-section";
 import { Metadata } from "next";
 import { personSchema, websiteSchema } from "@/lib/schemas";
-import { AboutSection } from "@/components/home/about-section";
 
 export const metadata: Metadata = constructMetadata({
   title: "Yuvrajsinh Gohil - Full-Stack Developer & Software Engineer",
@@ -64,8 +62,6 @@ export default function Home() {
 
             <HeroSection />
             <AboutSection />
-            <SkillsSection />
-            <ProjectsSection />
             <ContactSection />
           </div>
         </MaxWidthWrapper>

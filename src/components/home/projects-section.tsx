@@ -3,7 +3,6 @@
 import { motion } from "motion/react";
 import { SquareArrowOutUpRight } from "lucide-react";
 import Link from "next/link";
-import { IoIosArrowForward } from "react-icons/io";
 import { SiGithub } from "react-icons/si";
 import { PROJECTS } from "@/data/project";
 import { useInView } from "motion/react";
@@ -19,105 +18,86 @@ export function ProjectsSection() {
   return (
     <section
       ref={ref}
-      className="min-h-screen flex flex-col justify-center px-4 py-16"
+      className="min-h-screen flex flex-col justify-center px-4 py-24"
       id="projects"
     >
-      <div className="max-w-6xl mx-auto">
-        <motion.h2
+      <div className="max-w-4xl mx-auto">
+        {/* Section header */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5 }}
-          className="flex items-center gap-2 text-4xl sm:text-5xl font-bold mb-12"
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center mb-16"
         >
-          <IoIosArrowForward className="text-3xl max-sm:hidden sm:text-4xl text-blue-500/80" />
-          <span className="text-gray-300 transition-all">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Featured Projects
-          </span>
-        </motion.h2>
+          </h2>
+          <div className="w-16 h-0.5 bg-gray-600 mx-auto mb-4"></div>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            A selection of projects showcasing my skills in web development and
+            software engineering.
+          </p>
+        </motion.div>
 
-        <div className="grid gap-8 md:gap-10">
+        {/* Projects list */}
+        <div className="space-y-8">
           {featuredProjects.map((project, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{
-                delay: 0.1 * (index + 1),
-                duration: 0.4,
+                delay: 0.2 + index * 0.1,
+                duration: 0.6,
                 ease: "easeOut",
               }}
-              whileHover={{ y: -4 }}
-              className="group relative w-full"
+              className="group"
             >
-              <div
-                className={`
-                  relative overflow-hidden rounded-2xl
-                  h-full p-6
-                  bg-white/[0.04]
-                  backdrop-blur-lg border
-                  border-white/10
-                  transition-all
-                  group-hover:border-white/20
-                  group-hover:shadow-xl
-                  group-hover:shadow-blue-500/20
-                `}
-              >
-                <div className="flex flex-col sm:flex-row gap-6">
+              <div className="p-6 rounded-lg bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors duration-300">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                  {/* Project info */}
                   <div className="flex-1">
-                    <h3 className="text-xl sm:text-2xl font-semibold mb-3 text-white">
+                    <h3 className="text-xl font-semibold text-white mb-2">
                       {project.title}
                     </h3>
                     <p className="text-gray-300 mb-4 leading-relaxed">
                       {project.description}
                     </p>
-                    <div className="flex flex-wrap gap-2 mb-4">
+
+                    {/* Tech stack */}
+                    <div className="flex flex-wrap gap-2">
                       {project.tag.slice(0, 4).map((tech, i) => (
                         <span
                           key={i}
-                          className="px-3 py-1 text-xs rounded-full
-                            backdrop-blur-sm bg-white/10
-                            border border-white/10
-                            text-gray-300"
+                          className="px-3 py-1 text-sm text-gray-400 bg-white/[0.05] rounded-md border border-white/10"
                         >
                           {tech}
                         </span>
                       ))}
                       {project.tag.length > 4 && (
-                        <span
-                          className="px-3 py-1 text-xs rounded-full
-                          backdrop-blur-sm bg-white/10
-                          border border-white/10
-                          text-gray-300"
-                        >
+                        <span className="px-3 py-1 text-sm text-gray-500 bg-white/[0.05] rounded-md border border-white/10">
                           +{project.tag.length - 4} more
                         </span>
                       )}
                     </div>
                   </div>
 
-                  <div className="flex flex-row sm:flex-col gap-3 justify-start sm:justify-center">
+                  {/* Action buttons */}
+                  <div className="flex gap-3 md:flex-col md:items-end">
                     {project.link && (
                       <Link
                         href={project.link}
                         target="_blank"
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg
-                          bg-blue-500/10 hover:bg-blue-500/20
-                          border border-blue-500/20 hover:border-blue-500/30
-                          text-blue-400
-                          transition-all duration-200 text-sm font-medium"
+                        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-blue-400 hover:text-blue-300 border border-blue-400/20 hover:border-blue-400/40 rounded-md transition-colors duration-300"
                       >
                         <SquareArrowOutUpRight size={16} />
-                        <span>Live Demo</span>
+                        <span>Demo</span>
                       </Link>
                     )}
                     <Link
                       href={project.githubLink}
                       target="_blank"
-                      className="flex items-center gap-2 px-4 py-2 rounded-lg
-                        bg-gray-500/10 hover:bg-gray-500/20
-                        border border-gray-500/20 hover:border-gray-500/30
-                        text-gray-400
-                        transition-all duration-200 text-sm font-medium"
+                      className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-400 hover:text-gray-300 border border-gray-600/20 hover:border-gray-600/40 rounded-md transition-colors duration-300"
                     >
                       <SiGithub size={16} />
                       <span>Code</span>
@@ -129,23 +109,19 @@ export function ProjectsSection() {
           ))}
         </div>
 
+        {/* View all projects link */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ delay: 0.5, duration: 0.4 }}
+          transition={{ delay: 0.6, duration: 0.6 }}
           className="text-center mt-12"
         >
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg
-              bg-gradient-to-r from-blue-500 to-purple-600
-              hover:from-blue-600 hover:to-purple-700
-              text-white font-medium
-              transition-all duration-200
-              hover:scale-105 hover:shadow-lg"
+            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-medium transition-colors duration-300"
           >
-            <span>View All Projects</span>
-            <SquareArrowOutUpRight size={18} />
+            <span>View all projects</span>
+            <SquareArrowOutUpRight size={16} />
           </Link>
         </motion.div>
       </div>
