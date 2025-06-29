@@ -11,6 +11,7 @@ interface GradientCache {
 
 const TARGET_FPS = 60;
 const FRAME_TIME = 1000 / TARGET_FPS;
+const MAX_CACHE_SIZE = 50;
 
 export function UnifiedBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -22,15 +23,9 @@ export function UnifiedBackground() {
 
   const nebulaColors = useMemo(
     () => [
-      "rgba(138,43,226,0.15)",
-      "rgba(75,0,130,0.12)",
-      "rgba(106,90,205,0.14)",
-      "rgba(147,51,234,0.13)",
-      "rgba(79,70,229,0.11)",
-      "rgba(255,99,132,0.10)",
-      "rgba(65,105,225,0.12)",
-      "rgba(255,165,0,0.08)",
-      "rgba(0,255,127,0.06)",
+      "rgba(138,43,226,0.5)",
+      "rgba(75,0,130,0.5)",
+      "rgba(147,51,234,0.5)",
     ],
     []
   );
@@ -72,43 +67,76 @@ export function UnifiedBackground() {
             return gradient;
 
           case "nebula":
-            const key = `${params[0]}_${params[1]}_${params[2]}`;
+            const roundedX = Math.round(params[0] / 50) * 50;
+            const roundedY = Math.round(params[1] / 50) * 50;
+            const roundedRadius = Math.round(params[2] / 25) * 25;
+            const key = `${roundedX}_${roundedY}_${roundedRadius}_${params[3]}`;
+
             if (cache.nebula.has(key)) return cache.nebula.get(key)!;
+
+            if (cache.nebula.size >= MAX_CACHE_SIZE) {
+              const entries = Array.from(cache.nebula.entries());
+              cache.nebula.clear();
+              entries
+                .slice(-Math.floor(MAX_CACHE_SIZE / 2))
+                .forEach(([k, v]) => {
+                  cache.nebula.set(k, v);
+                });
+            }
+
             gradient = ctx.createRadialGradient(
-              params[0],
-              params[1],
+              roundedX,
+              roundedY,
               0,
-              params[0],
-              params[1],
-              params[2]
+              roundedX,
+              roundedY,
+              roundedRadius
             );
             const baseOpacity = parseFloat(
-              params[3].match(/[\d\.]+\)$/)?.[0].slice(0, -1) || "0.1"
+              params[3].match(/[\d\.]+\)$/)?.[0].slice(0, -1) || "0.06"
             );
             gradient.addColorStop(0, params[3]);
             gradient.addColorStop(
               0.05,
-              params[3].replace(/[\d\.]+\)$/, baseOpacity * 0.9 + ")")
+              params[3].replace(
+                /[\d\.]+\)$/,
+                (baseOpacity * 0.9).toFixed(3) + ")"
+              )
             );
             gradient.addColorStop(
               0.15,
-              params[3].replace(/[\d\.]+\)$/, baseOpacity * 0.7 + ")")
+              params[3].replace(
+                /[\d\.]+\)$/,
+                (baseOpacity * 0.7).toFixed(3) + ")"
+              )
             );
             gradient.addColorStop(
               0.35,
-              params[3].replace(/[\d\.]+\)$/, baseOpacity * 0.4 + ")")
+              params[3].replace(
+                /[\d\.]+\)$/,
+                (baseOpacity * 0.4).toFixed(3) + ")"
+              )
             );
             gradient.addColorStop(
               0.55,
-              params[3].replace(/[\d\.]+\)$/, baseOpacity * 0.2 + ")")
+              params[3].replace(
+                /[\d\.]+\)$/,
+                (baseOpacity * 0.2).toFixed(3) + ")"
+              )
             );
             gradient.addColorStop(
               0.75,
-              params[3].replace(/[\d\.]+\)$/, baseOpacity * 0.08 + ")")
+              params[3].replace(
+                /[\d\.]+\)$/,
+                (baseOpacity * 0.08).toFixed(3) + ")"
+              )
             );
             gradient.addColorStop(
               0.9,
-              params[3].replace(/[\d\.]+\)$/, baseOpacity * 0.02 + ")")
+              params[3].replace(
+                /[\d\.]+\)$/,
+                (baseOpacity * 0.02).toFixed(3) + ")"
+              )
             );
             gradient.addColorStop(1, "rgba(0,0,0,0)");
             cache.nebula.set(key, gradient);
@@ -189,10 +217,10 @@ export function UnifiedBackground() {
 
     const createNebula = () => {
       nebulaClouds.length = 0;
-      for (let i = 0; i < 6; i++) {
-        const subCloudCount = Math.floor(Math.random() * 4) + 8;
+      for (let i = 0; i < 4; i++) {
+        const subCloudCount = Math.floor(Math.random() * 3) + 6;
         const subClouds = [];
-        const baseSize = Math.min(canvas.width, canvas.height) * 0.25;
+        const baseSize = Math.min(canvas.width, canvas.height) * 0.2;
         const cloudWidth = baseSize * (Math.random() * 0.8 + 1.2);
         const cloudHeight = baseSize * (Math.random() * 0.6 + 0.8);
 
@@ -203,7 +231,7 @@ export function UnifiedBackground() {
             offsetX: Math.cos(angle) * distance,
             offsetY: Math.sin(angle) * distance * 0.6,
             size: Math.random() * baseSize * 0.4 + baseSize * 0.2,
-            opacity: Math.random() * 0.6 + 0.2,
+            opacity: Math.random() * 0.4 + 0.2,
             scaleX: Math.random() * 0.8 + 0.8,
             scaleY: Math.random() * 0.6 + 0.6,
           });
@@ -215,7 +243,7 @@ export function UnifiedBackground() {
           width: cloudWidth,
           height: cloudHeight,
           rotation: Math.random() * Math.PI * 2,
-          opacity: Math.random() * 0.4 + 0.5,
+          opacity: Math.random() * 0.3 + 0.4,
           color: nebulaColors[Math.floor(Math.random() * nebulaColors.length)],
           baseSize,
           subClouds,
@@ -284,7 +312,7 @@ export function UnifiedBackground() {
 
         cloud.subClouds.forEach((subCloud, index) => {
           const sizes = [subCloud.size * 2.2, subCloud.size * 1.5];
-          const alphas = [0.12, 0.18];
+          const alphas = [0.08, 0.12];
 
           sizes.forEach((size, layerIndex) => {
             ctx.save();
@@ -497,6 +525,12 @@ export function UnifiedBackground() {
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
       clearTimeout(resizeTimeout);
       window.removeEventListener("resize", handleResize);
+
+      gradientCacheRef.current = { nebula: new Map() };
+
+      if (offscreenCanvasRef.current) {
+        offscreenCanvasRef.current = null;
+      }
     };
   }, [nebulaColors, getOrCreateGradient]);
 
