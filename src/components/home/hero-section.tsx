@@ -1,121 +1,164 @@
 "use client";
 
-import { TypewriterEffect } from "@/components/effects/typewritter";
 import { SOCIAL_LINKS } from "@/data/social-links";
 import { motion } from "motion/react";
-import { Mail, Twitter, ArrowDown } from "lucide-react";
+import { Mail, ArrowDown } from "lucide-react";
 import Link from "next/link";
 import { SiGithub, SiLinkedin } from "react-icons/si";
+import { useState, useEffect } from "react";
+import { FaXTwitter } from "react-icons/fa6";
 
 export function HeroSection() {
-  const scrollToProjects = () => {
-    const projectsSection = document.getElementById("projects");
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: "smooth" });
+  const [showScrollButton, setShowScrollButton] = useState(true);
+
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: "smooth" });
+      // Hide the button after scrolling
+      setTimeout(() => setShowScrollButton(false), 1000);
     }
   };
 
+  // Hide button if user has scrolled down manually
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setShowScrollButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.4,
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+      scale: 0.9,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+      },
+    },
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-center px-4 relative">
-      {/* Floating background elements */}
+    <div className="relative flex flex-col items-center justify-center min-h-screen text-center px-4 overflow-hidden">
+      {/* Enhanced background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: "60px 60px",
+          }}
+        />
+
+        {/* Subtle floating orbs */}
         <motion.div
-          className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-blue-500/10 blur-3xl"
+          className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-blue-500/5 blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
+            x: [0, 30, 0],
           }}
           transition={{
-            duration: 8,
+            duration: 5,
             repeat: Infinity,
-            repeatType: "reverse",
+            ease: "easeInOut",
           }}
         />
         <motion.div
-          className="absolute bottom-1/3 right-1/4 w-40 h-40 rounded-full bg-purple-500/10 blur-3xl"
+          className="absolute bottom-1/3 right-1/4 w-24 h-24 rounded-full bg-purple-500/5 blur-2xl"
           animate={{
-            scale: [1, 1.1, 1],
+            scale: [1, 0.8, 1],
             opacity: [0.2, 0.4, 0.2],
+            x: [0, -20, 0],
           }}
           transition={{
-            duration: 10,
+            duration: 6,
             repeat: Infinity,
-            repeatType: "reverse",
-            delay: 2,
+            ease: "easeInOut",
+            delay: 1.5,
           }}
         />
       </div>
 
       {/* Main content */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative z-10"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="space-y-10 max-w-4xl mx-auto relative z-10"
       >
-        {/* Greeting */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-lg md:text-xl text-gray-400 mb-6 font-light"
-        >
-          Hello, I'm
-        </motion.p>
-
-        {/* Name */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 tracking-tight"
-        >
-          <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
-            Yuvrajsinh
-          </span>
-          <br />
-          <span className="text-white/90">Gohil</span>
-        </motion.h1>
-
-        {/* Role */}
+        {/* Greeting and name combined */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="mb-8"
+          variants={itemVariants}
+          className="space-y-4"
+          whileHover={{
+            scale: 1.02,
+            transition: {
+              type: "spring",
+              stiffness: 300,
+              damping: 20,
+            },
+          }}
         >
-          <TypewriterEffect
-            words={[
-              { text: "Full-Stack" },
-              { text: "Developer" },
-              { text: "•" },
-              { text: "Problem" },
-              { text: "Solver" },
-              { text: "•" },
-              { text: "Tech" },
-              { text: "Enthusiast" },
-            ]}
-            className="text-xl md:text-2xl text-gray-300 font-medium"
-          />
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
+            <span className="text-gray-300">Hi, I'm </span>
+            <span className="bg-gradient-to-r from-blue-400 via-purple-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+              Yuvrajsinh Gohil
+            </span>
+          </h1>
         </motion.div>
 
-        {/* Brief description */}
+        {/* Student description */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="max-w-2xl text-gray-400 text-lg leading-relaxed mb-12 mx-auto"
+          variants={itemVariants}
+          className="text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto text-gray-400"
+          whileHover={{
+            color: "rgb(209, 213, 219)",
+            scale: 1.02,
+            transition: {
+              type: "spring",
+              stiffness: 300,
+              damping: 20,
+            },
+          }}
         >
-          Computer Science student at Nirma University, passionate about
-          creating innovative solutions with modern technologies and clean code.
+          Computer Science student passionate about emerging technologies and
+          crafting innovative digital solutions.
         </motion.p>
 
         {/* Social links */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.1 }}
-          className="flex gap-6 justify-center items-center mb-16"
+          variants={itemVariants}
+          className="flex gap-6 justify-center items-center pt-8"
         >
           {SOCIAL_LINKS.map((social, index) => (
             <motion.div
@@ -123,10 +166,27 @@ export function HeroSection() {
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{
-                duration: 0.5,
-                delay: 1.1 + index * 0.1,
+                delay: 0.8 + index * 0.1,
                 type: "spring",
                 stiffness: 200,
+                damping: 20,
+              }}
+              whileHover={{
+                scale: 1.2,
+                y: -5,
+                transition: {
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 20,
+                },
+              }}
+              whileTap={{
+                scale: 0.9,
+                transition: {
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 20,
+                },
               }}
             >
               <Link
@@ -136,65 +196,91 @@ export function HeroSection() {
                     : { pathname: social.url }
                 }
                 target="_blank"
-                className="group relative p-4 rounded-2xl bg-white/8 backdrop-blur-sm border border-white/20
-                         hover:bg-white/15 hover:border-white/30 hover:scale-110 hover:-translate-y-1
-                         transition-all duration-300 ease-out shadow-lg hover:shadow-xl"
+                className="group relative flex items-center justify-center w-14 h-14 rounded-full
+                         border-2 border-gray-700 hover:border-blue-400 bg-gray-800/50 hover:bg-blue-500/10
+                         transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25
+                         backdrop-blur-sm"
               >
-                <div className="relative z-10">
-                  {social.icon === "Github" && (
-                    <SiGithub
-                      size={24}
-                      className="text-white group-hover:text-blue-400 transition-colors duration-300"
-                    />
-                  )}
-                  {social.icon === "Linkedin" && (
-                    <SiLinkedin
-                      size={24}
-                      className="text-white group-hover:text-blue-400 transition-colors duration-300"
-                    />
-                  )}
-                  {social.icon === "Mail" && (
-                    <Mail
-                      size={24}
-                      className="text-white group-hover:text-blue-400 transition-colors duration-300"
-                    />
-                  )}
-                  {social.icon === "Twitter" && (
-                    <Twitter
-                      size={24}
-                      className="text-white group-hover:text-blue-400 transition-colors duration-300"
-                    />
-                  )}
-                </div>
-
-                {/* Glow effect */}
-                <div
-                  className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/20 to-purple-500/20
-                               opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"
-                />
+                {social.icon === "Github" && (
+                  <SiGithub
+                    size={22}
+                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10"
+                  />
+                )}
+                {social.icon === "Linkedin" && (
+                  <SiLinkedin
+                    size={22}
+                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10"
+                  />
+                )}
+                {social.icon === "Mail" && (
+                  <Mail
+                    size={22}
+                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10"
+                  />
+                )}
+                {social.icon === "Twitter" && (
+                  <FaXTwitter
+                    size={22}
+                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10"
+                  />
+                )}
               </Link>
             </motion.div>
           ))}
         </motion.div>
+      </motion.div>
 
-        {/* Scroll indicator */}
+      {/* Enhanced scroll indicator */}
+      {showScrollButton && (
         <motion.button
-          onClick={scrollToProjects}
+          onClick={scrollToAbout}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
-          className="group flex flex-col items-center gap-2 text-gray-400 hover:text-white transition-colors duration-300"
+          transition={{
+            duration: 0.6,
+            delay: 1.2,
+            type: "spring",
+            stiffness: 100,
+            damping: 20,
+          }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 group"
+          whileHover={{
+            scale: 1.1,
+            y: -3,
+            transition: {
+              type: "spring",
+              stiffness: 300,
+              damping: 20,
+            },
+          }}
+          whileTap={{
+            scale: 0.9,
+            transition: {
+              type: "spring",
+              stiffness: 400,
+              damping: 20,
+            },
+          }}
         >
-          <span className="text-sm font-medium">Explore my work</span>
           <motion.div
             animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="p-2 rounded-full border border-white/20 group-hover:border-white/40 transition-colors duration-300"
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="relative flex items-center justify-center w-12 h-12 rounded-full border-2 border-gray-600
+                     group-hover:border-blue-400 transition-all duration-250 bg-gray-800/50 group-hover:bg-blue-500/10
+                     hover:shadow-lg hover:shadow-blue-500/25 backdrop-blur-sm"
           >
-            <ArrowDown size={16} />
+            <ArrowDown
+              size={18}
+              className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10"
+            />
           </motion.div>
         </motion.button>
-      </motion.div>
+      )}
     </div>
   );
 }
