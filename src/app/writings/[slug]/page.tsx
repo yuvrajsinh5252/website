@@ -41,11 +41,11 @@ export default async function BlogPostPage({
       <article className="container mx-auto px-4 max-w-4xl">
         <AnimatedPost>
           <Link
-            href="/blog"
+            href="/writings"
             className="inline-flex items-center gap-2 text-sm mb-12 group transition-colors"
           >
             <IoIosArrowBack className="text-blue-400 text-lg transition-transform group-hover:-translate-x-1" />
-            Back to Blog
+            Back to Writings
           </Link>
 
           <header className="mb-12 flex justify-between items-center">

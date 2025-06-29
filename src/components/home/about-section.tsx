@@ -94,10 +94,10 @@ export function AboutSection() {
                     <div className="w-2 h-2 bg-green-400 rounded-full flex-shrink-0"></div>
                     <div className="flex-1 min-w-0">
                       <span className="text-white font-medium text-sm block">
-                        Gujarat State Board
+                        Gyanmanjari Vidhyapith
                       </span>
                       <p className="text-gray-400 text-xs">
-                        Higher Secondary - Science • 2020 - 2022
+                        Higher Secondary Schooling • 2020 - 2022
                       </p>
                     </div>
                   </div>

@@ -7,7 +7,7 @@ import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { motion } from "motion/react";
 import { FaUser, FaCode } from "react-icons/fa";
 
-export default function BlogPage() {
+export default function WritingsPage() {
   const posts = getBlogPosts();
   const personalPosts = posts.filter((post) => post.category === "personal");
   const adventOfCodePosts = posts.filter(
@@ -21,17 +21,26 @@ export default function BlogPage() {
           <BlogHeader title="Writings" />
 
           <div className="space-y-20 mt-16">
-            {/* Personal Posts */}
+            {/* Personal Posts Section */}
             {personalPosts.length > 0 && (
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="space-y-6"
               >
-                {personalPosts.map((post, index) => (
-                  <BlogCard key={post.slug} post={post} index={index} />
-                ))}
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-1 h-8 bg-gradient-to-b from-blue-400 to-purple-400 rounded-full"></div>
+                  <div className="flex items-center gap-3">
+                    <FaUser className="text-2xl text-blue-400" />
+                    <h2 className="text-2xl font-bold text-white">Posts</h2>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  {personalPosts.map((post, index) => (
+                    <BlogCard key={post.slug} post={post} index={index} />
+                  ))}
+                </div>
               </motion.div>
             )}
 

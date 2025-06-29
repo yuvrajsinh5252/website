@@ -31,7 +31,7 @@ export function BlogCard({ post, index }: BlogCardProps) {
       {/* Subtle inner glow effect */}
       <div className="absolute inset-0 rounded-xl opacity-20 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 pointer-events-none" />
 
-      <Link href={`/blog/${post.slug}`} className="block h-full">
+      <Link href={`/writings/${post.slug}`} className="block h-full">
         <article className="flex flex-col h-full relative z-10">
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-5">
             <div className="flex flex-wrap gap-2">
