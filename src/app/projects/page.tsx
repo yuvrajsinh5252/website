@@ -6,118 +6,125 @@ import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 import { SiGithub } from "react-icons/si";
 import { PROJECTS } from "@/data/project";
+import { ColorSwingBox } from "@/components/effects/color-swing-box";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center h-screen no-scrollbar overflow-scroll">
-      <div className="flex flex-col max-sm:items-center max-w-screen-lg gap-10 mt-44 pb-10">
-        <motion.h1
+    <div className="min-h-screen">
+      <div className="max-w-6xl mx-auto px-4 pt-44 pb-20">
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex items-center gap-2 sm:text-5xl text-4xl font-bold pl-2"
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mb-16"
         >
-          <IoIosArrowForward className="text-3xl max-sm:hidden sm:text-4xl text-blue-500/80" />
-          <span className="text-foreground dark:text-gray-300 transition-all">
-            Projects
-          </span>
-        </motion.h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full px-4">
+          <div className="flex items-center gap-3 mb-4">
+            <IoIosArrowForward className="text-3xl sm:text-4xl text-blue-400" />
+            <h1 className="text-4xl sm:text-5xl font-bold text-white">
+              Projects
+            </h1>
+          </div>
+          <p className="text-gray-400 text-lg max-w-2xl">
+            A collection of projects I've built, exploring different
+            technologies and solving real-world problems.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {PROJECTS.map((project, index) => (
-            <motion.div
+            <ColorSwingBox
               key={index}
+              className="p-6 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl h-full relative overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                delay: 0.1,
-                duration: 0.4,
+                delay: index * 0.1,
+                duration: 0.6,
                 ease: "easeOut",
               }}
-              whileHover={{ y: -4 }}
-              className="group relative w-full"
+              whileHover={{
+                y: -5,
+                transition: { type: "spring", stiffness: 300, damping: 25 },
+              }}
             >
-              <div
-                className={`
-                  relative overflow-hidden rounded-2xl
-                  h-full
-                  dark:bg-white/[0.04] bg-gray-400/10
-                  backdrop-blur-lg
-                  dark:border-white/10 border-gray-200
-                  transition-all
-                  dark:group-hover:border-white/20 group-hover:border-gray-300
-                  group-hover:shadow-xl
-                  dark:group-hover:shadow-blue-500/20 group-hover:shadow-gray-200/50
-                  after:absolute after:inset-0
-                  after:bg-gradient-to-r
-                  after:from-transparent
-                  dark:after:via-white/10 after:via-gray-100/50
-                  after:to-transparent
-                  after:animate-shimmer
-                `}
-              >
-                <div className="p-5 sm:p-7 relative flex flex-col h-full">
-                  <div className="flex justify-between items-start">
-                    <div className="space-y-2">
-                      <h2 className="text-2xl font-bold dark:group-hover:text-blue-50 group-hover:text-blue-700 transition-colors">
-                        {project.title}
-                      </h2>
-                      {project.year && (
-                        <p className="text-sm dark:text-gray-400 text-gray-700 transition-colors dark:group-hover:text-gray-300 group-hover:text-gray-900">
-                          {project.year}
-                        </p>
-                      )}
-                    </div>
-                    <div className="flex gap-3">
-                      {project.link && (
+              {/* Subtle inner glow effect */}
+              <div className="absolute inset-0 rounded-xl opacity-20 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 pointer-events-none" />
+
+              <div className="flex flex-col h-full relative z-10">
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex-1">
+                    <h2 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300 mb-2">
+                      {project.title}
+                    </h2>
+                    {project.year && (
+                      <p className="text-sm text-gray-500 font-medium">
+                        {project.year}
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex gap-3 ml-4">
+                    {project.link && (
+                      <motion.div
+                        whileHover={{ scale: 1.1, y: -2 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
                         <Link
                           href={project.link}
                           target="_blank"
                           rel="noreferrer"
-                          className="dark:hover:text-blue-400 hover:text-blue-600"
+                          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 bg-blue-400/10 hover:bg-blue-400/20 border border-blue-400/20 hover:border-blue-400/40 rounded-lg transition-all duration-300"
                         >
-                          <SquareArrowOutUpRight className="transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                          <SquareArrowOutUpRight size={12} />
+                          <span>Live</span>
                         </Link>
-                      )}
+                      </motion.div>
+                    )}
+                    <motion.div
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
                       <Link
                         href={project.githubLink}
                         target="_blank"
                         rel="noreferrer"
-                        className="dark:hover:text-blue-400 hover:text-blue-600"
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-400 hover:text-gray-300 bg-gray-400/10 hover:bg-gray-400/20 border border-gray-600/20 hover:border-gray-600/40 rounded-lg transition-all duration-300"
                       >
-                        <SiGithub size={24} />
+                        <SiGithub size={12} />
+                        <span>Code</span>
                       </Link>
-                    </div>
-                  </div>
-                  <p className="text-sm dark:text-gray-400 text-gray-600 transition-colors leading-relaxed flex-grow mt-4 dark:group-hover:text-gray-300 group-hover:text-gray-900">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {project.tag.map((tag, idx) => (
-                      <div
-                        key={idx}
-                        className="inline-flex items-center gap-1.5 rounded-full
-                        dark:bg-blue-500/10 bg-blue-50 px-2.5 py-1
-                        text-xs font-medium
-                        dark:text-blue-400 text-blue-600 transition-colors
-                        dark:group-hover:bg-blue-500/20 group-hover:bg-blue-100
-                        dark:group-hover:text-blue-300 group-hover:text-blue-700"
-                      >
-                        {tag}
-                      </div>
-                    ))}
+                    </motion.div>
                   </div>
                 </div>
 
-                <div
-                  className="absolute inset-0 rounded-2xl opacity-0
-                  dark:group-hover:opacity-20 group-hover:opacity-10 transition-opacity duration-300
-                  dark:bg-gradient-to-br dark:from-blue-400 dark:via-blue-500 dark:to-purple-600
-                  bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 -z-10"
-                />
+                <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
+                  {project.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {project.tag.map((tag, idx) => (
+                    <motion.span
+                      key={idx}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.1 + idx * 0.05 }}
+                      className="px-2.5 py-1 text-xs font-medium text-gray-200 bg-gray-800/60 backdrop-blur-sm hover:bg-gray-700/80 rounded-md border border-gray-600/40 hover:border-blue-400/50 transition-all duration-300 hover:scale-105"
+                    >
+                      {tag}
+                    </motion.span>
+                  ))}
+                </div>
               </div>
-            </motion.div>
+            </ColorSwingBox>
           ))}
         </div>
+
+        {PROJECTS.length === 0 && (
+          <div className="text-center py-20">
+            <p className="text-gray-400 text-lg">
+              No projects yet. Check back soon!
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

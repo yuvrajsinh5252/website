@@ -9,14 +9,19 @@ interface BlogHeaderProps {
 
 export function BlogHeader({ title }: BlogHeaderProps) {
   return (
-    <motion.h1
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="flex items-center gap-2 sm:text-5xl text-4xl font-bold pl-2"
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="mb-16"
     >
-      <IoIosArrowForward className="text-3xl max-sm:hidden sm:text-4xl text-blue-500/80" />
-      <span className="text-gray-300 max-sm:mx-auto">{title}</span>
-    </motion.h1>
+      <div className="flex items-center gap-3 mb-4">
+        <IoIosArrowForward className="text-3xl sm:text-4xl text-blue-400" />
+        <h1 className="text-4xl sm:text-5xl font-bold text-white">{title}</h1>
+      </div>
+      <p className="text-gray-400 text-lg max-w-2xl">
+        Personal stories, achievements, and coding challenges.
+      </p>
+    </motion.div>
   );
 }
