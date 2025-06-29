@@ -8,7 +8,7 @@ import NavLink from "./navlink";
 const NAV_ITEMS = [
   { href: "/", text: "home", width: 95 },
   { href: "/projects", text: "projects", width: 115 },
-  { href: "/blog", text: "blog", width: 82 },
+  { href: "/blog", text: "writings", width: 105 },
 ] as const;
 
 export default function Navbar() {

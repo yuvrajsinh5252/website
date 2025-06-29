@@ -6,6 +6,7 @@ export interface BlogPost {
   content: string;
   readingTime: string;
   tags: string[];
+  category: "personal" | "advent-of-code";
   coverImage?: string;
 }
 
@@ -16,5 +17,6 @@ export interface BlogMeta {
   date: string;
   readingTime: string;
   tags: string[];
+  category: "personal" | "advent-of-code";
   coverImage?: string;
 }

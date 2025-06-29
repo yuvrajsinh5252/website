@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { FaCode, FaHome, FaUser } from "react-icons/fa";
-import { GiNotebook } from "react-icons/gi";
+import { FaCode, FaHome, FaUser, FaPenFancy } from "react-icons/fa";
 import { motion } from "motion/react";
 
 interface NavLinkProps {
@@ -22,8 +21,8 @@ export default function NavLink({ href, text }: NavLinkProps) {
         return <FaCode className="text-lg" />;
       case "about":
         return <FaUser className="text-lg" />;
-      case "blog":
-        return <GiNotebook className="text-lg" />;
+      case "writings":
+        return <FaPenFancy className="text-lg" />;
       default:
         return null;
     }
@@ -34,33 +33,67 @@ export default function NavLink({ href, text }: NavLinkProps) {
       {isActive && (
         <motion.div
           layoutId="nav-background"
-          className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-300/20 rounded-full"
+          className="absolute inset-0 bg-gradient-to-r from-blue-500/25 via-blue-400/30 to-blue-500/25 rounded-full shadow-lg shadow-blue-500/20"
           initial={false}
-          transition={{ duration: 0.3 }}
+          transition={{
+            duration: 0.4,
+            type: "spring",
+            stiffness: 200,
+            damping: 25,
+          }}
         />
       )}
+
+      {/* Hover glow effect */}
+      <motion.div
+        className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background:
+            "radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 70%)",
+        }}
+      />
+
       <Link
         href={href}
         className={`relative rounded-full flex items-center gap-2 expand-cursor px-3 py-2
-          hover:text-blue-300 transition-all duration-300 ${
+          transition-all duration-300 ${
             isActive
-              ? "text-blue-300 font-medium"
-              : "text-gray-300 hover:opacity-100"
+              ? "text-blue-200 font-medium drop-shadow-sm"
+              : "text-gray-300 hover:text-blue-300 hover:drop-shadow-sm"
           }`}
       >
         <motion.div
-          whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          whileHover={{
+            rotate: [0, -5, 5, -3, 0],
+            scale: [1, 1.08, 1],
+            transition: { duration: 0.7, ease: "easeInOut" },
+          }}
+          whileTap={{
+            scale: 0.9,
+            transition: { type: "spring", stiffness: 300, damping: 30 },
+          }}
+          className={`transition-all duration-300 ${
+            isActive
+              ? "text-blue-200 drop-shadow-lg"
+              : "group-hover:text-blue-300"
+          }`}
         >
           {getIcon(text)}
         </motion.div>
+
         <motion.div
           className="overflow-hidden"
           style={{ width: isActive ? "auto" : 0 }}
           initial={false}
           animate={{
             width: isActive ? "auto" : 0,
-            transition: { duration: 0.3, ease: "easeInOut" },
+            transition: {
+              duration: 0.5,
+              ease: "easeInOut",
+              type: "spring",
+              stiffness: 200,
+              damping: 25,
+            },
           }}
         >
           <motion.span
@@ -70,7 +103,11 @@ export default function NavLink({ href, text }: NavLinkProps) {
               opacity: isActive ? 1 : 0,
               x: isActive ? 0 : -10,
             }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{
+              duration: 0.5,
+              ease: "easeInOut",
+              delay: isActive ? 0.15 : 0,
+            }}
           >
             {text}
           </motion.span>
