@@ -34,17 +34,13 @@ export default function Home() {
           {PROJECTS.map((project, index) => (
             <ColorSwingBox
               key={index}
-              className="p-6 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl h-full relative overflow-hidden"
+              className="p-6 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-150 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl h-full relative overflow-hidden"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 delay: index * 0.1,
                 duration: 0.6,
                 ease: "easeOut",
-              }}
-              whileHover={{
-                y: -5,
-                transition: { type: "spring", stiffness: 300, damping: 25 },
               }}
             >
               {/* Subtle inner glow effect */}
@@ -53,7 +49,7 @@ export default function Home() {
               <div className="flex flex-col h-full relative z-10">
                 <div className="flex justify-between items-start mb-4">
                   <div className="flex-1">
-                    <h2 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors duration-300 mb-2">
+                    <h2 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors duration-150 mb-2">
                       {project.title}
                     </h2>
                     {project.year && (
@@ -67,12 +63,17 @@ export default function Home() {
                       <motion.div
                         whileHover={{ scale: 1.1, y: -2 }}
                         whileTap={{ scale: 0.9 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 25,
+                        }}
                       >
                         <Link
                           href={project.link}
                           target="_blank"
                           rel="noreferrer"
-                          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 bg-blue-400/10 hover:bg-blue-400/20 border border-blue-400/20 hover:border-blue-400/40 rounded-lg transition-all duration-300"
+                          className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 bg-blue-400/10 hover:bg-blue-400/20 border border-blue-400/20 hover:border-blue-400/40 rounded-lg transition-all duration-150"
                         >
                           <SquareArrowOutUpRight size={12} />
                           <span>Live</span>
@@ -82,12 +83,17 @@ export default function Home() {
                     <motion.div
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.9 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 25,
+                      }}
                     >
                       <Link
                         href={project.githubLink}
                         target="_blank"
                         rel="noreferrer"
-                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-400 hover:text-gray-300 bg-gray-400/10 hover:bg-gray-400/20 border border-gray-600/20 hover:border-gray-600/40 rounded-lg transition-all duration-300"
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-400 hover:text-gray-300 bg-gray-400/10 hover:bg-gray-400/20 border border-gray-600/20 hover:border-gray-600/40 rounded-lg transition-all duration-150"
                       >
                         <SiGithub size={12} />
                         <span>Code</span>
@@ -102,15 +108,12 @@ export default function Home() {
 
                 <div className="flex flex-wrap gap-2">
                   {project.tag.map((tag, idx) => (
-                    <motion.span
+                    <span
                       key={idx}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: index * 0.1 + idx * 0.05 }}
-                      className="px-2.5 py-1 text-xs font-medium text-gray-200 bg-gray-800/60 backdrop-blur-sm hover:bg-gray-700/80 rounded-md border border-gray-600/40 hover:border-blue-400/50 transition-all duration-300 hover:scale-105"
+                      className="px-2.5 py-1 text-xs font-medium text-gray-200 bg-gray-800/60 backdrop-blur-sm hover:bg-gray-700/80 rounded-md border border-gray-600/40 hover:border-blue-400/50"
                     >
                       {tag}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
               </div>

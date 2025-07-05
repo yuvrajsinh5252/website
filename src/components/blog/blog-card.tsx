@@ -15,17 +15,13 @@ interface BlogCardProps {
 export function BlogCard({ post, index }: BlogCardProps) {
   return (
     <ColorSwingBox
-      className="p-6 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl h-full relative overflow-hidden"
+      className="p-6 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-150 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl h-full relative overflow-hidden"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
         delay: index * 0.1,
         duration: 0.6,
         ease: "easeOut",
-      }}
-      whileHover={{
-        y: -5,
-        transition: { type: "spring", stiffness: 300, damping: 25 },
       }}
     >
       {/* Subtle inner glow effect */}
@@ -36,45 +32,43 @@ export function BlogCard({ post, index }: BlogCardProps) {
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-5">
             <div className="flex flex-wrap gap-2">
               {post.tags.map((tag) => (
-                <motion.span
+                <span
                   key={tag}
                   className="inline-flex items-center gap-1.5 rounded-md
                   bg-blue-500/10 px-2.5 py-1 text-xs font-medium
-                  text-blue-400 transition-colors whitespace-nowrap
+                  text-blue-400 whitespace-nowrap
                   group-hover:bg-blue-500/20 group-hover:text-blue-300
                   border border-blue-500/20 hover:border-blue-500/40"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   <FaTag className="text-[10px]" />
                   {tag}
-                </motion.span>
+                </span>
               ))}
             </div>
             <div className="flex items-center gap-4 text-xs text-gray-400 whitespace-nowrap">
               <time
                 dateTime={post.date}
-                className="group-hover:text-gray-300 transition-colors"
+                className="group-hover:text-gray-300 transition-colors duration-150"
               >
                 {format(new Date(post.date), "MMM d, yyyy")}
               </time>
-              <span className="flex items-center gap-1.5 group-hover:text-gray-300 transition-colors">
+              <span className="flex items-center gap-1.5 group-hover:text-gray-300 transition-colors duration-150">
                 <FaClock className="text-[10px]" />
                 {post.readingTime}
               </span>
             </div>
           </div>
 
-          <h2 className="mb-4 text-xl font-bold tracking-tight text-white group-hover:text-blue-300 transition-colors duration-300">
+          <h2 className="mb-4 text-xl font-bold tracking-tight text-white group-hover:text-blue-300 transition-colors duration-150">
             {post.title}
           </h2>
 
-          <p className="mb-6 text-sm text-gray-400 line-clamp-3 group-hover:text-gray-300 transition-colors flex-grow">
+          <p className="mb-6 text-sm text-gray-400 line-clamp-3 group-hover:text-gray-300 transition-colors duration-150 flex-grow">
             {post.description}
           </p>
 
           <motion.div
-            className="flex items-center gap-2 text-sm font-medium text-blue-400 group-hover:text-blue-300 transition-colors mt-auto"
+            className="flex items-center gap-2 text-sm font-medium text-blue-400 group-hover:text-blue-300 transition-colors duration-150 mt-auto"
             whileHover={{ x: 5 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
           >

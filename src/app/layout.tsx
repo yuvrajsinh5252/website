@@ -6,6 +6,8 @@ import { constructMetadata } from "@/lib/utils";
 import Navbar from "@/components/navbar/navbar";
 import CustomCursor from "@/components/cursor/custom-cursor";
 import { Background } from "@/components/background/background";
+import { personSchema, websiteSchema } from "@/lib/schemas";
+import { siteConfig } from "@/config/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,6 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = constructMetadata();
+const structuredData = [personSchema, websiteSchema];
 
 export default function RootLayout({
   children,
@@ -22,13 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="canonical" href="https://www.yuvrajsinh.me" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        ></script>
+        <link rel="canonical" href={siteConfig.url} />
         <script
           defer
           src="https://cloud.umami.is/script.js"

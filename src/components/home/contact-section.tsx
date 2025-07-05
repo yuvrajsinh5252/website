@@ -119,13 +119,7 @@ export function ContactSection() {
           className="grid lg:grid-cols-2 gap-8 items-stretch"
         >
           {/* Email box - Left side */}
-          <ColorSwingBox
-            className="p-8 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl min-h-[280px] flex items-center relative overflow-hidden"
-            whileHover={{
-              scale: 1.02,
-              transition: { type: "spring", stiffness: 200, damping: 20 },
-            }}
-          >
+          <ColorSwingBox className="p-8 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-150 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl min-h-[280px] flex items-center relative overflow-hidden">
             {/* Subtle inner glow effect */}
             <div className="absolute inset-0 rounded-xl opacity-20 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 pointer-events-none" />
 

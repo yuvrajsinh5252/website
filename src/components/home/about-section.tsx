@@ -322,7 +322,7 @@ export function AboutSection() {
                         {project.tag.slice(0, 3).map((tech, i) => (
                           <span
                             key={i}
-                            className="px-2 py-1 text-xs font-medium text-gray-200 bg-gray-800/60 backdrop-blur-sm hover:bg-gray-700/80 rounded-md border border-gray-600/40 hover:border-blue-400/50 transition-all duration-300 hover:scale-105"
+                            className="px-2 py-1 text-xs font-medium text-gray-200 bg-gray-800/60 backdrop-blur-sm hover:bg-gray-700/80 rounded-md border border-gray-600/40 hover:border-blue-400/50"
                           >
                             {tech}
                           </span>

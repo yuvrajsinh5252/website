@@ -6,16 +6,15 @@ import { useState } from "react";
 interface ColorSwingBoxProps {
   children: React.ReactNode;
   className?: string;
-  whileHover?: any;
   [key: string]: any;
 }
 
 export function ColorSwingBox({
   children,
   className = "",
-  whileHover,
   ...props
 }: ColorSwingBoxProps) {
+  const { whileHover, ...restProps } = props;
   const [hasAnimated, setHasAnimated] = useState(false);
   const rotation = useMotionValue(0);
 
@@ -29,26 +28,32 @@ export function ColorSwingBox({
     if (!hasAnimated) {
       setHasAnimated(true);
       animate(rotation, 360, {
-        duration: 1.5,
+        duration: 0.7,
         ease: "easeInOut",
         onComplete: () => {
           rotation.set(0);
-          setTimeout(() => setHasAnimated(false), 500);
+          setTimeout(() => setHasAnimated(false), 200);
         },
       });
     }
+  };
+
+  const hoverEffect = {
+    y: -5,
+    scale: 1.02,
+    transition: { type: "spring", stiffness: 500, damping: 30 },
   };
 
   return (
     <motion.div
       className={`group relative ${className}`}
       onHoverStart={handleHoverStart}
-      whileHover={whileHover}
-      {...props}
+      whileHover={hoverEffect}
+      {...restProps}
     >
       {/* Color swing border effect */}
       <motion.div
-        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 pointer-events-none"
+        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-100"
         style={{
           background,
           borderRadius: "inherit",

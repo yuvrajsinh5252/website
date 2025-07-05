@@ -1,6 +1,5 @@
 import { BlogPost, BlogMeta } from "@/types/blog";
 
-// Static blog data - no filesystem dependencies
 const BLOG_POSTS: BlogPost[] = [
   {
     slug: "hacknuthon-5.0",
@@ -55,6 +54,17 @@ The project is open-source and available for review: [Brilliant++ Repository](ht
 We extend our sincere gratitude to CSI Nirma University and Crest Data Systems for organizing this opportunity. The guidance from mentors and support from the organizing team were instrumental in our success.
 
 This hackathon experience reinforced the value of focused teamwork and innovative problem-solving in software development. For those considering participation in future hackathons, it provides an excellent opportunity for both technical growth and professional development.`,
+  },
+  {
+    slug: "advent-of-code-2024",
+    title: "Advent of Code 2024",
+    description: "My journey through the 25 days of coding challenges.",
+    date: new Date().toISOString(),
+    tags: ["Advent of Code"],
+    category: "advent-of-code",
+    readingTime: "TBD",
+    coverImage: "",
+    content: ``,
   },
 ];
 

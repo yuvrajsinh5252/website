@@ -6,6 +6,26 @@ import { AnimatedPost } from "@/components/effects/animated-post";
 import { IoIosArrowBack } from "react-icons/io";
 import { MagicLink } from "@/components/effects/magiclink";
 import { CalendarIcon } from "lucide-react";
+import { constructMetadata } from "@/lib/utils";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const post = getBlogPost(params.slug);
+
+  if (!post) {
+    return notFound();
+  }
+
+  return constructMetadata({
+    title: `${post.title} - Yuvrajsinh Gohil`,
+    description: post.description,
+    image: post.coverImage || "/logo.png",
+  });
+}
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -28,9 +48,9 @@ const components = {
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const post = getBlogPost((await params).slug);
+  const post = getBlogPost(params.slug);
 
   if (!post) {
     notFound();

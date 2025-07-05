@@ -1,20 +1,14 @@
-// Structured data schemas for SEO
+import { siteConfig } from "@/config/site";
 
 export const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Yuvrajsinh Gohil",
-  alternateName: ["Yuvrajsinh", "Yuvraj Gohil"],
+  name: siteConfig.name,
+  alternateName: ["Yuvrajsinh", siteConfig.name],
   description:
-    "Computer Science student and full-stack developer specializing in web technologies",
-  url: "https://www.yuvrajsinh.me",
-  image: "https://www.yuvrajsinh.me/logo.png",
-  jobTitle: "Software Developer",
-  worksFor: {
-    "@type": "EducationalOrganization",
-    name: "Nirma University",
-    url: "https://nirmauni.ac.in/",
-  },
+    "Computer Science student and software developer specializing in web technologies",
+  url: siteConfig.url,
+  image: `${siteConfig.url}/logo.png`,
   alumniOf: {
     "@type": "EducationalOrganization",
     name: "Nirma University",
@@ -24,58 +18,33 @@ export const personSchema = {
     addressCountry: "IN",
     addressRegion: "Gujarat",
   },
-  email: "yuvrajsinh476@gmail.com",
   sameAs: [
-    "https://github.com/yuvrajsinh5252",
-    "https://www.linkedin.com/in/yuvrajsinh099",
-    "https://x.com/Yuvrajsinh_099",
+    siteConfig.links.github,
+    siteConfig.links.linkedin,
+    siteConfig.links.twitter,
     "https://discord.com/users/1035138685689139311",
     "https://www.youtube.com/@yuvrajsinh472/videos",
   ],
-  knowsAbout: [
-    "Web Development",
-    "Full-Stack Development",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "JavaScript",
-    "Node.js",
-    "System Design",
-    "Python",
-    "C++",
-    "Rust",
-    "Go",
-    "Java",
-    "PostgreSQL",
-    "MongoDB",
-    "IoT Development",
-    "Hardware Design",
-  ],
-  hasOccupation: {
-    "@type": "Occupation",
-    name: "Software Developer",
-    description: "Full-stack developer specializing in modern web technologies",
-  },
+  knowsAbout: siteConfig.keywords,
 };
 
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "Yuvrajsinh Gohil Portfolio",
-  description:
-    "Portfolio website of Yuvrajsinh Gohil showcasing projects, skills, and experience in software development",
-  url: "https://www.yuvrajsinh.me",
+  name: `${siteConfig.name} Portfolio`,
+  description: siteConfig.description,
+  url: siteConfig.url,
   author: {
     "@type": "Person",
-    name: "Yuvrajsinh Gohil",
+    name: siteConfig.name,
   },
   publisher: {
     "@type": "Person",
-    name: "Yuvrajsinh Gohil",
+    name: siteConfig.name,
   },
   potentialAction: {
     "@type": "SearchAction",
-    target: "https://www.yuvrajsinh.me/search?q={search_term_string}",
+    target: `${siteConfig.url}/search?q={search_term_string}`,
     "query-input": "required name=search_term_string",
   },
 };

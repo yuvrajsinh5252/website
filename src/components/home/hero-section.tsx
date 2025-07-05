@@ -117,21 +117,10 @@ export function HeroSection() {
         className="space-y-10 max-w-4xl mx-auto relative z-10"
       >
         {/* Greeting and name combined */}
-        <motion.div
-          variants={itemVariants}
-          className="space-y-4"
-          whileHover={{
-            scale: 1.02,
-            transition: {
-              type: "spring",
-              stiffness: 300,
-              damping: 20,
-            },
-          }}
-        >
+        <motion.div variants={itemVariants} className="space-y-4">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
             <span className="text-gray-300">Hi, I'm </span>
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-300 via-indigo-300 to-cyan-300 bg-clip-text text-transparent">
               Yuvrajsinh Gohil
             </span>
           </h1>
@@ -146,8 +135,8 @@ export function HeroSection() {
             scale: 1.02,
             transition: {
               type: "spring",
-              stiffness: 300,
-              damping: 20,
+              stiffness: 400,
+              damping: 25,
             },
           }}
         >
@@ -177,7 +166,7 @@ export function HeroSection() {
                 transition: {
                   type: "spring",
                   stiffness: 400,
-                  damping: 20,
+                  damping: 25,
                 },
               }}
               whileTap={{
@@ -185,7 +174,7 @@ export function HeroSection() {
                 transition: {
                   type: "spring",
                   stiffness: 400,
-                  damping: 20,
+                  damping: 25,
                 },
               }}
             >
