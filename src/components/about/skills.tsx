@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { MonitorCog } from "lucide-react";
 import {
   FaCode,
@@ -11,9 +11,9 @@ import {
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
-  viewport: { once: true },
-  animate: { opacity: 1, y: 0 },
+  whileInView: { opacity: 1, y: 0 },
   transition: { duration: 0.5 },
+  viewport: { once: true },
 };
 
 export function Skills({
@@ -84,6 +84,8 @@ export function Skills({
 
       <motion.div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true }}
         variants={{
           hidden: { opacity: 0 },
@@ -96,7 +98,6 @@ export function Skills({
         {skills.map((skill, index) => (
           <motion.div
             key={index}
-            viewport={{ once: true }}
             variants={{
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 },

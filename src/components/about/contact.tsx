@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, Variants } from "framer-motion";
 import {
   FaEnvelope,
   FaGithub,
@@ -87,7 +87,7 @@ export function ContactUs({
   };
 
   // Enhanced animation variants
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -98,7 +98,7 @@ export function ContactUs({
     },
   };
 
-  const cardVariants = {
+  const cardVariants: Variants = {
     hidden: {
       opacity: 0,
       y: 50,
@@ -119,7 +119,7 @@ export function ContactUs({
     },
   };
 
-  const orbVariants = {
+  const orbVariants: Variants = {
     float: {
       y: [-20, 20, -20],
       x: [-10, 10, -10],

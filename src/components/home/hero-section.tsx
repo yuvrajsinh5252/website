@@ -1,7 +1,7 @@
 "use client";
 
 import { SOCIAL_LINKS } from "@/data/social-links";
-import { motion } from "motion/react";
+import { motion, Variants } from "framer-motion";
 import { Mail, ArrowDown } from "lucide-react";
 import Link from "next/link";
 import { SiGithub, SiLinkedin } from "react-icons/si";
@@ -33,7 +33,7 @@ export function HeroSection() {
   }, []);
 
   // Animation variants
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -45,7 +45,7 @@ export function HeroSection() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: {
       opacity: 0,
       y: 20,

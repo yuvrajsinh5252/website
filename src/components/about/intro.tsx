@@ -1,6 +1,6 @@
 import { IoIosArrowForward } from "react-icons/io";
 import { FaCode, FaLightbulb, FaMicrochip } from "react-icons/fa6";
-import { motion } from "motion/react";
+import { motion, Variants } from "framer-motion";
 import { MagicLink } from "../effects/magiclink";
 
 export function Intro({
@@ -10,7 +10,7 @@ export function Intro({
   activeSection: string;
   fadeIn: any;
 }) {
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -21,7 +21,7 @@ export function Intro({
     },
   };
 
-  const item = {
+  const item: Variants = {
     hidden: { opacity: 0, x: -20 },
     visible: {
       opacity: 1,
