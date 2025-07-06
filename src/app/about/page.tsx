@@ -48,8 +48,8 @@ export default function Home() {
   };
 
   return (
-    <MaxWidthWrapper className="px-4">
-      <nav className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 hidden lg:block">
+    <MaxWidthWrapper className="px-4 sm:px-6 md:px-8">
+      <nav className="fixed right-4 sm:right-6 md:right-8 top-1/2 transform -translate-y-1/2 z-50 hidden lg:block">
         <motion.div
           className="space-y-4"
           initial={{ opacity: 0, x: 20 }}
@@ -72,21 +72,21 @@ export default function Home() {
       </nav>
 
       <section
-        className="min-h-screen flex flex-col justify-center max-sm:pt-24 relative"
+        className="min-h-screen flex flex-col justify-center pt-20 sm:pt-24 md:max-sm:pt-24 relative"
         id="introduction"
       >
         <Intro activeSection={activeSection} fadeIn={fadeIn} />
       </section>
 
       <section
-        className="min-h-screen flex flex-col justify-center relative"
+        className="min-h-screen flex flex-col justify-center py-8 sm:py-12 md:py-0 relative"
         id="skills"
       >
         <Skills activeSection={activeSection} fadeIn={fadeIn} />
       </section>
 
       <section
-        className="min-h-screen flex flex-col justify-center relative"
+        className="min-h-screen flex flex-col justify-center py-8 sm:py-12 md:py-0 relative"
         id="contact"
       >
         <ContactUs activeSection={activeSection} fadeIn={fadeIn} />

@@ -65,7 +65,7 @@ export function HeroSection() {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen text-center px-4 overflow-hidden">
+    <div className="relative flex flex-col items-center justify-center min-h-screen text-center px-4 sm:px-6 md:px-8 overflow-hidden">
       {/* Enhanced background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
@@ -81,7 +81,7 @@ export function HeroSection() {
 
         {/* Subtle floating orbs */}
         <motion.div
-          className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-blue-500/5 blur-3xl"
+          className="absolute top-1/4 left-1/4 w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-blue-500/5 blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -94,7 +94,7 @@ export function HeroSection() {
           }}
         />
         <motion.div
-          className="absolute bottom-1/3 right-1/4 w-24 h-24 rounded-full bg-purple-500/5 blur-2xl"
+          className="absolute bottom-1/3 right-1/4 w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-purple-500/5 blur-2xl"
           animate={{
             scale: [1, 0.8, 1],
             opacity: [0.2, 0.4, 0.2],
@@ -114,13 +114,13 @@ export function HeroSection() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="space-y-10 max-w-4xl mx-auto relative z-10"
+        className="space-y-8 sm:space-y-10 max-w-4xl mx-auto relative z-10"
       >
         {/* Greeting and name combined */}
-        <motion.div variants={itemVariants} className="space-y-4">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-            <span className="text-gray-300">Hi, I'm </span>
-            <span className="bg-gradient-to-r from-blue-300 via-indigo-300 to-cyan-300 bg-clip-text text-transparent">
+        <motion.div variants={itemVariants} className="space-y-3 sm:space-y-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <span className="text-gray-300">Hi, I'm</span>
+            <span className="mt-1 block bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400 bg-clip-text leading-tight text-transparent">
               Yuvrajsinh Gohil
             </span>
           </h1>
@@ -129,7 +129,7 @@ export function HeroSection() {
         {/* Student description */}
         <motion.p
           variants={itemVariants}
-          className="text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto text-gray-400"
+          className="text-base sm:text-lg md:text-xl font-light leading-relaxed max-sm:-mx-6 text-gray-400 px-2"
           whileHover={{
             color: "rgb(209, 213, 219)",
             scale: 1.02,
@@ -147,7 +147,7 @@ export function HeroSection() {
         {/* Social links */}
         <motion.div
           variants={itemVariants}
-          className="flex gap-6 justify-center items-center pt-8"
+          className="flex gap-4 sm:gap-6 justify-center items-center pt-6 sm:pt-8 flex-wrap"
         >
           {SOCIAL_LINKS.map((social, index) => (
             <motion.div
@@ -185,33 +185,33 @@ export function HeroSection() {
                     : { pathname: social.url }
                 }
                 target="_blank"
-                className="group relative flex items-center justify-center w-14 h-14 rounded-full
+                className="group relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full
                          border-2 border-gray-700 hover:border-blue-400 bg-gray-800/50 hover:bg-blue-500/10
                          transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25
                          backdrop-blur-sm"
               >
                 {social.icon === "Github" && (
                   <SiGithub
-                    size={22}
-                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10"
+                    size={20}
+                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10 sm:text-[22px]"
                   />
                 )}
                 {social.icon === "Linkedin" && (
                   <SiLinkedin
-                    size={22}
-                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10"
+                    size={20}
+                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10 sm:text-[22px]"
                   />
                 )}
                 {social.icon === "Mail" && (
                   <Mail
-                    size={22}
-                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10"
+                    size={20}
+                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10 sm:text-[22px]"
                   />
                 )}
                 {social.icon === "Twitter" && (
                   <FaXTwitter
-                    size={22}
-                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10"
+                    size={20}
+                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10 sm:text-[22px]"
                   />
                 )}
               </Link>
@@ -233,7 +233,7 @@ export function HeroSection() {
             stiffness: 100,
             damping: 20,
           }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 group"
+          className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 group"
           whileHover={{
             scale: 1.1,
             y: -3,
@@ -259,13 +259,13 @@ export function HeroSection() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="relative flex items-center justify-center w-12 h-12 rounded-full border-2 border-gray-600
+            className="relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-gray-600
                      group-hover:border-blue-400 transition-all duration-250 bg-gray-800/50 group-hover:bg-blue-500/10
                      hover:shadow-lg hover:shadow-blue-500/25 backdrop-blur-sm"
           >
             <ArrowDown
-              size={18}
-              className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10"
+              size={16}
+              className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10 sm:text-[18px]"
             />
           </motion.div>
         </motion.button>

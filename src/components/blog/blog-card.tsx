@@ -15,7 +15,7 @@ interface BlogCardProps {
 export function BlogCard({ post, index }: BlogCardProps) {
   return (
     <ColorSwingBox
-      className="p-6 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-150 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl h-full relative overflow-hidden"
+      className="p-5 sm:p-6 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-150 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl h-full relative overflow-hidden"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
@@ -29,8 +29,8 @@ export function BlogCard({ post, index }: BlogCardProps) {
 
       <Link href={`/writings/${post.slug}`} className="block h-full">
         <article className="flex flex-col h-full relative z-10">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-5">
-            <div className="flex flex-wrap gap-2">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-4 sm:mb-5">
+            <div className="flex flex-wrap gap-2 order-2 sm:order-1">
               {post.tags.map((tag) => (
                 <span
                   key={tag}
@@ -45,7 +45,7 @@ export function BlogCard({ post, index }: BlogCardProps) {
                 </span>
               ))}
             </div>
-            <div className="flex items-center gap-4 text-xs text-gray-400 whitespace-nowrap">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 text-xs text-gray-400 whitespace-nowrap order-1 sm:order-2">
               <time
                 dateTime={post.date}
                 className="group-hover:text-gray-300 transition-colors duration-150"
@@ -59,11 +59,11 @@ export function BlogCard({ post, index }: BlogCardProps) {
             </div>
           </div>
 
-          <h2 className="mb-4 text-xl font-bold tracking-tight text-white group-hover:text-blue-300 transition-colors duration-150">
+          <h2 className="mb-3 sm:mb-4 text-lg sm:text-xl font-bold tracking-tight text-white group-hover:text-blue-300 transition-colors duration-150 leading-tight">
             {post.title}
           </h2>
 
-          <p className="mb-6 text-sm text-gray-400 line-clamp-3 group-hover:text-gray-300 transition-colors duration-150 flex-grow">
+          <p className="mb-4 sm:mb-6 text-sm text-gray-400 line-clamp-3 group-hover:text-gray-300 transition-colors duration-150 flex-grow leading-relaxed">
             {post.description}
           </p>
 

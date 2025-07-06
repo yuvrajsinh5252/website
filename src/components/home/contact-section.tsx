@@ -62,13 +62,13 @@ export function ContactSection() {
   return (
     <section
       ref={ref}
-      className="min-h-screen flex flex-col justify-center px-4 py-24 relative"
+      className="min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-24 relative"
       id="contact"
     >
       {/* Subtle background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-1/3 left-1/4 w-32 h-32 rounded-full bg-blue-500/5 blur-3xl"
+          className="absolute top-1/3 left-1/4 w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-blue-500/5 blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -80,7 +80,7 @@ export function ContactSection() {
           }}
         />
         <motion.div
-          className="absolute bottom-1/3 right-1/4 w-24 h-24 rounded-full bg-purple-500/5 blur-2xl"
+          className="absolute bottom-1/3 right-1/4 w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-purple-500/5 blur-2xl"
           animate={{
             scale: [1, 0.8, 1],
             opacity: [0.2, 0.4, 0.2],
@@ -100,49 +100,51 @@ export function ContactSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="mb-12"
+          className="mb-8 sm:mb-10 md:mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 sm:mb-8">
             Let's Connect
           </h2>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto px-4">
             I'm always open to new opportunities, collaborations, and
             interesting conversations. Feel free to reach out!
           </p>
         </motion.div>
 
-        {/* Contact content - side by side layout */}
+        {/* Contact content - responsive layout */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="grid lg:grid-cols-2 gap-8 items-stretch"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch"
         >
-          {/* Email box - Left side */}
-          <ColorSwingBox className="p-8 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-150 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl min-h-[280px] flex items-center relative overflow-hidden">
+          {/* Email box */}
+          <ColorSwingBox className="p-6 sm:p-8 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-150 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl min-h-[240px] sm:min-h-[280px] flex items-center relative overflow-hidden">
             {/* Subtle inner glow effect */}
             <div className="absolute inset-0 rounded-xl opacity-20 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 pointer-events-none" />
 
-            <div className="space-y-6 w-full relative z-10">
-              <div className="flex items-center gap-4">
+            <div className="space-y-4 sm:space-y-6 w-full relative z-10">
+              <div className="flex items-center gap-3 sm:gap-4">
                 <motion.div
-                  className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center"
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-500/10 flex items-center justify-center"
                   whileHover={{
                     scale: 1.1,
                     rotate: 5,
                     transition: { type: "spring", stiffness: 400, damping: 20 },
                   }}
                 >
-                  <Mail size={20} className="text-blue-400" />
+                  <Mail size={18} className="text-blue-400 sm:text-[20px]" />
                 </motion.div>
                 <div className="text-left">
-                  <h3 className="text-xl font-semibold text-white">Email Me</h3>
+                  <h3 className="text-lg sm:text-xl font-semibold text-white">
+                    Email Me
+                  </h3>
                   <p className="text-gray-400 text-sm">Drop me a message</p>
                 </div>
               </div>
 
               <motion.div
-                className="flex items-center gap-3 group cursor-pointer"
+                className="flex items-center gap-2 sm:gap-3 group cursor-pointer"
                 onClick={copyToClipboard}
                 whileHover={{
                   x: 5,
@@ -153,7 +155,7 @@ export function ContactSection() {
                   transition: { type: "spring", stiffness: 400, damping: 20 },
                 }}
               >
-                <span className="text-lg text-blue-300 font-medium group-hover:text-blue-200 transition-colors">
+                <span className="text-base sm:text-lg text-blue-300 font-medium group-hover:text-blue-200 transition-colors truncate">
                   {email}
                 </span>
                 <motion.div
@@ -166,6 +168,7 @@ export function ContactSection() {
                       : {}
                   }
                   transition={{ duration: 0.5 }}
+                  className="flex-shrink-0"
                 >
                   {copied ? (
                     <FaCheck className="text-green-400 text-sm" />
@@ -202,13 +205,13 @@ export function ContactSection() {
             </div>
           </ColorSwingBox>
 
-          {/* Social icons - Right side */}
-          <div className="space-y-6">
-            <div className="grid grid-cols-2 gap-4 h-full">
+          {/* Social icons */}
+          <div className="space-y-4 sm:space-y-6">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 h-full">
               {socialLinks.map((social, index) => (
                 <ColorSwingBox
                   key={social.name}
-                  className="flex flex-col items-center justify-center p-6 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl min-h-[120px] relative overflow-hidden"
+                  className="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl min-h-[100px] sm:min-h-[120px] relative overflow-hidden"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={
                     isInView
@@ -256,7 +259,7 @@ export function ContactSection() {
                     }}
                   >
                     <motion.div
-                      className="text-gray-400 group-hover:text-white transition-colors duration-300 mb-3"
+                      className="text-gray-400 group-hover:text-white transition-colors duration-300 mb-2 sm:mb-3"
                       whileHover={{
                         scale: 1.2,
                         rotate: 5,
@@ -269,11 +272,11 @@ export function ContactSection() {
                     >
                       {social.icon}
                     </motion.div>
-                    <div className="text-center space-y-1">
-                      <p className="font-medium text-sm text-gray-300 group-hover:text-white transition-colors duration-300">
+                    <div className="text-center space-y-0.5 sm:space-y-1">
+                      <p className="font-medium text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors duration-300">
                         {social.name}
                       </p>
-                      <p className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors duration-300">
+                      <p className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors duration-300 truncate max-w-full">
                         {social.username}
                       </p>
                     </div>

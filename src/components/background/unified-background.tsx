@@ -200,7 +200,8 @@ export function UnifiedBackground() {
 
     const createStars = () => {
       stars.length = 0;
-      for (let i = 0; i < 60; i++) {
+      const numStars = window.innerWidth < 768 ? 10 : 30;
+      for (let i = 0; i < numStars; i++) {
         const size = Math.random() * 1.8 + 0.8;
         stars.push({
           x: Math.random() * canvas.width,
