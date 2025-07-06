@@ -55,18 +55,6 @@ export function Intro({
             repeatType: "reverse",
           }}
         />
-        {/* <motion.div
-          className="absolute bottom-20 right-10 w-40 h-40 rounded-full bg-blue-500/40 blur-3xl"
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.4, 0.6, 0.4],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-        /> */}
       </div>
 
       <motion.h1

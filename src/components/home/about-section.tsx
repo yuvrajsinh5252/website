@@ -7,8 +7,8 @@ import {
   SquareArrowOutUpRight,
   GraduationCap,
   GitBranch,
-  Cpu,
   Monitor,
+  Code2,
 } from "lucide-react";
 import { SiGithub } from "react-icons/si";
 import Link from "next/link";
@@ -138,7 +138,7 @@ export function AboutSection() {
                 className="space-y-4"
               >
                 <div className="flex items-center gap-3">
-                  <Cpu size={25} className="text-cyan-400" />
+                  <Code2 size={25} className="text-cyan-400" />
                   <h3 className="text-white font-semibold text-xl">
                     Technical Skills
                   </h3>
