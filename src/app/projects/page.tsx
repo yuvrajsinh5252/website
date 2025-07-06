@@ -25,7 +25,7 @@ export default function Home() {
             </h1>
           </div>
           <p className="text-gray-400 text-base sm:text-lg max-w-2xl">
-            A collection of projects I've built, exploring different
+            A collection of projects I&apos;ve built, exploring different
             technologies and solving real-world problems.
           </p>
         </motion.div>

@@ -9,12 +9,13 @@ import { CalendarIcon } from "lucide-react";
 import { constructMetadata } from "@/lib/utils";
 import { Metadata } from "next";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  const post = getBlogPost(params.slug);
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const postData = await params;
+  const post = getBlogPost(postData.slug);
 
   if (!post) {
     return notFound();
@@ -27,7 +28,7 @@ export async function generateMetadata({
   });
 }
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   const posts = getBlogPosts();
   return posts.map((post) => ({
     slug: post.slug,
@@ -48,9 +49,10 @@ const components = {
 export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const post = getBlogPost(params.slug);
+  const postData = await params;
+  const post = getBlogPost(postData.slug);
 
   if (!post) {
     notFound();

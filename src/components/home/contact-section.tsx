@@ -103,10 +103,10 @@ export function ContactSection() {
           className="mb-8 sm:mb-10 md:mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 sm:mb-8">
-            Let's Connect
+            Let&apos;s Connect
           </h2>
           <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto px-4">
-            I'm always open to new opportunities, collaborations, and
+            I&apos;m always open to new opportunities, collaborations, and
             interesting conversations. Feel free to reach out!
           </p>
         </motion.div>

@@ -215,7 +215,7 @@ export function ContactUs({
               transition: { type: "spring", stiffness: 300, damping: 20 },
             }}
           >
-            Let's Connect
+            Let&apos;s Connect
           </motion.h2>
 
           {/* Animated underline */}
@@ -235,8 +235,8 @@ export function ContactUs({
             transition: { type: "spring", stiffness: 300, damping: 20 },
           }}
         >
-          I'm always open to new opportunities, collaborations, and interesting
-          conversations. Feel free to reach out!
+          I&apos;m always open to new opportunities, collaborations, and
+          interesting conversations. Feel free to reach out!
         </motion.p>
       </motion.div>
 

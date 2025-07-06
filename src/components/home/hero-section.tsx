@@ -119,7 +119,7 @@ export function HeroSection() {
         {/* Greeting and name combined */}
         <motion.div variants={itemVariants} className="space-y-3 sm:space-y-4">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-            <span className="text-gray-300">Hi, I'm</span>
+            <span className="text-gray-300">Hi, I&apos;m</span>
             <span className="mt-1 block bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400 bg-clip-text leading-tight text-transparent">
               Yuvrajsinh Gohil
             </span>

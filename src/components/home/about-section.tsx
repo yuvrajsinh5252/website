@@ -69,7 +69,7 @@ export function AboutSection() {
                 <p className="text-gray-200 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
                   My journey into technology began with curiosity and has
                   evolved into a deep passion for creating meaningful digital
-                  experiences. I've discovered my love for hackathons and
+                  experiences. I&apos;ve discovered my love for hackathons and
                   collaborative projects, where I can work with brilliant minds
                   and constantly explore emerging technologies to build
                   solutions that solve real-world problems.
@@ -125,10 +125,10 @@ export function AboutSection() {
                   </h3>
                 </div>
                 <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-                  I'm passionate about the open-source ecosystem and actively
-                  contribute to projects that align with my interests. I love
-                  experimenting with new frameworks and building side projects
-                  that solve interesting problems or improve developer
+                  I&apos;m passionate about the open-source ecosystem and
+                  actively contribute to projects that align with my interests.
+                  I love experimenting with new frameworks and building side
+                  projects that solve interesting problems or improve developer
                   workflows.
                 </p>
               </motion.div>
