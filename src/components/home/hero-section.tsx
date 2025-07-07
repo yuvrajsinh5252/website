@@ -2,11 +2,18 @@
 
 import { SOCIAL_LINKS } from "@/data/social-links";
 import { motion, Variants } from "framer-motion";
-import { Mail, ArrowDown } from "lucide-react";
 import Link from "next/link";
 import { SiGithub, SiLinkedin } from "react-icons/si";
 import { useState, useEffect } from "react";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaXTwitter, FaArrowDown, FaEnvelope } from "react-icons/fa6";
+import { IconType } from "react-icons";
+
+const iconMap: { [key: string]: IconType } = {
+  FaGithub: SiGithub,
+  FaLinkedin: SiLinkedin,
+  FaTwitter: FaXTwitter,
+  FaEnvelope: FaEnvelope,
+};
 
 export function HeroSection() {
   const [showScrollButton, setShowScrollButton] = useState(true);
@@ -15,12 +22,10 @@ export function HeroSection() {
     const aboutSection = document.getElementById("about");
     if (aboutSection) {
       aboutSection.scrollIntoView({ behavior: "smooth" });
-      // Hide the button after scrolling
       setTimeout(() => setShowScrollButton(false), 1000);
     }
   };
 
-  // Hide button if user has scrolled down manually
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 200) {
@@ -32,7 +37,6 @@ export function HeroSection() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Animation variants
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -66,7 +70,6 @@ export function HeroSection() {
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen text-center px-4 sm:px-6 md:px-8 overflow-hidden">
-      {/* Enhanced background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
           className="absolute inset-0 opacity-[0.02]"
@@ -79,7 +82,6 @@ export function HeroSection() {
           }}
         />
 
-        {/* Subtle floating orbs */}
         <motion.div
           className="absolute top-1/4 left-1/4 w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-blue-500/5 blur-3xl"
           animate={{
@@ -109,14 +111,12 @@ export function HeroSection() {
         />
       </div>
 
-      {/* Main content */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         className="space-y-8 sm:space-y-10 max-w-4xl mx-auto relative z-10"
       >
-        {/* Greeting and name combined */}
         <motion.div variants={itemVariants} className="space-y-3 sm:space-y-4">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
             <span className="text-gray-300">Hi, I&apos;m</span>
@@ -126,7 +126,6 @@ export function HeroSection() {
           </h1>
         </motion.div>
 
-        {/* Student description */}
         <motion.p
           variants={itemVariants}
           className="text-base sm:text-lg md:text-xl font-light leading-relaxed max-sm:-mx-6 text-gray-400 px-2"
@@ -144,83 +143,71 @@ export function HeroSection() {
           crafting innovative digital solutions.
         </motion.p>
 
-        {/* Social links */}
         <motion.div
           variants={itemVariants}
           className="flex gap-4 sm:gap-6 justify-center items-center pt-6 sm:pt-8 flex-wrap"
         >
-          {SOCIAL_LINKS.map((social, index) => (
-            <motion.div
-              key={social.name}
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                delay: 0.8 + index * 0.1,
-                type: "spring",
-                stiffness: 200,
-                damping: 20,
-              }}
-              whileHover={{
-                scale: 1.2,
-                y: -5,
-                transition: {
+          {SOCIAL_LINKS.map((social, index) => {
+            const Icon = iconMap[social.icon];
+
+            if (social.name === "Discord") {
+              return null;
+            }
+
+            return (
+              <motion.div
+                key={social.name}
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                  delay: 0.8 + index * 0.1,
                   type: "spring",
-                  stiffness: 400,
-                  damping: 25,
-                },
-              }}
-              whileTap={{
-                scale: 0.9,
-                transition: {
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 25,
-                },
-              }}
-            >
-              <Link
-                href={
-                  social.name === "Email"
-                    ? social.url
-                    : { pathname: social.url }
-                }
-                target="_blank"
-                className="group relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full
-                         border-2 border-gray-700 hover:border-blue-400 bg-gray-800/50 hover:bg-blue-500/10
-                         transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25
-                         backdrop-blur-sm"
+                  stiffness: 200,
+                  damping: 20,
+                }}
+                whileHover={{
+                  scale: 1.2,
+                  y: -5,
+                  transition: {
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 25,
+                  },
+                }}
+                whileTap={{
+                  scale: 0.9,
+                  transition: {
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 25,
+                  },
+                }}
               >
-                {social.icon === "Github" && (
-                  <SiGithub
-                    size={20}
-                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10 sm:text-[22px]"
-                  />
-                )}
-                {social.icon === "Linkedin" && (
-                  <SiLinkedin
-                    size={20}
-                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10 sm:text-[22px]"
-                  />
-                )}
-                {social.icon === "Mail" && (
-                  <Mail
-                    size={20}
-                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10 sm:text-[22px]"
-                  />
-                )}
-                {social.icon === "Twitter" && (
-                  <FaXTwitter
-                    size={20}
-                    className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10 sm:text-[22px]"
-                  />
-                )}
-              </Link>
-            </motion.div>
-          ))}
+                <Link
+                  href={
+                    social.name === "Email"
+                      ? social.url
+                      : { pathname: social.url }
+                  }
+                  target="_blank"
+                  className="group relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full
+                           border-2 border-gray-700 hover:border-blue-400 bg-gray-800/50 hover:bg-blue-500/10
+                           transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25
+                           backdrop-blur-sm"
+                >
+                  {Icon && (
+                    <Icon
+                      size={20}
+                      className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10 sm:text-[22px]"
+                    />
+                  )}
+                </Link>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </motion.div>
 
-      {/* Enhanced scroll indicator */}
       {showScrollButton && (
         <motion.button
           onClick={scrollToAbout}
@@ -253,19 +240,17 @@ export function HeroSection() {
           }}
         >
           <motion.div
-            animate={{ y: [0, 8, 0] }}
+            className="flex items-center gap-2 px-4 py-2"
+            animate={{ y: [0, -4, 0] }}
             transition={{
-              duration: 2,
+              duration: 1.5,
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="relative flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-gray-600
-                     group-hover:border-blue-400 transition-all duration-250 bg-gray-800/50 group-hover:bg-blue-500/10
-                     hover:shadow-lg hover:shadow-blue-500/25 backdrop-blur-sm"
           >
-            <ArrowDown
-              size={16}
-              className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10 sm:text-[18px]"
+            <FaArrowDown
+              size={14}
+              className="text-gray-400 group-hover:text-white transition-colors duration-200"
             />
           </motion.div>
         </motion.button>

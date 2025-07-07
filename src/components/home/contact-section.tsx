@@ -1,39 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail } from "lucide-react";
+import { FaEnvelope } from "react-icons/fa";
 import { SiGithub, SiLinkedin, SiX, SiDiscord } from "react-icons/si";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { FaCopy, FaCheck } from "react-icons/fa";
 import { ColorSwingBox } from "@/components/effects/color-swing-box";
+import { SOCIAL_LINKS } from "@/data/social-links";
+import { IconType } from "react-icons";
 
-const socialLinks = [
-  {
-    name: "GitHub",
-    icon: <SiGithub className="text-xl" />,
-    url: "https://github.com/yuvrajsinh5252",
-    username: "@yuvrajsinh5252",
-  },
-  {
-    name: "LinkedIn",
-    icon: <SiLinkedin className="text-xl" />,
-    url: "https://www.linkedin.com/in/yuvrajsinh099",
-    username: "yuvrajsinh099",
-  },
-  {
-    name: "Twitter",
-    icon: <SiX className="text-xl" />,
-    url: "https://x.com/Yuvrajsinh_099",
-    username: "@Yuvrajsinh_099",
-  },
-  {
-    name: "Discord",
-    icon: <SiDiscord className="text-xl" />,
-    url: "https://discord.com/users/1035138685689139311",
-    username: "yuvrajsinh",
-  },
-];
+const iconMap: { [key: string]: IconType } = {
+  FaGithub: SiGithub,
+  FaLinkedin: SiLinkedin,
+  FaTwitter: SiX,
+  FaDiscord: SiDiscord,
+};
 
 export function ContactSection() {
   const ref = useRef(null);
@@ -47,7 +29,6 @@ export function ContactSection() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      // Fallback for older browsers
       const textArea = document.createElement("textarea");
       textArea.value = email;
       document.body.appendChild(textArea);
@@ -65,7 +46,6 @@ export function ContactSection() {
       className="min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-24 relative"
       id="contact"
     >
-      {/* Subtle background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute top-1/3 left-1/4 w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-blue-500/5 blur-3xl"
@@ -95,7 +75,6 @@ export function ContactSection() {
       </div>
 
       <div className="max-w-5xl mx-auto text-center relative z-10">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -111,16 +90,13 @@ export function ContactSection() {
           </p>
         </motion.div>
 
-        {/* Contact content - responsive layout */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch"
         >
-          {/* Email box */}
           <ColorSwingBox className="p-6 sm:p-8 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-150 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl min-h-[240px] sm:min-h-[280px] flex items-center relative overflow-hidden">
-            {/* Subtle inner glow effect */}
             <div className="absolute inset-0 rounded-xl opacity-20 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 pointer-events-none" />
 
             <div className="space-y-4 sm:space-y-6 w-full relative z-10">
@@ -133,7 +109,10 @@ export function ContactSection() {
                     transition: { type: "spring", stiffness: 400, damping: 20 },
                   }}
                 >
-                  <Mail size={18} className="text-blue-400 sm:text-[20px]" />
+                  <FaEnvelope
+                    size={18}
+                    className="text-blue-400 sm:text-[20px]"
+                  />
                 </motion.div>
                 <div className="text-left">
                   <h3 className="text-lg sm:text-xl font-semibold text-white">
@@ -205,64 +184,37 @@ export function ContactSection() {
             </div>
           </ColorSwingBox>
 
-          {/* Social icons */}
           <div className="space-y-4 sm:space-y-6">
             <div className="grid grid-cols-2 gap-3 sm:gap-4 h-full">
-              {socialLinks.map((social, index) => (
-                <ColorSwingBox
-                  key={social.name}
-                  className="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl min-h-[100px] sm:min-h-[120px] relative overflow-hidden"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={
-                    isInView
-                      ? { opacity: 1, scale: 1 }
-                      : { opacity: 0, scale: 0.8 }
-                  }
-                  transition={{
-                    delay: 0.6 + index * 0.1,
-                    duration: 0.5,
-                    ease: "easeOut",
-                  }}
-                  whileHover={{
-                    y: -3,
-                    scale: 1.02,
-                    transition: {
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 20,
-                    },
-                  }}
-                  whileTap={{
-                    scale: 0.98,
-                    transition: {
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 20,
-                    },
-                  }}
-                >
-                  {/* Subtle inner glow effect */}
-                  <div className="absolute inset-0 rounded-xl opacity-20 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 pointer-events-none" />
-
-                  <motion.a
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex flex-col items-center justify-center w-full h-full text-center relative z-10"
-                    whileHover={{
-                      scale: 1.05,
-                      transition: {
-                        type: "spring",
-                        stiffness: 400,
-                        damping: 20,
-                      },
-                    }}
-                  >
-                    <motion.div
-                      className="text-gray-400 group-hover:text-white transition-colors duration-300 mb-2 sm:mb-3"
+              {SOCIAL_LINKS.filter((link) => link.name !== "Email").map(
+                (social, index) => {
+                  const Icon = iconMap[social.icon];
+                  return (
+                    <ColorSwingBox
+                      key={social.name}
+                      className="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl min-h-[100px] sm:min-h-[120px] relative overflow-hidden"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={
+                        isInView
+                          ? { opacity: 1, scale: 1 }
+                          : { opacity: 0, scale: 0.8 }
+                      }
+                      transition={{
+                        delay: 0.6 + index * 0.1,
+                        duration: 0.5,
+                        ease: "easeOut",
+                      }}
                       whileHover={{
-                        scale: 1.2,
-                        rotate: 5,
+                        y: -3,
+                        scale: 1.02,
+                        transition: {
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 20,
+                        },
+                      }}
+                      whileTap={{
+                        scale: 0.98,
                         transition: {
                           type: "spring",
                           stiffness: 400,
@@ -270,19 +222,61 @@ export function ContactSection() {
                         },
                       }}
                     >
-                      {social.icon}
-                    </motion.div>
-                    <div className="text-center space-y-0.5 sm:space-y-1">
-                      <p className="font-medium text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors duration-300">
-                        {social.name}
-                      </p>
-                      <p className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors duration-300 truncate max-w-full">
-                        {social.username}
-                      </p>
-                    </div>
-                  </motion.a>
-                </ColorSwingBox>
-              ))}
+                      <div className="absolute inset-0 rounded-xl opacity-20 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 pointer-events-none" />
+
+                      <motion.a
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col items-center justify-center w-full h-full text-center relative z-10"
+                        whileHover={{
+                          scale: 1.05,
+                          transition: {
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 20,
+                          },
+                        }}
+                      >
+                        <motion.div
+                          className="text-gray-400 group-hover:text-white transition-colors duration-300 mb-2 sm:mb-3"
+                          whileHover={{
+                            scale: 1.2,
+                            rotate: 5,
+                            transition: {
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 20,
+                            },
+                          }}
+                        >
+                          <motion.div
+                            className="flex items-center gap-1"
+                            whileHover={{
+                              scale: 1.1,
+                              transition: {
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 20,
+                              },
+                            }}
+                          >
+                            {Icon && <Icon className="text-xl" />}
+                          </motion.div>
+                        </motion.div>
+                        <div className="text-center space-y-0.5 sm:space-y-1">
+                          <p className="font-medium text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors duration-300">
+                            {social.name}
+                          </p>
+                          <p className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors duration-200">
+                            {social.username}
+                          </p>
+                        </div>
+                      </motion.a>
+                    </ColorSwingBox>
+                  );
+                }
+              )}
             </div>
           </div>
         </motion.div>

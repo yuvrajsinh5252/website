@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SquareArrowOutUpRight } from "lucide-react";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 import { SiGithub } from "react-icons/si";
@@ -76,7 +76,7 @@ export default function Home() {
                           rel="noreferrer"
                           className="flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 bg-blue-400/10 hover:bg-blue-400/20 border border-blue-400/20 hover:border-blue-400/40 rounded-lg transition-all duration-150 w-full sm:w-auto"
                         >
-                          <SquareArrowOutUpRight size={12} />
+                          <FaExternalLinkAlt size={12} />
                           <span>Live</span>
                         </Link>
                       </motion.div>

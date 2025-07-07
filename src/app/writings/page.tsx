@@ -5,14 +5,14 @@ import { BlogCard } from "@/components/blog/blog-card";
 import { BlogHeader } from "@/components/blog/blog-header";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { motion } from "framer-motion";
-import { FaUser, FaCode } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 
 export default function WritingsPage() {
   const posts = getBlogPosts();
   const personalPosts = posts.filter((post) => post.category === "personal");
-  const adventOfCodePosts = posts.filter(
-    (post) => post.category === "advent-of-code"
-  );
+  // const adventOfCodePosts = posts.filter(
+  //   (post) => post.category === "advent-of-code"
+  // );
 
   return (
     <div className="min-h-screen">
@@ -21,7 +21,6 @@ export default function WritingsPage() {
           <BlogHeader title="Writings" />
 
           <div className="space-y-16 sm:space-y-20 mt-12 sm:mt-14 md:mt-16">
-            {/* Personal Posts Section */}
             {personalPosts.length > 0 && (
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -46,7 +45,6 @@ export default function WritingsPage() {
               </motion.div>
             )}
 
-            {/* Advent of Code Section */}
             {/* <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

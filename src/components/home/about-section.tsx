@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import {
-  SquareArrowOutUpRight,
-  GraduationCap,
-  GitBranch,
-  Monitor,
-  Code2,
-} from "lucide-react";
+  FaExternalLinkAlt,
+  FaGraduationCap,
+  FaGitAlt,
+  FaDesktop,
+  FaCode,
+} from "react-icons/fa";
 import { SiGithub } from "react-icons/si";
 import Link from "next/link";
 import { PROJECTS } from "@/data/project";
@@ -57,7 +57,7 @@ export function AboutSection() {
                 className="space-y-4"
               >
                 <div className="flex items-center gap-3 mb-4 sm:mb-6">
-                  <GraduationCap
+                  <FaGraduationCap
                     size={24}
                     className="text-blue-400 sm:text-[28px]"
                   />
@@ -116,7 +116,7 @@ export function AboutSection() {
                 className="space-y-4"
               >
                 <div className="flex items-center gap-3 mb-4 sm:mb-6">
-                  <GitBranch
+                  <FaGitAlt
                     size={22}
                     className="text-green-400 sm:text-[25px]"
                   />
@@ -144,7 +144,7 @@ export function AboutSection() {
                 className="space-y-4"
               >
                 <div className="flex items-center gap-3">
-                  <Code2 size={22} className="text-cyan-400 sm:text-[25px]" />
+                  <FaCode size={22} className="text-cyan-400 sm:text-[25px]" />
                   <h3 className="text-white font-semibold text-lg sm:text-xl">
                     Technical Skills
                   </h3>
@@ -270,9 +270,9 @@ export function AboutSection() {
                 className="space-y-4"
               >
                 <div className="flex items-center gap-3 mb-4 sm:mb-6">
-                  <Monitor
+                  <FaDesktop
                     size={22}
-                    className="text-emerald-400 sm:text-[25px]"
+                    className="text-purple-400 sm:text-[25px]"
                   />
                   <h3 className="text-white font-semibold text-lg sm:text-xl">
                     Featured Projects
@@ -303,14 +303,29 @@ export function AboutSection() {
                         </h4>
                         <div className="flex gap-2 flex-shrink-0">
                           {project.link && (
-                            <Link
-                              href={project.link}
-                              target="_blank"
-                              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 bg-blue-400/10 hover:bg-blue-400/20 border border-blue-400/20 hover:border-blue-400/40 rounded-lg transition-all duration-300 hover:scale-105"
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={
+                                isInView
+                                  ? { opacity: 1, scale: 1 }
+                                  : { opacity: 0, scale: 0.8 }
+                              }
+                              transition={{
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 20,
+                              }}
                             >
-                              <SquareArrowOutUpRight size={12} />
-                              <span>Live</span>
-                            </Link>
+                              <Link
+                                href={project.link}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 bg-blue-400/10 hover:bg-blue-400/20 border border-blue-400/20 hover:border-blue-400/40 rounded-lg transition-all duration-150 w-full"
+                              >
+                                <FaExternalLinkAlt size={12} />
+                                <span>Live Demo</span>
+                              </Link>
+                            </motion.div>
                           )}
                           <Link
                             href={project.githubLink}
@@ -352,7 +367,7 @@ export function AboutSection() {
                     className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors duration-300 group"
                   >
                     <span>Explore all projects</span>
-                    <SquareArrowOutUpRight
+                    <FaExternalLinkAlt
                       size={14}
                       className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
                     />

@@ -5,9 +5,9 @@ import { notFound } from "next/navigation";
 import { AnimatedPost } from "@/components/effects/animated-post";
 import { IoIosArrowBack } from "react-icons/io";
 import { MagicLink } from "@/components/effects/magiclink";
-import { CalendarIcon } from "lucide-react";
 import { constructMetadata } from "@/lib/utils";
 import { Metadata } from "next";
+import { FaCalendar } from "react-icons/fa";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -73,7 +73,7 @@ export default async function BlogPostPage({
           <header className="mb-12 flex justify-between items-center">
             <h1 className="text-4xl font-bold bg-clip-text">{post.title}</h1>
             <p className="max-sm:hidden text-sm font-semibold text-gray-500 dark:text-gray-400 flex items-center gap-2 transition-colors">
-              <CalendarIcon className="inline-block mr-2" size={18} />
+              <FaCalendar className="inline-block mr-2" size={18} />
               {post.date}
             </p>
           </header>

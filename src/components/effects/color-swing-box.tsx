@@ -1,6 +1,12 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  animate,
+  Transition,
+} from "framer-motion";
 import { useState } from "react";
 
 interface ColorSwingBoxProps {
@@ -41,7 +47,11 @@ export function ColorSwingBox({
   const hoverEffect = {
     y: -5,
     scale: 1.02,
-    transition: { type: "spring", stiffness: 500, damping: 30 },
+    transition: {
+      type: "spring",
+      stiffness: 500,
+      damping: 30,
+    } satisfies Transition,
   };
 
   return (
@@ -51,7 +61,6 @@ export function ColorSwingBox({
       whileHover={hoverEffect}
       {...restProps}
     >
-      {/* Color swing border effect */}
       <motion.div
         className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-100"
         style={{
