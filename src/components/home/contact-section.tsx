@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, ExternalLink } from "lucide-react";
+import { Mail } from "lucide-react";
 import { SiGithub, SiLinkedin, SiX, SiDiscord } from "react-icons/si";
-import { useInView } from "motion/react";
+import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { FaCopy, FaCheck } from "react-icons/fa";
 import { ColorSwingBox } from "@/components/effects/color-swing-box";

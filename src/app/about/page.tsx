@@ -5,7 +5,7 @@ import { Intro } from "@/components/about/intro";
 import { Skills } from "@/components/about/skills";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { useEffect, useState } from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<string>("introduction");

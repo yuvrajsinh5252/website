@@ -2,7 +2,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { FaCode, FaHome, FaUser, FaPenFancy } from "react-icons/fa";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 interface NavLinkProps {
   href: string;

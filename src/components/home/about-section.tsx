@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useInView } from "motion/react";
+import { useInView } from "framer-motion";
 import { useRef } from "react";
 import {
   SquareArrowOutUpRight,

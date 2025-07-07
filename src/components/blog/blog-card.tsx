@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { BlogMeta } from "@/types/blog";
 import { format } from "date-fns";
 import { FaClock, FaTag } from "react-icons/fa";

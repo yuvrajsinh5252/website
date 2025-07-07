@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, Variants } from "framer-motion";
 import { ReactNode } from "react";
 
 interface AnimatedPostProps {
@@ -8,7 +8,7 @@ interface AnimatedPostProps {
 }
 
 export function AnimatedPost({ children }: AnimatedPostProps) {
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -18,7 +18,7 @@ export function AnimatedPost({ children }: AnimatedPostProps) {
     },
   };
 
-  const item = {
+  const item: Variants = {
     hidden: { opacity: 0, y: 20 },
     show: {
       opacity: 1,

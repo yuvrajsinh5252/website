@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useTransform, animate } from "motion/react";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { useState } from "react";
 
 interface ColorSwingBoxProps {

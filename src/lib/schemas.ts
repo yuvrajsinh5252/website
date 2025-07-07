@@ -5,8 +5,7 @@ export const personSchema = {
   "@type": "Person",
   name: siteConfig.name,
   alternateName: ["Yuvrajsinh", siteConfig.name],
-  description:
-    "Computer Science student and software developer specializing in web technologies",
+  description: "Computer Science student and software developer",
   url: siteConfig.url,
   image: `${siteConfig.url}/logo.png`,
   alumniOf: {

@@ -4,10 +4,8 @@ import { getBlogPosts } from "@/lib/blog";
 import { BlogCard } from "@/components/blog/blog-card";
 import { BlogHeader } from "@/components/blog/blog-header";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
-import { motion } from "motion/react";
-import { FaUser, FaCode, FaStar, FaCalendarAlt } from "react-icons/fa";
-import Link from "next/link";
-import { ColorSwingBox } from "@/components/effects/color-swing-box";
+import { motion } from "framer-motion";
+import { FaUser, FaCode } from "react-icons/fa";
 
 export default function WritingsPage() {
   const posts = getBlogPosts();

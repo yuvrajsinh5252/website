@@ -6,7 +6,7 @@ import {
   useMotionValue,
   useSpring,
   AnimatePresence,
-} from "motion/react";
+} from "framer-motion";
 
 interface CursorState {
   isVisible: boolean;
