@@ -1,4 +1,4 @@
-export interface BlogPost {
+export interface Post {
   slug: string;
   title: string;
   description: string;
@@ -10,7 +10,7 @@ export interface BlogPost {
   coverImage?: string;
 }
 
-export interface BlogMeta {
+export interface PostMeta {
   slug: string;
   title: string;
   description: string;

@@ -1,11 +1,17 @@
----
-title: "HackNUthon 5.0: Victory Unleashed"
-date: "2024-04-22"
-description: "I'm thrilled to share an incredible milestone - our team Formality secured not just one, but two major victories at HackNUthon 5.0! We clinched 2nd place..."
-tags: ["Hackathon", "EdTech", "Next.js", "TypeScript"]
----
+import { Post, PostMeta } from "@/types/post";
 
-🎉 I'm thrilled to share an incredible milestone - our team Formality secured not just one, but two major victories at HackNUthon 5.0! We clinched 2nd place in both the overall category and the EdTech track sponsored by Crest Data Systems. Among 800+ participants and roughly 200 teams, this achievement feels extra special.
+const POSTS: Post[] = [
+  {
+    slug: "hacknuthon-5.0",
+    title: "HackNUthon 5.0: Victory Unleashed",
+    description:
+      "I'm thrilled to share an incredible milestone - our team Formality secured not just one, but two major victories at HackNUthon 5.0! We clinched 2nd place...",
+    date: "2024-04-22",
+    tags: ["Hackathon", "EdTech", "Next.js", "TypeScript"],
+    category: "personal",
+    readingTime: "3 min read",
+    coverImage: "/images/hacknuthon-5.0.jpg",
+    content: `🎉 I'm thrilled to share an incredible milestone - our team Formality secured not just one, but two major victories at HackNUthon 5.0! We clinched 2nd place in both the overall category and the EdTech track sponsored by Crest Data Systems. Among 800+ participants and roughly 200 teams, this achievement feels extra special.
 
 ![Award ceremony at HackNUthon 5.0](/images/hacknuthon-5.0.jpg)
 
@@ -47,4 +53,35 @@ The project is open-source and available for review: [Brilliant++ Repository](ht
 
 We extend our sincere gratitude to CSI Nirma University and Crest Data Systems for organizing this opportunity. The guidance from mentors and support from the organizing team were instrumental in our success.
 
-This hackathon experience reinforced the value of focused teamwork and innovative problem-solving in software development. For those considering participation in future hackathons, it provides an excellent opportunity for both technical growth and professional development.
+This hackathon experience reinforced the value of focused teamwork and innovative problem-solving in software development. For those considering participation in future hackathons, it provides an excellent opportunity for both technical growth and professional development.`,
+  },
+  {
+    slug: "advent-of-code-2024",
+    title: "Advent of Code 2024",
+    description: "My journey through the 25 days of coding challenges.",
+    date: new Date().toISOString(),
+    tags: ["Advent of Code"],
+    category: "advent-of-code",
+    readingTime: "TBD",
+    coverImage: "",
+    content: ``,
+  },
+];
+
+export const getPosts = (): PostMeta[] => {
+  return POSTS.map((post) => ({
+    slug: post.slug,
+    title: post.title,
+    description: post.description,
+    date: post.date,
+    tags: post.tags,
+    category: post.category,
+    readingTime: post.readingTime,
+    coverImage: post.coverImage,
+  })).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+};
+
+export const getPost = (slug: string): Post | null => {
+  const post = POSTS.find((p) => p.slug === slug);
+  return post || null;
+};

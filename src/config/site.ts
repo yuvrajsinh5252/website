@@ -1,10 +1,12 @@
 export const siteConfig = {
   name: "Yuvrajsinh Gohil",
   url: "https://www.yuvrajsinh.me",
-  ogImage: "/logo.png",
-  title: "Yuvrajsinh Gohil - Developer Portfolio",
+  title: {
+    default: "Yuvrajsinh Gohil - Developer Portfolio",
+    template: "%s | Yuvrajsinh Gohil",
+  },
   description:
-    "A passionate Computer Science student at Nirma University, specializing in software development, web technologies, and system design. Explore my projects, skills, and experience in React, Next.js, TypeScript, and more.",
+    "A computer Science student from Nirma University, passionate about software development.",
   links: {
     twitter: "https://twitter.com/Yuvrajsinh_099",
     github: "https://github.com/yuvrajsinh5252",
@@ -14,6 +16,7 @@ export const siteConfig = {
   keywords: [
     "Yuvrajsinh Gohil",
     "Yuvrajsinh",
+    "Gohil",
     "software developer",
     "web developer",
     "Computer Science",
@@ -21,14 +24,15 @@ export const siteConfig = {
     "React",
     "Next.js",
     "TypeScript",
-    "JavaScript",
     "portfolio",
     "projects",
     "programming",
     "tech",
     "engineering student",
     "web development",
-    "system design",
+    "full stack developer",
+    "frontend developer",
+    "backend developer",
   ],
 };
 
