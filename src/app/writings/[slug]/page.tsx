@@ -1,4 +1,4 @@
-import { getBlogPost, getBlogPosts } from "@/lib/blog";
+import { getPost, getPosts } from "@/lib/post";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -15,7 +15,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const postData = await params;
-  const post = getBlogPost(postData.slug);
+  const post = getPost(postData.slug);
 
   if (!post) {
     return notFound();
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export function generateStaticParams() {
-  const posts = getBlogPosts();
+  const posts = getPosts();
   return posts.map((post) => ({
     slug: post.slug,
   }));
@@ -46,13 +46,13 @@ const components = {
   ),
 };
 
-export default async function BlogPostPage({
+export default async function PostPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const postData = await params;
-  const post = getBlogPost(postData.slug);
+  const post = getPost(postData.slug);
 
   if (!post) {
     notFound();

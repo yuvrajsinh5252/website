@@ -31,7 +31,7 @@ export function AboutSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
           className="text-start"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
@@ -43,7 +43,7 @@ export function AboutSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
           className="space-y-8 sm:space-y-10 md:space-y-12"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start">
@@ -53,7 +53,7 @@ export function AboutSection() {
                 animate={
                   isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
                 }
-                transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+                transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
                 className="space-y-4"
               >
                 <div className="flex items-center gap-3 mb-4 sm:mb-6">
@@ -76,7 +76,7 @@ export function AboutSection() {
                 </p>
 
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3 p-3 sm:p-4 rounded-lg bg-blue-400/5 backdrop-blur-sm border border-blue-400/10 hover:bg-blue-400/8 hover:backdrop-blur-md transition-all duration-300">
+                  <div className="flex items-center gap-3 p-3 sm:p-4 rounded-lg bg-blue-400/5 backdrop-blur-sm border border-blue-400/10 hover:bg-blue-400/8 hover:backdrop-blur-md transition-all duration-200">
                     <div className="w-2 h-2 bg-blue-400 rounded-full flex-shrink-0"></div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
@@ -93,7 +93,7 @@ export function AboutSection() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 p-3 sm:p-4 rounded-lg bg-green-400/5 backdrop-blur-sm border border-green-400/10 hover:bg-green-400/8 hover:backdrop-blur-md transition-all duration-300">
+                  <div className="flex items-center gap-3 p-3 sm:p-4 rounded-lg bg-green-400/5 backdrop-blur-sm border border-green-400/10 hover:bg-green-400/8 hover:backdrop-blur-md transition-all duration-200">
                     <div className="w-2 h-2 bg-green-400 rounded-full flex-shrink-0"></div>
                     <div className="flex-1 min-w-0">
                       <span className="text-white font-medium text-sm block">
@@ -112,7 +112,7 @@ export function AboutSection() {
                 animate={
                   isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
                 }
-                transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+                transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
                 className="space-y-4"
               >
                 <div className="flex items-center gap-3 mb-4 sm:mb-6">
@@ -140,7 +140,7 @@ export function AboutSection() {
                 animate={
                   isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }
                 }
-                transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+                transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
                 className="space-y-4"
               >
                 <div className="flex items-center gap-3">
@@ -252,7 +252,7 @@ export function AboutSection() {
                           duration: 0.3,
                           ease: "easeOut",
                         }}
-                        className={`px-2.5 py-1.5 text-xs sm:text-sm text-white bg-gradient-to-r ${skill.color} rounded-lg ${skill.border} border backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 hover:scale-105`}
+                        className={`px-2.5 py-1.5 text-xs sm:text-sm text-white bg-gradient-to-r ${skill.color} rounded-lg ${skill.border} border backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-200 hover:scale-105`}
                       >
                         {skill.name}
                       </motion.span>
@@ -266,7 +266,7 @@ export function AboutSection() {
                 animate={
                   isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }
                 }
-                transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+                transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
                 className="space-y-4"
               >
                 <div className="flex items-center gap-3 mb-4 sm:mb-6">
@@ -281,95 +281,93 @@ export function AboutSection() {
 
                 <div className="space-y-4">
                   {featuredProjects.map((project, index) => (
-                    <ColorSwingBox
+                    <motion.div
                       key={index}
-                      className="p-4 sm:p-5 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl relative overflow-hidden"
                       initial={{ opacity: 0, y: 20 }}
                       animate={
                         isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
                       }
                       transition={{
-                        delay: 0.5 + index * 0.1,
-                        duration: 0.6,
+                        delay: 0.25 + index * 0.06,
+                        duration: 0.4,
                         ease: "easeOut",
                       }}
                     >
-                      {/* Subtle inner glow effect */}
-                      <div className="absolute inset-0 rounded-xl opacity-20 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 pointer-events-none" />
-
-                      <div className="flex flex-col sm:flex-row items-start justify-between mb-3 relative z-10 gap-3">
-                        <h4 className="text-base sm:text-lg font-semibold text-white group-hover:text-blue-400 transition-colors duration-300 leading-tight">
-                          {project.title}
-                        </h4>
-                        <div className="flex gap-2 flex-shrink-0">
-                          {project.link && (
-                            <motion.div
-                              initial={{ opacity: 0, scale: 0.8 }}
-                              animate={
-                                isInView
-                                  ? { opacity: 1, scale: 1 }
-                                  : { opacity: 0, scale: 0.8 }
-                              }
-                              transition={{
-                                type: "spring",
-                                stiffness: 300,
-                                damping: 20,
-                              }}
-                            >
-                              <Link
-                                href={project.link}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 bg-blue-400/10 hover:bg-blue-400/20 border border-blue-400/20 hover:border-blue-400/40 rounded-lg transition-all duration-150 w-full"
+                      <ColorSwingBox>
+                        <div className="flex flex-col sm:flex-row items-start justify-between mb-3 gap-3">
+                          <h4 className="text-base sm:text-lg font-semibold text-white group-hover:text-blue-400 transition-colors duration-200 leading-tight">
+                            {project.title}
+                          </h4>
+                          <div className="flex gap-2 flex-shrink-0">
+                            {project.link && (
+                              <motion.div
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={
+                                  isInView
+                                    ? { opacity: 1, scale: 1 }
+                                    : { opacity: 0, scale: 0.8 }
+                                }
+                                transition={{
+                                  type: "spring",
+                                  stiffness: 400,
+                                  damping: 18,
+                                }}
                               >
-                                <FaExternalLinkAlt size={12} />
-                                <span>Live Demo</span>
-                              </Link>
-                            </motion.div>
-                          )}
-                          <Link
-                            href={project.githubLink}
-                            target="_blank"
-                            className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-gray-400 hover:text-gray-300 bg-gray-400/10 hover:bg-gray-400/20 border border-gray-600/20 hover:border-gray-600/40 rounded-lg transition-all duration-300 hover:scale-105"
-                          >
-                            <SiGithub size={12} />
-                            <span>Code</span>
-                          </Link>
+                                <Link
+                                  href={project.link}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 bg-blue-400/10 hover:bg-blue-400/20 border border-blue-400/20 hover:border-blue-400/40 rounded-lg transition-all duration-150 w-full"
+                                >
+                                  <FaExternalLinkAlt size={12} />
+                                  <span>Live Demo</span>
+                                </Link>
+                              </motion.div>
+                            )}
+                            <Link
+                              href={project.githubLink}
+                              target="_blank"
+                              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-gray-400 hover:text-gray-300 bg-gray-400/10 hover:bg-gray-400/20 border border-gray-600/20 hover:border-gray-600/40 rounded-lg transition-all duration-200 hover:scale-105"
+                            >
+                              <SiGithub size={12} />
+                              <span>Code</span>
+                            </Link>
+                          </div>
                         </div>
-                      </div>
 
-                      <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2 overflow-hidden relative z-10">
-                        {project.description}
-                      </p>
+                        <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2 overflow-hidden relative z-10">
+                          {project.description}
+                        </p>
 
-                      <div className="flex items-center gap-1.5 relative z-10 flex-wrap">
-                        {project.tag.slice(0, 3).map((tech, i) => (
-                          <span
-                            key={i}
-                            className="px-2 py-1 text-xs font-medium text-gray-200 bg-gray-800/60 backdrop-blur-sm hover:bg-gray-700/80 rounded-md border border-gray-600/40 hover:border-blue-400/50"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                        {project.tag.length > 3 && (
-                          <span className="px-2 py-1 text-xs font-medium text-gray-500 bg-white/[0.05] backdrop-blur-sm rounded-md border border-white/10">
-                            +{project.tag.length - 3}
-                          </span>
-                        )}
-                      </div>
-                    </ColorSwingBox>
+                        <div className="flex items-center gap-1.5 relative z-10 flex-wrap">
+                          {project.tag.slice(0, 3).map((tech, i) => (
+                            <span
+                              key={i}
+                              className="px-2 py-1 text-xs font-medium text-gray-200 bg-gray-800/60 backdrop-blur-sm hover:bg-gray-700/80 rounded-md border border-gray-600/40 hover:border-blue-400/50"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                          {project.tag.length > 3 && (
+                            <span className="px-2 py-1 text-xs font-medium text-gray-500 bg-white/[0.05] backdrop-blur-sm rounded-md border border-white/10">
+                              +{project.tag.length - 3}
+                            </span>
+                          )}
+                        </div>
+                      </ColorSwingBox>
+                    </motion.div>
                   ))}
                 </div>
 
                 <div className="pt-4">
                   <Link
                     href="/projects"
-                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors duration-300 group"
+                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors duration-200 group"
                   >
                     <span>Explore all projects</span>
                     <FaExternalLinkAlt
                       size={14}
-                      className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+                      className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
                     />
                   </Link>
                 </div>

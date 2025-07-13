@@ -1,33 +1,16 @@
 "use client";
 
-import {
-  motion,
-  useMotionValue,
-  useTransform,
-  animate,
-  Transition,
-} from "framer-motion";
+import { motion, useMotionValue, animate, useTransform } from "framer-motion";
 import { useState } from "react";
 
-interface ColorSwingBoxProps {
-  children: React.ReactNode;
-  className?: string;
-  [key: string]: any;
-}
-
-export function ColorSwingBox({
-  children,
-  className = "",
-  ...props
-}: ColorSwingBoxProps) {
-  const { whileHover, ...restProps } = props;
+export function ColorSwingBox({ children }: { children: React.ReactNode }) {
   const [hasAnimated, setHasAnimated] = useState(false);
   const rotation = useMotionValue(0);
 
   const background = useTransform(
     rotation,
     (value) =>
-      `conic-gradient(from ${value}deg, #3B82F6, #9333EA, #06B6D4, #8B5CF6, #3B82F6)`
+      `linear-gradient(${value}deg, rgba(59, 130, 246, 0.8), rgba(99, 102, 241, 0.6), rgba(139, 92, 246, 0.4))`
   );
 
   const handleHoverStart = () => {
@@ -44,36 +27,23 @@ export function ColorSwingBox({
     }
   };
 
-  const hoverEffect = {
-    y: -5,
-    scale: 1.02,
-    transition: {
-      type: "spring",
-      stiffness: 500,
-      damping: 30,
-    } satisfies Transition,
-  };
-
   return (
     <motion.div
-      className={`group relative ${className}`}
+      className="group p-5 sm:p-6 rounded-xl bg-gray-800/40 backdrop-blur-xl hover:bg-blue-400/10 transition-all duration-150 hover:shadow-2xl hover:shadow-blue-500/30 h-full relative overflow-hidden"
       onHoverStart={handleHoverStart}
-      whileHover={hoverEffect}
-      {...restProps}
     >
       <motion.div
-        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-100"
+        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300 p-0.5"
         style={{
           background,
-          borderRadius: "inherit",
           mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           maskComposite: "xor",
           WebkitMask:
             "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           WebkitMaskComposite: "xor",
-          padding: "2px",
         }}
       />
+      <div className="absolute inset-0 rounded-xl opacity-20 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 pointer-events-none" />
 
       {children}
     </motion.div>

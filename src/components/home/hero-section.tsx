@@ -1,19 +1,9 @@
 "use client";
 
-import { SOCIAL_LINKS } from "@/data/social-links";
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
-import { SiGithub, SiLinkedin } from "react-icons/si";
 import { useState, useEffect } from "react";
-import { FaXTwitter, FaArrowDown, FaEnvelope } from "react-icons/fa6";
-import { IconType } from "react-icons";
-
-const iconMap: { [key: string]: IconType } = {
-  FaGithub: SiGithub,
-  FaLinkedin: SiLinkedin,
-  FaTwitter: FaXTwitter,
-  FaEnvelope: FaEnvelope,
-};
+import { FaArrowDown } from "react-icons/fa6";
 
 export function HeroSection() {
   const [showScrollButton, setShowScrollButton] = useState(true);
@@ -42,9 +32,9 @@ export function HeroSection() {
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.4,
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+        duration: 0.25,
+        staggerChildren: 0.06,
+        delayChildren: 0.1,
       },
     },
   };
@@ -60,10 +50,10 @@ export function HeroSection() {
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.4,
         type: "spring",
-        stiffness: 100,
-        damping: 20,
+        stiffness: 150,
+        damping: 18,
       },
     },
   };
@@ -117,10 +107,10 @@ export function HeroSection() {
         animate="visible"
         className="space-y-8 sm:space-y-10 max-w-4xl mx-auto relative z-10"
       >
-        <motion.div variants={itemVariants} className="space-y-3 sm:space-y-4">
+        <motion.div variants={itemVariants} className="space-y-2 sm:space-y-4">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
             <span className="text-gray-300">Hi, I&apos;m</span>
-            <span className="mt-1 block bg-gradient-to-r from-blue-400 via-indigo-400 to-blue-400 bg-clip-text leading-tight text-transparent">
+            <span className="mt-1 block bg-gradient-to-r from-blue-200 to-blue-400 bg-clip-text leading-tight text-transparent">
               Yuvrajsinh Gohil
             </span>
           </h1>
@@ -145,66 +135,86 @@ export function HeroSection() {
 
         <motion.div
           variants={itemVariants}
-          className="flex gap-4 sm:gap-6 justify-center items-center pt-6 sm:pt-8 flex-wrap"
+          className="flex gap-4 sm:gap-6 justify-center items-center pt-4 sm:pt-6 flex-wrap"
         >
-          {SOCIAL_LINKS.map((social, index) => {
-            const Icon = iconMap[social.icon];
-
-            if (social.name === "Discord") {
-              return null;
-            }
-
-            return (
-              <motion.div
-                key={social.name}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  delay: 0.8 + index * 0.1,
-                  type: "spring",
-                  stiffness: 200,
-                  damping: 20,
-                }}
-                whileHover={{
-                  scale: 1.2,
-                  y: -5,
-                  transition: {
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 25,
-                  },
-                }}
-                whileTap={{
-                  scale: 0.9,
-                  transition: {
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 25,
-                  },
-                }}
-              >
-                <Link
-                  href={
-                    social.name === "Email"
-                      ? social.url
-                      : { pathname: social.url }
-                  }
-                  target="_blank"
-                  className="group relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full
-                           border-2 border-gray-700 hover:border-blue-400 bg-gray-800/50 hover:bg-blue-500/10
-                           transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25
-                           backdrop-blur-sm"
-                >
-                  {Icon && (
-                    <Icon
-                      size={20}
-                      className="text-gray-200 group-hover:text-blue-400 transition-colors duration-200 relative z-10 sm:text-[22px]"
-                    />
-                  )}
-                </Link>
-              </motion.div>
-            );
-          })}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              delay: 0.6,
+              type: "spring",
+              stiffness: 250,
+              damping: 18,
+            }}
+            whileHover={{
+              scale: 1.05,
+              y: -3,
+              transition: {
+                type: "spring",
+                stiffness: 400,
+                damping: 25,
+              },
+            }}
+            whileTap={{
+              scale: 0.95,
+              transition: {
+                type: "spring",
+                stiffness: 400,
+                damping: 25,
+              },
+            }}
+          >
+            <Link
+              href="/projects"
+              className="group relative flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 rounded-full
+                       border-2 border-blue-400 bg-blue-400/10 hover:bg-blue-400/20
+                       transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/25
+                       backdrop-blur-sm"
+            >
+              <span className="text-blue-400 group-hover:text-blue-300 transition-colors duration-200 font-medium text-sm sm:text-base">
+                View My Work
+              </span>
+            </Link>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              delay: 0.7,
+              type: "spring",
+              stiffness: 250,
+              damping: 18,
+            }}
+            whileHover={{
+              scale: 1.05,
+              y: -3,
+              transition: {
+                type: "spring",
+                stiffness: 400,
+                damping: 25,
+              },
+            }}
+            whileTap={{
+              scale: 0.95,
+              transition: {
+                type: "spring",
+                stiffness: 400,
+                damping: 25,
+              },
+            }}
+          >
+            <Link
+              href="/writings"
+              className="group relative flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 rounded-full
+                       border-2 border-gray-600 bg-gray-600/10 hover:bg-gray-600/20
+                       transition-all duration-300 hover:shadow-lg hover:shadow-gray-500/25
+                       backdrop-blur-sm"
+            >
+              <span className="text-gray-300 group-hover:text-gray-200 transition-colors duration-200 font-medium text-sm sm:text-base">
+                Read My Writings
+              </span>
+            </Link>
+          </motion.div>
         </motion.div>
       </motion.div>
 
@@ -214,11 +224,11 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 0.6,
-            delay: 1.2,
+            duration: 0.4,
+            delay: 0.8,
             type: "spring",
-            stiffness: 100,
-            damping: 20,
+            stiffness: 150,
+            damping: 18,
           }}
           className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 group"
           whileHover={{
@@ -226,16 +236,16 @@ export function HeroSection() {
             y: -3,
             transition: {
               type: "spring",
-              stiffness: 300,
-              damping: 20,
+              stiffness: 400,
+              damping: 18,
             },
           }}
           whileTap={{
             scale: 0.9,
             transition: {
               type: "spring",
-              stiffness: 400,
-              damping: 20,
+              stiffness: 500,
+              damping: 18,
             },
           }}
         >
@@ -243,14 +253,14 @@ export function HeroSection() {
             className="flex items-center gap-2 px-4 py-2"
             animate={{ y: [0, -4, 0] }}
             transition={{
-              duration: 1.5,
+              duration: 1.2,
               repeat: Infinity,
               ease: "easeInOut",
             }}
           >
             <FaArrowDown
               size={14}
-              className="text-gray-400 group-hover:text-white transition-colors duration-200"
+              className="text-gray-400 group-hover:text-white transition-colors duration-150"
             />
           </motion.div>
         </motion.button>

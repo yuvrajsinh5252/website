@@ -78,7 +78,7 @@ export function ContactSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
           className="mb-8 sm:mb-10 md:mb-12"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 sm:mb-8">
@@ -93,96 +93,100 @@ export function ContactSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch"
         >
-          <ColorSwingBox className="p-6 sm:p-8 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-150 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl min-h-[240px] sm:min-h-[280px] flex items-center relative overflow-hidden">
-            <div className="absolute inset-0 rounded-xl opacity-20 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 pointer-events-none" />
+          <div className="min-h-[240px] sm:min-h-[280px] flex items-center">
+            <ColorSwingBox>
+              <div className="space-y-4 sm:space-y-6 w-full">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <motion.div
+                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-500/10 flex items-center justify-center"
+                    whileHover={{
+                      scale: 1.1,
+                      rotate: 5,
+                      transition: {
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 18,
+                      },
+                    }}
+                  >
+                    <FaEnvelope
+                      size={18}
+                      className="text-blue-400 sm:text-[20px]"
+                    />
+                  </motion.div>
+                  <div className="text-left">
+                    <h3 className="text-lg sm:text-xl font-semibold text-white">
+                      Email Me
+                    </h3>
+                    <p className="text-gray-400 text-sm">Drop me a message</p>
+                  </div>
+                </div>
 
-            <div className="space-y-4 sm:space-y-6 w-full relative z-10">
-              <div className="flex items-center gap-3 sm:gap-4">
                 <motion.div
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-500/10 flex items-center justify-center"
+                  className="flex items-center gap-2 sm:gap-3 group cursor-pointer"
+                  onClick={copyToClipboard}
                   whileHover={{
-                    scale: 1.1,
-                    rotate: 5,
-                    transition: { type: "spring", stiffness: 400, damping: 20 },
+                    x: 5,
+                    transition: { type: "spring", stiffness: 500, damping: 18 },
+                  }}
+                  whileTap={{
+                    scale: 0.95,
+                    transition: { type: "spring", stiffness: 500, damping: 18 },
                   }}
                 >
-                  <FaEnvelope
-                    size={18}
-                    className="text-blue-400 sm:text-[20px]"
-                  />
+                  <span className="text-base sm:text-lg text-blue-300 font-medium group-hover:text-blue-200 transition-colors truncate">
+                    {email}
+                  </span>
+                  <motion.div
+                    animate={
+                      copied
+                        ? {
+                            scale: [1, 1.3, 1],
+                            rotate: [0, 360, 0],
+                          }
+                        : {}
+                    }
+                    transition={{ duration: 0.5 }}
+                    className="flex-shrink-0"
+                  >
+                    {copied ? (
+                      <FaCheck className="text-green-400 text-sm" />
+                    ) : (
+                      <motion.div
+                        whileHover={{
+                          scale: 1.2,
+                          transition: {
+                            type: "spring",
+                            stiffness: 500,
+                            damping: 18,
+                          },
+                        }}
+                      >
+                        <FaCopy className="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </motion.div>
+                    )}
+                  </motion.div>
                 </motion.div>
-                <div className="text-left">
-                  <h3 className="text-lg sm:text-xl font-semibold text-white">
-                    Email Me
-                  </h3>
-                  <p className="text-gray-400 text-sm">Drop me a message</p>
-                </div>
-              </div>
-
-              <motion.div
-                className="flex items-center gap-2 sm:gap-3 group cursor-pointer"
-                onClick={copyToClipboard}
-                whileHover={{
-                  x: 5,
-                  transition: { type: "spring", stiffness: 400, damping: 20 },
-                }}
-                whileTap={{
-                  scale: 0.95,
-                  transition: { type: "spring", stiffness: 400, damping: 20 },
-                }}
-              >
-                <span className="text-base sm:text-lg text-blue-300 font-medium group-hover:text-blue-200 transition-colors truncate">
-                  {email}
-                </span>
-                <motion.div
+                <motion.p
+                  className="text-sm text-gray-500"
                   animate={
                     copied
                       ? {
-                          scale: [1, 1.3, 1],
-                          rotate: [0, 360, 0],
+                          color: "#10b981",
+                          scale: [1, 1.05, 1],
                         }
                       : {}
                   }
-                  transition={{ duration: 0.5 }}
-                  className="flex-shrink-0"
+                  transition={{ duration: 0.3 }}
                 >
-                  {copied ? (
-                    <FaCheck className="text-green-400 text-sm" />
-                  ) : (
-                    <motion.div
-                      whileHover={{
-                        scale: 1.2,
-                        transition: {
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 20,
-                        },
-                      }}
-                    >
-                      <FaCopy className="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </motion.div>
-                  )}
-                </motion.div>
-              </motion.div>
-              <motion.p
-                className="text-sm text-gray-500"
-                animate={
-                  copied
-                    ? {
-                        color: "#10b981",
-                        scale: [1, 1.05, 1],
-                      }
-                    : {}
-                }
-                transition={{ duration: 0.3 }}
-              >
-                {copied ? "Copied to clipboard!" : "Click to copy email"}
-              </motion.p>
-            </div>
-          </ColorSwingBox>
+                  {copied ? "Copied to clipboard!" : "Click to copy email"}
+                </motion.p>
+              </div>
+            </ColorSwingBox>
+          </div>
 
           <div className="space-y-4 sm:space-y-6">
             <div className="grid grid-cols-2 gap-3 sm:gap-4 h-full">
@@ -190,9 +194,9 @@ export function ContactSection() {
                 (social, index) => {
                   const Icon = iconMap[social.icon];
                   return (
-                    <ColorSwingBox
+                    <motion.div
                       key={social.name}
-                      className="flex flex-col items-center justify-center p-4 sm:p-6 rounded-xl bg-gray-900/80 backdrop-blur-xl border border-gray-700/50 hover:border-blue-400/60 hover:bg-gray-800/90 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 hover:backdrop-blur-2xl min-h-[100px] sm:min-h-[120px] relative overflow-hidden"
+                      className="min-h-[100px] sm:min-h-[120px]"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={
                         isInView
@@ -200,80 +204,63 @@ export function ContactSection() {
                           : { opacity: 0, scale: 0.8 }
                       }
                       transition={{
-                        delay: 0.6 + index * 0.1,
-                        duration: 0.5,
+                        delay: 0.3 + index * 0.06,
+                        duration: 0.4,
                         ease: "easeOut",
                       }}
-                      whileHover={{
-                        y: -3,
-                        scale: 1.02,
-                        transition: {
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 20,
-                        },
-                      }}
-                      whileTap={{
-                        scale: 0.98,
-                        transition: {
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 20,
-                        },
-                      }}
                     >
-                      <div className="absolute inset-0 rounded-xl opacity-20 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 pointer-events-none" />
-
-                      <motion.a
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex flex-col items-center justify-center w-full h-full text-center relative z-10"
-                        whileHover={{
-                          scale: 1.05,
-                          transition: {
-                            type: "spring",
-                            stiffness: 400,
-                            damping: 20,
-                          },
-                        }}
-                      >
-                        <motion.div
-                          className="text-gray-400 group-hover:text-white transition-colors duration-300 mb-2 sm:mb-3"
+                      <ColorSwingBox>
+                        <motion.a
+                          href={social.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group flex flex-col items-center justify-center w-full h-full text-center"
                           whileHover={{
-                            scale: 1.2,
-                            rotate: 5,
+                            scale: 1.05,
                             transition: {
                               type: "spring",
-                              stiffness: 400,
-                              damping: 20,
+                              stiffness: 500,
+                              damping: 18,
                             },
                           }}
                         >
                           <motion.div
-                            className="flex items-center gap-1"
+                            className="text-gray-400 group-hover:text-white transition-colors duration-200 mb-2 sm:mb-3"
                             whileHover={{
-                              scale: 1.1,
+                              scale: 1.2,
+                              rotate: 5,
                               transition: {
                                 type: "spring",
-                                stiffness: 400,
-                                damping: 20,
+                                stiffness: 500,
+                                damping: 18,
                               },
                             }}
                           >
-                            {Icon && <Icon className="text-xl" />}
+                            <motion.div
+                              className="flex items-center gap-1"
+                              whileHover={{
+                                scale: 1.1,
+                                transition: {
+                                  type: "spring",
+                                  stiffness: 500,
+                                  damping: 18,
+                                },
+                              }}
+                            >
+                              {Icon && <Icon className="text-xl" />}
+                            </motion.div>
                           </motion.div>
-                        </motion.div>
-                        <div className="text-center space-y-0.5 sm:space-y-1">
-                          <p className="font-medium text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors duration-300">
-                            {social.name}
-                          </p>
-                          <p className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors duration-200">
-                            {social.username}
-                          </p>
-                        </div>
-                      </motion.a>
-                    </ColorSwingBox>
+                          <div className="text-center space-y-0.5 sm:space-y-1">
+                            <p className="font-medium text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
+                              {social.name}
+                            </p>
+                            <p className="text-xs text-gray-500 group-hover:text-gray-400 transition-colors duration-200">
+                              {social.username}
+                            </p>
+                          </div>
+                        </motion.a>
+                      </ColorSwingBox>
+                    </motion.div>
                   );
                 }
               )}
