@@ -75,47 +75,41 @@ export function PostCard({ post, index }: PostCardProps) {
               className="mb-3 sm:mb-4 text-lg sm:text-xl font-bold tracking-tight text-white group-hover:text-blue-300 transition-colors duration-150 leading-tight"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              whileHover={{ x: 5 }}
             >
               {post.title}
             </motion.h2>
 
-            <motion.p
-              className="mb-4 sm:mb-6 text-sm text-gray-400 line-clamp-3 group-hover:text-gray-300 transition-colors duration-150 flex-grow leading-relaxed"
+            <motion.div
+              className="flex justify-between items-start text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-150 flex-grow pr-3"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              {post.description}
-            </motion.p>
+              <p className="line-clamp-3 leading-relaxed flex-grow pr-4">
+                {post.description}
+              </p>
 
-            <motion.div
-              className="flex items-center gap-2 text-sm font-medium text-blue-400 group-hover:text-blue-300 transition-colors duration-150 mt-auto"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              whileHover={{ x: 5 }}
-            >
-              Continue reading
-              <motion.svg
-                className="w-4 h-4"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                whileHover={{
-                  x: 2,
-                  transition: { duration: 0.2 },
-                }}
+              <motion.div
+                className="flex items-center text-blue-400 group-hover:text-blue-300 transition-all duration-150 group-hover:translate-x-1 flex-shrink-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
               >
-                <path
-                  d="M1 8h14M9 2l6 6-6 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </motion.svg>
+                <svg
+                  className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-150"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 8h14M9 2l6 6-6 6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </motion.div>
             </motion.div>
           </article>
         </Link>

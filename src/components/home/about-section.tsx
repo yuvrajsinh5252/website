@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa";
 import { SiGithub } from "react-icons/si";
 import Link from "next/link";
-import { PROJECTS } from "@/data/project";
+import { PROJECTS } from "@/config/project";
 import { ColorSwingBox } from "@/components/effects/color-swing-box";
 
 export function AboutSection() {

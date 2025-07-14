@@ -2,7 +2,11 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { Post, PostMeta } from "@/types/post";
-import { ChallengesList, CategoryListMeta } from "@/types/challenge";
+import {
+  ChallengesList,
+  CategoryListMeta,
+  CategoryItem,
+} from "@/types/challenge";
 
 interface ChallengesContent {
   categories: { data: any; content: string }[];
@@ -118,6 +122,26 @@ export function getCategoryList(): CategoryListMeta[] {
   }
 
   return categoryList;
+}
+
+export function getCategoryListContent(slug: string): CategoryItem | null {
+  const challengesData = getChallengesContent();
+
+  for (const challenge of challengesData) {
+    for (const category of challenge.categories) {
+      if (category.data.slug === slug) {
+        return {
+          title: category.data.title,
+          date: category.data.date,
+          content: category.content,
+          year: category.data.year,
+          day: category.data.day,
+        };
+      }
+    }
+  }
+
+  return null;
 }
 
 function getChallengesContent(): ChallengesContent[] {

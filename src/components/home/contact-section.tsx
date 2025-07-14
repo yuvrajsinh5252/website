@@ -7,7 +7,7 @@ import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { FaCopy, FaCheck } from "react-icons/fa";
 import { ColorSwingBox } from "@/components/effects/color-swing-box";
-import { SOCIAL_LINKS } from "@/data/social-links";
+import { SOCIAL_LINKS } from "@/config/social-links";
 import { IconType } from "react-icons";
 
 const iconMap: { [key: string]: IconType } = {

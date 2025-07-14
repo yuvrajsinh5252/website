@@ -1,4 +1,4 @@
-import { getCategoryList } from "@/lib/content";
+import { getCategoryListContent } from "@/lib/content";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -6,7 +6,7 @@ import { AnimatedPost } from "@/components/effects/animated-post";
 import { IoIosArrowBack } from "react-icons/io";
 import { MagicLink } from "@/components/effects/magiclink";
 import { Metadata } from "next";
-import { FaCalendar, FaClock } from "react-icons/fa";
+import { FaCalendar } from "react-icons/fa";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -14,9 +14,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).slug;
-  const challenge = getCategoryList().find(
-    (challenge) => challenge.slug === slug
-  );
+  const challenge = getCategoryListContent(slug);
 
   if (!challenge) {
     return notFound();
@@ -24,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${challenge.title}`,
-    description: challenge.description,
+    description: "Advent of Code 2024",
     keywords: [
       "advent of code",
       "aoc",
@@ -36,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ],
     openGraph: {
       title: `${challenge.title}`,
-      description: challenge.description,
+      description: "Advent of Code 2024",
       type: "article",
       url: `https://www.yuvrajsinh.me/challenges/aoc/${slug}`,
       siteName: "Yuvrajsinh Gohil",
@@ -44,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: `${challenge.title}`,
-      description: challenge.description,
+      description: "Advent of Code 2024",
       creator: "@Yuvrajsinh_099",
     },
   };
@@ -67,12 +65,7 @@ export default async function AOCChallengePage({
   params: Promise<{ slug: string }>;
 }) {
   const slug = (await params).slug;
-
-  const challenge = getCategoryList().find(
-    (challenge) => challenge.slug === slug
-  );
-
-  console.log(challenge);
+  const challenge = getCategoryListContent(slug);
 
   if (!challenge) {
     notFound();
@@ -108,10 +101,6 @@ export default async function AOCChallengePage({
               <span className="flex items-center gap-2">
                 <FaCalendar className="text-blue-400" size={16} />
                 {challenge.date}
-              </span>
-              <span className="flex items-center gap-2">
-                <FaClock className="text-blue-400" size={16} />
-                {challenge.readingTime}
               </span>
             </div>
           </header>

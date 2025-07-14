@@ -4,7 +4,7 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 import { SiGithub } from "react-icons/si";
-import { PROJECTS } from "@/data/project";
+import { PROJECTS } from "@/config/project";
 import { ColorSwingBox } from "@/components/effects/color-swing-box";
 import { motion } from "framer-motion";
 
