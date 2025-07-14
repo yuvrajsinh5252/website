@@ -1,13 +1,8 @@
 export interface Post {
   slug: string;
   title: string;
-  description: string;
   date: string;
   content: string;
-  readingTime: string;
-  tags: string[];
-  category: "personal" | "advent-of-code";
-  coverImage?: string;
 }
 
 export interface PostMeta {
@@ -17,6 +12,5 @@ export interface PostMeta {
   date: string;
   readingTime: string;
   tags: string[];
-  category: "personal" | "advent-of-code";
   coverImage?: string;
 }

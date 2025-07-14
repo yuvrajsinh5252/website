@@ -25,7 +25,7 @@ export function PostCard({ post, index }: PostCardProps) {
       whileTap={{ scale: 0.99 }}
     >
       <ColorSwingBox>
-        <Link href={`/writings/${post.slug}`} className="block h-full">
+        <Link href={`/posts/${post.slug}`} className="block h-full">
           <article className="flex flex-col h-full">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-4 sm:mb-5">
               <motion.div

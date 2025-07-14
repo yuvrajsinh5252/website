@@ -1,28 +1,25 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { siteConfig } from "@/config/site";
+import { Metadata } from "next";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function constructMetadata({
-  title = siteConfig.title,
-  description = siteConfig.description,
-  keywords = siteConfig.keywords,
-  authors = [{ name: siteConfig.author, url: siteConfig.url }],
-  url = siteConfig.url,
-} = {}) {
+export function constructMetadata(): Metadata {
   return {
     metadataBase: new URL(siteConfig.url),
-    title,
-    description,
-    keywords,
-    authors,
-    creator: siteConfig.author,
-    publisher: siteConfig.author,
+    title: {
+      default: siteConfig.title,
+      template: "%s | Yuvrajsinh Gohil",
+    },
+    description: siteConfig.description,
+    authors: [siteConfig.author],
+    keywords: siteConfig.keywords,
+    creator: siteConfig.author.name,
     alternates: {
-      canonical: url,
+      canonical: siteConfig.url,
     },
     verification: {
       google: "your-google-verification-code",

@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { FaCode, FaHome, FaUser, FaPenFancy } from "react-icons/fa";
+import { FaCode, FaHome, FaUser, FaLaptopCode } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { TfiWrite } from "react-icons/tfi";
 
 interface NavLinkProps {
   href: string;
@@ -18,11 +19,13 @@ export default function NavLink({ href, text }: NavLinkProps) {
       case "home":
         return <FaHome className="text-sm sm:text-base md:text-lg" />;
       case "projects":
-        return <FaCode className="text-sm sm:text-base md:text-lg" />;
+        return <FaLaptopCode className="text-sm sm:text-base md:text-lg" />;
       case "about":
         return <FaUser className="text-sm sm:text-base md:text-lg" />;
-      case "writings":
-        return <FaPenFancy className="text-sm sm:text-base md:text-lg" />;
+      case "posts":
+        return <TfiWrite className="text-sm sm:text-base md:text-lg" />;
+      case "challenges":
+        return <FaCode className="text-sm sm:text-base md:text-lg" />;
       default:
         return null;
     }

@@ -1,38 +1,34 @@
-import { getPost, getPosts } from "@/lib/post";
+import { getPost } from "@/lib/content";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AnimatedPost } from "@/components/effects/animated-post";
 import { IoIosArrowBack } from "react-icons/io";
 import { MagicLink } from "@/components/effects/magiclink";
-import { constructMetadata } from "@/lib/utils";
 import { Metadata } from "next";
 import { FaCalendar } from "react-icons/fa";
 
-type Props = {
+interface Props {
   params: Promise<{ slug: string }>;
-};
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const postData = await params;
-  const post = getPost(postData.slug);
+  const slug = (await params).slug;
+  const post = getPost(slug);
 
   if (!post) {
     return notFound();
   }
 
-  return constructMetadata({
-    title: `${post.title} - Yuvrajsinh Gohil`,
-    description: post.description,
-    image: post.coverImage || "/logo.png",
-  });
-}
-
-export function generateStaticParams() {
-  const posts = getPosts();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  return {
+    title: `${post.title}`,
+    openGraph: {
+      title: `${post.title}`,
+      type: "article",
+      url: `https://www.yuvrajsinh.me/posts/${slug}`,
+      siteName: "Yuvrajsinh Gohil",
+    },
+  };
 }
 
 const components = {
@@ -63,11 +59,11 @@ export default async function PostPage({
       <article className="container mx-auto px-4 max-w-4xl">
         <AnimatedPost>
           <Link
-            href="/writings"
+            href="/posts"
             className="inline-flex items-center gap-2 text-sm mb-12 group transition-colors"
           >
             <IoIosArrowBack className="text-blue-400 text-lg transition-transform group-hover:-translate-x-1" />
-            Back to Writings
+            Back to Posts
           </Link>
 
           <header className="mb-12 flex justify-between items-center">
