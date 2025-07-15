@@ -11,9 +11,9 @@ export interface CategoryItem {
 export interface CategoryListMeta {
   slug: string;
   title: string;
-  readingTime: string;
-  description: string;
   category: string;
+  year?: number;
+  day?: number;
   coverImage?: string;
 }
 

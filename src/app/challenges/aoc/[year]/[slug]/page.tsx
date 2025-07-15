@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${challenge.title}`,
-    description: "Advent of Code 2024",
+    description: `Advent of Code - ${challenge.title}`,
     keywords: [
       "advent of code",
       "aoc",
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ],
     openGraph: {
       title: `${challenge.title}`,
-      description: "Advent of Code 2024",
+      description: `Advent of Code - ${challenge.title}`,
       type: "article",
       url: `https://www.yuvrajsinh.me/challenges/aoc/${slug}`,
       siteName: "Yuvrajsinh Gohil",
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: `${challenge.title}`,
-      description: "Advent of Code 2024",
+      description: `Advent of Code - ${challenge.title}`,
       creator: "@Yuvrajsinh_099",
     },
   };
@@ -65,7 +65,8 @@ export default async function AOCChallengePage({
   params: Promise<{ slug: string }>;
 }) {
   const slug = (await params).slug;
-  const challenge = getCategoryListContent(slug);
+  console.log(slug);
+  const challenge = getCategoryListContent(slug.split("/").pop()!);
 
   if (!challenge) {
     notFound();
@@ -88,12 +89,12 @@ export default async function AOCChallengePage({
               href="/challenges/aoc"
               className="inline-flex items-center gap-2 text-sm group transition-colors hover:text-blue-400"
             >
-              AOC 2024
+              AOC {challenge.year}
             </Link>
           </div>
 
-          <header className="mb-12">
-            <h1 className="text-4xl font-bold bg-clip-text mb-4">
+          <header className="mb-12 flex justify-between items-center">
+            <h1 className="text-4xl font-bold bg-clip-text">
               {challenge.title}
             </h1>
 

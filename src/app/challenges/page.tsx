@@ -1,5 +1,5 @@
 import { getChallenges } from "@/lib/content";
-import { ChallengeHeader } from "@/components/challenges/header";
+import { Header } from "@/components/challenges/header";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { Metadata } from "next";
 import { ChallengesList } from "@/components/challenges/challenges_list";
@@ -47,7 +47,7 @@ export default function ChallengesPage() {
     <div className="min-h-screen">
       <MaxWidthWrapper>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-32 sm:pt-36 md:pt-44 pb-16 sm:pb-20">
-          <ChallengeHeader title="Coding Challenges" />
+          <Header title="Coding Challenges" back={false} />
           <ChallengesList challenges={challenges} />
         </div>
       </MaxWidthWrapper>

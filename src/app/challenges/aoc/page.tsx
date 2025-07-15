@@ -1,12 +1,12 @@
 import { getCategoryList } from "@/lib/content";
-import { ChallengeHeader } from "@/components/challenges/header";
+import { Header } from "@/components/challenges/header";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { Metadata } from "next";
-import { CategoriesList } from "@/components/challenges/categories_list";
+import { AocList } from "@/components/challenges/aoc_lists";
 
-const title = "Advent of Code 2024";
+const title = "Advent of Code";
 const description =
-  "My solutions and explanations for Advent of Code 2024 challenges. Daily programming puzzles that build on a festive story.";
+  "My solutions and explanations for Advent of Code challenges.";
 
 export const metadata: Metadata = {
   title: {
@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   keywords: [
     "advent of code",
     "aoc",
-    "aoc 2024",
     "yuvrajsinh gohil",
     "programming",
     "algorithms",
@@ -50,8 +49,8 @@ export default function AOCPage() {
     <div className="min-h-screen">
       <MaxWidthWrapper>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-32 sm:pt-36 md:pt-44 pb-16 sm:pb-20">
-          <ChallengeHeader title="Advent of Code" />
-          <CategoriesList categories={categories} />
+          <Header title="Advent of Code" back={true} />
+          <AocList categories={categories} />
         </div>
       </MaxWidthWrapper>
     </div>

@@ -34,7 +34,7 @@ export function ChallengeCard(challenge: ChallengesList) {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                {challenge.title} {challenge.date.split("-")[0]}
+                {challenge.title}
               </motion.h2>
               <motion.div
                 className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 text-xs text-gray-400 whitespace-nowrap order-1 sm:order-2"

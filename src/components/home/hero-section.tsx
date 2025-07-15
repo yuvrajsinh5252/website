@@ -204,14 +204,14 @@ export function HeroSection() {
             }}
           >
             <Link
-              href="/writings"
+              href="/posts"
               className="group relative flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 rounded-full
                        border-2 border-gray-600 bg-gray-600/10 hover:bg-gray-600/20
                        transition-all duration-300 hover:shadow-lg hover:shadow-gray-500/25
                        backdrop-blur-sm"
             >
               <span className="text-gray-300 group-hover:text-gray-200 transition-colors duration-200 font-medium text-sm sm:text-base">
-                Read My Writings
+                Read My Posts
               </span>
             </Link>
           </motion.div>

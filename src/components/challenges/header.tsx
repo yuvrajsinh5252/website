@@ -1,13 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { IoIosArrowForward } from "react-icons/io";
+import Link from "next/link";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-interface ChallengeHeaderProps {
-  title: string;
-}
-
-export function ChallengeHeader({ title }: ChallengeHeaderProps) {
+export function Header({ title, back }: { title: string; back: boolean }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: -30 }}
@@ -22,7 +19,13 @@ export function ChallengeHeader({ title }: ChallengeHeaderProps) {
           animate={{ rotate: 0, opacity: 1 }}
           transition={{ duration: 0.2, delay: 0.2 }}
         >
-          <IoIosArrowForward />
+          {back ? (
+            <Link href="/challenges">
+              <IoIosArrowBack />
+            </Link>
+          ) : (
+            <IoIosArrowForward />
+          )}
         </motion.div>
         <motion.h1
           className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"

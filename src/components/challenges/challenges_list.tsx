@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { ChallengesList } from "@/types/challenge";
-import { ChallengeCard } from "./challenge_card";
+import { ChallengeCard } from "./card";
 
 const headerVariants = {
   hidden: {

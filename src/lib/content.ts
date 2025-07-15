@@ -82,6 +82,7 @@ export function getPost(slug: string): Post | null {
   }
 }
 
+// Get the list of all the challenges on the /challenges page
 export function getChallenges(): ChallengesList[] {
   const challengesData = getChallengesContent();
   const challenges: ChallengesList[] = [];
@@ -102,6 +103,7 @@ export function getChallenges(): ChallengesList[] {
   return challenges;
 }
 
+// Get the list of all the subcategory challenges
 export function getCategoryList(): CategoryListMeta[] {
   const challengesData = getChallengesContent();
   const categoryList: CategoryListMeta[] = [];
@@ -115,8 +117,9 @@ export function getCategoryList(): CategoryListMeta[] {
         title: data.title,
         description: data.description,
         category: data.category,
-        readingTime: data.readingTime,
         coverImage: data.coverImage,
+        year: data.year,
+        day: data.day,
       });
     }
   }
@@ -124,6 +127,7 @@ export function getCategoryList(): CategoryListMeta[] {
   return categoryList;
 }
 
+// Get the content of a specific challenge
 export function getCategoryListContent(slug: string): CategoryItem | null {
   const challengesData = getChallengesContent();
 

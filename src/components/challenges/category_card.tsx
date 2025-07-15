@@ -6,33 +6,33 @@ import { ColorSwingBox } from "@/components/effects/color-swing-box";
 
 interface CategoryCardProps {
   title: string;
-  description: string;
   href: string;
   index: number;
+  year?: number;
+  day?: number;
 }
 
-export function CategoryCard({ title, description, href }: CategoryCardProps) {
+export function CategoryCard({ title, href, year, day }: CategoryCardProps) {
   return (
     <motion.div
-      className="h-full"
+      className="h-full group"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{
-        scale: 1.01,
+        scale: 1.02,
         transition: { duration: 0.2 },
       }}
-      whileTap={{ scale: 0.99 }}
+      whileTap={{ scale: 0.98 }}
     >
       <ColorSwingBox>
         <Link href={href} className="block h-full">
-          <article className="flex flex-col h-full relative">
-            {/* Centered arrow icon on the right */}
+          <article className="relative flex flex-col h-full">
             <motion.div
               className="absolute top-1/2 right-3 w-6 h-6 flex items-center justify-center text-gray-400 hover:text-blue-400 transition-colors duration-150 transform -translate-y-1/2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              whileHover={{ scale: 1.1, x: 2 }}
+              whileHover={{ scale: 1.1, x: 3 }}
             >
               <svg
                 className="w-4 h-4"
@@ -50,23 +50,36 @@ export function CategoryCard({ title, description, href }: CategoryCardProps) {
               </svg>
             </motion.div>
 
-            <motion.h2
-              className="mb-2 mt-1 text-lg sm:text-xl font-bold tracking-tight text-white group-hover:text-blue-300 transition-colors duration-150 leading-tight pr-10"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-            >
-              {title}
-            </motion.h2>
+            <div className="flex flex-wrap items-center gap-3 pr-12">
+              <motion.h2
+                className="text-xl font-bold tracking-tight text-white group-hover:text-blue-100 transition-colors duration-200 leading-tight"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+              >
+                {title}
+              </motion.h2>
 
-            <motion.p
-              className="text-sm text-gray-400 line-clamp-3 group-hover:text-gray-300 transition-colors duration-150 flex-grow leading-relaxed mb-1"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              {description}
-            </motion.p>
+              {(year || day) && (
+                <motion.div
+                  className="flex items-center gap-2"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.15 }}
+                >
+                  {year && (
+                    <span className="inline-flex items-center px-2.5 py-1 text-xs font-semibold bg-blue-500/15 text-blue-300 rounded-full border border-blue-500/20 backdrop-blur-sm">
+                      {year}
+                    </span>
+                  )}
+                  {day && (
+                    <span className="inline-flex items-center px-2.5 py-1 text-xs font-semibold bg-emerald-500/15 text-emerald-300 rounded-full border border-emerald-500/20 backdrop-blur-sm">
+                      Day {day}
+                    </span>
+                  )}
+                </motion.div>
+              )}
+            </div>
           </article>
         </Link>
       </ColorSwingBox>
