@@ -5,7 +5,7 @@ import { Provider } from "@/components/themes/provides";
 import { constructMetadata } from "@/lib/utils";
 import Navbar from "@/components/navbar/navbar";
 import CustomCursor from "@/components/effects/custom-cursor";
-import { Background } from "@/components/background/background";
+import { Background } from "@/components/ui/background";
 import { personSchema } from "@/lib/schemas";
 import { siteConfig } from "@/config/site";
 

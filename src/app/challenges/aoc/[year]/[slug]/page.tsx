@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${challenge.title}`,
-    description: `Advent of Code - ${challenge.title}`,
+    description: `Advent of Code - ${challenge.year}`,
     keywords: [
       "advent of code",
       "aoc",
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ],
     openGraph: {
       title: `${challenge.title}`,
-      description: `Advent of Code - ${challenge.title}`,
+      description: `Advent of Code - ${challenge.year}`,
       type: "article",
       url: `https://www.yuvrajsinh.me/challenges/aoc/${slug}`,
       siteName: "Yuvrajsinh Gohil",
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: `${challenge.title}`,
-      description: `Advent of Code - ${challenge.title}`,
+      description: `Advent of Code - ${challenge.year}`,
       creator: "@Yuvrajsinh_099",
     },
   };

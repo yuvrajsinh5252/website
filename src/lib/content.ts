@@ -115,7 +115,6 @@ export function getCategoryList(): CategoryListMeta[] {
       categoryList.push({
         slug: data.slug,
         title: data.title,
-        description: data.description,
         category: data.category,
         coverImage: data.coverImage,
         year: data.year,
