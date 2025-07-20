@@ -126,13 +126,16 @@ export function getCategoryList(): CategoryListMeta[] {
   return categoryList;
 }
 
-// Get the content of a specific challenge
-export function getCategoryListContent(slug: string): CategoryItem | null {
+export function getCategoryListContent(
+  slug: string,
+  year: string
+): CategoryItem | null {
   const challengesData = getChallengesContent();
 
   for (const challenge of challengesData) {
     for (const category of challenge.categories) {
-      if (category.data.slug === slug) {
+      const categoryYear = category.data.year?.toString();
+      if (category.data.slug === slug && categoryYear === year) {
         return {
           title: category.data.title,
           date: category.data.date,

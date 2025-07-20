@@ -5,16 +5,18 @@ import { notFound } from "next/navigation";
 import { AnimatedPost } from "@/components/effects/animated-post";
 import { IoIosArrowBack } from "react-icons/io";
 import { MagicLink } from "@/components/effects/magiclink";
+import { CodeBlock } from "@/components/ui/code-block";
 import { Metadata } from "next";
 import { FaCalendar } from "react-icons/fa";
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; year: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).slug;
-  const challenge = getCategoryListContent(slug);
+  const year = (await params).year;
+  const challenge = getCategoryListContent(slug, year);
 
   if (!challenge) {
     return notFound();
@@ -57,16 +59,25 @@ const components = {
       {...props}
     />
   ),
+  code: (props: any) => {
+    if (!props.className) {
+      return (
+        <code className="bg-gray-800 px-1 py-0.5 rounded text-sm" {...props} />
+      );
+    }
+    return <CodeBlock {...props} />;
+  },
 };
 
 export default async function AOCChallengePage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; year: string }>;
 }) {
   const slug = (await params).slug;
-  console.log(slug);
-  const challenge = getCategoryListContent(slug.split("/").pop()!);
+  const year = (await params).year;
+
+  const challenge = getCategoryListContent(slug, year);
 
   if (!challenge) {
     notFound();
@@ -108,11 +119,13 @@ export default async function AOCChallengePage({
 
           <div
             className="prose dark:prose-invert transition-all max-w-none
-            prose-h2:text-2xl prose-h2:font-bold prose-h2:mb-4
-            prose-h3:text-xl prose-h3:font-semibold prose-h3:mb-3
+            prose-h2:text-2xl prose-h2:font-bold prose-h2:mb-6 prose-h2:mt-8
+            prose-h3:text-xl prose-h3:font-semibold prose-h3:mb-4 prose-h3:mt-6
+            prose-p:text-gray-300 prose-p:leading-7
             prose-img:rounded-xl prose-img:shadow-lg
-            prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-700
-            prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded"
+            prose-pre:!p-0 prose-pre:!bg-transparent prose-pre:!border-0
+            prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
+            prose-strong:text-white prose-strong:font-semibold"
           >
             <MDXRemote source={challenge.content} components={components} />
           </div>

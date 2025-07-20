@@ -1,7 +1,7 @@
 ---
 title: "Historian Hysteria"
 date: "2024-12-01"
-description: "Advent of Code 2024 Day 1"
+description: "Advent of Code 2024 Day 1 - Finding the Chief Historian through location ID analysis"
 category: "aoc"
 year: 2024
 day: 1
@@ -9,4 +9,70 @@ day: 1
 
 ## Problem Overview
 
-The Chief Historian is always present for the big Christmas sleigh launch, but nobody has seen him in months! Last anyone heard, he was visiting locations that are historically significant to the North Pole; a group of Senior Historians has asked you to accompany them as they check the places they think he was most likely to visit.
+Two lists of location IDs need to be reconciled. Part 1 calculates total distance by pairing sorted elements. Part 2 calculates similarity score using frequency counting.
+
+## Part 1: Distance Calculation
+
+Sort both lists and sum absolute differences between corresponding pairs.
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ifstream file("input.txt");
+    string line;
+    vector<string> location_id1, location_id2;
+
+    while(getline(file, line)) {
+        location_id1.push_back(line.substr(0, 5));
+        location_id2.push_back(line.substr(8, 12));
+    }
+
+    sort(location_id1.begin(), location_id1.end());
+    sort(location_id2.begin(), location_id2.end());
+
+    int ans = 0;
+    for (int i = 0; i < location_id1.size(); ++i) {
+        ans += abs(atoi(location_id1[i].c_str()) - atoi(location_id2[i].c_str()));
+    }
+
+    cout << ans << endl;
+    return 0;
+}
+```
+
+## Part 2: Similarity Score
+
+Count frequencies and multiply each left list number by its frequency in the right list.
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ifstream file("input.txt");
+    string line;
+    vector<string> location_id1, location_id2;
+
+    while(getline(file, line)) {
+        location_id1.push_back(line.substr(0, 5));
+        location_id2.push_back(line.substr(8, 12));
+    }
+
+    map<int, int> mp1, mp2;
+
+    for (int i = 0; i < location_id1.size(); ++i) {
+        mp1[atoi(location_id1[i].c_str())]++;
+        mp2[atoi(location_id2[i].c_str())]++;
+    }
+
+    int ans = 0;
+    for (auto it: mp1) {
+        ans += (it.first * mp2[it.first]);
+    }
+
+    cout << ans << endl;
+    return 0;
+}
+```

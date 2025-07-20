@@ -20,14 +20,43 @@ export function Background() {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Memoized gradient backgrounds for better performance
   const gradientBackgrounds = useMemo(
     () => ({
       nebula: `
-        radial-gradient(ellipse 150% 100% at 25% 15%, rgba(37, 99, 235, 0.12) 0%, rgba(37, 99, 235, 0.08) 20%, rgba(37, 99, 235, 0.04) 40%, rgba(37, 99, 235, 0.02) 60%, transparent 80%),
-        radial-gradient(ellipse 120% 80% at 75% 85%, rgba(139, 92, 246, 0.10) 0%, rgba(139, 92, 246, 0.06) 25%, rgba(168, 85, 247, 0.03) 50%, rgba(168, 85, 247, 0.01) 70%, transparent 90%),
-        radial-gradient(ellipse 200% 100% at 50% 0%, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.04) 30%, rgba(59, 130, 246, 0.02) 60%, transparent 80%),
-        linear-gradient(180deg, rgba(15, 23, 42, 0.7) 0%, rgba(20, 30, 50, 0.6) 25%, rgba(30, 41, 59, 0.4) 50%, rgba(25, 35, 55, 0.6) 75%, rgba(15, 23, 42, 0.8) 100%)
+        radial-gradient(ellipse 150% 100% at 25% 15%,
+          rgba(37, 99, 235, 0.12) 0%,
+          rgba(37, 99, 235, 0.10) 15%,
+          rgba(37, 99, 235, 0.08) 25%,
+          rgba(37, 99, 235, 0.06) 35%,
+          rgba(37, 99, 235, 0.04) 45%,
+          rgba(37, 99, 235, 0.02) 60%,
+          rgba(37, 99, 235, 0.01) 75%,
+          transparent 85%),
+        radial-gradient(ellipse 120% 80% at 75% 85%,
+          rgba(139, 92, 246, 0.10) 0%,
+          rgba(139, 92, 246, 0.08) 20%,
+          rgba(139, 92, 246, 0.06) 30%,
+          rgba(168, 85, 247, 0.04) 45%,
+          rgba(168, 85, 247, 0.03) 55%,
+          rgba(168, 85, 247, 0.02) 70%,
+          rgba(168, 85, 247, 0.01) 80%,
+          transparent 95%),
+        radial-gradient(ellipse 200% 100% at 50% 0%,
+          rgba(59, 130, 246, 0.08) 0%,
+          rgba(59, 130, 246, 0.06) 25%,
+          rgba(59, 130, 246, 0.04) 40%,
+          rgba(59, 130, 246, 0.02) 60%,
+          rgba(59, 130, 246, 0.01) 75%,
+          transparent 85%),
+        linear-gradient(180deg,
+          rgba(15, 23, 42, 0.7) 0%,
+          rgba(18, 26, 46, 0.65) 20%,
+          rgba(20, 30, 50, 0.6) 30%,
+          rgba(25, 35, 55, 0.5) 45%,
+          rgba(30, 41, 59, 0.4) 55%,
+          rgba(25, 35, 55, 0.5) 70%,
+          rgba(20, 30, 50, 0.6) 80%,
+          rgba(15, 23, 42, 0.8) 100%)
       `,
       stars: `
         radial-gradient(2px 2px at 83px 47px, rgba(255,255,255,1.0) 0%, transparent 2px),
@@ -59,10 +88,10 @@ export function Background() {
           id: i,
           x: Math.random() * window.innerWidth,
           y: Math.random() * window.innerHeight,
-          size: Math.random() * 3.0 + 1.2, // Bigger stars (1.2-4.2px)
-          speedX: (Math.random() - 0.5) * 0.05, // Slower movement
+          size: Math.random() * 3.0 + 1.2,
+          speedX: (Math.random() - 0.5) * 0.05,
           speedY: (Math.random() - 0.5) * 0.05,
-          opacity: Math.random() * 0.6 + 0.3, // Brighter stars (0.3-0.9)
+          opacity: Math.random() * 0.6 + 0.3,
           animationDuration: 5 + Math.random() * 4,
           animationDelay: Math.random() * 4,
         });
@@ -76,7 +105,6 @@ export function Background() {
           let newX = particle.x + particle.speedX;
           let newY = particle.y + particle.speedY;
 
-          // Smooth edge wrapping
           if (newX < -10) newX = window.innerWidth + 10;
           if (newX > window.innerWidth + 10) newX = -10;
           if (newY < -10) newY = window.innerHeight + 10;
@@ -87,18 +115,26 @@ export function Background() {
       );
     };
 
-    // Add a delay before showing stars
+    generateParticles();
+
     const loadTimer = setTimeout(() => {
       setIsLoaded(true);
-      generateParticles();
     }, 1500);
 
     const intervalId = setInterval(animateParticles, 120);
 
     const handleResize = () => {
-      if (isLoaded) {
-        generateParticles();
-      }
+      setParticles((prevParticles) => {
+        if (prevParticles.length === 0) {
+          generateParticles();
+          return prevParticles;
+        }
+        return prevParticles.map((particle) => ({
+          ...particle,
+          x: Math.min(particle.x, window.innerWidth),
+          y: Math.min(particle.y, window.innerHeight),
+        }));
+      });
     };
     window.addEventListener("resize", handleResize);
 
@@ -107,23 +143,29 @@ export function Background() {
       clearInterval(intervalId);
       window.removeEventListener("resize", handleResize);
     };
-  }, [isLoaded]);
+  }, []);
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-10">
-      {/* Deep Space Nebula Background */}
       <div className="absolute inset-0 z-20">
-        {/* Main nebula formation */}
         <div
           className="absolute inset-0 opacity-35"
           style={{
-            background: gradientBackgrounds.nebula,
-            filter: "blur(0.5px)",
+            background: `
+              ${gradientBackgrounds.nebula},
+              repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 1px,
+                rgba(255,255,255,0.002) 1px,
+                rgba(255,255,255,0.002) 2px
+              )
+            `,
+            filter: "blur(1px)",
             backgroundAttachment: "fixed",
           }}
         />
 
-        {/* Starfield */}
         <motion.div
           className="absolute inset-0"
           style={{
@@ -135,7 +177,6 @@ export function Background() {
           transition={{ duration: 3, ease: "easeInOut", delay: 1 }}
         />
 
-        {/* Additional sparse star layer */}
         <motion.div
           className="absolute inset-0"
           style={{
@@ -148,7 +189,6 @@ export function Background() {
           transition={{ duration: 3, ease: "easeInOut", delay: 1.5 }}
         />
 
-        {/* Distant Galaxy Glow - Upper Left */}
         {isLoaded && (
           <motion.div
             className="absolute top-0 left-0 w-[40rem] h-[25rem]"
@@ -170,7 +210,6 @@ export function Background() {
           />
         )}
 
-        {/* Cosmic Dust Cloud - Center Right */}
         {isLoaded && (
           <motion.div
             className="absolute top-1/3 right-0 w-[35rem] h-[30rem]"
@@ -194,7 +233,6 @@ export function Background() {
           />
         )}
 
-        {/* Stellar Formation - Lower Center */}
         {isLoaded && (
           <motion.div
             className="absolute bottom-0 left-1/4 w-[50rem] h-[20rem]"
@@ -218,7 +256,6 @@ export function Background() {
         )}
       </div>
 
-      {/* Subtle constellation lines */}
       {isLoaded && (
         <svg className="absolute inset-0 w-full h-full opacity-8">
           <motion.path
@@ -242,7 +279,6 @@ export function Background() {
         </svg>
       )}
 
-      {/* Twinkling Stars */}
       {isLoaded && (
         <motion.div
           className="absolute inset-0"
@@ -284,13 +320,11 @@ export function Background() {
         </motion.div>
       )}
 
-      {/* Deep Space Vignette */}
       <div
         className="absolute inset-0 pointer-events-none z-40"
         style={{ background: gradientBackgrounds.vignette }}
       />
 
-      {/* Optimized Meteor Shower */}
       <MeteorShowerEffect
         key="meteor-shower-main"
         className="absolute inset-0 z-30 h-full w-full"
