@@ -28,14 +28,13 @@ export function CategoryCard({ title, href, year, day }: CategoryCardProps) {
         <Link href={href} className="block h-full">
           <article className="relative flex flex-col h-full">
             <motion.div
-              className="absolute top-1/2 right-3 w-6 h-6 flex items-center justify-center text-gray-400 hover:text-blue-400 transition-colors duration-150 transform -translate-y-1/2"
+              className="absolute right-2 flex items-center text-blue-400 group-hover:text-blue-300 transition-all duration-150 group-hover:translate-x-1 flex-shrink-0"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              whileHover={{ scale: 1.1, x: 3 }}
             >
               <svg
-                className="w-4 h-4"
+                className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-150"
                 viewBox="0 0 16 16"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
