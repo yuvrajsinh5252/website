@@ -7,18 +7,13 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 export function Header({ title, back }: { title: string; back: boolean }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: -30 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
       className="mb-12 sm:mb-14 md:mb-16"
     >
       <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-        <motion.div
-          className="flex justify-center items-center text-2xl sm:text-3xl md:text-4xl text-blue-400 hover:text-blue-300 transition-colors duration-150 expand-cursor rounded-full"
-          initial={{ rotate: -90, opacity: 0 }}
-          animate={{ rotate: 0, opacity: 1 }}
-          transition={{ duration: 0.2, delay: 0.2 }}
-        >
+        <div className="flex justify-center items-center text-2xl sm:text-3xl md:text-4xl text-blue-400 hover:text-blue-300 transition-colors duration-150 expand-cursor rounded-full">
           {back ? (
             <Link href="/challenges">
               <IoIosArrowBack />
@@ -26,15 +21,10 @@ export function Header({ title, back }: { title: string; back: boolean }) {
           ) : (
             <IoIosArrowForward />
           )}
-        </motion.div>
-        <motion.h1
-          className="text-3xl sm:text-4xl md:text-5xl font-bold text-white"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.2, delay: 0.4 }}
-        >
+        </div>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
           {title}
-        </motion.h1>
+        </h1>
       </div>
     </motion.div>
   );

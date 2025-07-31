@@ -3,7 +3,7 @@ export const siteConfig = {
   url: "https://www.yuvrajsinh.me",
   title: "Yuvrajsinh Gohil - Developer Portfolio",
   description:
-    "A computer Science student from Nirma University, passionate about software development.",
+    "Computer Science student at Nirma University passionate about emerging technologies and crafting innovative digital solutions. Explore my projects, blog posts, and coding challenges.",
   links: {
     twitter: "https://twitter.com/Yuvrajsinh_099",
     github: "https://github.com/yuvrajsinh5252",

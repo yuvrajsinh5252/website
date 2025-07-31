@@ -16,9 +16,9 @@ export default function Navbar() {
   return (
     <MaxWidthWrapper className="fixed flex justify-center md:px-10 items-center w-full h-fit mt-10 z-50 mx-auto left-0 right-0">
       <motion.nav
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
+        transition={{ duration: 0.2 }}
         className="flex items-center w-fit h-5 py-5 max-sm:py-4 rounded-full
           backdrop-blur-md
           bg-slate-600/40
@@ -29,14 +29,12 @@ export default function Navbar() {
           transition-all duration-300"
       >
         {NAV_ITEMS.map((item) => (
-          <motion.div
+          <div
             key={item.href}
             className="relative z-10"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400 }}
           >
             <NavLink href={item.href} text={item.text} />
-          </motion.div>
+          </div>
         ))}
       </motion.nav>
     </MaxWidthWrapper>

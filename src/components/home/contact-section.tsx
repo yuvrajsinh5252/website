@@ -49,48 +49,25 @@ export function ContactSection() {
     >
       <div className="max-w-4xl mx-auto w-full">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.2 }}
           className="text-center space-y-16"
         >
           <div className="space-y-6">
-            <motion.h2
-              className="text-5xl lg:text-6xl font-bold text-white"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: 0.05, duration: 0.2 }}
-            >
+            <h2 className="text-5xl lg:text-6xl font-bold text-white">
               Get in touch
-            </motion.h2>
-            <motion.p
-              className="text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: 0.1, duration: 0.2 }}
-            >
+            </h2>
+            <p className="text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto">
               I'm always excited to connect with fellow developers, collaborate
               on interesting projects, or just have a chat.
-            </motion.p>
+            </p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={
-              isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }
-            }
-            transition={{
-              delay: 0.15,
-              type: "spring",
-              stiffness: 200,
-              damping: 20,
-            }}
-            className="flex justify-center"
-          >
+          <div className="flex justify-center">
             <motion.button
               onClick={copyToClipboard}
               className="group relative"
-              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               <div className="relative px-8 py-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-150">
@@ -133,14 +110,9 @@ export function ContactSection() {
                 {copied && "Copied to clipboard!"}
               </motion.div>
             </motion.button>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.2, duration: 0.2 }}
-            className="space-y-8"
-          >
+          <div className="space-y-8">
             <h3 className="text-xl font-medium text-gray-300">
               Or connect with me on
             </h3>
@@ -168,15 +140,7 @@ export function ContactSection() {
                       className="group block relative w-16"
                       whileTap={{ scale: 0.95 }}
                     >
-                      <motion.div
-                        className="relative w-16 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-150 overflow-hidden"
-                        initial={{ height: 64 }}
-                        whileHover={{
-                          height: 90,
-                          y: -13,
-                        }}
-                        transition={{ duration: 0.15, ease: "easeOut" }}
-                      >
+                      <div className="relative w-16 h-16 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-150 flex items-center justify-center z-20">
                         <motion.div
                           className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-150"
                           style={{
@@ -184,31 +148,21 @@ export function ContactSection() {
                           }}
                         />
 
-                        <div className="relative z-10 h-full flex flex-col">
-                          <div className="w-16 h-16 flex items-center justify-center flex-shrink-0">
-                            {Icon && (
-                              <Icon
-                                className="w-7 h-7 text-gray-300 group-hover:text-white transition-colors duration-150"
-                                style={{
-                                  filter: `drop-shadow(0 0 10px ${social.color}60)`,
-                                }}
-                              />
-                            )}
-                          </div>
-
-                          <div className="flex-1 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-150">
-                            <p className="text-xs text-white font-medium">
-                              {social.name}
-                            </p>
-                          </div>
-                        </div>
-                      </motion.div>
+                        {Icon && (
+                          <Icon
+                            className="relative z-10 w-7 h-7 text-gray-300 group-hover:text-white transition-colors duration-150"
+                            style={{
+                              filter: `drop-shadow(0 0 10px ${social.color}60)`,
+                            }}
+                          />
+                        )}
+                      </div>
                     </motion.a>
                   </motion.div>
                 );
               })}
             </div>
-          </motion.div>
+          </div>
 
           <motion.div
             initial={{ opacity: 0 }}

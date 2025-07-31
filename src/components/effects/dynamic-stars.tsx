@@ -153,11 +153,23 @@ export const DynamicStars = ({
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    generateStars();
+    // Use requestIdleCallback for better performance, fallback to setTimeout
+    const initializeStars = () => {
+      generateStars();
 
-    if (canvasRef.current) {
-      handleResize();
-      animationIdRef.current = requestAnimationFrame(animateStars);
+      if (canvasRef.current) {
+        handleResize();
+        // Delay animation start slightly to prevent initial hang
+        setTimeout(() => {
+          animationIdRef.current = requestAnimationFrame(animateStars);
+        }, 16); // One frame delay
+      }
+    };
+
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(initializeStars, { timeout: 100 });
+    } else {
+      setTimeout(initializeStars, 0);
     }
 
     window.addEventListener("resize", handleResize);

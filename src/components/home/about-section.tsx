@@ -1,14 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
 import { useRef } from "react";
 import {
   FaExternalLinkAlt,
   FaGraduationCap,
-  FaGitAlt,
-  FaDesktop,
   FaCode,
+  FaRocket,
+  FaRoute,
 } from "react-icons/fa";
 import { SiGithub } from "react-icons/si";
 import Link from "next/link";
@@ -17,364 +15,277 @@ import { ColorSwingBox } from "@/components/effects/color-swing-box";
 
 export function AboutSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const featuredProjects = PROJECTS.slice(0, 2);
+  const featuredProjects = PROJECTS.slice(0, 1);
+
+  const skills = [
+    {
+      name: "React",
+      color: "from-blue-500/10 to-cyan-500/10",
+      border: "border-blue-400/20",
+    },
+    {
+      name: "Next.js",
+      color: "from-gray-500/10 to-slate-500/10",
+      border: "border-gray-400/20",
+    },
+    {
+      name: "TypeScript",
+      color: "from-blue-600/10 to-indigo-500/10",
+      border: "border-blue-500/20",
+    },
+    {
+      name: "JavaScript",
+      color: "from-yellow-500/10 to-amber-500/10",
+      border: "border-yellow-400/20",
+    },
+    {
+      name: "Tailwind CSS",
+      color: "from-teal-500/10 to-cyan-500/10",
+      border: "border-teal-400/20",
+    },
+    {
+      name: "Node.js",
+      color: "from-green-600/10 to-emerald-500/10",
+      border: "border-green-400/20",
+    },
+    {
+      name: "Python",
+      color: "from-yellow-600/10 to-blue-500/10",
+      border: "border-yellow-500/20",
+    },
+    {
+      name: "LangGraph",
+      color: "from-purple-500/10 to-pink-500/10",
+      border: "border-purple-400/20",
+    },
+    {
+      name: "PostgreSQL",
+      color: "from-blue-700/10 to-indigo-600/10",
+      border: "border-blue-600/20",
+    },
+    {
+      name: "MongoDB",
+      color: "from-green-700/10 to-emerald-600/10",
+      border: "border-green-500/20",
+    },
+    {
+      name: "Docker",
+      color: "from-blue-500/10 to-sky-500/10",
+      border: "border-blue-400/20",
+    },
+    {
+      name: "Git",
+      color: "from-orange-600/10 to-red-500/10",
+      border: "border-orange-400/20",
+    },
+    {
+      name: "Linux",
+      color: "from-yellow-500/10 to-orange-500/10",
+      border: "border-yellow-400/20",
+    },
+    {
+      name: "C++",
+      color: "from-blue-600/10 to-purple-600/10",
+      border: "border-blue-500/20",
+    },
+    {
+      name: "Rust",
+      color: "from-orange-700/10 to-red-600/10",
+      border: "border-orange-500/20",
+    },
+    {
+      name: "Java",
+      color: "from-red-600/10 to-orange-600/10",
+      border: "border-red-500/20",
+    },
+    {
+      name: "Go",
+      color: "from-cyan-600/10 to-blue-600/10",
+      border: "border-cyan-500/20",
+    },
+  ];
 
   return (
     <section
       ref={ref}
-      className="min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-24"
+      className="min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-8 py-12 sm:py-16 relative"
       id="about"
     >
-      <div className="max-w-6xl mx-auto space-y-6 sm:space-y-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="text-start"
-        >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
             About Me
           </h2>
-          <div className="w-12 sm:w-16 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"></div>
-        </motion.div>
+          <div className="w-20 h-1 bg-white/20 mx-auto rounded-full"></div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.4, delay: 0.1, ease: "easeOut" }}
-          className="space-y-8 sm:space-y-10 md:space-y-12"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start">
-            <div className="space-y-6 sm:space-y-8">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={
-                  isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
-                }
-                transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
-                className="space-y-4"
-              >
-                <div className="flex items-center gap-3 mb-4 sm:mb-6">
-                  <FaGraduationCap
-                    size={24}
-                    className="text-blue-400 sm:text-[28px]"
-                  />
-                  <h3 className="text-white font-semibold text-lg sm:text-xl">
-                    Education & Journey
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-12">
+          {/* Personal Story Card - Keep exactly as is */}
+          <div className="lg:col-span-3">
+            <div className="relative p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 overflow-hidden">
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-6">
+                  <FaRoute className="text-2xl text-blue-400" />
+                  <h3 className="text-2xl font-semibold text-white">
+                    My Journey
                   </h3>
                 </div>
 
-                <p className="text-gray-200 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
-                  My journey into technology began with curiosity and has
-                  evolved into a deep passion for creating meaningful digital
-                  experiences. I&apos;ve discovered my love for hackathons and
-                  collaborative projects, where I can work with brilliant minds
-                  and constantly explore emerging technologies to build
-                  solutions that solve real-world problems.
+                <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                  Hi! I'm a Computer Science student at{" "}
+                  <span className="text-blue-400 font-medium">
+                    Nirma University
+                  </span>{" "}
+                  with an insatiable curiosity for technology. My journey began
+                  with simple curiosity and has evolved into a deep passion for
+                  creating meaningful digital experiences.
                 </p>
 
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 p-3 sm:p-4 rounded-lg bg-blue-400/5 backdrop-blur-sm border border-blue-400/10 hover:bg-blue-400/8 hover:backdrop-blur-md transition-all duration-200">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full flex-shrink-0"></div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-white font-medium text-sm">
-                          Nirma University
-                        </span>
-                        <span className="text-blue-400 text-xs bg-blue-400/10 px-2 py-0.5 rounded-full">
-                          Current
-                        </span>
-                      </div>
-                      <p className="text-gray-400 text-xs">
-                        B.Tech Computer Science • 2022 - 2026
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 p-3 sm:p-4 rounded-lg bg-green-400/5 backdrop-blur-sm border border-green-400/10 hover:bg-green-400/8 hover:backdrop-blur-md transition-all duration-200">
-                    <div className="w-2 h-2 bg-green-400 rounded-full flex-shrink-0"></div>
-                    <div className="flex-1 min-w-0">
-                      <span className="text-white font-medium text-sm block">
-                        Gyanmanjari Vidhyapith
-                      </span>
-                      <p className="text-gray-400 text-xs">
-                        Higher Secondary Schooling • 2020 - 2022
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={
-                  isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
-                }
-                transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
-                className="space-y-4"
-              >
-                <div className="flex items-center gap-3 mb-4 sm:mb-6">
-                  <FaGitAlt
-                    size={22}
-                    className="text-green-400 sm:text-[25px]"
-                  />
-                  <h3 className="text-white font-semibold text-lg sm:text-xl">
-                    Open Source & Innovation
-                  </h3>
-                </div>
-                <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-                  I&apos;m passionate about the open-source ecosystem and
-                  actively contribute to projects that align with my interests.
-                  I love experimenting with new frameworks and building side
-                  projects that solve interesting problems or improve developer
-                  workflows.
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  I thrive in hackathons and collaborative environments where I
+                  can work with brilliant minds, constantly exploring emerging
+                  technologies to build solutions that solve real-world
+                  problems. When I'm not coding, you'll find me contributing to
+                  open-source projects or experimenting with new frameworks.
                 </p>
-              </motion.div>
-            </div>
-
-            <div className="space-y-6 sm:space-y-8">
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={
-                  isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }
-                }
-                transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
-                className="space-y-4"
-              >
-                <div className="flex items-center gap-3">
-                  <FaCode size={22} className="text-cyan-400 sm:text-[25px]" />
-                  <h3 className="text-white font-semibold text-lg sm:text-xl">
-                    Technical Skills
-                  </h3>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex flex-wrap gap-2">
-                    {[
-                      {
-                        name: "React",
-                        color: "from-blue-500/20 to-blue-600/30",
-                        border: "border-blue-500/30",
-                      },
-                      {
-                        name: "Next.js",
-                        color: "from-gray-500/20 to-gray-600/30",
-                        border: "border-gray-500/30",
-                      },
-                      {
-                        name: "TypeScript",
-                        color: "from-blue-400/20 to-blue-500/30",
-                        border: "border-blue-400/30",
-                      },
-                      {
-                        name: "JavaScript",
-                        color: "from-yellow-500/20 to-yellow-600/30",
-                        border: "border-yellow-500/30",
-                      },
-                      {
-                        name: "Tailwind CSS",
-                        color: "from-teal-500/20 to-teal-600/30",
-                        border: "border-teal-500/30",
-                      },
-                      {
-                        name: "Node.js",
-                        color: "from-green-500/20 to-green-600/30",
-                        border: "border-green-500/30",
-                      },
-                      {
-                        name: "Python",
-                        color: "from-blue-500/20 to-yellow-500/30",
-                        border: "border-blue-500/30",
-                      },
-                      {
-                        name: "LangGraph",
-                        color: "from-purple-500/20 to-purple-600/30",
-                        border: "border-purple-500/30",
-                      },
-                      {
-                        name: "PostgreSQL",
-                        color: "from-blue-600/20 to-indigo-600/30",
-                        border: "border-blue-600/30",
-                      },
-                      {
-                        name: "MongoDB",
-                        color: "from-green-600/20 to-green-700/30",
-                        border: "border-green-600/30",
-                      },
-                      {
-                        name: "Docker",
-                        color: "from-blue-400/20 to-blue-500/30",
-                        border: "border-blue-400/30",
-                      },
-                      {
-                        name: "Git",
-                        color: "from-orange-500/20 to-red-500/30",
-                        border: "border-orange-500/30",
-                      },
-                      {
-                        name: "Linux",
-                        color: "from-yellow-500/20 to-orange-500/30",
-                        border: "border-yellow-500/30",
-                      },
-                      {
-                        name: "C++",
-                        color: "from-blue-600/20 to-purple-600/30",
-                        border: "border-blue-600/30",
-                      },
-                      {
-                        name: "Rust",
-                        color: "from-orange-600/20 to-red-600/30",
-                        border: "border-orange-600/30",
-                      },
-                      {
-                        name: "Java",
-                        color: "from-red-500/20 to-orange-500/30",
-                        border: "border-red-500/30",
-                      },
-                      {
-                        name: "Go",
-                        color: "from-cyan-500/20 to-blue-500/30",
-                        border: "border-cyan-500/30",
-                      },
-                    ].map((skill, index) => (
-                      <motion.span
-                        key={skill.name}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={
-                          isInView
-                            ? { opacity: 1, scale: 1 }
-                            : { opacity: 0, scale: 0.8 }
-                        }
-                        transition={{
-                          delay: 0.4 + index * 0.03,
-                          duration: 0.3,
-                          ease: "easeOut",
-                        }}
-                        className={`px-2.5 py-1.5 text-xs sm:text-sm text-white bg-gradient-to-r ${skill.color} rounded-lg ${skill.border} border backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-200 hover:scale-105`}
-                      >
-                        {skill.name}
-                      </motion.span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={
-                  isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }
-                }
-                transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
-                className="space-y-4"
-              >
-                <div className="flex items-center gap-3 mb-4 sm:mb-6">
-                  <FaDesktop
-                    size={22}
-                    className="text-purple-400 sm:text-[25px]"
-                  />
-                  <h3 className="text-white font-semibold text-lg sm:text-xl">
-                    Featured Projects
-                  </h3>
-                </div>
-
-                <div className="space-y-4">
-                  {featuredProjects.map((project, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={
-                        isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-                      }
-                      transition={{
-                        delay: 0.25 + index * 0.06,
-                        duration: 0.4,
-                        ease: "easeOut",
-                      }}
-                    >
-                      <ColorSwingBox>
-                        <div className="flex flex-col sm:flex-row items-start justify-between mb-3 gap-3">
-                          <h4 className="text-base sm:text-lg font-semibold text-white group-hover:text-blue-400 transition-colors duration-200 leading-tight">
-                            {project.title}
-                          </h4>
-                          <div className="flex gap-2 flex-shrink-0">
-                            {project.link && (
-                              <motion.div
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={
-                                  isInView
-                                    ? { opacity: 1, scale: 1 }
-                                    : { opacity: 0, scale: 0.8 }
-                                }
-                                transition={{
-                                  type: "spring",
-                                  stiffness: 400,
-                                  damping: 18,
-                                }}
-                              >
-                                <Link
-                                  href={project.link}
-                                  target="_blank"
-                                  rel="noreferrer"
-                                  className="flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 bg-blue-400/10 hover:bg-blue-400/20 border border-blue-400/20 hover:border-blue-400/40 rounded-lg transition-all duration-150 w-full"
-                                >
-                                  <FaExternalLinkAlt size={12} />
-                                  <span>Live Demo</span>
-                                </Link>
-                              </motion.div>
-                            )}
-                            <Link
-                              href={project.githubLink}
-                              target="_blank"
-                              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-gray-400 hover:text-gray-300 bg-gray-400/10 hover:bg-gray-400/20 border border-gray-600/20 hover:border-gray-600/40 rounded-lg transition-all duration-200 hover:scale-105"
-                            >
-                              <SiGithub size={12} />
-                              <span>Code</span>
-                            </Link>
-                          </div>
-                        </div>
-
-                        <p className="text-gray-400 text-sm leading-relaxed mb-4 line-clamp-2 overflow-hidden relative z-10">
-                          {project.description}
-                        </p>
-
-                        <div className="flex items-center gap-1.5 relative z-10 flex-wrap">
-                          {project.tag.slice(0, 3).map((tech, i) => (
-                            <span
-                              key={i}
-                              className="px-2 py-1 text-xs font-medium text-gray-200 bg-gray-800/60 backdrop-blur-sm hover:bg-gray-700/80 rounded-md border border-gray-600/40 hover:border-blue-400/50"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                          {project.tag.length > 3 && (
-                            <span className="px-2 py-1 text-xs font-medium text-gray-500 bg-white/[0.05] backdrop-blur-sm rounded-md border border-white/10">
-                              +{project.tag.length - 3}
-                            </span>
-                          )}
-                        </div>
-                      </ColorSwingBox>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <div className="pt-4">
-                  <Link
-                    href="/projects"
-                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors duration-200 group"
-                  >
-                    <span>Explore all projects</span>
-                    <FaExternalLinkAlt
-                      size={14}
-                      className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200"
-                    />
-                  </Link>
-                </div>
-              </motion.div>
+              </div>
             </div>
           </div>
-        </motion.div>
+
+          {/* Clean Education Section */}
+          <div className="flex flex-col justify-center">
+            <div className="space-y-12">
+              <div className="flex items-center gap-3">
+                <FaGraduationCap className="text-white/60 text-xl" />
+                <h3 className="text-xl font-semibold text-white">Education</h3>
+              </div>
+
+              {/* Current Education */}
+              <div className="space-y-2">
+                <div className="flex items-center gap-3">
+                  <h4 className="text-white font-semibold text-base">
+                    Nirma University
+                  </h4>
+                  <span className="text-blue-400 text-xs bg-blue-400/10 px-2 py-0.5 rounded-full">
+                    Current
+                  </span>
+                </div>
+                <p className="text-gray-400 text-sm">B.Tech Computer Science</p>
+                <p className="text-gray-400 text-sm">2022 - 2026</p>
+              </div>
+
+              {/* Previous Education */}
+              <div className="space-y-2">
+                <div className="flex items-center gap-3">
+                  <h4 className="text-white font-semibold text-base">
+                    Gyanmanjari Vidhyapith
+                  </h4>
+                  <span className="text-green-400 text-xs bg-green-400/10 px-2 py-0.5 rounded-full">
+                    Completed
+                  </span>
+                </div>
+                <p className="text-gray-400 text-sm">Higher Secondary</p>
+                <p className="text-gray-400 text-sm">2020 - 2022</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Tech Stack and Projects Side by Side */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+          {/* Tech Stack Section */}
+          <div className="flex flex-col">
+            <div className="flex items-center gap-3 mb-6">
+              <FaCode className="text-xl text-cyan-400" />
+              <h3 className="text-xl font-semibold text-white">Tech Stack</h3>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {skills.map((skill) => (
+                <div
+                  key={skill.name}
+                  className={`px-3 py-1.5 bg-gradient-to-r ${skill.color} backdrop-blur-sm border ${skill.border} rounded-lg text-white text-xs font-medium cursor-pointer flex items-center justify-center`}
+                >
+                  {skill.name}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Featured Projects Section */}
+          <div className="flex flex-col">
+            <div className="flex items-center gap-3 mb-6">
+              <FaRocket className="text-xl text-purple-400" />
+              <h3 className="text-xl font-semibold text-white">
+                Featured Projects
+              </h3>
+            </div>
+
+            <div className="space-y-4">
+              {featuredProjects.map((project, index) => (
+                <div key={index} className="group relative">
+                  <ColorSwingBox>
+                    <div className="flex items-start justify-between mb-2">
+                      <h4 className="text-base font-semibold text-white">
+                        {project.title}
+                      </h4>
+                      <div className="flex gap-1.5">
+                        {project.link && (
+                          <Link
+                            href={project.link}
+                            target="_blank"
+                            className="p-1.5 text-blue-400 hover:text-blue-300 bg-blue-400/10 hover:bg-blue-400/20 rounded-md"
+                          >
+                            <FaExternalLinkAlt size={10} />
+                          </Link>
+                        )}
+                        <Link
+                          href={project.githubLink}
+                          target="_blank"
+                          className="p-1.5 text-gray-400 hover:text-gray-300 bg-gray-400/10 hover:bg-gray-400/20 rounded-md"
+                        >
+                          <SiGithub size={10} />
+                        </Link>
+                      </div>
+                    </div>
+
+                    <p className="text-gray-400 text-xs leading-relaxed mb-2 line-clamp-2">
+                      {project.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-1">
+                      {project.tag.slice(0, 4).map((tech, i) => (
+                        <span
+                          key={i}
+                          className="px-2 py-0.5 text-xs text-gray-300 bg-gray-800/60 rounded border border-gray-600/40"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.tag.length > 4 && (
+                        <span className="px-2 py-0.5 text-xs text-gray-400 bg-white/5 rounded border border-white/10">
+                          +{project.tag.length - 4}
+                        </span>
+                      )}
+                    </div>
+                  </ColorSwingBox>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-left pt-6">
+              <Link
+                href="/projects"
+                className="text-blue-400 hover:text-blue-300 font-medium text-sm underline decoration-1 underline-offset-4 hover:decoration-2"
+              >
+                View All Projects →
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
