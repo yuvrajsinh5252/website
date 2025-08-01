@@ -32,9 +32,9 @@ export function HeroSection() {
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.2,
-        staggerChildren: 0.05,
-        delayChildren: 0.05,
+        duration: 0.1,
+        staggerChildren: 0.02,
+        delayChildren: 0,
       },
     },
   };
@@ -42,14 +42,25 @@ export function HeroSection() {
   const itemVariants: Variants = {
     hidden: {
       opacity: 0,
-      y: 10,
+      y: 5,
     },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.3,
+        duration: 0.15,
         ease: "easeOut",
+      },
+    },
+  };
+
+  // Critical text variant - no animation for LCP optimization
+  const criticalTextVariants: Variants = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0,
       },
     },
   };
@@ -75,7 +86,7 @@ export function HeroSection() {
         animate="visible"
         className="space-y-8 sm:space-y-10 max-w-4xl mx-auto relative z-10"
       >
-        <motion.div variants={itemVariants} className="space-y-2 sm:space-y-4">
+        <motion.div variants={criticalTextVariants} className="space-y-2 sm:space-y-4">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
             <span className="text-gray-300">Hi, I&apos;m</span>
             <span className="mt-1 block bg-gradient-to-r from-blue-200 to-blue-400 bg-clip-text leading-tight text-transparent">
@@ -85,7 +96,7 @@ export function HeroSection() {
         </motion.div>
 
         <motion.p
-          variants={itemVariants}
+          variants={criticalTextVariants}
           className="text-base sm:text-lg md:text-xl font-light leading-relaxed max-sm:-mx-6 text-gray-400 px-2"
         >
           Computer Science student passionate about emerging technologies and
@@ -127,7 +138,7 @@ export function HeroSection() {
           onClick={scrollToAbout}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.4 }}
+          transition={{ duration: 0.2, delay: 0.2 }}
           className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 group"
           aria-label="Scroll down to about section"
         >

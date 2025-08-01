@@ -138,18 +138,23 @@ export function AboutSection() {
                   Hi! I'm a Computer Science student at{" "}
                   <span className="text-blue-400 font-medium">
                     Nirma University
-                  </span>{" "}
-                  with an insatiable curiosity for technology. My journey began
-                  with simple curiosity and has evolved into a deep passion for
-                  creating meaningful digital experiences.
+                  </span>
+                  . What started as curiosity became a passion for building web
+                  apps that solve real problems. Open source contributions and{" "}
+                  <Link
+                    href="/posts/hacknuthon-5.0"
+                    className="text-gray-300 underline decoration-gray-500 underline-offset-2 hover:text-gray-100 hover:decoration-gray-400"
+                  >
+                    hackathons
+                  </Link>{" "}
+                  keep me thriving in collaborative environments.
                 </p>
 
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  I thrive in hackathons and collaborative environments where I
-                  can work with brilliant minds, constantly exploring emerging
-                  technologies to build solutions that solve real-world
-                  problems. When I'm not coding, you'll find me contributing to
-                  open-source projects or experimenting with new frameworks.
+                  Recently, I've shifted to AI agents and multi-agent systems,
+                  building tools for dynamic data exploration using LangChain
+                  and LangGraph. It's rewarding to apply my web development
+                  experience toward creating smarter, more flexible systems.
                 </p>
               </div>
             </div>

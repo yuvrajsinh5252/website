@@ -78,8 +78,8 @@ export function Background() {
 
     const generateParticles = () => {
       const particleCount = Math.min(
-        8,
-        Math.max(4, Math.floor(window.innerWidth / 200))
+        6,
+        Math.max(3, Math.floor(window.innerWidth / 250))
       );
       const newParticles: Particle[] = [];
 
@@ -92,7 +92,7 @@ export function Background() {
           speedX: (Math.random() - 0.5) * 0.02,
           speedY: (Math.random() - 0.5) * 0.02,
           opacity: Math.random() * 0.6 + 0.3,
-          animationDuration: 5 + Math.random() * 4,
+          animationDuration: 8 + Math.random() * 6,
           animationDelay: Math.random() * 4,
         });
       }
@@ -121,18 +121,18 @@ export function Background() {
 
     const loadTimer = setTimeout(() => {
       setIsLoaded(true);
-    }, 1500);
+    }, 100);
 
     let frameCount = 0;
     const startAnimation = () => {
       const animate = () => {
         frameCount++;
-        // Reduce particle update frequency to every 6th frame
-        if (frameCount % 6 === 0) {
+        // Reduce particle update frequency to every 10th frame
+        if (frameCount % 10 === 0) {
           setParticles((prevParticles) =>
             prevParticles.map((particle) => {
-              let newX = particle.x + particle.speedX * 2; // Compensate for slower updates
-              let newY = particle.y + particle.speedY * 2;
+              let newX = particle.x + particle.speedX * 3.3; // Compensate for slower updates
+              let newY = particle.y + particle.speedY * 3.3;
 
               if (newX < -10) newX = window.innerWidth + 10;
               if (newX > window.innerWidth + 10) newX = -10;
@@ -173,7 +173,10 @@ export function Background() {
   }, []);
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-10">
+    <div
+      className="fixed inset-0 overflow-hidden pointer-events-none z-10"
+      style={{ transform: "translateZ(0)" }}
+    >
       <div className="absolute inset-0 z-20">
         <div
           className="absolute inset-0 opacity-35"
@@ -189,6 +192,8 @@ export function Background() {
               )
             `,
             filter: "blur(1px)",
+            transform: "translateZ(0)",
+            willChange: "auto",
             backgroundAttachment: "fixed",
           }}
         />
@@ -223,6 +228,8 @@ export function Background() {
               background:
                 "radial-gradient(ellipse 70% 50% at 30% 40%, rgba(37, 99, 235, 0.15) 0%, rgba(37, 99, 235, 0.10) 30%, rgba(37, 99, 235, 0.05) 50%, rgba(37, 99, 235, 0.02) 70%, transparent 90%)",
               filter: "blur(60px)",
+              transform: "translateZ(0)",
+              willChange: "opacity, transform",
             }}
             initial={{ opacity: 0 }}
             animate={{
@@ -230,7 +237,7 @@ export function Background() {
               scale: [1, 1.1, 1],
             }}
             transition={{
-              duration: 20,
+              duration: 25,
               repeat: Infinity,
               ease: "easeInOut",
             }}
@@ -244,6 +251,8 @@ export function Background() {
               background:
                 "radial-gradient(ellipse 60% 80% at 70% 50%, rgba(139, 92, 246, 0.12) 0%, rgba(139, 92, 246, 0.08) 25%, rgba(168, 85, 247, 0.08) 40%, rgba(168, 85, 247, 0.04) 60%, rgba(168, 85, 247, 0.02) 80%, transparent 95%)",
               filter: "blur(80px)",
+              transform: "translateZ(0)",
+              willChange: "opacity, transform",
             }}
             initial={{ opacity: 0 }}
             animate={{
@@ -252,7 +261,7 @@ export function Background() {
               rotate: [0, 2, 0],
             }}
             transition={{
-              duration: 30,
+              duration: 35,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 5,
@@ -267,6 +276,8 @@ export function Background() {
               background:
                 "radial-gradient(ellipse 80% 40% at 50% 80%, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.08) 30%, rgba(37, 99, 235, 0.08) 50%, rgba(37, 99, 235, 0.04) 70%, rgba(37, 99, 235, 0.02) 85%, transparent 100%)",
               filter: "blur(70px)",
+              transform: "translateZ(0)",
+              willChange: "opacity, transform",
             }}
             initial={{ opacity: 0 }}
             animate={{
@@ -274,7 +285,7 @@ export function Background() {
               x: [0, "5vw", 0],
             }}
             transition={{
-              duration: 40,
+              duration: 45,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 10,
@@ -284,7 +295,10 @@ export function Background() {
       </div>
 
       {isLoaded && (
-        <svg className="absolute inset-0 w-full h-full opacity-8">
+        <svg
+          className="absolute inset-0 w-full h-full opacity-8"
+          style={{ transform: "translateZ(0)" }}
+        >
           <motion.path
             d="M 150 100 Q 250 150 350 120 T 550 140"
             stroke="rgba(147, 197, 253, 0.2)"
@@ -323,9 +337,10 @@ export function Background() {
                 width: particle.size,
                 height: particle.size,
                 opacity: particle.opacity,
-                boxShadow: `0 0 ${particle.size * 2}px rgba(255, 255, 255, ${
-                  particle.opacity * 0.8
+                boxShadow: `0 0 ${particle.size * 1.5}px rgba(255, 255, 255, ${
+                  particle.opacity * 0.6
                 })`,
+                transform: "translateZ(0)",
               }}
               initial={{ scale: 0, opacity: 0 }}
               animate={{

@@ -1,6 +1,7 @@
 ---
 title: "Trebuchet?!"
 date: "2023-12-01"
+description: "Advent of Code 2023 Day 1"
 category: "aoc"
 year: 2023
 day: 1
@@ -8,5 +9,153 @@ day: 1
 
 ## Problem Overview
 
-Something is wrong with global snow production, and you've been selected to take a look. The Elves have even given you a map; on it, they've used stars to mark the top fifty locations that are likely to be having problems.
+The newly-improved trebuchet calibration document has been "amended" by a young Elf. Each line contains a calibration value that we need to extract by combining the first and last digit to form a two-digit number. Our task is to sum all these calibration values.
 
+## Part 1: Finding Digits
+
+Starting simple - I need to find the first and last digit in each line and combine them. The approach is straightforward: scan from the beginning to find the first digit, scan from the end to find the last digit, then combine them as a two-digit number.
+
+What if there's only one digit? Well, it becomes both the first and last digit, so "a7b" gives us 77. Nice and clean!
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+signed main() {
+    string ch;
+    fstream my_file;
+    my_file.open("input.txt", ios::in);
+
+    int ans = 0;
+
+    while (true) {
+        my_file >> ch;
+
+        int first = 0, last = 0;
+
+        for (int i = 0; i < ch.size(); ++i) {
+            if (ch[i] - '0' <= 9 && ch[i] - '0' > 0) {
+                first = ch[i] - '0';
+                break;
+            }
+        }
+
+        for (int i = ch.size() - 1; i >= 0; --i) {
+            if (ch[i] - '0' <= 9 && ch[i] - '0' > 0) {
+                last = ch[i] - '0';
+                break;
+            }
+        }
+
+        ans += (first * 10) + last;
+        if (my_file.eof()) break;
+    }
+
+    cout << ans << endl;
+
+    my_file.close();
+    return 0;
+}
+```
+
+## Part 2: Spelled Out Numbers
+
+Oh, the Elf was being creative! Turns out digits can also be spelled out: "one", "two", "three", etc. Now I need to handle both numeric digits and written numbers.
+
+The clever bit here is handling overlapping patterns like "twone" (is it "two" + "one" or just looking for first and last?). My strategy: for the first digit, scan forward checking both numeric digits and spelled numbers. For the last digit, I reverse the search - and here's the trick: I also reverse the spelled numbers ("one" becomes "eno") to make the backward search elegant!
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+
+#define int long long
+
+signed main() {
+    string ch;
+    fstream my_file;
+    my_file.open("input.txt", ios::in);
+
+    map<string, int> conv = {
+        {"one", 1},
+        {"two", 2},
+        {"three", 3},
+        {"four", 4},
+        {"five", 5},
+        {"six", 6},
+        {"seven", 7},
+        {"eight", 8},
+        {"nine", 9},
+    };
+
+    map<string, int> vnoc = {
+        {"eno", 1},
+        {"owt", 2},
+        {"eerht", 3},
+        {"ruof", 4},
+        {"evif", 5},
+        {"xis", 6},
+        {"neves", 7},
+        {"thgie", 8},
+        {"enin", 9},
+    };
+
+    int ans = 0;
+
+    while (true) {
+        my_file >> ch;
+        int first = 0, last = 0;
+
+        for (int i = 0; i < ch.size(); ++i) {
+            string f = "";
+            bool found = false;
+            if (ch[i] - '0' <= 9 && ch[i] - '0' > 0) {
+                first = ch[i] - '0';
+                break;
+            }
+
+            for (int j = i; j < i + 5; ++j) {
+                f += ch[j];
+                if (conv.find(f) != conv.end()) {
+                    first = conv[f];
+                    found = true;
+                    break;
+                }
+            }
+            if (found) break;
+        }
+
+        for (int i = ch.size() - 1; i >= 0; --i) {
+            bool found = false;
+            string l = "";
+            if (ch[i] - '0' <= 9 && ch[i] - '0' > 0) {
+                last = ch[i] - '0';
+                break;
+            }
+
+            for (int j = i; j >= i - 5; --j) {
+                l += ch[j];
+                if (vnoc.find(l) != vnoc.end()) {
+                    last = vnoc[l];
+                    found = true;
+                    break;
+                }
+            }
+            if (found) break;
+        }
+
+        ans += (first * 10) + last;
+        if (my_file.eof()) break;
+    }
+
+    cout << ans << endl;
+
+    my_file.close();
+    return 0;
+}
+```
+
+---
+
+*The reversed words map (vnoc = conv backwards) is peak programming humor. Who needs reverse() when you can just hardcode "thgie" for 8?*

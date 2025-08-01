@@ -4,40 +4,16 @@ import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { Metadata } from "next";
 import { ChallengesList } from "@/components/challenges/challenges_list";
 
-const title = "Coding Challenges";
-const description =
-  "My journey through coding challenges including Advent of Code solutions, explanations, and insights.";
-
 export const metadata: Metadata = {
-  title: {
-    template: "%s | Yuvrajsinh Gohil",
-    default: title,
-  },
-  description,
+  title: "Yuvrajsinh Gohil Challenges",
+  description:
+    "Coding challenges and solutions by Yuvrajsinh Gohil - Advent of Code, algorithms, and problem-solving.",
   keywords: [
-    "coding challenges",
-    "advent of code",
-    "aoc",
-    "yuvrajsinh gohil",
-    "programming",
-    "algorithms",
-    "problem solving",
-    "typescript",
-    "competitive programming",
+    "Yuvrajsinh Gohil challenges",
+    "Yuvrajsinh Gohil coding",
+    "Advent of Code solutions",
+    "programming challenges",
   ],
-  openGraph: {
-    title,
-    description,
-    type: "website",
-    url: "https://www.yuvrajsinh.me/challenges",
-    siteName: "Yuvrajsinh Gohil",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    creator: "@Yuvrajsinh_099",
-  },
 };
 
 export default function ChallengesPage() {

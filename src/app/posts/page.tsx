@@ -4,36 +4,19 @@ import { PostsList } from "@/components/post/posts_list";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { Metadata } from "next";
 
-const title = "Posts";
-const description =
-  "Read about my thoughts, experiences, learnings, coding challenges and achievements to know me better.";
-
 export const metadata: Metadata = {
-  title,
-  description,
+  title: "Yuvrajsinh Gohil Posts",
+  description:
+    "Blog posts by Yuvrajsinh Gohil - programming tutorials, tech insights, and coding experiences.",
   keywords: [
-    "blog",
-    "posts",
-    "yuvrajsinh gohil",
-    "programming",
-    "coding tutorials",
-    "articles",
+    "Yuvrajsinh Gohil posts",
+    "Yuvrajsinh Gohil blog",
+    "programming blog",
+    "tech articles",
   ],
-  openGraph: {
-    title,
-    description,
-    type: "website",
-    url: "https://www.yuvrajsinh.me",
-    siteName: "Yuvrajsinh Gohil",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-  },
 };
 
-export default function WritingsPage() {
+export default function PostsPage() {
   const posts = getPosts();
 
   return (

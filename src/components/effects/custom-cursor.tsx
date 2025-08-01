@@ -31,9 +31,9 @@ export default function CustomCursor() {
   const cursorY = useMotionValue(0);
 
   const springConfig = {
-    damping: 30,
-    stiffness: 800,
-    mass: 0.2,
+    damping: 50,
+    stiffness: 2000,
+    mass: 0.05,
     restDelta: 0.001,
   };
 
@@ -214,9 +214,9 @@ export default function CustomCursor() {
             }}
             transition={{
               type: "spring",
-              damping: 35,
-              stiffness: 900,
-              mass: 0.1,
+              damping: 60,
+              stiffness: 2500,
+              mass: 0.02,
               restDelta: 0.001,
             }}
           />
