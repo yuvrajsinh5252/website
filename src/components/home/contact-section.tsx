@@ -59,8 +59,8 @@ export function ContactSection() {
               Get in touch
             </h2>
             <p className="text-lg lg:text-xl text-gray-300 max-w-2xl mx-auto">
-              I'm always excited to connect with fellow developers, collaborate
-              on interesting projects, or just have a chat.
+              I&apos;m always excited to connect with fellow developers,
+              collaborate on interesting projects, or just have a chat.
             </p>
           </div>
 

@@ -208,7 +208,7 @@ export const MeteorShowerEffect = ({
             ctx.globalAlpha = opacity * 0.25;
             ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
             ctx.lineWidth = 0.3;
-            
+
             ctx.beginPath();
             ctx.moveTo(star.x - sparkleSize, star.y);
             ctx.lineTo(star.x + sparkleSize, star.y);
@@ -341,7 +341,7 @@ export const MeteorShowerEffect = ({
 
         for (let i = 0; i < segments; i++) {
           const progress = i / segments;
-          
+
           // Calculate positions for this segment
           const segmentStartX = meteor.x - cosAngle * segmentLength * i;
           const segmentStartY = meteor.y - sinAngle * segmentLength * i;
@@ -350,7 +350,10 @@ export const MeteorShowerEffect = ({
 
           // Simplified taper calculation
           const widthMultiplier = 1 - progress * 0.7;
-          const segmentWidth = Math.max(0.4, currentSize * 1.8 * widthMultiplier);
+          const segmentWidth = Math.max(
+            0.4,
+            currentSize * 1.8 * widthMultiplier
+          );
           const segmentOpacity = currentOpacity * (1 - progress * 0.5);
 
           if (segmentOpacity < 0.03) continue;
@@ -457,14 +460,14 @@ export const MeteorShowerEffect = ({
     let frameCount = 0;
     const render = () => {
       frameCount++;
-      
+
       // Only draw background every 3rd frame for stars
       if (frameCount % 3 === 0) {
         drawBackground();
       } else {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
       }
-      
+
       checkMeteorActivation();
       drawMeteors();
       animationFrameId = requestAnimationFrame(render);
@@ -495,6 +498,16 @@ export const MeteorShowerEffect = ({
     starCount,
     showStars,
     maxSimultaneousMeteors,
+    angle.min,
+    angle.max,
+    meteorFrequency.min,
+    meteorFrequency.max,
+    meteorSize.min,
+    meteorSize.max,
+    meteorSpeed.min,
+    meteorSpeed.max,
+    tailLength.min,
+    tailLength.max,
   ]);
 
   return (

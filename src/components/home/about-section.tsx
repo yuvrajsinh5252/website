@@ -135,7 +135,7 @@ export function AboutSection() {
                 </div>
 
                 <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                  Hi! I'm a Computer Science student at{" "}
+                  Hi! I&apos;m a Computer Science student at{" "}
                   <span className="text-blue-400 font-medium">
                     Nirma University
                   </span>
@@ -151,10 +151,11 @@ export function AboutSection() {
                 </p>
 
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  Recently, I've shifted to AI agents and multi-agent systems,
-                  building tools for dynamic data exploration using LangChain
-                  and LangGraph. It's rewarding to apply my web development
-                  experience toward creating smarter, more flexible systems.
+                  Recently, I&apos;ve shifted to AI agents and multi-agent
+                  systems, building tools for dynamic data exploration using
+                  LangChain and LangGraph. It&apos;s rewarding to apply my web
+                  development experience toward creating smarter, more flexible
+                  systems.
                 </p>
               </div>
             </div>
