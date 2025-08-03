@@ -114,8 +114,8 @@ export function AboutSection() {
     >
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
             About Me
           </h2>
           <div className="w-20 h-1 bg-white/20 mx-auto rounded-full"></div>
@@ -125,7 +125,7 @@ export function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-12">
           {/* Personal Story Card - Keep exactly as is */}
           <div className="lg:col-span-3">
-            <div className="relative p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 overflow-hidden">
+            <div className="relative p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 overflow-hidden">
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-6">
                   <FaRoute className="text-2xl text-blue-400" />
@@ -134,7 +134,7 @@ export function AboutSection() {
                   </h3>
                 </div>
 
-                <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
                   Hi! I&apos;m a Computer Science student at{" "}
                   <span className="text-blue-400 font-medium">
                     Nirma University
@@ -150,7 +150,7 @@ export function AboutSection() {
                   keep me thriving in collaborative environments.
                 </p>
 
-                <p className="text-gray-300 text-lg leading-relaxed">
+                <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
                   Recently, I&apos;ve shifted to AI agents and multi-agent
                   systems, building tools for dynamic data exploration using
                   LangChain and LangGraph. It&apos;s rewarding to apply my web
@@ -162,11 +162,13 @@ export function AboutSection() {
           </div>
 
           {/* Clean Education Section */}
-          <div className="flex flex-col justify-center">
-            <div className="space-y-12">
+          <div className="flex flex-col justify-center mt-6 lg:mt-0">
+            <div className="space-y-8 sm:space-y-12">
               <div className="flex items-center gap-3">
-                <FaGraduationCap className="text-white/60 text-xl" />
-                <h3 className="text-xl font-semibold text-white">Education</h3>
+                <FaGraduationCap className="text-white/60 text-lg sm:text-xl" />
+                <h3 className="text-lg sm:text-xl font-semibold text-white">
+                  Education
+                </h3>
               </div>
 
               {/* Current Education */}
@@ -201,12 +203,14 @@ export function AboutSection() {
         </div>
 
         {/* Tech Stack and Projects Side by Side */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
           {/* Tech Stack Section */}
           <div className="flex flex-col">
-            <div className="flex items-center gap-3 mb-6">
-              <FaCode className="text-xl text-cyan-400" />
-              <h3 className="text-xl font-semibold text-white">Tech Stack</h3>
+            <div className="flex items-center gap-3 mb-4 sm:mb-6">
+              <FaCode className="text-lg sm:text-xl text-cyan-400" />
+              <h3 className="text-lg sm:text-xl font-semibold text-white">
+                Tech Stack
+              </h3>
             </div>
 
             <div className="flex flex-wrap gap-2">
@@ -223,9 +227,9 @@ export function AboutSection() {
 
           {/* Featured Projects Section */}
           <div className="flex flex-col">
-            <div className="flex items-center gap-3 mb-6">
-              <FaRocket className="text-xl text-purple-400" />
-              <h3 className="text-xl font-semibold text-white">
+            <div className="flex items-center gap-3 mb-4 sm:mb-6">
+              <FaRocket className="text-lg sm:text-xl text-purple-400" />
+              <h3 className="text-lg sm:text-xl font-semibold text-white">
                 Featured Projects
               </h3>
             </div>

@@ -7,6 +7,8 @@ year: 2024
 day: 2
 ---
 
+import { TabbedCodeBlock } from '@/components/ui/tabbed-code-block'
+
 ## Problem Overview
 
 In this challenge, we analyze reactor safety reports. Each report is a sequence of levels, and a report is considered "safe" if:
@@ -21,8 +23,11 @@ Looking at this problem, I need to determine if each sequence follows a consiste
 
 My approach is to track both possibilities until I see the first difference between consecutive numbers. Once I know the direction, any violation of that pattern or any jump outside the 1-3 range means the report is unsafe. Single-element reports are an interesting edge case - they're technically safe since they don't violate any rules!
 
-```cpp
-#include<bits/stdc++.h>
+<TabbedCodeBlock
+  tabs={[
+    {
+      language: "cpp",
+      code: `#include<bits/stdc++.h>
 using namespace std;
 
 int main() {
@@ -55,8 +60,10 @@ int main() {
   }
 
   cout << safe << endl;
-}
-```
+}`
+    }
+  ]}
+/>
 
 ## Part 2: Problem Dampener
 
@@ -64,8 +71,11 @@ Part 2 introduces the Problem Dampener - we can now tolerate one bad reading by 
 
 The strategy is straightforward but thorough: first check if the report is already safe (no need to remove anything), and if not, try removing each element one by one until I find a configuration that works. It's like having a second chance when something goes wrong!
 
-```cpp
-#include<bits/stdc++.h>
+<TabbedCodeBlock
+  tabs={[
+    {
+      language: "cpp",
+      code: `#include<bits/stdc++.h>
 using namespace std;
 
 bool check_safety(vector<int> level, int avoid) {
@@ -121,8 +131,10 @@ int main() {
   }
 
   cout << safe << endl;
-}
-```
+}`
+    }
+  ]}
+/>
 
 ---
 

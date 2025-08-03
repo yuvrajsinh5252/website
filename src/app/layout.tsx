@@ -4,7 +4,6 @@ import "./globals.css";
 import { Provider } from "@/components/themes/provides";
 import { constructMetadata } from "@/lib/utils";
 import Navbar from "@/components/navbar/navbar";
-import CustomCursor from "@/components/effects/custom-cursor";
 import { Background } from "@/components/ui/background";
 import { personSchema } from "@/lib/schemas";
 import { siteConfig } from "@/config/site";
@@ -42,7 +41,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <Provider>
           <Background />
-          <CustomCursor />
           <Navbar />
           <div className="z-30 relative">{children}</div>
         </Provider>

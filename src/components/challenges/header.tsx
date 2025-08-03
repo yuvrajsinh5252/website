@@ -13,7 +13,7 @@ export function Header({ title, back }: { title: string; back: boolean }) {
       className="mb-12 sm:mb-14 md:mb-16"
     >
       <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-        <div className="flex justify-center items-center text-2xl sm:text-3xl md:text-4xl text-blue-400 hover:text-blue-300 transition-colors duration-150 expand-cursor rounded-full">
+        <div className="flex justify-center items-center text-2xl sm:text-3xl md:text-4xl text-blue-400 hover:text-blue-300 transition-colors duration-150 rounded-full">
           {back ? (
             <Link href="/challenges">
               <IoIosArrowBack />

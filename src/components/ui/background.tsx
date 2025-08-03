@@ -19,6 +19,8 @@ interface Particle {
 export function Background() {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   const gradientBackgrounds = useMemo(
     () => ({
@@ -76,10 +78,23 @@ export function Background() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
+    // Check for reduced motion preference
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReducedMotion(mediaQuery.matches);
+
+    // Check if mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     const generateParticles = () => {
+      // Reduce particle count on mobile and for reduced motion
+      const baseCount = isMobile ? 2 : reducedMotion ? 3 : 6;
       const particleCount = Math.min(
-        6,
-        Math.max(3, Math.floor(window.innerWidth / 250))
+        baseCount,
+        Math.max(2, Math.floor(window.innerWidth / 350))
       );
       const newParticles: Particle[] = [];
 
@@ -125,14 +140,19 @@ export function Background() {
 
     let frameCount = 0;
     const startAnimation = () => {
+      // Skip animation if reduced motion is preferred
+      if (reducedMotion) return;
+      
       const animate = () => {
         frameCount++;
-        // Reduce particle update frequency to every 10th frame
-        if (frameCount % 10 === 0) {
+        // Reduce particle update frequency more on mobile
+        const updateFrequency = isMobile ? 20 : 10;
+        if (frameCount % updateFrequency === 0) {
           setParticles((prevParticles) =>
             prevParticles.map((particle) => {
-              let newX = particle.x + particle.speedX * 3.3; // Compensate for slower updates
-              let newY = particle.y + particle.speedY * 3.3;
+              const speedMultiplier = isMobile ? 2 : 3.3;
+              let newX = particle.x + particle.speedX * speedMultiplier;
+              let newY = particle.y + particle.speedY * speedMultiplier;
 
               if (newX < -10) newX = window.innerWidth + 10;
               if (newX > window.innerWidth + 10) newX = -10;
@@ -148,7 +168,9 @@ export function Background() {
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    startAnimation();
+    if (!reducedMotion) {
+      startAnimation();
+    }
 
     const handleResize = () => {
       setParticles((prevParticles) => {
@@ -169,8 +191,9 @@ export function Background() {
       clearTimeout(loadTimer);
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', checkMobile);
     };
-  }, []);
+  }, [isMobile, reducedMotion]);
 
   return (
     <div
@@ -181,7 +204,7 @@ export function Background() {
         <div
           className="absolute inset-0 opacity-35"
           style={{
-            background: `
+            background: isMobile ? gradientBackgrounds.nebula : `
               ${gradientBackgrounds.nebula},
               repeating-linear-gradient(
                 0deg,
@@ -191,7 +214,7 @@ export function Background() {
                 rgba(255,255,255,0.002) 2px
               )
             `,
-            filter: "blur(1px)",
+            filter: isMobile ? "none" : "blur(1px)",
             transform: "translateZ(0)",
             willChange: "auto",
             backgroundAttachment: "fixed",
@@ -221,13 +244,13 @@ export function Background() {
           transition={{ duration: 3, ease: "easeInOut", delay: 1.5 }}
         />
 
-        {isLoaded && (
+        {isLoaded && !isMobile && (
           <motion.div
             className="absolute top-0 left-0 w-[40rem] h-[25rem]"
             style={{
               background:
                 "radial-gradient(ellipse 70% 50% at 30% 40%, rgba(37, 99, 235, 0.15) 0%, rgba(37, 99, 235, 0.10) 30%, rgba(37, 99, 235, 0.05) 50%, rgba(37, 99, 235, 0.02) 70%, transparent 90%)",
-              filter: "blur(60px)",
+              filter: "blur(40px)",
               transform: "translateZ(0)",
               willChange: "opacity, transform",
             }}
@@ -244,13 +267,13 @@ export function Background() {
           />
         )}
 
-        {isLoaded && (
+        {isLoaded && !isMobile && (
           <motion.div
             className="absolute top-1/3 right-0 w-[35rem] h-[30rem]"
             style={{
               background:
                 "radial-gradient(ellipse 60% 80% at 70% 50%, rgba(139, 92, 246, 0.12) 0%, rgba(139, 92, 246, 0.08) 25%, rgba(168, 85, 247, 0.08) 40%, rgba(168, 85, 247, 0.04) 60%, rgba(168, 85, 247, 0.02) 80%, transparent 95%)",
-              filter: "blur(80px)",
+              filter: "blur(50px)",
               transform: "translateZ(0)",
               willChange: "opacity, transform",
             }}
@@ -269,13 +292,13 @@ export function Background() {
           />
         )}
 
-        {isLoaded && (
+        {isLoaded && !isMobile && (
           <motion.div
             className="absolute bottom-0 left-1/4 w-[50rem] h-[20rem]"
             style={{
               background:
                 "radial-gradient(ellipse 80% 40% at 50% 80%, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.08) 30%, rgba(37, 99, 235, 0.08) 50%, rgba(37, 99, 235, 0.04) 70%, rgba(37, 99, 235, 0.02) 85%, transparent 100%)",
-              filter: "blur(70px)",
+              filter: "blur(45px)",
               transform: "translateZ(0)",
               willChange: "opacity, transform",
             }}
@@ -294,7 +317,7 @@ export function Background() {
         )}
       </div>
 
-      {isLoaded && (
+      {isLoaded && !isMobile && (
         <svg
           className="absolute inset-0 w-full h-full opacity-8"
           style={{ transform: "translateZ(0)" }}
@@ -320,7 +343,7 @@ export function Background() {
         </svg>
       )}
 
-      {isLoaded && (
+      {isLoaded && !reducedMotion && (
         <motion.div
           className="absolute inset-0"
           initial={{ opacity: 0 }}

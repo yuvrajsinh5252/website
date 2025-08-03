@@ -7,6 +7,8 @@ year: 2024
 day: 1
 ---
 
+import { TabbedCodeBlock } from '@/components/ui/tabbed-code-block'
+
 ## Problem Overview
 
 Two lists of location IDs need to be reconciled. Part 1 calculates total distance by pairing sorted elements. Part 2 calculates similarity score using frequency counting.
@@ -15,8 +17,11 @@ Two lists of location IDs need to be reconciled. Part 1 calculates total distanc
 
 Sort both lists and sum absolute differences between corresponding pairs.
 
-```cpp
-#include<bits/stdc++.h>
+<TabbedCodeBlock
+  tabs={[
+    {
+      language: "cpp",
+      code: `#include<bits/stdc++.h>
 using namespace std;
 
 int main() {
@@ -39,15 +44,20 @@ int main() {
 
     cout << ans << endl;
     return 0;
-}
-```
+}`
+    }
+  ]}
+/>
 
 ## Part 2: Similarity Score
 
 Count frequencies and multiply each left list number by its frequency in the right list.
 
-```cpp
-#include<bits/stdc++.h>
+<TabbedCodeBlock
+  tabs={[
+    {
+      language: "cpp",
+      code: `#include<bits/stdc++.h>
 using namespace std;
 
 int main() {
@@ -74,5 +84,7 @@ int main() {
 
     cout << ans << endl;
     return 0;
-}
-```
+}`
+    }
+  ]}
+/>

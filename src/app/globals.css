@@ -49,6 +49,95 @@ body {
   display: none;
 }
 
+/* Navbar expand cursor effect */
+.expand-cursor {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.expand-cursor::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 9999px;
+  background: transparent;
+  border: 2px solid transparent;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.expand-cursor:hover::before {
+  opacity: 1;
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+/* Performance optimizations */
 * {
-  cursor: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Reduce motion for accessibility and performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimize for Safari */
+@supports (-webkit-touch-callout: none) {
+  body {
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  .will-change-transform {
+    will-change: transform;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  
+  /* Fix Safari backdrop-filter performance */
+  .backdrop-blur-sm {
+    -webkit-backdrop-filter: blur(4px);
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  /* Disable complex filters on mobile */
+  .backdrop-blur-sm {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  /* Simplify shadows on mobile */
+  [style*="box-shadow"] {
+    box-shadow: none !important;
+  }
+  
+  /* Disable blur filters on mobile */
+  [style*="filter: blur"] {
+    filter: none !important;
+  }
+}
+
+/* GPU acceleration hints */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
 }

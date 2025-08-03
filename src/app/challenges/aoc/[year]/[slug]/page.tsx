@@ -6,6 +6,7 @@ import { AnimatedPost } from "@/components/effects/animated-post";
 import { IoIosArrowBack } from "react-icons/io";
 import { MagicLink } from "@/components/effects/magiclink";
 import { CodeBlock } from "@/components/ui/code-block";
+import { TabbedCodeBlock } from "@/components/ui/tabbed-code-block";
 import { Metadata } from "next";
 import { FaCalendar } from "react-icons/fa";
 
@@ -67,6 +68,7 @@ const components = {
     }
     return <CodeBlock {...props} />;
   },
+  TabbedCodeBlock,
 };
 
 export default async function AOCChallengePage({

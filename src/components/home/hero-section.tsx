@@ -86,8 +86,11 @@ export function HeroSection() {
         animate="visible"
         className="space-y-8 sm:space-y-10 max-w-4xl mx-auto relative z-10"
       >
-        <motion.div variants={criticalTextVariants} className="space-y-2 sm:space-y-4">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+        <motion.div
+          variants={criticalTextVariants}
+          className="space-y-2 sm:space-y-4"
+        >
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
             <span className="text-gray-300">Hi, I&apos;m</span>
             <span className="mt-1 block bg-gradient-to-r from-blue-200 to-blue-400 bg-clip-text leading-tight text-transparent">
               Yuvrajsinh Gohil
@@ -97,7 +100,7 @@ export function HeroSection() {
 
         <motion.p
           variants={criticalTextVariants}
-          className="text-base sm:text-lg md:text-xl font-light leading-relaxed max-sm:-mx-6 text-gray-400 px-2"
+          className="text-sm sm:text-base md:text-lg lg:text-xl font-light leading-relaxed text-gray-400 px-4 sm:px-2"
         >
           Computer Science student passionate about emerging technologies and
           crafting innovative digital solutions.
@@ -118,7 +121,7 @@ export function HeroSection() {
               View My Work
             </span>
           </Link>
-          
+
           <Link
             href="/posts"
             className="group relative flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 rounded-full

@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { ChallengesList } from "@/components/challenges/challenges_list";
 
 export const metadata: Metadata = {
-  title: "Yuvrajsinh Gohil Challenges",
+  title: "Challenges",
   description:
     "Coding challenges and solutions by Yuvrajsinh Gohil - Advent of Code, algorithms, and problem-solving.",
   keywords: [
