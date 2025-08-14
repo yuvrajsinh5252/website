@@ -29,10 +29,7 @@ export default function Navbar() {
           transition-all duration-300"
       >
         {NAV_ITEMS.map((item) => (
-          <div
-            key={item.href}
-            className="relative z-10"
-          >
+          <div key={item.href} className="relative z-10">
             <NavLink href={item.href} text={item.text} />
           </div>
         ))}

@@ -40,26 +40,24 @@ export default function NavLink({ href, text }: NavLinkProps) {
           initial={false}
           transition={{
             duration: 0.3,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
       )}
 
       <Link
         href={href}
-        className={`relative rounded-full flex items-center gap-2 expand-cursor px-3 py-2
-          transition-all duration-200 ${
+        className={`relative rounded-full flex items-center gap-2 px-3 py-2 border
+          transition-colors duration-150 ${
             isActive
-              ? "text-blue-200 font-medium"
-              : "text-gray-300 hover:text-blue-300"
-          }`}
+              ? "text-blue-200 font-medium bg-white/5 border-white/10"
+              : "text-gray-300 border-transparent hover:text-blue-200 hover:bg-blue-400/10 hover:border-blue-400/20"
+          } focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/30`}
         aria-label={`Navigate to ${text} page`}
       >
         <div
           className={`transition-all duration-200 ${
-            isActive
-              ? "text-blue-200"
-              : "group-hover:text-blue-300"
+            isActive ? "text-blue-200" : "group-hover:text-blue-300"
           }`}
         >
           {getIcon(text)}

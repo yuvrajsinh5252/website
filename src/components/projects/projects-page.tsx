@@ -57,69 +57,92 @@ export default function ProjectsPage() {
                 initial="hidden"
                 animate="visible"
                 transition={{ delay: index * 0.02 }}
-                className="will-change-auto min-h-[280px]"
+                className="will-change-auto h-full"
                 style={{
                   contentVisibility: "auto",
-                  containIntrinsicSize: "280px",
+                  containIntrinsicSize: "260px",
                 }}
               >
-                <ColorSwingBox>
-                  <div className="flex flex-col h-full">
-                    <div className="flex flex-col sm:flex-row justify-between items-start mb-4 gap-3">
-                      <div className="flex-1">
-                        <h2 className="text-lg sm:text-xl font-bold text-white group-hover:text-blue-300 transition-colors duration-150 mb-2 leading-tight">
-                          {project.title}
-                        </h2>
-                        {project.year && (
-                          <p className="text-sm text-gray-500 font-medium">
-                            {project.year}
-                          </p>
-                        )}
-                      </div>
-                      <div className="flex gap-2 sm:gap-3 flex-shrink-0 w-full sm:w-auto">
-                        {project.link && (
-                          <div className="flex-1 sm:flex-initial">
+                <div
+                  className={`${
+                    PROJECTS[index].link ? "cursor-pointer" : ""
+                  } h-full`}
+                  role={PROJECTS[index].link ? "link" : undefined}
+                  tabIndex={PROJECTS[index].link ? 0 : -1}
+                  onClick={() => {
+                    const href = PROJECTS[index].link;
+                    if (href)
+                      window.open(href, "_blank", "noopener,noreferrer");
+                  }}
+                  onKeyDown={(e) => {
+                    const href = PROJECTS[index].link;
+                    if (href && (e.key === "Enter" || e.key === " ")) {
+                      e.preventDefault();
+                      window.open(href, "_blank", "noopener,noreferrer");
+                    }
+                  }}
+                >
+                  <ColorSwingBox className="p-4 sm:p-5 h-full">
+                    <div className="flex flex-col h-full gap-2">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h2 className="text-base sm:text-lg font-semibold text-white leading-tight">
+                            {project.title}
+                          </h2>
+                          {project.year && (
+                            <p className="text-[11px] sm:text-xs text-gray-500 mt-0.5">
+                              {project.year}
+                            </p>
+                          )}
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          {project.link && (
                             <Link
                               href={project.link}
                               target="_blank"
                               rel="noreferrer"
-                              className="flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 bg-blue-400/10 hover:bg-blue-400/20 border border-blue-400/20 hover:border-blue-400/40 rounded-lg transition-all duration-150 w-full sm:w-auto"
+                              onClick={(e) => e.stopPropagation()}
+                              className="p-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:text-white transition-colors"
+                              aria-label={`Open ${project.title}`}
                             >
-                              <FaExternalLinkAlt size={12} />
-                              <span>Live</span>
+                              <FaExternalLinkAlt size={14} />
                             </Link>
-                          </div>
-                        )}
-                        <div className="flex-1 sm:flex-initial">
-                          <Link
+                          )}
+                          <a
                             href={project.githubLink}
                             target="_blank"
                             rel="noreferrer"
-                            className="flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-400 hover:text-gray-300 bg-gray-400/10 hover:bg-gray-400/20 border border-gray-600/20 hover:border-gray-600/40 rounded-lg transition-all duration-150 w-full sm:w-auto"
+                            onClick={(e) => e.stopPropagation()}
+                            className="p-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:text-white transition-colors"
+                            aria-label={`View ${project.title} on GitHub`}
                           >
-                            <SiGithub size={12} />
-                            <span>Code</span>
-                          </Link>
+                            <SiGithub size={14} />
+                          </a>
                         </div>
                       </div>
-                    </div>
 
-                    <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
-                      {project.description}
-                    </p>
+                      <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
+                        {project.description}
+                      </p>
 
-                    <div className="flex flex-wrap gap-2">
-                      {project.tag.map((tag, idx) => (
-                        <span
-                          key={tag}
-                          className="px-2.5 py-1 text-xs font-medium text-gray-200 bg-gray-800/60 backdrop-blur-sm hover:bg-gray-700/80 rounded-md border border-gray-600/40 hover:border-blue-400/50"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                      <div className="mt-auto flex flex-wrap gap-1.5">
+                        {project.tag.slice(0, 4).map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2 py-0.5 text-[11px] font-medium text-gray-200 bg-gray-800/60 rounded border border-gray-600/40"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                        {project.tag.length > 4 && (
+                          <span className="px-2 py-0.5 text:[11px] text-gray-400 bg-white/5 rounded border border-white/10">
+                            +{project.tag.length - 4}
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </ColorSwingBox>
+                  </ColorSwingBox>
+                </div>
               </m.div>
             ))}
           </div>

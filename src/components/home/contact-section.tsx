@@ -4,8 +4,7 @@ import { motion } from "framer-motion";
 import { FaEnvelope } from "react-icons/fa";
 import { SiGithub, SiLinkedin, SiX, SiDiscord } from "react-icons/si";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { FaCopy, FaCheck } from "react-icons/fa";
+import { useRef } from "react";
 import { SOCIAL_LINKS } from "@/config/social-links";
 import { IconType } from "react-icons";
 
@@ -19,25 +18,7 @@ const iconMap: { [key: string]: IconType } = {
 export function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [copied, setCopied] = useState(false);
   const email = "yuvrajsinh476@gmail.com";
-
-  const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      const textArea = document.createElement("textarea");
-      textArea.value = email;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand("copy");
-      document.body.removeChild(textArea);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
-  };
 
   const socials = SOCIAL_LINKS.filter((link) => link.name !== "Email");
 
@@ -65,8 +46,8 @@ export function ContactSection() {
           </div>
 
           <div className="flex justify-center">
-            <motion.button
-              onClick={copyToClipboard}
+            <motion.a
+              href={`mailto:${email}`}
               className="group relative"
               whileTap={{ scale: 0.98 }}
             >
@@ -82,34 +63,16 @@ export function ContactSection() {
                 <div className="relative flex items-center gap-3 sm:gap-4">
                   <FaEnvelope className="text-xl sm:text-2xl text-blue-400" />
                   <div className="text-left">
-                    <p className="text-xs sm:text-sm text-gray-400 mb-1">Email me at</p>
-                    <p className="text-sm sm:text-lg font-medium text-white break-all">{email}</p>
-                  </div>
-                  <div className="ml-2 sm:ml-4">
-                    {copied ? (
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        <FaCheck className="text-green-400" />
-                      </motion.div>
-                    ) : (
-                      <FaCopy className="text-gray-400 group-hover:text-white transition-colors duration-150" />
-                    )}
+                    <p className="text-xs sm:text-sm text-gray-400 mb-1">
+                      Email me at
+                    </p>
+                    <p className="text-sm sm:text-lg font-medium text-white break-all">
+                      {email}
+                    </p>
                   </div>
                 </div>
               </div>
-
-              <motion.div
-                className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-sm text-gray-400 pointer-events-none"
-                initial={{ opacity: 0, y: -10 }}
-                animate={copied ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
-                transition={{ duration: 0.15 }}
-              >
-                {copied && "Copied to clipboard!"}
-              </motion.div>
-            </motion.button>
+            </motion.a>
           </div>
 
           <div className="space-y-8">

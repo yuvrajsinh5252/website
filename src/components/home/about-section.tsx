@@ -23,86 +23,103 @@ export function AboutSection() {
       name: "React",
       color: "from-blue-500/10 to-cyan-500/10",
       border: "border-blue-400/20",
+      url: "https://react.dev/",
     },
     {
       name: "Next.js",
       color: "from-gray-500/10 to-slate-500/10",
       border: "border-gray-400/20",
+      url: "https://nextjs.org/",
     },
     {
       name: "TypeScript",
       color: "from-blue-600/10 to-indigo-500/10",
       border: "border-blue-500/20",
+      url: "https://www.typescriptlang.org/",
     },
     {
       name: "JavaScript",
       color: "from-yellow-500/10 to-amber-500/10",
       border: "border-yellow-400/20",
+      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
     },
     {
       name: "Tailwind CSS",
       color: "from-teal-500/10 to-cyan-500/10",
       border: "border-teal-400/20",
+      url: "https://tailwindcss.com/",
     },
     {
       name: "Node.js",
       color: "from-green-600/10 to-emerald-500/10",
       border: "border-green-400/20",
+      url: "https://nodejs.org/",
     },
     {
       name: "Python",
       color: "from-yellow-600/10 to-blue-500/10",
       border: "border-yellow-500/20",
+      url: "https://www.python.org/",
     },
     {
       name: "LangGraph",
       color: "from-purple-500/10 to-pink-500/10",
       border: "border-purple-400/20",
+      url: "https://langchain-ai.github.io/langgraph/",
     },
     {
       name: "PostgreSQL",
       color: "from-blue-700/10 to-indigo-600/10",
       border: "border-blue-600/20",
+      url: "https://www.postgresql.org/",
     },
     {
       name: "MongoDB",
       color: "from-green-700/10 to-emerald-600/10",
       border: "border-green-500/20",
+      url: "https://www.mongodb.com/",
     },
     {
       name: "Docker",
       color: "from-blue-500/10 to-sky-500/10",
       border: "border-blue-400/20",
+      url: "https://www.docker.com/",
     },
     {
       name: "Git",
       color: "from-orange-600/10 to-red-500/10",
       border: "border-orange-400/20",
+      url: "https://git-scm.com/",
     },
     {
       name: "Linux",
       color: "from-yellow-500/10 to-orange-500/10",
       border: "border-yellow-400/20",
+      url: "https://www.linux.org/",
     },
     {
       name: "C++",
       color: "from-blue-600/10 to-purple-600/10",
       border: "border-blue-500/20",
+      url: "https://isocpp.org/",
     },
     {
       name: "Rust",
       color: "from-orange-700/10 to-red-600/10",
       border: "border-orange-500/20",
+      url: "https://www.rust-lang.org/",
     },
     {
       name: "Java",
       color: "from-red-600/10 to-orange-600/10",
       border: "border-red-500/20",
+      url: "https://www.java.com/",
     },
     {
       name: "Go",
       color: "from-cyan-600/10 to-blue-600/10",
       border: "border-cyan-500/20",
+      url: "https://go.dev/",
     },
   ];
 
@@ -136,9 +153,14 @@ export function AboutSection() {
 
                 <p className="text-gray-300 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
                   Hi! I&apos;m a Computer Science student at{" "}
-                  <span className="text-blue-400 font-medium">
+                  <a
+                    href="https://nirmauni.ac.in/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-400 font-medium underline decoration-blue-400/40 underline-offset-2 hover:text-blue-300 hover:decoration-blue-400"
+                  >
                     Nirma University
-                  </span>
+                  </a>
                   . What started as curiosity became a passion for building web
                   apps that solve real problems. Open source contributions and{" "}
                   <Link
@@ -215,12 +237,15 @@ export function AboutSection() {
 
             <div className="flex flex-wrap gap-2">
               {skills.map((skill) => (
-                <div
+                <a
                   key={skill.name}
+                  href={skill.url}
+                  target="_blank"
+                  rel="noreferrer"
                   className={`px-3 py-1.5 bg-gradient-to-r ${skill.color} backdrop-blur-sm border ${skill.border} rounded-lg text-white text-xs font-medium cursor-pointer flex items-center justify-center`}
                 >
                   {skill.name}
-                </div>
+                </a>
               ))}
             </div>
           </div>
@@ -236,8 +261,33 @@ export function AboutSection() {
 
             <div className="space-y-4">
               {featuredProjects.map((project, index) => (
-                <div key={index} className="group relative">
-                  <ColorSwingBox>
+                <div
+                  key={index}
+                  className={`group relative ${
+                    project.link ? "cursor-pointer" : ""
+                  }`}
+                  role={project.link ? "link" : undefined}
+                  tabIndex={project.link ? 0 : -1}
+                  onClick={() => {
+                    if (project.link)
+                      window.open(
+                        project.link,
+                        "_blank",
+                        "noopener,noreferrer"
+                      );
+                  }}
+                  onKeyDown={(e) => {
+                    if (project.link && (e.key === "Enter" || e.key === " ")) {
+                      e.preventDefault();
+                      window.open(
+                        project.link,
+                        "_blank",
+                        "noopener,noreferrer"
+                      );
+                    }
+                  }}
+                >
+                  <ColorSwingBox className="p-4 sm:p-5">
                     <div className="flex items-start justify-between mb-2">
                       <h4 className="text-base font-semibold text-white">
                         {project.title}
@@ -247,18 +297,22 @@ export function AboutSection() {
                           <Link
                             href={project.link}
                             target="_blank"
-                            className="p-1.5 text-blue-400 hover:text-blue-300 bg-blue-400/10 hover:bg-blue-400/20 rounded-md"
+                            onClick={(e) => e.stopPropagation()}
+                            className="p-1.5 text-blue-400 hover:text-blue-300 bg-blue-400/10 hover:bg-blue-400/20 rounded-full border border-blue-400/20"
                           >
                             <FaExternalLinkAlt size={10} />
                           </Link>
                         )}
-                        <Link
+                        <a
                           href={project.githubLink}
                           target="_blank"
-                          className="p-1.5 text-gray-400 hover:text-gray-300 bg-gray-400/10 hover:bg-gray-400/20 rounded-md"
+                          rel="noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="p-1.5 text-gray-400 hover:text-gray-300 bg-gray-400/10 hover:bg-gray-400/20 rounded-full border border-gray-400/20"
+                          aria-label="View source on GitHub"
                         >
                           <SiGithub size={10} />
-                        </Link>
+                        </a>
                       </div>
                     </div>
 
