@@ -2,19 +2,13 @@ import { getPosts } from "@/lib/content";
 import { PostHeader } from "@/components/post/header";
 import { PostsList } from "@/components/post/posts_list";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
-import { Metadata } from "next";
+import { createSEO } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Yuvrajsinh Gohil Posts",
+export const metadata = createSEO({
+  title: "Posts",
   description:
-    "Blog posts by Yuvrajsinh Gohil - programming tutorials, tech insights, and coding experiences.",
-  keywords: [
-    "Yuvrajsinh Gohil posts",
-    "Yuvrajsinh Gohil blog",
-    "programming blog",
-    "tech articles",
-  ],
-};
+    "Blog posts by Yuvrajsinh Gohil - Personal insights, anonymous stories...",
+});
 
 export default function PostsPage() {
   const posts = getPosts();
