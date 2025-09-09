@@ -13,11 +13,6 @@ export interface SEOProps {
   type?: "website" | "article" | "profile";
 }
 
-/**
- * Creates standardized metadata for SEO across all pages
- * @param options - SEO configuration options
- * @returns Metadata object for Next.js
- */
 export function createSEO(options: SEOProps = {}): Metadata {
   const {
     title,
@@ -31,10 +26,8 @@ export function createSEO(options: SEOProps = {}): Metadata {
     type = "website",
   } = options;
 
-  // Create the full title
   const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.title;
 
-  // Default image if none provided
   const defaultImage = `${siteConfig.url}/images/logo.png`;
   const metaImages =
     images.length > 0
@@ -95,7 +88,6 @@ export function createSEO(options: SEOProps = {}): Metadata {
       shortcut: "/favicon.ico",
       apple: "/favicon.ico",
     },
-    manifest: "/manifest.json",
     ...(canonical && {
       alternates: {
         canonical,
