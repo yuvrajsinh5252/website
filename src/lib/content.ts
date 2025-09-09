@@ -73,6 +73,7 @@ export function getPost(slug: string): Post | null {
     return {
       slug,
       title: data.title,
+      description: data.description,
       date: data.date,
       content,
     };

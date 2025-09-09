@@ -7,6 +7,8 @@ import { IoIosArrowBack } from "react-icons/io";
 import { MagicLink } from "@/components/effects/magiclink";
 import { Metadata } from "next";
 import { FaCalendar } from "react-icons/fa";
+import { createSEO } from "@/lib/seo";
+import { siteConfig } from "@/config/site";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -20,15 +22,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return notFound();
   }
 
-  return {
-    title: `${post.title}`,
-    openGraph: {
-      title: `${post.title}`,
-      type: "article",
-      url: `https://www.yuvrajsinh.me/posts/${slug}`,
-      siteName: "Yuvrajsinh Gohil",
-    },
-  };
+  return createSEO({
+    title: post.title,
+    description: post.description,
+    type: "article",
+    publishedTime: post.date,
+    canonical: `${siteConfig.url}/posts/${slug}`,
+  });
 }
 
 const components = {

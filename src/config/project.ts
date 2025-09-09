@@ -1,10 +1,12 @@
+import { siteConfig } from "./site";
+
 export const PROJECTS = [
   {
     title: "WhispherDocs",
     description:
       "A website that allows users to upload a PDF and interact with it via a chat interface, enabling questions and responses based on the content.",
     image: "../Mindhub.png",
-    link: "https://whispher-docs.vercel.app",
+    link: "https://whispherdocs.yuvrajsinh.dev",
     tag: [
       "Typescript",
       "Gen-ai",
@@ -42,7 +44,7 @@ export const PROJECTS = [
     description:
       "A comprehensive multiplayer chess platform. Includes real-time chat, matchmaking system, and ELO rating system for competitive play.",
     image: "../Mindhub.png",
-    link: "https://chessmate-ym.vercel.app/",
+    link: "https://chess.yuvrajsinh.dev",
     tag: [
       "Next.js",
       "TypeScript",
@@ -106,7 +108,7 @@ export const PROJECTS = [
     description:
       "A portfolio website that showcases my projects, skills, and experiences.",
     image: "../website.png",
-    link: "https://www.yuvrajsinh.me/",
+    link: `${siteConfig.url}/`,
     tag: ["Nextjs15", "Tailwind CSS"],
     year: "2024",
     githubLink: "https://github.com/yuvrajsinh5252/website",

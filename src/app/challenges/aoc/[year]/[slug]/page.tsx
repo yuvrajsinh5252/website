@@ -9,6 +9,8 @@ import { CodeBlock } from "@/components/ui/code-block";
 import { TabbedCodeBlock } from "@/components/ui/tabbed-code-block";
 import { Metadata } from "next";
 import { FaCalendar } from "react-icons/fa";
+import { createSEO } from "@/lib/seo";
+import { siteConfig } from "@/config/site";
 
 interface Props {
   params: Promise<{ slug: string; year: string }>;
@@ -23,32 +25,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return notFound();
   }
 
-  return {
-    title: `${challenge.title}`,
-    description: `Advent of Code - ${challenge.year}`,
-    keywords: [
-      "advent of code",
-      "aoc",
-      "aoc 2024",
-      "yuvrajsinh gohil",
-      "programming",
-      "algorithms",
-      "problem solving",
-    ],
-    openGraph: {
-      title: `${challenge.title}`,
-      description: `Advent of Code - ${challenge.year}`,
-      type: "article",
-      url: `https://www.yuvrajsinh.me/challenges/aoc/${slug}`,
-      siteName: "Yuvrajsinh Gohil",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${challenge.title}`,
-      description: `Advent of Code - ${challenge.year}`,
-      creator: "@Yuvrajsinh_099",
-    },
-  };
+  return createSEO({
+    title: challenge.title,
+    description: `Advent of Code ${challenge.year} solution for ${challenge.title}`,
+    type: "article",
+    publishedTime: challenge.date,
+    canonical: `${siteConfig.url}/challenges/aoc/${year}/${slug}`,
+  });
 }
 
 const components = {

@@ -1,20 +1,14 @@
 import { getChallenges } from "@/lib/content";
 import { Header } from "@/components/challenges/header";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
-import { Metadata } from "next";
 import { ChallengesList } from "@/components/challenges/challenges_list";
+import { createSEO } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createSEO({
   title: "Challenges",
   description:
     "Coding challenges and solutions by Yuvrajsinh Gohil - Advent of Code, algorithms, and problem-solving.",
-  keywords: [
-    "Yuvrajsinh Gohil challenges",
-    "Yuvrajsinh Gohil coding",
-    "Advent of Code solutions",
-    "programming challenges",
-  ],
-};
+});
 
 export default function ChallengesPage() {
   const challenges = getChallenges();

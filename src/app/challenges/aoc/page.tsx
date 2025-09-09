@@ -1,44 +1,15 @@
 import { getCategoryList } from "@/lib/content";
 import { Header } from "@/components/challenges/header";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
-import { Metadata } from "next";
 import { AocList } from "@/components/challenges/aoc_lists";
+import { createSEO } from "@/lib/seo";
+import { siteConfig } from "@/config/site";
 
-const title = "Advent of Code";
-const description =
-  "My solutions and explanations for Advent of Code challenges.";
-
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Yuvrajsinh Gohil",
-    default: title,
-  },
-  description,
-  keywords: [
-    "advent of code",
-    "aoc",
-    "yuvrajsinh gohil",
-    "programming",
-    "algorithms",
-    "problem solving",
-    "typescript",
-    "competitive programming",
-    "daily challenges",
-  ],
-  openGraph: {
-    title,
-    description,
-    type: "website",
-    url: "https://www.yuvrajsinh.me/challenges/aoc",
-    siteName: "Yuvrajsinh Gohil",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    creator: "@Yuvrajsinh_099",
-  },
-};
+export const metadata = createSEO({
+  title: "Advent of Code",
+  description: "My solutions and explanations for Advent of Code challenges.",
+  canonical: `${siteConfig.url}/challenges/aoc`,
+});
 
 export default function AOCPage() {
   const categories = getCategoryList().filter(

@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "Yuvrajsinh Gohil",
   url: "https://www.yuvrajsinh.me",
-  title: "Yuvrajsinh Gohil - Developer Portfolio",
+  title: "Yuvrajsinh Gohil | Software Developer",
   description:
-    "Computer Science student at Nirma University passionate about emerging technologies and crafting innovative digital solutions. Explore my projects, blog posts, and coding challenges.",
+    "Computer Science student at Nirma University passionate about emerging technologies. Explore my projects, blog posts, and coding challenges.",
   links: {
     twitter: "https://twitter.com/Yuvrajsinh_099",
     github: "https://github.com/yuvrajsinh5252",
@@ -13,21 +13,6 @@ export const siteConfig = {
     name: "Yuvrajsinh Gohil",
     url: "https://github.com/yuvrajsinh5252",
   },
-  keywords: [
-    "Yuvrajsinh Gohil",
-    "Yuvrajsinh",
-    "Gohil",
-    "software developer",
-    "Computer Science",
-    "Nirma University",
-    "programming",
-    "tech",
-    "full stack developer",
-    "frontend developer",
-    "backend developer",
-    "web development",
-    "engineering student",
-  ],
 };
 
 export type SiteConfig = typeof siteConfig;
