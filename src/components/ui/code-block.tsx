@@ -43,19 +43,19 @@ export function CodeBlock({ children, className = "" }: CodeBlockProps) {
   };
 
   return (
-    <div className="relative group my-6 rounded-xl border border-gray-700/50 bg-gray-900/50 backdrop-blur-sm overflow-hidden">
-      <div className="flex items-center justify-between bg-gray-800/50 px-4 py-2 border-b border-gray-700/50">
-        <span className="px-3 py-1 text-sm font-medium text-blue-300 bg-blue-500/10 border border-blue-500/30 rounded-md">
+    <div className="relative group my-4 sm:my-6 overflow-hidden">
+      <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+        <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium text-cyan-400 uppercase tracking-wide">
           {language === "plaintext" ? "code" : language}
         </span>
       </div>
 
       <div className="relative">
-        <pre className="overflow-x-auto bg-[#0d1117]/50 m-0">
-          <div className="py-4 px-4">
+        <pre className="overflow-x-auto bg-slate-900/30 backdrop-blur-sm m-0">
+          <div className="py-3 sm:py-4 px-3 sm:px-4">
             <code
               ref={codeRef}
-              className={`language-${language} text-sm leading-6 block`}
+              className={`language-${language} text-xs sm:text-sm leading-6 sm:leading-7 block`}
               style={{ background: "transparent" }}
             >
               {children}
@@ -65,13 +65,13 @@ export function CodeBlock({ children, className = "" }: CodeBlockProps) {
 
         <button
           onClick={copyToClipboard}
-          className="absolute bottom-4 right-4 flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-400 hover:text-gray-200 bg-gray-800/80 hover:bg-gray-700/80 border border-gray-600/50 hover:border-gray-500/50 rounded-md transition-all duration-200 backdrop-blur-sm"
+          className="absolute top-2 sm:top-3 right-2 sm:right-3 flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1 sm:py-1.5 text-[10px] sm:text-xs font-medium text-gray-400 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 rounded transition-all duration-200 backdrop-blur-sm opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
           title="Copy code"
         >
           {copied ? (
             <>
-              <FiCheck size={14} />
-              <span>Copied!</span>
+              <FiCheck size={14} className="text-green-400" />
+              <span className="text-green-400">Copied!</span>
             </>
           ) : (
             <>

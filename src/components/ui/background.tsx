@@ -61,12 +61,22 @@ export function Background() {
           rgba(15, 23, 42, 0.8) 100%)
       `,
       stars: `
-        radial-gradient(2px 2px at 83px 47px, rgba(255,255,255,1.0) 0%, transparent 2px),
-        radial-gradient(1px 1px at 234px 89px, rgba(255,255,255,0.8) 0%, transparent 1px),
-        radial-gradient(2px 2px at 156px 23px, rgba(255,255,255,0.9) 0%, transparent 2px),
-        radial-gradient(1px 1px at 67px 134px, rgba(255,255,255,0.7) 0%, transparent 1px),
-        radial-gradient(1px 1px at 289px 56px, rgba(255,255,255,0.6) 0%, transparent 1px),
-        radial-gradient(2px 2px at 123px 178px, rgba(255,255,255,1.0) 0%, transparent 2px)
+        radial-gradient(1.5px 1.5px at 50px 80px, rgba(255,255,255,0.9) 0%, transparent 1.5px),
+        radial-gradient(1px 1px at 150px 120px, rgba(255,255,255,0.8) 0%, transparent 1px),
+        radial-gradient(2px 2px at 230px 40px, rgba(255,255,255,1.0) 0%, transparent 2px),
+        radial-gradient(1px 1px at 320px 180px, rgba(255,255,255,0.7) 0%, transparent 1px),
+        radial-gradient(1.5px 1.5px at 420px 60px, rgba(255,255,255,0.85) 0%, transparent 1.5px),
+        radial-gradient(1px 1px at 510px 140px, rgba(255,255,255,0.75) 0%, transparent 1px),
+        radial-gradient(2px 2px at 600px 100px, rgba(255,255,255,0.95) 0%, transparent 2px),
+        radial-gradient(1px 1px at 700px 200px, rgba(255,255,255,0.65) 0%, transparent 1px),
+        radial-gradient(1.5px 1.5px at 780px 50px, rgba(255,255,255,0.9) 0%, transparent 1.5px),
+        radial-gradient(1px 1px at 860px 160px, rgba(255,255,255,0.8) 0%, transparent 1px),
+        radial-gradient(2px 2px at 950px 30px, rgba(255,255,255,1.0) 0%, transparent 2px),
+        radial-gradient(1px 1px at 1100px 180px, rgba(255,255,255,0.7) 0%, transparent 1px),
+        radial-gradient(1.5px 1.5px at 1200px 90px, rgba(255,255,255,0.85) 0%, transparent 1.5px),
+        radial-gradient(1px 1px at 1300px 220px, rgba(255,255,255,0.75) 0%, transparent 1px),
+        radial-gradient(2px 2px at 1400px 70px, rgba(255,255,255,0.95) 0%, transparent 2px),
+        radial-gradient(1px 1px at 1500px 150px, rgba(255,255,255,0.65) 0%, transparent 1px)
       `,
       vignette: `
         radial-gradient(circle at center, transparent 40%, rgba(3, 7, 18, 0.6) 100%)
@@ -91,10 +101,10 @@ export function Background() {
 
     const generateParticles = () => {
       // Reduce particle count on mobile and for reduced motion
-      const baseCount = isMobile ? 2 : reducedMotion ? 3 : 6;
+      const baseCount = isMobile ? 15 : reducedMotion ? 20 : 40;
       const particleCount = Math.min(
         baseCount,
-        Math.max(2, Math.floor(window.innerWidth / 350))
+        Math.max(10, Math.floor(window.innerWidth / 50))
       );
       const newParticles: Particle[] = [];
 
@@ -142,7 +152,7 @@ export function Background() {
     const startAnimation = () => {
       // Skip animation if reduced motion is preferred
       if (reducedMotion) return;
-      
+
       const animate = () => {
         frameCount++;
         // Reduce particle update frequency more on mobile
@@ -202,7 +212,7 @@ export function Background() {
     >
       <div className="absolute inset-0 z-20">
         <div
-          className="absolute inset-0 opacity-35"
+          className="absolute inset-0 opacity-30"
           style={{
             background: isMobile ? gradientBackgrounds.nebula : `
               ${gradientBackgrounds.nebula},
@@ -228,7 +238,7 @@ export function Background() {
             backgroundSize: "400px 300px",
           }}
           initial={{ opacity: 0 }}
-          animate={{ opacity: isLoaded ? 0.4 : 0 }}
+          animate={{ opacity: isLoaded ? (isMobile ? 0.4 : 0.6) : 0 }}
           transition={{ duration: 3, ease: "easeInOut", delay: 1 }}
         />
 
@@ -240,8 +250,20 @@ export function Background() {
             backgroundPosition: "200px 150px",
           }}
           initial={{ opacity: 0 }}
-          animate={{ opacity: isLoaded ? 0.25 : 0 }}
+          animate={{ opacity: isLoaded ? (isMobile ? 0.3 : 0.5) : 0 }}
           transition={{ duration: 3, ease: "easeInOut", delay: 1.5 }}
+        />
+
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            background: gradientBackgrounds.stars,
+            backgroundSize: "800px 600px",
+            backgroundPosition: "400px 300px",
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isLoaded ? (isMobile ? 0.2 : 0.35) : 0 }}
+          transition={{ duration: 3, ease: "easeInOut", delay: 2 }}
         />
 
         {isLoaded && !isMobile && (
@@ -390,21 +412,23 @@ export function Background() {
         style={{ background: gradientBackgrounds.vignette }}
       />
 
-      {/* <MeteorShowerEffect
-        key="meteor-shower-main"
-        className="absolute inset-0 z-30 h-full w-full"
-        background="transparent"
-        meteorCount={2}
-        meteorSize={{ min: 1.0, max: 2.0 }}
-        meteorSpeed={{ min: 4, max: 8 }}
-        tailLength={{ min: 60, max: 120 }}
-        meteorColor="#FFFFFF"
-        meteorGlow={true}
-        colorVariation={false}
-        showStars={false}
-        meteorFrequency={{ min: 8000, max: 15000 }}
-        maxSimultaneousMeteors={2}
-      /> */}
+      {isLoaded && !isMobile && (
+        <MeteorShowerEffect
+          key="meteor-shower-main"
+          className="absolute inset-0 z-30 h-full w-full"
+          background="transparent"
+          meteorCount={3}
+          meteorSize={{ min: 1.0, max: 2.5 }}
+          meteorSpeed={{ min: 5, max: 10 }}
+          tailLength={{ min: 80, max: 150 }}
+          meteorColor="#FFFFFF"
+          meteorGlow={true}
+          colorVariation={false}
+          showStars={false}
+          meteorFrequency={{ min: 6000, max: 12000 }}
+          maxSimultaneousMeteors={2}
+        />
+      )}
     </div>
   );
 }

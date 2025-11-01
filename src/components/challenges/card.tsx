@@ -25,7 +25,7 @@ export function ChallengeCard(challenge: ChallengesList) {
       }}
       whileTap={{ scale: 0.99 }}
     >
-      <ColorSwingBox>
+      <ColorSwingBox className="p-4 sm:p-5">
         <Link href={href} className="block h-full">
           <article className="flex flex-col h-full">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2">

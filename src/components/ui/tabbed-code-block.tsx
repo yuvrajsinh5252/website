@@ -53,37 +53,35 @@ export function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
   };
 
   return (
-    <div className="relative group my-6 rounded-xl border border-gray-700/50 bg-gray-900/50 backdrop-blur-sm overflow-hidden">
+    <div className="relative group my-4 sm:my-6 overflow-hidden">
       {/* Tab Header */}
-      <div className="flex items-center justify-between bg-gray-800/50 px-4 py-2 border-b border-gray-700/50">
-        <div className="flex items-center gap-2">
-          {tabs.map((tab, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveTab(index)}
-              className={`
-                relative px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200
-                ${
-                  activeTab === index
-                    ? "text-blue-300 bg-blue-500/10 border border-blue-500/30"
-                    : "text-gray-400 hover:text-gray-200 hover:bg-gray-700/50 border border-transparent"
-                }
-              `}
-            >
-              {activeTab === index && (
-                <motion.div
-                  layoutId="activeTab"
-                  className="absolute inset-0 bg-blue-500/10 rounded-md"
-                  initial={false}
-                  transition={{ type: "spring", bounce: 0, duration: 0.2 }}
-                />
-              )}
-              <span className="relative z-10">
-                {tab.language.toUpperCase()}
-              </span>
-            </button>
-          ))}
-        </div>
+      <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2 flex-wrap">
+        {tabs.map((tab, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveTab(index)}
+            className={`
+              relative px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium transition-all duration-200 uppercase tracking-wide
+              ${
+                activeTab === index
+                  ? "text-cyan-400"
+                  : "text-gray-500 hover:text-gray-300"
+              }
+            `}
+          >
+            {activeTab === index && (
+              <motion.div
+                layoutId="activeTab"
+                className="absolute -bottom-1 left-0 right-0 h-0.5 bg-cyan-400"
+                initial={false}
+                transition={{ type: "spring", bounce: 0, duration: 0.2 }}
+              />
+            )}
+            <span className="relative z-10">
+              {tab.language}
+            </span>
+          </button>
+        ))}
       </div>
 
       <AnimatePresence mode="wait">
@@ -95,11 +93,11 @@ export function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
           transition={{ duration: 0.1 }}
           className="relative"
         >
-          <pre className="overflow-x-auto bg-[#0d1117]/50 m-0">
-            <div className="py-4 px-4">
+          <pre className="overflow-x-auto bg-slate-900/30 backdrop-blur-sm m-0">
+            <div className="py-3 sm:py-4 px-3 sm:px-4">
               <code
                 ref={codeRef}
-                className={`language-${tabs[activeTab].language} text-sm leading-6 block`}
+                className={`language-${tabs[activeTab].language} text-xs sm:text-sm leading-6 sm:leading-7 block`}
                 style={{ background: "transparent" }}
               >
                 {tabs[activeTab].code}
@@ -109,13 +107,13 @@ export function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
 
           <button
             onClick={copyToClipboard}
-            className="absolute bottom-4 right-4 flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-400 hover:text-gray-200 bg-gray-800/80 hover:bg-gray-700/80 border border-gray-600/50 hover:border-gray-500/50 rounded-md transition-all duration-200 backdrop-blur-sm"
+            className="absolute top-2 sm:top-3 right-2 sm:right-3 flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1 sm:py-1.5 text-[10px] sm:text-xs font-medium text-gray-400 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 rounded transition-all duration-200 backdrop-blur-sm opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
             title="Copy code"
           >
             {copied ? (
               <>
-                <FiCheck size={14} />
-                <span>Copied!</span>
+                <FiCheck size={14} className="text-green-400" />
+                <span className="text-green-400">Copied!</span>
               </>
             ) : (
               <>

@@ -3,6 +3,7 @@ import "./globals.css";
 import { Provider } from "@/components/themes/provides";
 import Navbar from "@/components/navbar/navbar";
 import { Background } from "@/components/ui/background";
+import Footer from "@/components/footer/footer";
 import { createSEO } from "@/lib/seo";
 
 const inter = Inter({
@@ -34,6 +35,7 @@ export default function RootLayout({
           <Background />
           <Navbar />
           <div className="z-30 relative">{children}</div>
+          <Footer />
         </Provider>
       </body>
     </html>

@@ -24,7 +24,7 @@ export function CategoryCard({ title, href, year, day }: CategoryCardProps) {
       }}
       whileTap={{ scale: 0.98 }}
     >
-      <ColorSwingBox>
+      <ColorSwingBox className="p-4 sm:p-5">
         <Link href={href} className="block h-full">
           <article className="relative flex flex-col h-full">
             <motion.div

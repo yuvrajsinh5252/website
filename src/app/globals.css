@@ -3,9 +3,19 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --primary: 37, 99, 235;
+  /* Cosmic Neon theme tokens */
+  --background: #070b14; /* deep space */
+  --foreground: #e7edf7; /* soft white */
+  --muted-foreground: #a9b4c7;
+  --surface: rgba(255, 255, 255, 0.05);
+  --surface-border: rgba(231, 237, 247, 0.08);
+  --surface-hover: rgba(255, 255, 255, 0.08);
+  --selection: 56, 189, 248; /* sky-400 */
+  --glow: 59, 130, 246; /* blue-500 */
+  --accent-a: 59, 130, 246; /* blue */
+  --accent-b: 139, 92, 246; /* violet */
+  --accent-c: 6, 182, 212; /* cyan */
+  --primary: 37, 99, 235; /* legacy token, kept for compatibility */
 }
 
 html {
@@ -19,11 +29,54 @@ body {
   transition: color 0.5s ease, background 0.5s ease;
 }
 
+.magic:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 92%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgb(var(--primary));
+  z-index: -1;
+  transition: all 0.1s cubic-bezier(0, 0.59, 1, 0.26);
+}
+
+.magic:hover:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgb(var(--primary));
+  z-index: -1;
+}
+
 /* scroll-bar */
 ::-webkit-scrollbar {
   display: none;
 }
 
+/* Performance optimizations */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Reduce motion for accessibility and performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile optimizations */
 @media (max-width: 768px) {
   /* Disable complex filters on mobile */
   .backdrop-blur-sm {
