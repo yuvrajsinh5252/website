@@ -35,7 +35,6 @@ yarn-error.log*
 
 .next
 node_modules
-bun.lockb
 next-env.d.ts
 
 # vercel
