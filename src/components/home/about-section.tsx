@@ -14,8 +14,6 @@ import { SiGithub } from "react-icons/si";
 import Link from "next/link";
 import Image from "next/image";
 import { PROJECTS } from "@/config/project";
-import { ColorSwingBox } from "@/components/effects/color-swing-box";
-import { motion } from "framer-motion";
 
 export function AboutSection() {
   const ref = useRef(null);
@@ -168,32 +166,18 @@ export function AboutSection() {
       id="about"
     >
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Minimal Header */}
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
             About Me
           </h2>
         </div>
 
-        {/* My Journey - No Box */}
         <div className="mb-12 sm:mb-16">
-          <h3 className="text-xl sm:text-2xl font-semibold text-white mb-6">
-            My Journey
-          </h3>
           <div className="space-y-5 text-gray-300 text-base sm:text-lg leading-relaxed max-w-4xl">
             <p>
-              Hi! I&apos;m a Computer Science student at{" "}
-              <a
-                href="https://nirmauni.ac.in/"
-                target="_blank"
-                rel="noreferrer"
-                className="text-blue-400 font-medium hover:text-blue-300 transition-colors inline-flex items-center gap-1"
-              >
-                Nirma University
-                <FaExternalLinkAlt className="text-xs" />
-              </a>
-              . What started as curiosity became a passion for building web apps
-              that solve real problems. Open source contributions and{" "}
+              Hi! I&apos;m a Software Developer. What started as curiosity
+              became a passion for building web apps that solve real problems.
+              Open source contributions and{" "}
               <Link
                 href="/posts/hacknuthon-5.0"
                 className="text-blue-400 font-medium hover:text-blue-300 transition-colors"
@@ -212,13 +196,12 @@ export function AboutSection() {
           </div>
         </div>
 
-        {/* Experience and Education - Side by Side */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
           {/* Work Experience */}
           <div className="flex flex-col items-center">
             <div className="w-full max-w-lg">
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <FaBriefcase className="text-blue-400 text-base" />
+              <div className="flex gap-2 mb-4 ml-2">
+                <FaBriefcase className="text-blue-400 text-base w-5 h-5" />
                 <h3 className="text-lg font-semibold text-white">
                   Work Experience
                 </h3>
@@ -248,10 +231,10 @@ export function AboutSection() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <h4 className="text-sm font-semibold text-white">
+                          <h4 className="text-base font-semibold text-white">
                             {work.title}
                           </h4>
-                          <span className="px-1.5 py-0.5 text-[10px] font-medium text-blue-200 bg-blue-500/20 rounded-full">
+                          <span className="px-1.5 py-0.5 text-xs font-medium text-blue-200 bg-blue-500/20 rounded-full">
                             {work.location}
                           </span>
                         </div>
@@ -259,14 +242,12 @@ export function AboutSection() {
                           href={work.companyUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-blue-400 hover:text-blue-300 text-xs transition-colors inline-flex items-center gap-1 mb-1"
+                          className="text-blue-400 hover:text-blue-300 text-sm transition-colors inline-flex items-center gap-1 mb-1"
                         >
                           {work.company}
-                          <FaExternalLinkAlt className="text-[9px]" />
+                          <FaExternalLinkAlt className="text-[10px]" />
                         </a>
-                        <p className="text-gray-500 text-[10px]">
-                          {work.dates}
-                        </p>
+                        <p className="text-gray-500 text-xs">{work.dates}</p>
                       </div>
                     </div>
                   ))}
@@ -295,8 +276,8 @@ export function AboutSection() {
           {/* Education */}
           <div className="flex flex-col items-center">
             <div className="w-full max-w-lg">
-              <div className="flex items-center justify-center gap-2 mb-4">
-                <FaGraduationCap className="text-purple-400 text-base" />
+              <div className="flex gap-2 mb-4 ml-2">
+                <FaGraduationCap className="text-purple-400 text-base w-5 h-5" />
                 <h3 className="text-lg font-semibold text-white">Education</h3>
               </div>
               <div className="space-y-3">
@@ -311,30 +292,38 @@ export function AboutSection() {
                         {edu.logo ? (
                           <Image
                             src={edu.logo}
-                            alt={edu.institution}
+                            alt={edu.institution || edu.degree}
                             fill
                             className="object-contain"
                             unoptimized
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-purple-400 text-xs font-semibold">
-                            {edu.institution.charAt(0)}
+                            {edu.institution
+                              ? edu.institution.charAt(0)
+                              : edu.degree.charAt(0)}
                           </div>
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <a
-                            href={edu.institutionUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="text-sm font-semibold text-white hover:text-purple-300 transition-colors inline-flex items-center gap-1"
-                          >
-                            {edu.institution}
-                            <FaExternalLinkAlt className="text-[9px]" />
-                          </a>
+                          {edu.institution ? (
+                            <a
+                              href={edu.institutionUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-base font-semibold text-white hover:text-purple-300 transition-colors inline-flex items-center gap-1"
+                            >
+                              {edu.institution}
+                              <FaExternalLinkAlt className="text-[10px]" />
+                            </a>
+                          ) : (
+                            <span className="text-base font-semibold text-white">
+                              {edu.degree}
+                            </span>
+                          )}
                           <span
-                            className={`px-1.5 py-0.5 text-[10px] font-medium rounded-full ${
+                            className={`px-1.5 py-0.5 text-xs font-medium rounded-full ${
                               edu.status === "Current"
                                 ? "text-green-200 bg-green-500/20"
                                 : "text-blue-200 bg-blue-500/20"
@@ -343,9 +332,11 @@ export function AboutSection() {
                             {edu.status}
                           </span>
                         </div>
-                        <p className="text-gray-400 text-xs">{edu.degree}</p>
-                        <p className="text-gray-400 text-xs">{edu.location}</p>
-                        <p className="text-gray-500 text-[10px] mt-0.5">
+                        {edu.institution && (
+                          <p className="text-gray-400 text-sm">{edu.degree}</p>
+                        )}
+                        <p className="text-gray-400 text-sm">{edu.location}</p>
+                        <p className="text-gray-500 text-xs mt-0.5">
                           {edu.dates}
                         </p>
                       </div>

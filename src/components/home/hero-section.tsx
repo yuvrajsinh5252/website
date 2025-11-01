@@ -54,7 +54,6 @@ export function HeroSection() {
     },
   };
 
-  // Critical text variant - no animation for LCP optimization
   const criticalTextVariants: Variants = {
     hidden: { opacity: 1 },
     visible: {
@@ -102,8 +101,8 @@ export function HeroSection() {
           variants={criticalTextVariants}
           className="text-base sm:text-lg md:text-xl lg:text-2xl font-extralight leading-relaxed text-gray-300/90 px-4 sm:px-2"
         >
-          Computer Science student passionate about emerging technologies and
-          crafting innovative digital solutions.
+          Software Developer passionate about emerging technologies and crafting
+          innovative digital solutions.
         </motion.p>
 
         <motion.div
