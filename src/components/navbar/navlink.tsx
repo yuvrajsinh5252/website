@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
 import { FaCode, FaHome, FaUser, FaLaptopCode } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { TfiWrite } from "react-icons/tfi";

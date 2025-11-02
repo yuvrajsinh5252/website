@@ -7,7 +7,6 @@ import { ColorSwingBox } from "@/components/effects/color-swing-box";
 interface CategoryCardProps {
   title: string;
   href: string;
-  index: number;
   year?: number;
   day?: number;
 }

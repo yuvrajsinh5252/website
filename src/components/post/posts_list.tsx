@@ -41,9 +41,9 @@ export function PostsList({ posts }: { posts: PostMeta[] }) {
           variants={sectionVariants}
         >
           <div className="space-y-4 sm:space-y-6">
-            {posts.map((post, index) => (
+            {posts.map((post) => (
               <div key={post.slug}>
-                <PostCard post={post} index={index} />
+                <PostCard post={post} />
               </div>
             ))}
           </div>

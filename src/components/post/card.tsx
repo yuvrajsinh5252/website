@@ -9,10 +9,9 @@ import { ColorSwingBox } from "@/components/effects/color-swing-box";
 
 interface PostCardProps {
   post: PostMeta;
-  index: number;
 }
 
-export function PostCard({ post, index }: PostCardProps) {
+export function PostCard({ post }: PostCardProps) {
   return (
     <motion.div
       className="h-full"

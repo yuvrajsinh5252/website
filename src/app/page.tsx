@@ -1,5 +1,5 @@
-import { AboutSection } from "@/components/home/about-section";
-import { HeroSection } from "@/components/home/hero-section";
+import { AboutContent } from "@/components/home/about-content";
+import { HeroContent } from "@/components/home/hero-content";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { createSEO } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
@@ -13,8 +13,8 @@ export default function Home() {
   return (
     <main>
       <MaxWidthWrapper>
-        <HeroSection />
-        <AboutSection />
+        <HeroContent />
+        <AboutContent />
       </MaxWidthWrapper>
     </main>
   );

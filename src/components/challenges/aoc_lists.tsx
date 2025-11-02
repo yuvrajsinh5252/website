@@ -261,7 +261,6 @@ export function AocList({ categories }: { categories: CategoryListMeta[] }) {
                     <CategoryCard
                       title={category.title}
                       href={`/challenges/aoc/${category.year}/${category.slug}`}
-                      index={index}
                       year={category.year}
                       day={category.day}
                     />

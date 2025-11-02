@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
 import MaxWidthWrapper from "../ui/max-width-wrapper";
 import NavLink from "./navlink";
