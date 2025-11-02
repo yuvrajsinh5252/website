@@ -84,9 +84,9 @@ export function createSEO(options: SEOProps = {}): Metadata {
       site: "@Yuvrajsinh_099",
     },
     icons: {
-      icon: "/favicon.ico",
-      shortcut: "/favicon.ico",
-      apple: "/favicon.ico",
+      icon: defaultImage,
+      shortcut: defaultImage,
+      apple: defaultImage,
     },
     ...(canonical && {
       alternates: {
