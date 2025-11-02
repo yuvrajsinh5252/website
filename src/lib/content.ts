@@ -45,7 +45,6 @@ export function getPosts(): PostMeta[] {
           date: data.date,
           readingTime: data.readingTime,
           tags: data.tags,
-          coverImage: data.coverImage,
         });
       } catch (error) {
         console.error(`Error reading post for ${slug}:`, error);

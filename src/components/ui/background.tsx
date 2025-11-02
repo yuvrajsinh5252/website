@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import { MeteorShowerEffect } from "@/components/effects/meteor-shower";
 
 interface Particle {
@@ -16,11 +16,24 @@ interface Particle {
   animationDelay: number;
 }
 
+interface Star {
+  x: number;
+  y: number;
+  size: number;
+  brightness: number;
+  r: number;
+  g: number;
+  b: number;
+  layer: number;
+}
+
 export function Background() {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const starCanvasRef = useRef<HTMLCanvasElement>(null);
+  const starsRef = useRef<Star[]>([]);
 
   const gradientBackgrounds = useMemo(
     () => ({
@@ -60,26 +73,8 @@ export function Background() {
           rgba(20, 30, 50, 0.6) 80%,
           rgba(15, 23, 42, 0.8) 100%)
       `,
-      stars: `
-        radial-gradient(1.5px 1.5px at 50px 80px, rgba(255,255,255,0.9) 0%, transparent 1.5px),
-        radial-gradient(1px 1px at 150px 120px, rgba(255,255,255,0.8) 0%, transparent 1px),
-        radial-gradient(2px 2px at 230px 40px, rgba(255,255,255,1.0) 0%, transparent 2px),
-        radial-gradient(1px 1px at 320px 180px, rgba(255,255,255,0.7) 0%, transparent 1px),
-        radial-gradient(1.5px 1.5px at 420px 60px, rgba(255,255,255,0.85) 0%, transparent 1.5px),
-        radial-gradient(1px 1px at 510px 140px, rgba(255,255,255,0.75) 0%, transparent 1px),
-        radial-gradient(2px 2px at 600px 100px, rgba(255,255,255,0.95) 0%, transparent 2px),
-        radial-gradient(1px 1px at 700px 200px, rgba(255,255,255,0.65) 0%, transparent 1px),
-        radial-gradient(1.5px 1.5px at 780px 50px, rgba(255,255,255,0.9) 0%, transparent 1.5px),
-        radial-gradient(1px 1px at 860px 160px, rgba(255,255,255,0.8) 0%, transparent 1px),
-        radial-gradient(2px 2px at 950px 30px, rgba(255,255,255,1.0) 0%, transparent 2px),
-        radial-gradient(1px 1px at 1100px 180px, rgba(255,255,255,0.7) 0%, transparent 1px),
-        radial-gradient(1.5px 1.5px at 1200px 90px, rgba(255,255,255,0.85) 0%, transparent 1.5px),
-        radial-gradient(1px 1px at 1300px 220px, rgba(255,255,255,0.75) 0%, transparent 1px),
-        radial-gradient(2px 2px at 1400px 70px, rgba(255,255,255,0.95) 0%, transparent 2px),
-        radial-gradient(1px 1px at 1500px 150px, rgba(255,255,255,0.65) 0%, transparent 1px)
-      `,
       vignette: `
-        radial-gradient(circle at center, transparent 40%, rgba(3, 7, 18, 0.6) 100%)
+        radial-gradient(circle at center, transparent 35%, rgba(2, 5, 12, 0.7) 100%)
       `,
     }),
     []
@@ -88,19 +83,16 @@ export function Background() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    // Check for reduced motion preference
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(mediaQuery.matches);
 
-    // Check if mobile
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
     checkMobile();
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
 
     const generateParticles = () => {
-      // Reduce particle count on mobile and for reduced motion
       const baseCount = isMobile ? 15 : reducedMotion ? 20 : 40;
       const particleCount = Math.min(
         baseCount,
@@ -125,22 +117,6 @@ export function Background() {
     };
 
     let animationFrameId: number;
-    const animateParticles = () => {
-      setParticles((prevParticles) =>
-        prevParticles.map((particle) => {
-          let newX = particle.x + particle.speedX;
-          let newY = particle.y + particle.speedY;
-
-          if (newX < -10) newX = window.innerWidth + 10;
-          if (newX > window.innerWidth + 10) newX = -10;
-          if (newY < -10) newY = window.innerHeight + 10;
-          if (newY > window.innerHeight + 10) newY = -10;
-
-          return { ...particle, x: newX, y: newY };
-        })
-      );
-      animationFrameId = requestAnimationFrame(animateParticles);
-    };
 
     generateParticles();
 
@@ -150,12 +126,10 @@ export function Background() {
 
     let frameCount = 0;
     const startAnimation = () => {
-      // Skip animation if reduced motion is preferred
       if (reducedMotion) return;
 
       const animate = () => {
         frameCount++;
-        // Reduce particle update frequency more on mobile
         const updateFrequency = isMobile ? 20 : 10;
         if (frameCount % updateFrequency === 0) {
           setParticles((prevParticles) =>
@@ -201,9 +175,148 @@ export function Background() {
       clearTimeout(loadTimer);
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
-      window.removeEventListener('resize', checkMobile);
+      window.removeEventListener("resize", checkMobile);
     };
   }, [isMobile, reducedMotion]);
+
+  useEffect(() => {
+    const canvas = starCanvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const generateStars = () => {
+      const starCount = isMobile ? 80 : 150;
+      const stars: Star[] = [];
+
+      for (let i = 0; i < starCount; i++) {
+        const brightnessFactor = Math.pow(Math.random(), 2.5);
+        const baseBrightness = 0.15 + brightnessFactor * 0.85;
+
+        const baseSize =
+          brightnessFactor < 0.1
+            ? 1.5 + Math.random() * 1.5
+            : brightnessFactor < 0.3
+            ? 0.8 + Math.random() * 0.7
+            : 0.3 + Math.random() * 0.5;
+
+        const colorRand = Math.random();
+        let r = 255,
+          g = 255,
+          b = 255;
+        if (colorRand < 0.1) {
+          r = 255;
+          g = Math.floor(240 + Math.random() * 15);
+          b = Math.floor(200 + Math.random() * 55);
+        } else if (colorRand < 0.25) {
+          r = Math.floor(200 + Math.random() * 55);
+          g = Math.floor(220 + Math.random() * 35);
+          b = 255;
+        } else {
+          const warmth = Math.floor(230 + Math.random() * 25);
+          r = warmth;
+          g = warmth;
+          b = Math.floor(warmth + Math.random() * 15);
+        }
+
+        stars.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          size: baseSize,
+          brightness: baseBrightness,
+          r,
+          g,
+          b,
+          layer: Math.floor(Math.random() * 3),
+        });
+      }
+
+      starsRef.current = stars;
+    };
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      generateStars();
+    };
+
+    resizeCanvas();
+
+    const renderStars = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const stars = starsRef.current;
+      const sortedStars = [...stars].sort((a, b) => a.layer - b.layer);
+
+      sortedStars.forEach((star) => {
+        const depthMultiplier = 0.6 + star.layer * 0.15;
+        const finalBrightness = star.brightness * depthMultiplier;
+
+        if (star.brightness > 0.5 && finalBrightness > 0.3) {
+          const glowSize = star.size * 2.5;
+          const glowGradient = ctx.createRadialGradient(
+            star.x,
+            star.y,
+            0,
+            star.x,
+            star.y,
+            glowSize
+          );
+
+          glowGradient.addColorStop(
+            0,
+            `rgba(${star.r}, ${star.g}, ${star.b}, ${finalBrightness * 0.3})`
+          );
+          glowGradient.addColorStop(
+            0.5,
+            `rgba(${star.r}, ${star.g}, ${star.b}, ${finalBrightness * 0.1})`
+          );
+          glowGradient.addColorStop(
+            1,
+            `rgba(${star.r}, ${star.g}, ${star.b}, 0)`
+          );
+
+          ctx.fillStyle = glowGradient;
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, glowSize, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.fillStyle = `rgba(${star.r}, ${star.g}, ${star.b}, ${finalBrightness})`;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        if (
+          star.brightness > 0.8 &&
+          Math.random() < 0.01 &&
+          finalBrightness > 0.5
+        ) {
+          const sparkleLength = star.size * 3;
+          ctx.strokeStyle = `rgba(${star.r}, ${star.g}, ${star.b}, ${
+            finalBrightness * 0.6
+          })`;
+          ctx.lineWidth = 0.5;
+
+          ctx.beginPath();
+          ctx.moveTo(star.x - sparkleLength, star.y);
+          ctx.lineTo(star.x + sparkleLength, star.y);
+          ctx.moveTo(star.x, star.y - sparkleLength);
+          ctx.lineTo(star.x, star.y + sparkleLength);
+          ctx.stroke();
+        }
+      });
+    };
+
+    renderStars();
+
+    window.addEventListener("resize", resizeCanvas);
+
+    return () => {
+      window.removeEventListener("resize", resizeCanvas);
+    };
+  }, [isMobile, reducedMotion, isLoaded]);
 
   return (
     <div
@@ -214,7 +327,9 @@ export function Background() {
         <div
           className="absolute inset-0 opacity-30"
           style={{
-            background: isMobile ? gradientBackgrounds.nebula : `
+            background: isMobile
+              ? gradientBackgrounds.nebula
+              : `
               ${gradientBackgrounds.nebula},
               repeating-linear-gradient(
                 0deg,
@@ -233,38 +348,19 @@ export function Background() {
 
         <motion.div
           className="absolute inset-0"
-          style={{
-            background: gradientBackgrounds.stars,
-            backgroundSize: "400px 300px",
-          }}
           initial={{ opacity: 0 }}
-          animate={{ opacity: isLoaded ? (isMobile ? 0.4 : 0.6) : 0 }}
-          transition={{ duration: 3, ease: "easeInOut", delay: 1 }}
-        />
-
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            background: gradientBackgrounds.stars,
-            backgroundSize: "600px 450px",
-            backgroundPosition: "200px 150px",
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isLoaded ? (isMobile ? 0.3 : 0.5) : 0 }}
-          transition={{ duration: 3, ease: "easeInOut", delay: 1.5 }}
-        />
-
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            background: gradientBackgrounds.stars,
-            backgroundSize: "800px 600px",
-            backgroundPosition: "400px 300px",
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isLoaded ? (isMobile ? 0.2 : 0.35) : 0 }}
-          transition={{ duration: 3, ease: "easeInOut", delay: 2 }}
-        />
+          animate={{ opacity: isLoaded ? 1 : 0 }}
+          transition={{ duration: 2, ease: "easeInOut", delay: 0.5 }}
+        >
+          <canvas
+            ref={starCanvasRef}
+            className="absolute inset-0 w-full h-full"
+            style={{
+              transform: "translateZ(0)",
+              willChange: "auto",
+            }}
+          />
+        </motion.div>
 
         {isLoaded && !isMobile && (
           <motion.div

@@ -8,7 +8,7 @@ import { MagicLink } from "@/components/effects/magiclink";
 import { Metadata } from "next";
 import { FaCalendar } from "react-icons/fa";
 import { createSEO } from "@/lib/seo";
-import { siteConfig } from "@/config/site";
+import Image from "next/image";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -27,7 +27,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: post.description,
     type: "article",
     publishedTime: post.date,
-    canonical: `${siteConfig.url}/posts/${slug}`,
   });
 }
 
@@ -38,6 +37,16 @@ const components = {
       target="_blank"
       rel="noopener noreferrer"
       {...props}
+    />
+  ),
+  img: (props: any) => (
+    <Image
+      {...props}
+      alt={props.alt || "Image"}
+      width={props.width || 800}
+      height={props.height || 600}
+      className="rounded-xl shadow-lg my-4"
+      unoptimized={props.src?.startsWith("http")}
     />
   ),
 };

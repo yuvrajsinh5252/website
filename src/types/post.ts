@@ -13,5 +13,4 @@ export interface PostMeta {
   date: string;
   readingTime: string;
   tags: string[];
-  coverImage?: string;
 }
