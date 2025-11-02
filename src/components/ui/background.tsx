@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState, useMemo, useRef } from "react";
+import { useEffect, useState, useMemo, useRef, memo } from "react";
 import { MeteorShowerEffect } from "@/components/effects/meteor-shower";
 
 interface Particle {
@@ -27,41 +27,27 @@ interface Star {
   layer: number;
 }
 
-export function Background() {
+const BackgroundComponent = () => {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const starCanvasRef = useRef<HTMLCanvasElement>(null);
   const starsRef = useRef<Star[]>([]);
+  const sortedStarsRef = useRef<Star[]>([]);
+  const animationFrameRef = useRef<number | null>(null);
+  const renderFrameCountRef = useRef(0);
 
   const gradientBackgrounds = useMemo(
     () => ({
       nebula: `
-        radial-gradient(ellipse 150% 100% at 25% 15%,
-          rgba(37, 99, 235, 0.12) 0%,
-          rgba(37, 99, 235, 0.10) 15%,
-          rgba(37, 99, 235, 0.08) 25%,
-          rgba(37, 99, 235, 0.06) 35%,
-          rgba(37, 99, 235, 0.04) 45%,
-          rgba(37, 99, 235, 0.02) 60%,
-          rgba(37, 99, 235, 0.01) 75%,
-          transparent 85%),
         radial-gradient(ellipse 120% 80% at 75% 85%,
-          rgba(139, 92, 246, 0.10) 0%,
-          rgba(139, 92, 246, 0.08) 20%,
-          rgba(139, 92, 246, 0.06) 30%,
-          rgba(168, 85, 247, 0.04) 45%,
-          rgba(168, 85, 247, 0.03) 55%,
-          rgba(168, 85, 247, 0.02) 70%,
-          rgba(168, 85, 247, 0.01) 80%,
-          transparent 95%),
-        radial-gradient(ellipse 200% 100% at 50% 0%,
-          rgba(59, 130, 246, 0.08) 0%,
-          rgba(59, 130, 246, 0.06) 25%,
-          rgba(59, 130, 246, 0.04) 40%,
-          rgba(59, 130, 246, 0.02) 60%,
-          rgba(59, 130, 246, 0.01) 75%,
+          rgba(139, 92, 246, 0.06) 0%,
+          rgba(139, 92, 246, 0.05) 20%,
+          rgba(139, 92, 246, 0.04) 30%,
+          rgba(168, 85, 247, 0.03) 45%,
+          rgba(168, 85, 247, 0.02) 55%,
+          rgba(168, 85, 247, 0.01) 70%,
           transparent 85%),
         linear-gradient(180deg,
           rgba(15, 23, 42, 0.7) 0%,
@@ -93,10 +79,10 @@ export function Background() {
     window.addEventListener("resize", checkMobile);
 
     const generateParticles = () => {
-      const baseCount = isMobile ? 15 : reducedMotion ? 20 : 40;
+      const baseCount = isMobile ? 8 : reducedMotion ? 10 : 15;
       const particleCount = Math.min(
         baseCount,
-        Math.max(10, Math.floor(window.innerWidth / 50))
+        Math.max(5, Math.floor(window.innerWidth / 80))
       );
       const newParticles: Particle[] = [];
 
@@ -130,7 +116,7 @@ export function Background() {
 
       const animate = () => {
         frameCount++;
-        const updateFrequency = isMobile ? 20 : 10;
+        const updateFrequency = isMobile ? 30 : 15;
         if (frameCount % updateFrequency === 0) {
           setParticles((prevParticles) =>
             prevParticles.map((particle) => {
@@ -187,7 +173,7 @@ export function Background() {
     if (!ctx) return;
 
     const generateStars = () => {
-      const starCount = isMobile ? 80 : 150;
+      const starCount = isMobile ? 80 : 120;
       const stars: Star[] = [];
 
       for (let i = 0; i < starCount; i++) {
@@ -205,19 +191,24 @@ export function Background() {
         let r = 255,
           g = 255,
           b = 255;
-        if (colorRand < 0.1) {
-          r = 255;
-          g = Math.floor(240 + Math.random() * 15);
-          b = Math.floor(200 + Math.random() * 55);
-        } else if (colorRand < 0.25) {
-          r = Math.floor(200 + Math.random() * 55);
-          g = Math.floor(220 + Math.random() * 35);
-          b = 255;
+
+        if (colorRand < 0.25) {
+          r = Math.floor(245 + Math.random() * 10);
+          g = Math.floor(200 + Math.random() * 55);
+          b = Math.floor(50 + Math.random() * 100);
+        } else if (colorRand < 0.4) {
+          r = Math.floor(220 + Math.random() * 35);
+          g = Math.floor(150 + Math.random() * 60);
+          b = Math.floor(50 + Math.random() * 80);
+        } else if (colorRand < 0.55) {
+          r = Math.floor(180 + Math.random() * 40);
+          g = Math.floor(100 + Math.random() * 60);
+          b = Math.floor(140 + Math.random() * 60);
         } else {
           const warmth = Math.floor(230 + Math.random() * 25);
           r = warmth;
           g = warmth;
-          b = Math.floor(warmth + Math.random() * 15);
+          b = Math.floor(warmth - 5 - Math.random() * 10);
         }
 
         stars.push({
@@ -239,19 +230,34 @@ export function Background() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       generateStars();
+      sortedStarsRef.current = [...starsRef.current].sort(
+        (a, b) => a.layer - b.layer
+      );
     };
 
     resizeCanvas();
 
     const renderStars = () => {
+      renderFrameCountRef.current++;
+
+      if (renderFrameCountRef.current % 30 === 0) {
+        sortedStarsRef.current = [...starsRef.current].sort(
+          (a, b) => a.layer - b.layer
+        );
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const stars = starsRef.current;
-      const sortedStars = [...stars].sort((a, b) => a.layer - b.layer);
+      const sortedStars = sortedStarsRef.current;
 
       sortedStars.forEach((star) => {
         const depthMultiplier = 0.6 + star.layer * 0.15;
-        const finalBrightness = star.brightness * depthMultiplier;
+        let finalBrightness = star.brightness * depthMultiplier;
+
+        const isYellowOrange = star.r > 240 && star.g > 200 && star.b < 150;
+        if (isYellowOrange) {
+          finalBrightness = Math.min(1, finalBrightness * 1.3);
+        }
 
         if (star.brightness > 0.5 && finalBrightness > 0.3) {
           const glowSize = star.size * 2.5;
@@ -309,14 +315,23 @@ export function Background() {
       });
     };
 
-    renderStars();
+    const renderLoop = () => {
+      renderStars();
+      animationFrameRef.current = requestAnimationFrame(renderLoop);
+    };
+
+    renderLoop();
 
     window.addEventListener("resize", resizeCanvas);
 
     return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
       window.removeEventListener("resize", resizeCanvas);
     };
-  }, [isMobile, reducedMotion, isLoaded]);
+  }, [isMobile, reducedMotion]);
 
   return (
     <div
@@ -364,40 +379,17 @@ export function Background() {
 
         {isLoaded && !isMobile && (
           <motion.div
-            className="absolute top-0 left-0 w-[40rem] h-[25rem]"
-            style={{
-              background:
-                "radial-gradient(ellipse 70% 50% at 30% 40%, rgba(37, 99, 235, 0.15) 0%, rgba(37, 99, 235, 0.10) 30%, rgba(37, 99, 235, 0.05) 50%, rgba(37, 99, 235, 0.02) 70%, transparent 90%)",
-              filter: "blur(40px)",
-              transform: "translateZ(0)",
-              willChange: "opacity, transform",
-            }}
-            initial={{ opacity: 0 }}
-            animate={{
-              opacity: [0.08, 0.15, 0.08],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        )}
-
-        {isLoaded && !isMobile && (
-          <motion.div
             className="absolute top-1/3 right-0 w-[35rem] h-[30rem]"
             style={{
               background:
-                "radial-gradient(ellipse 60% 80% at 70% 50%, rgba(139, 92, 246, 0.12) 0%, rgba(139, 92, 246, 0.08) 25%, rgba(168, 85, 247, 0.08) 40%, rgba(168, 85, 247, 0.04) 60%, rgba(168, 85, 247, 0.02) 80%, transparent 95%)",
+                "radial-gradient(ellipse 60% 80% at 70% 50%, rgba(139, 92, 246, 0.08) 0%, rgba(139, 92, 246, 0.06) 25%, rgba(168, 85, 247, 0.06) 40%, rgba(168, 85, 247, 0.03) 60%, rgba(168, 85, 247, 0.02) 80%, transparent 95%)",
               filter: "blur(50px)",
               transform: "translateZ(0)",
               willChange: "opacity, transform",
             }}
             initial={{ opacity: 0 }}
             animate={{
-              opacity: [0.06, 0.1, 0.06],
+              opacity: [0.04, 0.08, 0.04],
               scale: [1, 1.15, 1],
               rotate: [0, 2, 0],
             }}
@@ -406,30 +398,6 @@ export function Background() {
               repeat: Infinity,
               ease: "easeInOut",
               delay: 5,
-            }}
-          />
-        )}
-
-        {isLoaded && !isMobile && (
-          <motion.div
-            className="absolute bottom-0 left-1/4 w-[50rem] h-[20rem]"
-            style={{
-              background:
-                "radial-gradient(ellipse 80% 40% at 50% 80%, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.08) 30%, rgba(37, 99, 235, 0.08) 50%, rgba(37, 99, 235, 0.04) 70%, rgba(37, 99, 235, 0.02) 85%, transparent 100%)",
-              filter: "blur(45px)",
-              transform: "translateZ(0)",
-              willChange: "opacity, transform",
-            }}
-            initial={{ opacity: 0 }}
-            animate={{
-              opacity: [0.05, 0.09, 0.05],
-              x: [0, "5vw", 0],
-            }}
-            transition={{
-              duration: 45,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 10,
             }}
           />
         )}
@@ -442,20 +410,20 @@ export function Background() {
         >
           <motion.path
             d="M 150 100 Q 250 150 350 120 T 550 140"
-            stroke="rgba(147, 197, 253, 0.2)"
+            stroke="rgba(168, 85, 247, 0.1)"
             strokeWidth="0.5"
             fill="none"
             initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 0.2 }}
+            animate={{ pathLength: 1, opacity: 0.1 }}
             transition={{ duration: 8, ease: "easeInOut", delay: 2 }}
           />
           <motion.path
             d="M 100 300 L 200 280 L 180 350 L 280 320"
-            stroke="rgba(196, 181, 253, 0.15)"
+            stroke="rgba(196, 181, 253, 0.08)"
             strokeWidth="0.5"
             fill="none"
             initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 0.15 }}
+            animate={{ pathLength: 1, opacity: 0.08 }}
             transition={{ duration: 10, ease: "easeInOut", delay: 4 }}
           />
         </svg>
@@ -527,4 +495,6 @@ export function Background() {
       )}
     </div>
   );
-}
+};
+
+export const Background = memo(BackgroundComponent);

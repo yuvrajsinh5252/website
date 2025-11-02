@@ -18,6 +18,7 @@ export default function Navbar() {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2 }}
+        layout
         className="flex items-center w-fit h-5 py-5 max-sm:py-4 rounded-full
           backdrop-blur-md
           bg-slate-600/40
@@ -26,11 +27,19 @@ export default function Navbar() {
           shadow-lg shadow-black/20
           hover:shadow-xl hover:shadow-blue-300/40
           transition-all duration-300"
+        style={{
+          transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
       >
         {NAV_ITEMS.map((item) => (
-          <div key={item.href} className="relative z-10">
+          <motion.div
+            key={item.href}
+            className="relative z-10"
+            layout
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+          >
             <NavLink href={item.href} text={item.text} />
-          </div>
+          </motion.div>
         ))}
       </motion.nav>
     </MaxWidthWrapper>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PROJECTS } from "@/config/project";
 import { AboutInteractive } from "./about-interactive";
+import { FaExternalLinkAlt, FaCode } from "react-icons/fa";
 
 const workExperience = [
   {
@@ -220,17 +221,7 @@ export function AboutContent() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <svg
-                className="w-5 h-5 text-cyan-300"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <FaCode className="w-5 h-5 text-cyan-300" />
               <h3 className="text-xl sm:text-2xl font-semibold text-white">
                 Tech Stack
               </h3>
@@ -252,18 +243,8 @@ export function AboutContent() {
 
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <svg
-                className="w-5 h-5 text-purple-300"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.905 1.38l-3.736 9.281a1 1 0 01-1.852 0L5.095 8.38A1 1 0 016 7h4V2a1 1 0 011.3-.954z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <h3 className="text-xl font-semibold text-white">
+              <FaExternalLinkAlt className="w-4 h-4 text-purple-300" />
+              <h3 className="text-xl sm:text-2xl font-semibold text-white">
                 Featured Project
               </h3>
             </div>
