@@ -30,8 +30,8 @@ interface Star {
 const BackgroundComponent = () => {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const starCanvasRef = useRef<HTMLCanvasElement>(null);
   const starsRef = useRef<Star[]>([]);
   const sortedStarsRef = useRef<Star[]>([]);
@@ -79,7 +79,7 @@ const BackgroundComponent = () => {
     window.addEventListener("resize", checkMobile);
 
     const generateParticles = () => {
-      const baseCount = isMobile ? 8 : reducedMotion ? 10 : 15;
+      const baseCount = reducedMotion ? 10 : 15;
       const particleCount = Math.min(
         baseCount,
         Math.max(5, Math.floor(window.innerWidth / 80))
@@ -116,11 +116,11 @@ const BackgroundComponent = () => {
 
       const animate = () => {
         frameCount++;
-        const updateFrequency = isMobile ? 30 : 15;
+        const updateFrequency = 15;
         if (frameCount % updateFrequency === 0) {
           setParticles((prevParticles) =>
             prevParticles.map((particle) => {
-              const speedMultiplier = isMobile ? 2 : 3.3;
+              const speedMultiplier = 3.3;
               let newX = particle.x + particle.speedX * speedMultiplier;
               let newY = particle.y + particle.speedY * speedMultiplier;
 
@@ -163,7 +163,7 @@ const BackgroundComponent = () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("resize", checkMobile);
     };
-  }, [isMobile, reducedMotion]);
+  }, [reducedMotion]);
 
   useEffect(() => {
     const canvas = starCanvasRef.current;
@@ -173,7 +173,7 @@ const BackgroundComponent = () => {
     if (!ctx) return;
 
     const generateStars = () => {
-      const starCount = isMobile ? 80 : 120;
+      const starCount = 60;
       const stars: Star[] = [];
 
       for (let i = 0; i < starCount; i++) {
@@ -331,7 +331,11 @@ const BackgroundComponent = () => {
       }
       window.removeEventListener("resize", resizeCanvas);
     };
-  }, [isMobile, reducedMotion]);
+  }, [reducedMotion]);
+
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <div
@@ -342,9 +346,7 @@ const BackgroundComponent = () => {
         <div
           className="absolute inset-0 opacity-30"
           style={{
-            background: isMobile
-              ? gradientBackgrounds.nebula
-              : `
+            background: `
               ${gradientBackgrounds.nebula},
               repeating-linear-gradient(
                 0deg,
@@ -354,7 +356,7 @@ const BackgroundComponent = () => {
                 rgba(255,255,255,0.002) 2px
               )
             `,
-            filter: isMobile ? "none" : "blur(1px)",
+            filter: "blur(1px)",
             transform: "translateZ(0)",
             willChange: "auto",
             backgroundAttachment: "fixed",
@@ -377,7 +379,7 @@ const BackgroundComponent = () => {
           />
         </motion.div>
 
-        {isLoaded && !isMobile && (
+        {isLoaded && (
           <motion.div
             className="absolute top-1/3 right-0 w-[35rem] h-[30rem]"
             style={{
@@ -403,7 +405,7 @@ const BackgroundComponent = () => {
         )}
       </div>
 
-      {isLoaded && !isMobile && (
+      {isLoaded && (
         <svg
           className="absolute inset-0 w-full h-full opacity-8"
           style={{ transform: "translateZ(0)" }}
@@ -476,7 +478,7 @@ const BackgroundComponent = () => {
         style={{ background: gradientBackgrounds.vignette }}
       />
 
-      {isLoaded && !isMobile && (
+      {isLoaded && (
         <MeteorShowerEffect
           key="meteor-shower-main"
           className="absolute inset-0 z-30 h-full w-full"

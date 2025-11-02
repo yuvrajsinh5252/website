@@ -36,14 +36,15 @@ export function PostCard({ post }: PostCardProps) {
                 {post.tags.map((tag, idx) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center gap-1.5 rounded-md
-                  bg-blue-500/10 px-2.5 py-1 text-xs font-medium
-                  text-blue-400 whitespace-nowrap
+                    className="inline-flex items-center gap-1 sm:gap-1.5 rounded-md
+                  bg-blue-500/10 px-2 sm:px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium
+                  text-blue-400 whitespace-normal sm:whitespace-nowrap
                   group-hover:bg-blue-500/20 group-hover:text-blue-300
-                  border border-blue-500/20 hover:border-blue-500/40"
+                  border border-blue-500/20 hover:border-blue-500/40
+                  max-w-full break-words"
                   >
-                    <FaTag className="text-[10px]" />
-                    {tag}
+                    <FaTag className="text-[8px] sm:text-[10px] flex-shrink-0" />
+                    <span className="truncate">{tag}</span>
                   </span>
                 ))}
               </motion.div>

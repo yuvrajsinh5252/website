@@ -16,15 +16,15 @@ export default function NavLink({ href, text }: NavLinkProps) {
   const getIcon = (text: string) => {
     switch (text) {
       case "home":
-        return <FaHome className="text-sm sm:text-base md:text-lg" />;
+        return <FaHome className="text-lg" />;
       case "projects":
-        return <FaLaptopCode className="text-sm sm:text-base md:text-lg" />;
+        return <FaLaptopCode className="text-lg" />;
       case "about":
-        return <FaUser className="text-sm sm:text-base md:text-lg" />;
+        return <FaUser className="text-lg" />;
       case "posts":
-        return <TfiWrite className="text-sm sm:text-base md:text-lg" />;
+        return <TfiWrite className="text-lg" />;
       case "challenges":
-        return <FaCode className="text-sm sm:text-base md:text-lg" />;
+        return <FaCode className="text-lg" />;
       default:
         return null;
     }
@@ -66,7 +66,7 @@ export default function NavLink({ href, text }: NavLinkProps) {
         </div>
 
         <motion.span
-          className="relative z-10 block pr-1 sm:pr-2 whitespace-nowrap text-xs sm:text-sm md:text-base"
+          className="relative z-10 block whitespace-nowrap text-base pr-2"
           initial={false}
           animate={{
             width: isActive ? "auto" : 0,
