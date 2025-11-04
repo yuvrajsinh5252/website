@@ -37,6 +37,7 @@ const BackgroundComponent = () => {
   const sortedStarsRef = useRef<Star[]>([]);
   const animationFrameRef = useRef<number | null>(null);
   const renderFrameCountRef = useRef(0);
+  const starsInitializedRef = useRef(false);
 
   const gradientBackgrounds = useMemo(
     () => ({
@@ -79,6 +80,34 @@ const BackgroundComponent = () => {
     window.addEventListener("resize", checkMobile);
 
     const generateParticles = () => {
+      // Check if particles already exist in sessionStorage
+      const storageKey = "background-particles";
+      const storedParticles =
+        typeof window !== "undefined"
+          ? sessionStorage.getItem(storageKey)
+          : null;
+
+      if (storedParticles) {
+        try {
+          const parsed = JSON.parse(storedParticles);
+          // Scale particles to current window size if needed
+          const scaleX = window.innerWidth / parsed.windowWidth;
+          const scaleY = window.innerHeight / parsed.windowHeight;
+
+          const scaledParticles = parsed.particles.map(
+            (particle: Particle) => ({
+              ...particle,
+              x: particle.x * scaleX,
+              y: particle.y * scaleY,
+            })
+          );
+          setParticles(scaledParticles);
+          return;
+        } catch (e) {
+          // If parsing fails, generate new particles
+        }
+      }
+
       const baseCount = reducedMotion ? 10 : 15;
       const particleCount = Math.min(
         baseCount,
@@ -100,6 +129,18 @@ const BackgroundComponent = () => {
         });
       }
       setParticles(newParticles);
+
+      // Store particles in sessionStorage
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem(
+          storageKey,
+          JSON.stringify({
+            particles: newParticles,
+            windowWidth: window.innerWidth,
+            windowHeight: window.innerHeight,
+          })
+        );
+      }
     };
 
     let animationFrameId: number;
@@ -173,6 +214,36 @@ const BackgroundComponent = () => {
     if (!ctx) return;
 
     const generateStars = () => {
+      // Check if stars already exist in sessionStorage
+      const storageKey = "background-stars";
+      const storedStars =
+        typeof window !== "undefined"
+          ? sessionStorage.getItem(storageKey)
+          : null;
+
+      if (storedStars) {
+        try {
+          const parsedStars = JSON.parse(storedStars);
+          // Always scale from original stars and original window dimensions
+          // This prevents accumulated scaling errors from multiple resizes
+          const scaleX = window.innerWidth / parsedStars.originalWindowWidth;
+          const scaleY = window.innerHeight / parsedStars.originalWindowHeight;
+
+          const scaledStars = parsedStars.originalStars.map((star: Star) => ({
+            ...star,
+            x: star.x * scaleX,
+            y: star.y * scaleY,
+          }));
+
+          starsRef.current = scaledStars;
+          starsInitializedRef.current = true;
+          return;
+        } catch (e) {
+          // If parsing fails, generate new stars
+        }
+      }
+
+      // Generate new stars only if they don't exist
       const starCount = 60;
       const stars: Star[] = [];
 
@@ -224,11 +295,26 @@ const BackgroundComponent = () => {
       }
 
       starsRef.current = stars;
+
+      // Store original stars with original window dimensions in sessionStorage
+      // This ensures we can always scale from the original positions
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem(
+          storageKey,
+          JSON.stringify({
+            originalStars: stars,
+            originalWindowWidth: window.innerWidth,
+            originalWindowHeight: window.innerHeight,
+          })
+        );
+        starsInitializedRef.current = true;
+      }
     };
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      // generateStars() will handle loading from sessionStorage or generating new ones
       generateStars();
       sortedStarsRef.current = [...starsRef.current].sort(
         (a, b) => a.layer - b.layer

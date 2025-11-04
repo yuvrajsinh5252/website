@@ -13,13 +13,13 @@ const NAV_ITEMS = [
 
 export default function Navbar() {
   return (
-    <MaxWidthWrapper className="fixed flex justify-center px-10 items-center w-full h-fit mt-10 z-50 mx-auto left-0 right-0">
+    <MaxWidthWrapper className="fixed flex justify-center px-4 md:px-10 items-center w-full h-fit mt-4 md:mt-10 z-50 mx-auto left-0 right-0">
       <motion.nav
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2 }}
         layout
-        className="flex items-center gap-2 w-fit h-5 py-5 rounded-full
+        className="flex items-center gap-1.5 md:gap-2 w-fit h-5 py-4 md:py-5 rounded-full
           backdrop-blur-md
           bg-slate-600/40
           border border-slate-700/40

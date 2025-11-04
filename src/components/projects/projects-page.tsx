@@ -95,17 +95,17 @@ export default function ProjectsPage() {
                             </p>
                           )}
                         </div>
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-2.5">
                           {project.link && (
                             <Link
                               href={project.link}
                               target="_blank"
                               rel="noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="p-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:text-white transition-colors hover:shadow-[0_0_20px_rgba(59,130,246,0.25)]"
+                              className="text-blue-400 hover:text-blue-300 transition-colors"
                               aria-label={`Open ${project.title}`}
                             >
-                              <FaExternalLinkAlt size={14} />
+                              <FaExternalLinkAlt size={16} />
                             </Link>
                           )}
                           <a
@@ -113,10 +113,10 @@ export default function ProjectsPage() {
                             target="_blank"
                             rel="noreferrer"
                             onClick={(e) => e.stopPropagation()}
-                            className="p-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 hover:bg-white/10 hover:text-white transition-colors hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+                            className="text-gray-300 hover:text-white transition-colors"
                             aria-label={`View ${project.title} on GitHub`}
                           >
-                            <SiGithub size={14} />
+                            <SiGithub size={16} />
                           </a>
                         </div>
                       </div>
@@ -125,20 +125,15 @@ export default function ProjectsPage() {
                         {project.description}
                       </p>
 
-                      <div className="mt-auto flex flex-wrap gap-2">
-                        {project.tag.slice(0, 4).map((tag) => (
+                      <div className="mt-auto flex flex-nowrap gap-2 overflow-x-auto scroll-smooth">
+                        {project.tag.map((tag, i) => (
                           <span
-                            key={tag}
-                            className="px-2.5 py-1 text-xs font-medium text-white/90 bg-blue-500/10 border border-blue-400/20 rounded-md hover:border-blue-400/30 hover:bg-blue-500/15 transition-all duration-200"
+                            key={`${project.title}-tag-${i}-${tag}`}
+                            className="px-2.5 py-1 text-xs font-medium text-white/90 bg-blue-500/10 border border-blue-400/20 rounded-md hover:border-blue-400/30 hover:bg-blue-500/15 transition-all duration-200 whitespace-nowrap flex-shrink-0"
                           >
                             {tag}
                           </span>
                         ))}
-                        {project.tag.length > 4 && (
-                          <span className="px-2.5 py-1 text-xs font-medium text-gray-400 bg-white/5 border border-white/10 rounded-md">
-                            +{project.tag.length - 4}
-                          </span>
-                        )}
                       </div>
                     </div>
                   </ColorSwingBox>

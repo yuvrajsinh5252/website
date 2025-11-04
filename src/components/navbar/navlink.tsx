@@ -16,15 +16,15 @@ export default function NavLink({ href, text }: NavLinkProps) {
   const getIcon = (text: string) => {
     switch (text) {
       case "home":
-        return <FaHome className="text-lg" />;
+        return <FaHome className="text-base md:text-lg block m-0" />;
       case "projects":
-        return <FaLaptopCode className="text-lg" />;
+        return <FaLaptopCode className="text-base md:text-lg block m-0" />;
       case "about":
-        return <FaUser className="text-lg" />;
+        return <FaUser className="text-base md:text-lg block m-0" />;
       case "posts":
-        return <TfiWrite className="text-lg" />;
+        return <TfiWrite className="text-base md:text-lg block m-0" />;
       case "challenges":
-        return <FaCode className="text-lg" />;
+        return <FaCode className="text-base md:text-lg block m-0" />;
       default:
         return null;
     }
@@ -34,11 +34,11 @@ export default function NavLink({ href, text }: NavLinkProps) {
     <div className="relative capitalize group">
       <Link
         href={href}
-        className={`relative rounded-full flex items-center justify-center gap-2 px-3 py-2 border
+        className={`relative rounded-full flex items-center px-2.5 md:px-3 py-2 border
           transition-colors duration-150 ${
             isActive
-              ? "text-blue-100 font-medium bg-white/5 border-white/10"
-              : "text-gray-300 border-transparent hover:text-blue-100 hover:bg-blue-400/10 hover:border-blue-400/20"
+              ? "text-blue-100 font-medium bg-white/5 border-white/10 justify-start gap-1.5 md:gap-2"
+              : "text-gray-300 border-transparent hover:text-blue-100 hover:bg-blue-400/10 hover:border-blue-400/20 justify-center"
           } focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400/30`}
         aria-label={`Navigate to ${text} page`}
       >
@@ -58,7 +58,7 @@ export default function NavLink({ href, text }: NavLinkProps) {
           />
         )}
         <div
-          className={`relative z-10 transition-all duration-200 ${
+          className={`relative z-10 flex items-center justify-center leading-none transition-all duration-200 shrink-0 ${
             isActive ? "text-blue-100" : "group-hover:text-blue-300"
           }`}
         >
@@ -66,12 +66,12 @@ export default function NavLink({ href, text }: NavLinkProps) {
         </div>
 
         <motion.span
-          className="relative z-10 block whitespace-nowrap text-base pr-2"
+          className="relative z-10 block whitespace-nowrap text-sm sm:text-sm md:text-base leading-none"
           initial={false}
           animate={{
             width: isActive ? "auto" : 0,
             opacity: isActive ? 1 : 0,
-            marginLeft: isActive ? 0 : -8,
+            x: isActive ? 0 : -8,
           }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
           style={{ overflow: "hidden" }}

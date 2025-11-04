@@ -1,5 +1,5 @@
-import { AboutContent } from "@/components/home/about-content";
-import { HeroContent } from "@/components/home/hero-content";
+import { AboutContent } from "@/components/home/about";
+import { HeroContent } from "@/components/home/hero";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { createSEO } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
