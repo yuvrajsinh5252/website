@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
 import Image from "next/image";
@@ -107,10 +107,7 @@ export function AboutContent() {
           viewport={{ once: true, amount: 0.3 }}
           variants={itemVariants}
         >
-          <AboutInteractive
-            workExperience={WORK_EXPERIENCE}
-            education={EDUCATION}
-          />
+          <AboutInteractive />
         </motion.div>
 
         <motion.div
@@ -127,7 +124,8 @@ export function AboutContent() {
             {WHAT_I_DO.map((item, idx) => (
               <div
                 key={idx}
-                className="backdrop-blur-sm bg-white/5 rounded-xl p-5 border border-white/10 hover:border-white/20 transition-[border-color] duration-300"
+                className="bg-white/5 rounded-xl p-5 border border-white/10 hover:border-white/20 transition-[border-color] duration-150"
+                style={{ transform: "translateZ(0)" }}
               >
                 <h4 className="text-base font-semibold text-white mb-2">
                   {item.title}
@@ -160,7 +158,8 @@ export function AboutContent() {
                   href={skill.url}
                   target="_blank"
                   rel="noreferrer"
-                  className={`px-3 py-1.5 bg-gradient-to-r ${skill.color} backdrop-blur-sm border ${skill.border} rounded-lg text-white/90 hover:text-white transition-all duration-200 text-xs font-medium`}
+                  className={`px-3 py-1.5 bg-gradient-to-r ${skill.color} border ${skill.border} rounded-lg text-white/90 hover:text-white transition-colors duration-150 text-xs font-medium`}
+                  style={{ transform: "translateZ(0)" }}
                 >
                   {skill.name}
                 </a>
@@ -182,7 +181,10 @@ export function AboutContent() {
             </div>
             {featuredProjects.map((project, index) => (
               <div key={index} className="group relative">
-                <div className="backdrop-blur-sm bg-white/5 rounded-xl p-4 border border-white/10 hover:border-white/20 transition-[border-color] duration-300">
+                <div
+                  className="bg-white/5 rounded-xl p-4 border border-white/10 hover:border-white/20 transition-[border-color] duration-200"
+                  style={{ transform: "translateZ(0)" }}
+                >
                   <div className="flex items-start justify-between mb-2">
                     <h4 className="text-base font-semibold text-white">
                       {project.title}
@@ -244,12 +246,15 @@ type AboutInteractiveProps = {
   education: EducationItem[];
 };
 
-function AboutInteractive({
-  workExperience,
-  education,
-}: AboutInteractiveProps) {
+function AboutInteractive() {
   const [expandedWork, setExpandedWork] = useState(false);
   const [expandedEducation, setExpandedEducation] = useState(false);
+
+  const ADDITIONAL_WORK = useMemo(
+    () => WORK_EXPERIENCE.slice(1),
+    [WORK_EXPERIENCE]
+  );
+  const ADDITIONAL_EDUCATION = useMemo(() => EDUCATION.slice(1), [EDUCATION]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
@@ -259,10 +264,11 @@ function AboutInteractive({
             Work Experience
           </h3>
           <div className="space-y-3">
-            {workExperience.slice(0, 1).map((work, index) => (
+            {WORK_EXPERIENCE.slice(0, 1).map((work, index) => (
               <div
                 key={index}
-                className="flex items-start gap-3 transition-all"
+                className="flex items-start gap-3"
+                style={{ transform: "translateZ(0)" }}
               >
                 <div className="relative w-10 h-10 flex-shrink-0 rounded-lg overflow-hidden">
                   {work.logo ? (
@@ -303,7 +309,7 @@ function AboutInteractive({
             ))}
             <AnimatePresence>
               {expandedWork &&
-                workExperience.slice(1).map((work, index) => (
+                ADDITIONAL_WORK.map((work, index) => (
                   <motion.div
                     key={`work-${index}`}
                     initial={{ opacity: 0, height: 0 }}
@@ -311,8 +317,13 @@ function AboutInteractive({
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="overflow-hidden"
+                    style={{ willChange: "height, opacity" }}
+                    layout
                   >
-                    <div className="flex items-start gap-3 pt-3">
+                    <div
+                      className="flex items-start gap-3 pt-3"
+                      style={{ transform: "translateZ(0)" }}
+                    >
                       <div className="relative w-10 h-10 flex-shrink-0 rounded-lg overflow-hidden">
                         {work.logo ? (
                           <Image
@@ -321,6 +332,7 @@ function AboutInteractive({
                             fill
                             className="object-contain"
                             unoptimized
+                            loading="lazy"
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-blue-400 text-xs font-semibold">
@@ -352,7 +364,7 @@ function AboutInteractive({
                   </motion.div>
                 ))}
             </AnimatePresence>
-            {workExperience.length > 1 && (
+            {ADDITIONAL_WORK.length > 1 && (
               <button
                 onClick={() => setExpandedWork(!expandedWork)}
                 className="w-full flex items-center justify-center gap-2 py-2 text-xs text-gray-400 hover:text-blue-400 transition-colors"
@@ -365,7 +377,7 @@ function AboutInteractive({
                 ) : (
                   <>
                     <FaChevronDown className="text-[10px]" />
-                    <span>Show {workExperience.length - 1} More</span>
+                    <span>Show {ADDITIONAL_WORK.length - 1} More</span>
                   </>
                 )}
               </button>
@@ -378,10 +390,11 @@ function AboutInteractive({
         <div className="w-full max-w-lg">
           <h3 className="text-lg font-semibold mb-4 text-white">Education</h3>
           <div className="space-y-3">
-            {education.slice(0, 1).map((edu, index) => (
+            {EDUCATION.slice(0, 1).map((edu, index) => (
               <div
                 key={index}
-                className="flex items-start gap-3 transition-all"
+                className="flex items-start gap-3"
+                style={{ transform: "translateZ(0)" }}
               >
                 <div className="relative w-10 h-10 flex-shrink-0 rounded-lg overflow-hidden">
                   {edu.logo ? (
@@ -437,7 +450,7 @@ function AboutInteractive({
             ))}
             <AnimatePresence>
               {expandedEducation &&
-                education.slice(1).map((edu, index) => (
+                ADDITIONAL_EDUCATION.map((edu, index) => (
                   <motion.div
                     key={`edu-${index}`}
                     initial={{ opacity: 0, height: 0 }}
@@ -445,8 +458,13 @@ function AboutInteractive({
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="overflow-hidden"
+                    style={{ willChange: "height, opacity" }}
+                    layout
                   >
-                    <div className="flex items-start gap-3 pt-3">
+                    <div
+                      className="flex items-start gap-3 pt-3"
+                      style={{ transform: "translateZ(0)" }}
+                    >
                       <div className="relative w-10 h-10 flex-shrink-0 rounded-lg overflow-hidden">
                         {edu.logo ? (
                           <Image
@@ -455,6 +473,7 @@ function AboutInteractive({
                             fill
                             className="object-contain"
                             unoptimized
+                            loading="lazy"
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-purple-400 text-xs font-semibold">
@@ -503,7 +522,7 @@ function AboutInteractive({
                   </motion.div>
                 ))}
             </AnimatePresence>
-            {education.length > 1 && (
+            {ADDITIONAL_EDUCATION.length > 1 && (
               <button
                 onClick={() => setExpandedEducation(!expandedEducation)}
                 className="w-full flex items-center justify-center gap-2 py-2 text-xs text-gray-400 hover:text-purple-400 transition-colors"
@@ -516,7 +535,7 @@ function AboutInteractive({
                 ) : (
                   <>
                     <FaChevronDown className="text-[10px]" />
-                    <span>Show {education.length - 1} More</span>
+                    <span>Show {ADDITIONAL_EDUCATION.length - 1} More</span>
                   </>
                 )}
               </button>
