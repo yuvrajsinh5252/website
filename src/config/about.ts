@@ -29,7 +29,7 @@ export const WORK_EXPERIENCE: WorkExperienceItem[] = [
     companyUrl: "https://factlymedia.com",
     location: "Remote",
     dates: "Feb 2025 - Present",
-    logo: "https://factlymedia.com/factlyIcon.png",
+    logo: "/images/factlyIcon.png",
   },
 ];
 
@@ -41,7 +41,7 @@ export const EDUCATION: EducationItem[] = [
     location: "Ahmedabad, Gujarat",
     dates: "Sep 2022 - Present",
     status: "Current",
-    logo: "https://upload.wikimedia.org/wikipedia/en/8/83/Nirma_University_Logo.png",
+    logo: "/images/Nirma_University_Logo.png",
   },
   {
     institution: "Gyanmanjari Vidhyapith",
@@ -50,7 +50,7 @@ export const EDUCATION: EducationItem[] = [
     location: "Bhavnagar, Gujarat",
     dates: "2020 - 2022",
     status: "Completed",
-    logo: "https://yt3.googleusercontent.com/ytc/AIdro_nzbr0KcId58B5Pzdf3PEo8OKJ3lIpxZcLae6oqj3qBjg=s900-c-k-c0x00ffffff-no-rj",
+    logo: "/images/gyanManjari.jpg",
   },
 ];
 

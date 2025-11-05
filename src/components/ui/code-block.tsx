@@ -43,15 +43,15 @@ export function CodeBlock({ children, className = "" }: CodeBlockProps) {
   };
 
   return (
-    <div className="relative group my-4 sm:my-6 overflow-hidden">
-      <div className="flex items-center justify-between mb-1.5 sm:mb-2">
-        <span className="px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium text-cyan-400 uppercase tracking-wide">
+    <div className="relative group my-4 sm:my-6">
+      <div className="mb-1 sm:mb-1.5 text-right">
+        <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wide text-gray-400">
           {language === "plaintext" ? "code" : language}
         </span>
       </div>
 
       <div className="relative">
-        <pre className="overflow-x-auto bg-slate-900/30 backdrop-blur-sm m-0">
+        <pre className="overflow-x-auto m-0 bg-transparent">
           <div className="py-3 sm:py-4 px-3 sm:px-4">
             <code
               ref={codeRef}
@@ -65,7 +65,7 @@ export function CodeBlock({ children, className = "" }: CodeBlockProps) {
 
         <button
           onClick={copyToClipboard}
-          className="absolute top-2 sm:top-3 right-2 sm:right-3 flex items-center gap-1 sm:gap-1.5 px-2 sm:px-2.5 py-1 sm:py-1.5 text-[10px] sm:text-xs font-medium text-gray-400 hover:text-white bg-slate-800/80 hover:bg-slate-700/80 rounded transition-all duration-200 backdrop-blur-sm opacity-100 sm:opacity-0 sm:group-hover:opacity-100"
+          className="absolute top-2 sm:top-3 right-2 sm:right-3 flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium text-gray-400 hover:text-white rounded transition-colors duration-200 bg-transparent"
           title="Copy code"
         >
           {copied ? (

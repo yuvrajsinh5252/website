@@ -29,9 +29,11 @@ export function ColorSwingBox({
           isHovered ? "opacity-100" : "opacity-0"
         }`}
         style={{
-          background: "linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2))",
+          background:
+            "linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2))",
           padding: "1px",
-          WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          WebkitMask:
+            "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           WebkitMaskComposite: "xor",
           mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           maskComposite: "exclude",
@@ -39,9 +41,7 @@ export function ColorSwingBox({
       />
 
       {/* Content */}
-      <div className={`relative z-10 h-full ${className}`}>
-        {children}
-      </div>
+      <div className={`relative z-10 h-full ${className}`}>{children}</div>
     </div>
   );
 }

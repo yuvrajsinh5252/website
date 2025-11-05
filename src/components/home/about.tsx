@@ -6,13 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { Variants } from "framer-motion";
 import Image from "next/image";
 import { PROJECTS } from "@/config/project";
-import {
-  WORK_EXPERIENCE,
-  EDUCATION,
-  WHAT_I_DO,
-  type WorkExperienceItem,
-  type EducationItem,
-} from "@/config/about";
+import { WORK_EXPERIENCE, EDUCATION, WHAT_I_DO } from "@/config/about";
 import { SKILLS } from "@/config/skills";
 import {
   FaExternalLinkAlt,
@@ -28,12 +22,7 @@ const itemVariants: Variants = {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: {
-      type: "spring" as const,
-      stiffness: 100,
-      damping: 15,
-      mass: 0.8,
-    },
+    transition: { duration: 0.25, ease: "easeOut" },
   },
 };
 
@@ -160,6 +149,7 @@ export function AboutContent() {
                   rel="noreferrer"
                   className={`px-3 py-1.5 bg-gradient-to-r ${skill.color} border ${skill.border} rounded-lg text-white/90 hover:text-white transition-colors duration-150 text-xs font-medium`}
                   style={{ transform: "translateZ(0)" }}
+                  aria-label={`Learn more about ${skill.name}`}
                 >
                   {skill.name}
                 </a>
@@ -194,7 +184,9 @@ export function AboutContent() {
                         <Link
                           href={project.link}
                           target="_blank"
+                          rel="noreferrer"
                           className="text-blue-400 hover:text-blue-300 transition-colors"
+                          aria-label={`Open ${project.title} project`}
                         >
                           <FaExternalLinkAlt className="w-4 h-4" />
                         </Link>
@@ -241,11 +233,6 @@ export function AboutContent() {
   );
 }
 
-type AboutInteractiveProps = {
-  workExperience: WorkExperienceItem[];
-  education: EducationItem[];
-};
-
 function AboutInteractive() {
   const [expandedWork, setExpandedWork] = useState(false);
   const [expandedEducation, setExpandedEducation] = useState(false);
@@ -257,7 +244,7 @@ function AboutInteractive() {
   const ADDITIONAL_EDUCATION = useMemo(() => EDUCATION.slice(1), [EDUCATION]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
       <div className="flex flex-col items-center">
         <div className="w-full max-w-lg">
           <h3 className="text-lg font-semibold mb-4 text-white">
@@ -275,9 +262,10 @@ function AboutInteractive() {
                     <Image
                       src={work.logo}
                       alt={work.company}
-                      fill
+                      width={40}
+                      height={40}
                       className="object-contain"
-                      unoptimized
+                      sizes="40px"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-blue-400 text-xs font-semibold">
@@ -303,7 +291,7 @@ function AboutInteractive() {
                     {work.company}
                     <FaExternalLinkAlt className="text-[10px]" />
                   </a>
-                  <p className="text-gray-500 text-xs">{work.dates}</p>
+                  <p className="text-gray-400 text-xs">{work.dates}</p>
                 </div>
               </div>
             ))}
@@ -329,9 +317,10 @@ function AboutInteractive() {
                           <Image
                             src={work.logo}
                             alt={work.company}
-                            fill
+                            width={40}
+                            height={40}
                             className="object-contain"
-                            unoptimized
+                            sizes="40px"
                             loading="lazy"
                           />
                         ) : (
@@ -358,16 +347,16 @@ function AboutInteractive() {
                           {work.company}
                           <FaExternalLinkAlt className="text-[10px]" />
                         </a>
-                        <p className="text-gray-500 text-xs">{work.dates}</p>
+                        <p className="text-gray-400 text-xs">{work.dates}</p>
                       </div>
                     </div>
                   </motion.div>
                 ))}
             </AnimatePresence>
-            {ADDITIONAL_WORK.length > 1 && (
+            {ADDITIONAL_WORK.length > 0 && (
               <button
                 onClick={() => setExpandedWork(!expandedWork)}
-                className="w-full flex items-center justify-center gap-2 py-2 text-xs text-gray-400 hover:text-blue-400 transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-1 text-xs text-gray-400 hover:text-blue-400 transition-colors"
               >
                 {expandedWork ? (
                   <>
@@ -377,7 +366,7 @@ function AboutInteractive() {
                 ) : (
                   <>
                     <FaChevronDown className="text-[10px]" />
-                    <span>Show {ADDITIONAL_WORK.length - 1} More</span>
+                    <span>Show {ADDITIONAL_WORK.length} More</span>
                   </>
                 )}
               </button>
@@ -401,9 +390,10 @@ function AboutInteractive() {
                     <Image
                       src={edu.logo}
                       alt={edu.institution || edu.degree}
-                      fill
+                      width={40}
+                      height={40}
                       className="object-contain"
-                      unoptimized
+                      sizes="40px"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-purple-400 text-xs font-semibold">
@@ -444,7 +434,7 @@ function AboutInteractive() {
                     <p className="text-gray-400 text-sm">{edu.degree}</p>
                   )}
                   <p className="text-gray-400 text-sm">{edu.location}</p>
-                  <p className="text-gray-500 text-xs mt-0.5">{edu.dates}</p>
+                  <p className="text-gray-400 text-xs mt-0.5">{edu.dates}</p>
                 </div>
               </div>
             ))}
@@ -470,9 +460,10 @@ function AboutInteractive() {
                           <Image
                             src={edu.logo}
                             alt={edu.institution || edu.degree}
-                            fill
+                            width={40}
+                            height={40}
                             className="object-contain"
-                            unoptimized
+                            sizes="40px"
                             loading="lazy"
                           />
                         ) : (
@@ -514,7 +505,7 @@ function AboutInteractive() {
                           <p className="text-gray-400 text-sm">{edu.degree}</p>
                         )}
                         <p className="text-gray-400 text-sm">{edu.location}</p>
-                        <p className="text-gray-500 text-xs mt-0.5">
+                        <p className="text-gray-400 text-xs mt-0.5">
                           {edu.dates}
                         </p>
                       </div>
@@ -522,10 +513,10 @@ function AboutInteractive() {
                   </motion.div>
                 ))}
             </AnimatePresence>
-            {ADDITIONAL_EDUCATION.length > 1 && (
+            {ADDITIONAL_EDUCATION.length > 0 && (
               <button
                 onClick={() => setExpandedEducation(!expandedEducation)}
-                className="w-full flex items-center justify-center gap-2 py-2 text-xs text-gray-400 hover:text-purple-400 transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-1 text-xs text-gray-400 hover:text-purple-400 transition-colors"
               >
                 {expandedEducation ? (
                   <>
@@ -535,7 +526,7 @@ function AboutInteractive() {
                 ) : (
                   <>
                     <FaChevronDown className="text-[10px]" />
-                    <span>Show {ADDITIONAL_EDUCATION.length - 1} More</span>
+                    <span>Show {ADDITIONAL_EDUCATION.length} More</span>
                   </>
                 )}
               </button>

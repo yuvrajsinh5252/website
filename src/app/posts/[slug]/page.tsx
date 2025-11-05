@@ -77,7 +77,7 @@ export default async function PostPage({
 
           <header className="mb-12 flex justify-between items-center">
             <h1 className="text-4xl font-bold bg-clip-text">{post.title}</h1>
-            <p className="max-sm:hidden text-sm font-semibold text-gray-500 dark:text-gray-400 flex items-center gap-2 transition-colors">
+            <p className="max-sm:hidden text-sm font-semibold text-gray-400 flex items-center gap-2 transition-colors">
               <FaCalendar className="inline-block mr-2" size={18} />
               {post.date}
             </p>
@@ -87,7 +87,7 @@ export default async function PostPage({
             className="prose dark:prose-invert transition-all max-w-none
             prose-h2:text-2xl prose-h2:font-bold prose-h2:mb-4
             prose-h3:text-xl prose-h3:font-semibold prose-h3:mb-3
-            prose-img:rounded-xl prose-img:shadow-lg"
+            prose-img:rounded-xl prose-img:shadow-lg prose-img:max-w-full prose-img:h-auto"
           >
             <MDXRemote source={post.content} components={components} />
           </div>

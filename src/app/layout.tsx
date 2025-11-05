@@ -12,6 +12,7 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
   display: "swap",
   preload: true,
+  adjustFontFallback: true,
 });
 
 export const metadata = createSEO();
@@ -22,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>

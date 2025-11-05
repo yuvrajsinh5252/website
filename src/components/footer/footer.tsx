@@ -13,7 +13,9 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export default function Footer() {
-  const email = SOCIAL_LINKS.find((s) => s.name === "Email")?.url?.replace("mailto:", "") || "";
+  const email =
+    SOCIAL_LINKS.find((s) => s.name === "Email")?.url?.replace("mailto:", "") ||
+    "";
   const socials = SOCIAL_LINKS.filter((s) => s.name !== "Email");
 
   return (
@@ -31,16 +33,15 @@ export default function Footer() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 pb-6">
         <div className="flex flex-col items-center gap-4">
-          {/* Email and Social Links */}
           <div className="flex items-center gap-4 flex-wrap justify-center">
             <a
               href={`mailto:${email}`}
-              className="inline-flex items-center gap-1.5 text-gray-400 hover:text-blue-400 transition-colors text-sm"
+              className="inline-flex items-center gap-1.5 text-gray-300 hover:text-blue-300 transition-colors text-sm"
             >
               <FaEnvelope className="text-xs" />
               <span>{email}</span>
             </a>
-            <span className="text-gray-600">•</span>
+            <span className="text-gray-500">•</span>
             <div className="flex items-center gap-2">
               {socials.map((social) => {
                 const Icon = iconMap[social.icon];
@@ -50,7 +51,7 @@ export default function Footer() {
                     href={social.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-gray-400 hover:text-gray-300 transition-colors"
+                    className="text-gray-300 hover:text-white transition-colors"
                     aria-label={social.name}
                   >
                     {Icon && <Icon className="w-4 h-4" />}
@@ -60,8 +61,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Copyright */}
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-400">
             © {new Date().getFullYear()} Yuvrajsinh Gohil
           </p>
         </div>
@@ -69,5 +69,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-

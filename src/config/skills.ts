@@ -103,7 +103,7 @@ export const SKILLS: Skill[] = [
     url: "https://www.java.com/",
   },
   {
-    name: "Go",
+    name: "Golang",
     color: "from-cyan-600/10 to-blue-600/10",
     border: "border-cyan-500/20",
     url: "https://go.dev/",

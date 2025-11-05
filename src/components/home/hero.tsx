@@ -41,12 +41,6 @@ const buttonVariants: Variants = {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: {
-      type: "spring" as const,
-      stiffness: 120,
-      damping: 12,
-      mass: 0.7,
-    },
   },
 };
 
@@ -62,6 +56,15 @@ const socialItemVariants: Variants = {
       damping: 12,
       mass: 0.7,
     },
+  },
+};
+
+const textTweenVariants: Variants = {
+  hidden: { opacity: 0, y: 8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.25, ease: "easeOut" },
   },
 };
 
@@ -106,26 +109,26 @@ export function HeroContent() {
 
         <motion.p
           className="text-sm leading-[1.6] sm:text-base md:text-lg lg:text-xl font-extralight sm:leading-relaxed text-gray-300/90 px-2 sm:px-2 max-w-[90%] sm:max-w-none mx-auto"
-          variants={itemVariants}
+          variants={textTweenVariants}
         >
           Software Developer passionate about emerging technologies and crafting
           innovative digital solutions.
         </motion.p>
 
         <motion.div
-          className="flex flex-col sm:flex-row gap-3 sm:gap-6 justify-center items-stretch sm:items-center pt-4 sm:pt-8 w-full sm:w-auto"
+          className="flex flex-row gap-3 sm:gap-6 justify-center items-center pt-4 sm:pt-8 w-full sm:w-auto"
           variants={containerVariants}
         >
           <motion.div variants={buttonVariants}>
             <Link
               href="/projects"
-              className="group relative flex items-center justify-center px-6 py-3 sm:px-9 sm:py-4 rounded-full
+              className="group relative flex items-center justify-center py-3 px-6 sm:px-9 sm:py-4 rounded-full
                        border border-blue-400/40 bg-blue-500/10 hover:bg-blue-500/20
                        transition-all duration-200 shadow-[0_0_0_0_rgba(59,130,246,0.0)] hover:shadow-[0_0_30px_0_rgba(59,130,246,0.25)]
-                       backdrop-blur-sm w-full sm:w-auto"
+                       backdrop-blur-sm w-auto"
             >
               <span className="text-blue-200 group-hover:text-white transition-colors duration-200 font-medium text-sm sm:text-base">
-                View My Work
+                <span className="hidden sm:inline">View </span>My Work
               </span>
             </Link>
           </motion.div>
@@ -133,13 +136,13 @@ export function HeroContent() {
           <motion.div variants={buttonVariants}>
             <Link
               href="/posts"
-              className="group relative flex items-center justify-center px-6 py-3 sm:px-9 sm:py-4 rounded-full
+              className="group relative flex items-center justify-center py-3 px-6 sm:px-9 sm:py-4 rounded-full
                        border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/10
                        transition-all duration-200 hover:shadow-[0_0_25px_rgba(255,255,255,0.12)]
-                       backdrop-blur-sm w-full sm:w-auto"
+                       backdrop-blur-sm w-auto"
             >
               <span className="text-gray-200 group-hover:text-white transition-colors duration-200 font-medium text-sm sm:text-base">
-                Read My Posts
+                <span className="hidden sm:inline">Read </span>My Posts
               </span>
             </Link>
           </motion.div>
