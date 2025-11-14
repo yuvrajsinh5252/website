@@ -5,7 +5,6 @@ import { createSEO } from "@/lib/seo";
 import { siteConfig } from "@/config/site";
 
 export const metadata = createSEO({
-  title: "Home",
   description: siteConfig.description,
 });
 

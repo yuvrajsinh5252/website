@@ -22,7 +22,7 @@ const itemVariants: Variants = {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: { duration: 0.25, ease: "easeOut" },
+    transition: { duration: 0.4, ease: "easeOut" },
   },
 };
 
@@ -303,10 +303,9 @@ function AboutInteractive() {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
                     className="overflow-hidden"
-                    style={{ willChange: "height, opacity" }}
-                    layout
+                    style={{ willChange: "auto" }}
                   >
                     <div
                       className="flex items-start gap-3 pt-3"
@@ -446,10 +445,9 @@ function AboutInteractive() {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
                     className="overflow-hidden"
-                    style={{ willChange: "height, opacity" }}
-                    layout
+                    style={{ willChange: "auto" }}
                   >
                     <div
                       className="flex items-start gap-3 pt-3"

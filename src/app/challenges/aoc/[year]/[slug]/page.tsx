@@ -5,8 +5,7 @@ import { notFound } from "next/navigation";
 import { AnimatedPost } from "@/components/effects/animated-post";
 import { IoIosArrowBack } from "react-icons/io";
 import { MagicLink } from "@/components/effects/magiclink";
-import { CodeBlock } from "@/components/ui/code-block";
-import { TabbedCodeBlock } from "@/components/ui/tabbed-code-block";
+import { TabbedCodeBlock } from "@/components/ui/code-block";
 import { Metadata } from "next";
 import { FaCalendar } from "react-icons/fa";
 import { createSEO } from "@/lib/seo";
@@ -44,17 +43,12 @@ const components = {
       {...props}
     />
   ),
-  code: (props: any) => {
-    if (!props.className) {
-      return (
-        <code
-          className="bg-purple-500/10 text-purple-300 px-1.5 py-0.5 rounded text-sm border border-purple-500/20"
-          {...props}
-        />
-      );
-    }
-    return <CodeBlock {...props} />;
-  },
+  code: (props: any) => (
+    <code
+      className="bg-purple-500/10 text-purple-300 px-1.5 py-0.5 rounded text-sm border border-purple-500/20"
+      {...props}
+    />
+  ),
   TabbedCodeBlock,
 };
 

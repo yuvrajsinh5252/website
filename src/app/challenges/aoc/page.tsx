@@ -1,5 +1,5 @@
 import { getCategoryList } from "@/lib/content";
-import { Header } from "@/components/challenges/header";
+import PageHeader from "@/components/ui/page-header";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { AocList } from "@/components/challenges/aoc_lists";
 import { createSEO } from "@/lib/seo";
@@ -20,7 +20,7 @@ export default function AOCPage() {
     <div className="min-h-screen">
       <MaxWidthWrapper>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-32 sm:pt-36 md:pt-44 pb-16 sm:pb-20">
-          <Header title="Advent of Code" back={true} />
+          <PageHeader title="Advent of Code" backHref="/challenges" />
           <AocList categories={categories} />
         </div>
       </MaxWidthWrapper>
