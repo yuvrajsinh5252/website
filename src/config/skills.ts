@@ -49,6 +49,12 @@ export const SKILLS: Skill[] = [
     url: "https://www.python.org/",
   },
   {
+    name: "Docker",
+    color: "from-blue-500/10 to-sky-500/10",
+    border: "border-blue-400/20",
+    url: "https://www.docker.com/",
+  },
+  {
     name: "LangGraph",
     color: "from-purple-500/10 to-pink-500/10",
     border: "border-purple-400/20",
@@ -65,12 +71,6 @@ export const SKILLS: Skill[] = [
     color: "from-green-700/10 to-emerald-600/10",
     border: "border-green-500/20",
     url: "https://www.mongodb.com/",
-  },
-  {
-    name: "Docker",
-    color: "from-blue-500/10 to-sky-500/10",
-    border: "border-blue-400/20",
-    url: "https://www.docker.com/",
   },
   {
     name: "Git",
@@ -103,9 +103,9 @@ export const SKILLS: Skill[] = [
     url: "https://www.java.com/",
   },
   {
-    name: "Golang",
-    color: "from-cyan-600/10 to-blue-600/10",
-    border: "border-cyan-500/20",
-    url: "https://go.dev/",
+    name: "DSPy",
+    color: "from-orange-500/10 to-yellow-500/10",
+    border: "border-orange-400/20",
+    url: "https://dspy.ai/",
   },
 ];

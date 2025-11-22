@@ -19,11 +19,6 @@ export function ChallengeCard(challenge: ChallengesList) {
       className="h-full"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{
-        scale: 1.01,
-        transition: { duration: 0.2 },
-      }}
-      whileTap={{ scale: 0.99 }}
     >
       <ColorSwingBox className="p-4 sm:p-5">
         <Link href={href} className="block h-full">

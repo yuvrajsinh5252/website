@@ -21,7 +21,7 @@ export function ColorSwingBox({
       <div className="absolute inset-0 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 transition-all duration-300 group-hover:border-white/20 group-hover:bg-white/8" />
 
       {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-500/5 via-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
       {/* Animated border glow on hover */}
       <div
@@ -30,7 +30,7 @@ export function ColorSwingBox({
         }`}
         style={{
           background:
-            "linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2))",
+            "linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(255, 255, 255, 0.2))",
           padding: "1px",
           WebkitMask:
             "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",

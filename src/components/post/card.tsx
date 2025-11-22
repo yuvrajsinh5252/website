@@ -17,11 +17,6 @@ export function PostCard({ post }: PostCardProps) {
       className="h-full"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{
-        scale: 1.01,
-        transition: { duration: 0.2 },
-      }}
-      whileTap={{ scale: 0.99 }}
     >
       <ColorSwingBox className="p-3 sm:p-5">
         <Link href={`/posts/${post.slug}`} className="block h-full">
@@ -76,7 +71,7 @@ export function PostCard({ post }: PostCardProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <p className="line-clamp-3 leading-relaxed flex-grow pr-3 sm:pr-4">
+              <p className="line-clamp-2 sm:line-clamp-3 leading-relaxed flex-grow pr-3 sm:pr-4">
                 {post.description}
               </p>
 

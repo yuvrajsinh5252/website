@@ -15,6 +15,7 @@ import {
   FaChevronUp,
   FaGithub,
 } from "react-icons/fa";
+import { MagicLink } from "@/components/effects/magiclink";
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, scale: 1.15, y: 20 },
@@ -67,17 +68,17 @@ export function AboutContent() {
           viewport={{ once: true, amount: 0.3 }}
           variants={itemVariants}
         >
-          <div className="space-y-5 text-gray-300 text-base sm:text-lg leading-relaxed max-w-4xl">
+          <div className="space-y-5 text-gray-300 text-base sm:text-lg font-medium leading-relaxed max-w-4xl">
             <p>
               Hi I&apos;m a Software Developer. What started as curiosity became
               a passion for building web apps that solve real problems. Open
               source contributions and{" "}
-              <Link
+              <MagicLink
                 href="/posts/hacknuthon-5.0"
-                className="text-blue-400 font-medium hover:text-blue-300 transition-colors"
+                className="font-medium transition-colors"
               >
                 hackathons
-              </Link>{" "}
+              </MagicLink>{" "}
               keep me thriving in collaborative environments.
             </p>
 
@@ -106,9 +107,7 @@ export function AboutContent() {
           viewport={{ once: true, amount: 0.3 }}
           variants={itemVariants}
         >
-          <h3 className="text-xl sm:text-2xl font-semibold text-white mb-6">
-            What I Do
-          </h3>
+          <h3 className="text-2xl font-bold text-white mb-6">What I Do</h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {WHAT_I_DO.map((item, idx) => (
               <div
@@ -116,10 +115,10 @@ export function AboutContent() {
                 className="bg-white/5 rounded-xl p-5 border border-white/10 hover:border-white/20 transition-[border-color] duration-150"
                 style={{ transform: "translateZ(0)" }}
               >
-                <h4 className="text-base font-semibold text-white mb-2">
+                <h4 className="text-base font-bold text-white mb-2">
                   {item.title}
                 </h4>
-                <p className="text-gray-300 text-sm leading-relaxed">
+                <p className="text-gray-300 text-sm font-medium leading-relaxed">
                   {item.desc}
                 </p>
               </div>
@@ -136,9 +135,7 @@ export function AboutContent() {
           >
             <div className="flex items-center gap-3 mb-6">
               <FaCode className="w-5 h-5 text-cyan-300" />
-              <h3 className="text-xl sm:text-2xl font-semibold text-white">
-                Tech Stack
-              </h3>
+              <h3 className="text-2xl font-bold text-white">Skills</h3>
             </div>
             <div className="flex flex-wrap gap-2">
               {SKILLS.map((skill) => (
@@ -147,7 +144,7 @@ export function AboutContent() {
                   href={skill.url}
                   target="_blank"
                   rel="noreferrer"
-                  className={`px-3 py-1.5 bg-gradient-to-r ${skill.color} border ${skill.border} rounded-lg text-white/90 hover:text-white transition-colors duration-150 text-xs font-medium`}
+                  className={`px-3 py-1.5 bg-gradient-to-r ${skill.color} border ${skill.border} rounded-lg text-white/90 hover:text-white transition-colors duration-150 text-sm font-medium`}
                   style={{ transform: "translateZ(0)" }}
                   aria-label={`Learn more about ${skill.name}`}
                 >
@@ -165,7 +162,7 @@ export function AboutContent() {
           >
             <div className="flex items-center gap-3 mb-4">
               <FaExternalLinkAlt className="w-4 h-4 text-purple-300" />
-              <h3 className="text-xl sm:text-2xl font-semibold text-white">
+              <h3 className="text-2xl font-bold text-white">
                 Featured Project
               </h3>
             </div>
@@ -176,7 +173,7 @@ export function AboutContent() {
                   style={{ transform: "translateZ(0)" }}
                 >
                   <div className="flex items-start justify-between mb-2">
-                    <h4 className="text-base font-semibold text-white">
+                    <h4 className="text-base font-bold text-white">
                       {project.title}
                     </h4>
                     <div className="flex gap-2.5">
@@ -202,7 +199,7 @@ export function AboutContent() {
                       </a>
                     </div>
                   </div>
-                  <p className="text-gray-300 text-xs leading-relaxed mb-2.5 line-clamp-2">
+                  <p className="text-gray-300 text-sm font-medium leading-relaxed mb-2.5 line-clamp-2">
                     {project.description}
                   </p>
                   <div className="flex flex-nowrap gap-2 overflow-x-auto scroll-smooth">
@@ -221,7 +218,7 @@ export function AboutContent() {
             <div className="mt-3">
               <Link
                 href="/projects"
-                className="text-blue-400 hover:text-blue-300 font-medium text-xs transition-colors inline-flex items-center gap-1"
+                className="text-blue-400 hover:text-blue-300 font-medium text-sm transition-colors inline-flex items-center gap-1"
               >
                 View All Projects →
               </Link>
@@ -247,9 +244,7 @@ function AboutInteractive() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
       <div className="flex flex-col items-center">
         <div className="w-full max-w-lg">
-          <h3 className="text-lg font-semibold mb-4 text-white">
-            Work Experience
-          </h3>
+          <h3 className="text-xl font-bold mb-4 text-white">Work Experience</h3>
           <div className="space-y-3">
             {WORK_EXPERIENCE.slice(0, 1).map((work, index) => (
               <div
@@ -275,7 +270,7 @@ function AboutInteractive() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <h4 className="text-base font-semibold text-white">
+                    <h4 className="text-base font-bold text-white">
                       {work.title}
                     </h4>
                     <span className="px-1.5 py-0.5 text-xs font-medium text-blue-200 bg-blue-500/20 rounded-full">
@@ -286,12 +281,14 @@ function AboutInteractive() {
                     href={work.companyUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-blue-400 hover:text-blue-300 text-sm transition-colors inline-flex items-center gap-1 mb-1"
+                    className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors inline-flex items-center gap-1 mb-1"
                   >
                     {work.company}
                     <FaExternalLinkAlt className="text-[10px]" />
                   </a>
-                  <p className="text-gray-400 text-xs">{work.dates}</p>
+                  <p className="text-gray-400 text-xs font-medium">
+                    {work.dates}
+                  </p>
                 </div>
               </div>
             ))}
@@ -330,7 +327,7 @@ function AboutInteractive() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <h4 className="text-base font-semibold text-white">
+                          <h4 className="text-base font-bold text-white">
                             {work.title}
                           </h4>
                           <span className="px-1.5 py-0.5 text-xs font-medium text-blue-200 bg-blue-500/20 rounded-full">
@@ -341,12 +338,14 @@ function AboutInteractive() {
                           href={work.companyUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-blue-400 hover:text-blue-300 text-sm transition-colors inline-flex items-center gap-1 mb-1"
+                          className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors inline-flex items-center gap-1 mb-1"
                         >
                           {work.company}
                           <FaExternalLinkAlt className="text-[10px]" />
                         </a>
-                        <p className="text-gray-400 text-xs">{work.dates}</p>
+                        <p className="text-gray-400 text-xs font-medium">
+                          {work.dates}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
@@ -376,7 +375,7 @@ function AboutInteractive() {
 
       <div className="flex flex-col items-center">
         <div className="w-full max-w-lg">
-          <h3 className="text-lg font-semibold mb-4 text-white">Education</h3>
+          <h3 className="text-xl font-bold mb-4 text-white">Education</h3>
           <div className="space-y-3">
             {EDUCATION.slice(0, 1).map((edu, index) => (
               <div
@@ -395,7 +394,7 @@ function AboutInteractive() {
                       sizes="40px"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-purple-400 text-xs font-semibold">
+                    <div className="w-full h-full flex items-center justify-center text-blue-400 text-xs font-semibold">
                       {edu.institution
                         ? edu.institution.charAt(0)
                         : edu.degree.charAt(0)}
@@ -409,13 +408,13 @@ function AboutInteractive() {
                         href={edu.institutionUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-base font-semibold text-white hover:text-purple-300 transition-colors inline-flex items-center gap-1"
+                        className="text-base font-bold text-white hover:text-blue-300 transition-colors inline-flex items-center gap-1"
                       >
                         {edu.institution}
                         <FaExternalLinkAlt className="text-[10px]" />
                       </a>
                     ) : (
-                      <span className="text-base font-semibold text-white">
+                      <span className="text-base font-bold text-white">
                         {edu.degree}
                       </span>
                     )}
@@ -430,10 +429,16 @@ function AboutInteractive() {
                     </span>
                   </div>
                   {edu.institution && (
-                    <p className="text-gray-400 text-sm">{edu.degree}</p>
+                    <p className="text-gray-400 text-sm font-medium">
+                      {edu.degree}
+                    </p>
                   )}
-                  <p className="text-gray-400 text-sm">{edu.location}</p>
-                  <p className="text-gray-400 text-xs mt-0.5">{edu.dates}</p>
+                  <p className="text-gray-400 text-sm font-medium">
+                    {edu.location}
+                  </p>
+                  <p className="text-gray-400 text-xs font-medium mt-0.5">
+                    {edu.dates}
+                  </p>
                 </div>
               </div>
             ))}
@@ -465,7 +470,7 @@ function AboutInteractive() {
                             loading="lazy"
                           />
                         ) : (
-                          <div className="w-full h-full flex items-center justify-center text-purple-400 text-xs font-semibold">
+                          <div className="w-full h-full flex items-center justify-center text-blue-400 text-xs font-semibold">
                             {edu.institution
                               ? edu.institution.charAt(0)
                               : edu.degree.charAt(0)}
@@ -479,13 +484,13 @@ function AboutInteractive() {
                               href={edu.institutionUrl}
                               target="_blank"
                               rel="noreferrer"
-                              className="text-base font-semibold text-white hover:text-purple-300 transition-colors inline-flex items-center gap-1"
+                              className="text-base font-bold text-white hover:text-blue-300 transition-colors inline-flex items-center gap-1"
                             >
                               {edu.institution}
                               <FaExternalLinkAlt className="text-[10px]" />
                             </a>
                           ) : (
-                            <span className="text-base font-semibold text-white">
+                            <span className="text-base font-bold text-white">
                               {edu.degree}
                             </span>
                           )}
@@ -500,10 +505,14 @@ function AboutInteractive() {
                           </span>
                         </div>
                         {edu.institution && (
-                          <p className="text-gray-400 text-sm">{edu.degree}</p>
+                          <p className="text-gray-400 text-sm font-medium">
+                            {edu.degree}
+                          </p>
                         )}
-                        <p className="text-gray-400 text-sm">{edu.location}</p>
-                        <p className="text-gray-400 text-xs mt-0.5">
+                        <p className="text-gray-400 text-sm font-medium">
+                          {edu.location}
+                        </p>
+                        <p className="text-gray-400 text-xs font-medium mt-0.5">
                           {edu.dates}
                         </p>
                       </div>
@@ -514,7 +523,7 @@ function AboutInteractive() {
             {ADDITIONAL_EDUCATION.length > 0 && (
               <button
                 onClick={() => setExpandedEducation(!expandedEducation)}
-                className="w-full flex items-center justify-center gap-2 py-1 text-xs text-gray-400 hover:text-purple-400 transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-1 text-xs text-gray-400 hover:text-blue-400 transition-colors"
               >
                 {expandedEducation ? (
                   <>

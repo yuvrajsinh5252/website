@@ -9,13 +9,67 @@ import { motion } from "framer-motion";
 
 type Project = (typeof PROJECTS)[number];
 
+const headerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
+
+const sectionVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
+
+export function ProjectsList({ projects }: { projects: typeof PROJECTS }) {
+  return (
+    <motion.div
+      className="space-y-16 sm:space-y-20"
+      variants={headerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.div variants={sectionVariants}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+          {projects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
+          ))}
+        </div>
+      </motion.div>
+
+      {projects.length === 0 && (
+        <motion.div
+          className="text-center py-16 sm:py-20"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <p className="text-gray-400 text-base sm:text-lg">
+            No projects yet. Check back soon!
+          </p>
+        </motion.div>
+      )}
+    </motion.div>
+  );
+}
+
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
+      animate={{ opacity: 1, y: 0 }}
       className={`${project.link ? "cursor-pointer" : ""} h-full`}
       role={project.link ? "link" : undefined}
       tabIndex={project.link ? 0 : -1}
@@ -34,16 +88,30 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="flex flex-col h-full gap-3">
           <div className="flex items-start justify-between">
             <div>
-              <h2 className="text-base sm:text-lg font-semibold text-white leading-tight">
+              <motion.h2
+                className="text-base sm:text-lg font-semibold text-white leading-tight"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
                 {project.title}
-              </h2>
+              </motion.h2>
               {project.year && (
-                <p className="text-[11px] sm:text-xs text-gray-400 mt-0.5">
+                <motion.p
+                  className="text-[11px] sm:text-xs text-gray-400 mt-0.5"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
                   {project.year}
-                </p>
+                </motion.p>
               )}
             </div>
-            <div className="flex items-center gap-2.5">
+            <motion.div
+              className="flex items-center gap-2.5"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+            >
               {project.link && (
                 <Link
                   href={project.link}
@@ -66,14 +134,24 @@ export function ProjectCard({ project }: { project: Project }) {
               >
                 <SiGithub size={16} />
               </a>
-            </div>
+            </motion.div>
           </div>
 
-          <p className="text-gray-300/90 text-sm leading-relaxed line-clamp-2">
+          <motion.p
+            className="text-gray-300/90 text-sm leading-relaxed line-clamp-2"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
             {project.description}
-          </p>
+          </motion.p>
 
-          <div className="mt-auto flex flex-nowrap gap-2 overflow-x-auto scroll-smooth">
+          <motion.div
+            className="mt-auto flex flex-nowrap gap-2 overflow-x-auto scroll-smooth"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
             {project.tag.map((tag: string, i: number) => (
               <span
                 key={`${project.title}-tag-${i}-${tag}`}
@@ -82,7 +160,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 {tag}
               </span>
             ))}
-          </div>
+          </motion.div>
         </div>
       </ColorSwingBox>
     </motion.div>

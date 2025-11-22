@@ -4,96 +4,61 @@ import { siteConfig } from "@/config/site";
 export interface SEOProps {
   title?: string;
   description?: string;
-  images?: string[];
+  image?: string;
   canonical?: string;
   noIndex?: boolean;
   publishedTime?: string;
-  modifiedTime?: string;
-  author?: string;
-  type?: "website" | "article" | "profile";
+  type?: "website" | "article";
 }
 
-export function createSEO(options: SEOProps = {}): Metadata {
-  const {
-    title,
-    description = siteConfig.description,
-    images = [],
-    canonical,
-    noIndex = false,
-    publishedTime,
-    modifiedTime,
-    author = siteConfig.author.name,
-    type = "website",
-  } = options;
+export function createSEO({
+  title,
+  description = siteConfig.description,
+  image,
+  canonical,
+  noIndex = false,
+  publishedTime,
+  type = "website",
+}: SEOProps = {}): Metadata {
+  const pageTitle = title ? `${title} - ${siteConfig.name}` : siteConfig.title;
+  const pageImage = image
+    ? image.startsWith("http")
+      ? image
+      : `${siteConfig.url}${image}`
+    : `${siteConfig.url}/images/logo.png`;
 
-  const fullTitle = title ? `${title} | ${siteConfig.name}` : siteConfig.title;
-
-  const defaultImage = `${siteConfig.url}/images/logo.png`;
-  const metaImages =
-    images.length > 0
-      ? images.map((img) => ({
-          url: img.startsWith("http") ? img : `${siteConfig.url}${img}`,
+  return {
+    title: pageTitle,
+    description,
+    creator: siteConfig.name,
+    openGraph: {
+      title: pageTitle,
+      description,
+      url: canonical || siteConfig.url,
+      siteName: siteConfig.name,
+      images: [
+        {
+          url: pageImage,
           width: 1200,
           height: 630,
-          alt: title || siteConfig.name,
-        }))
-      : [
-          {
-            url: defaultImage,
-            width: 1200,
-            height: 630,
-            alt: siteConfig.name,
-          },
-        ];
-
-  const metadata: Metadata = {
-    title: fullTitle,
-    description,
-    authors: [{ name: author, url: siteConfig.author.url }],
-    creator: siteConfig.author.name,
-    publisher: siteConfig.author.name,
-    robots: {
-      index: !noIndex,
-      follow: !noIndex,
-      googleBot: {
-        index: !noIndex,
-        follow: !noIndex,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
-    },
-    openGraph: {
+          alt: pageTitle,
+        },
+      ],
       type,
       locale: "en_US",
-      url: canonical || siteConfig.url,
-      title: fullTitle,
-      description,
-      siteName: siteConfig.name,
-      images: metaImages,
       ...(publishedTime && { publishedTime }),
-      ...(modifiedTime && { modifiedTime }),
-      ...(author && { authors: [author] }),
     },
     twitter: {
       card: "summary_large_image",
-      title: fullTitle,
+      title: pageTitle,
       description,
-      images: metaImages,
+      images: [pageImage],
       creator: "@Yuvrajsinh_099",
-      site: "@Yuvrajsinh_099",
     },
-    icons: {
-      icon: "/favicon.ico",
-      shortcut: "/favicon.ico",
-      apple: "/favicon.ico",
+    robots: {
+      index: !noIndex,
+      follow: !noIndex,
     },
-    ...(canonical && {
-      alternates: {
-        canonical,
-      },
-    }),
+    alternates: canonical ? { canonical } : undefined,
   };
-
-  return metadata;
 }

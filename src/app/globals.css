@@ -59,6 +59,12 @@ body {
   display: none;
 }
 
+/* Hide scrollbar for Firefox, IE and Edge */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
 /* Performance optimizations */
 * {
   -webkit-tap-highlight-color: transparent;

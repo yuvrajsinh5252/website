@@ -1,0 +1,209 @@
+---
+title: "Guard Gallivant"
+date: "2024-12-06"
+description: "Advent of Code 2024 Day 6"
+category: "aoc"
+year: 2024
+day: 6
+---
+
+import { TabbedCodeBlock } from '@/components/ui/code-block'
+
+The guard is patrolling the lab. We need to predict their path to avoid them or find obstruction positions to trap them in a loop.
+
+## Part 1: Path Prediction
+
+Simulate the guard's movement according to the rules (turn right at obstacles) and count the number of distinct positions visited.
+
+<TabbedCodeBlock
+  tabs={[
+    {
+      language: "rust",
+      code: `fn main() {
+    let input = include_str!("./input.txt");
+    let output = part1(input);
+    dbg!(output);
+}
+
+fn dfs(mut v: Vec<Vec<char>>, i: i32, j: i32, mut dr: i32, mut dc: i32) -> String {
+    let mut ans: i32 = 1;
+
+    let mut x = i;
+    let mut y = j;
+
+    loop {
+        x = x + dr;
+        y = y + dc;
+
+        if x < 0 || x >= v.len() as i32 || y < 0 || y >= v[0].len() as i32 {
+            break;
+        }
+
+        if v[x as usize][y as usize] == '#' {
+            x = x - dr;
+            y = y - dc;
+
+            if dr == -1 && dc == 0 {
+                dr = 0;
+                dc = 1;
+            } else if dr == 0 && dc == 1 {
+                dr = 1;
+                dc = 0;
+            } else if dr == 1 && dc == 0 {
+                dr = 0;
+                dc = -1;
+            } else if dr == 0 && dc == -1 {
+                dr = -1;
+                dc = 0;
+            }
+        } else if v[x as usize][y as usize] == '.' {
+            ans += 1;
+            v[x as usize][y as usize] = 'X';
+        }
+    }
+
+    ans.to_string()
+}
+
+fn part1(input: &str) -> String {
+    let mut v: Vec<Vec<char>> = Vec::new();
+
+    input.split('\\n').for_each(|x| {
+        if !x.is_empty() {
+            v.push(x.trim_end().chars().collect());
+        }
+    });
+
+    let mut gaurd = (-1, -1);
+
+    for i in 0..v.len() {
+        for j in 0..v[i].len() {
+            if v[i][j] == '^' {
+                gaurd = (i as i32, j as i32);
+            }
+        }
+    }
+
+    dfs(v, gaurd.0, gaurd.1, -1, 0)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_works() {
+        let result = part1(include_str!("./input.txt"));
+        assert_eq!(result, "41".to_string());
+    }
+}`
+    }
+  ]}
+/>
+
+## Part 2: Obstruction Loops
+
+Find all possible positions for a new obstruction that would cause the guard to get stuck in a loop.
+
+<TabbedCodeBlock
+  tabs={[
+    {
+      language: "rust",
+      code: `fn main() {
+    let input = include_str!("./input.txt");
+    let output = part2(input);
+    dbg!(output);
+}
+
+fn check_loop(
+    v: Vec<Vec<char>>,
+    mut seen: Vec<Vec<Vec<bool>>>, // Track position and direction
+    i: i32,
+    j: i32,
+    mut dr: i32,
+    mut dc: i32,
+) -> bool {
+    let mut x = i;
+    let mut y = j;
+    let dirs = [(-1, 0), (0, 1), (1, 0), (0, -1)];
+    let mut dir_idx = dirs.iter().position(|&d| d == (dr, dc)).unwrap();
+
+    loop {
+        x = x + dr;
+        y = y + dc;
+
+        if x < 0 || x >= v.len() as i32 || y < 0 || y >= v[0].len() as i32 {
+            break;
+        }
+
+        if seen[x as usize][y as usize][dir_idx] {
+            return true;
+        }
+
+        seen[x as usize][y as usize][dir_idx] = true;
+
+        if v[x as usize][y as usize] == '#' || v[x as usize][y as usize] == 'O' {
+            x = x - dr;
+            y = y - dc;
+            dir_idx = (dir_idx + 1) % 4;
+            (dr, dc) = dirs[dir_idx];
+        }
+    }
+
+    false
+}
+
+fn find_all_obstruction(mut v: Vec<Vec<char>>, i: i32, j: i32) -> String {
+    let mut ans: i32 = 0;
+
+    for n in 0..v.len() {
+        for m in 0..v[n].len() {
+            if (n as i32 != i || m as i32 != j) && v[n][m] != '#' {
+                v[n][m] = 'O';
+                let seen: Vec<Vec<Vec<bool>>> = vec![vec![vec![false; 4]; v[0].len()]; v.len()];
+                if check_loop(v.clone(), seen, i, j, -1, 0) {
+                    ans += 1;
+                }
+                v[n][m] = '.';
+            }
+        }
+    }
+
+    ans.to_string()
+}
+
+fn part2(input: &str) -> String {
+    let mut v: Vec<Vec<char>> = Vec::new();
+
+    input.split('\\n').for_each(|x| {
+        if !x.is_empty() {
+            v.push(x.trim_end().chars().collect());
+        }
+    });
+
+    let mut gaurd = (-1, -1);
+
+    for i in 0..v.len() {
+        for j in 0..v[i].len() {
+            if v[i][j] == '^' {
+                gaurd = (i as i32, j as i32);
+            }
+        }
+    }
+
+    find_all_obstruction(v, gaurd.0, gaurd.1)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_works() {
+        let result = part2(include_str!("./input.txt"));
+        assert_eq!(result, "6".to_string());
+    }
+}`
+    }
+  ]}
+/>

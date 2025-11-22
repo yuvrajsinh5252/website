@@ -17,14 +17,9 @@ export function CategoryCard({ title, href, year, day }: CategoryCardProps) {
       className="h-full group"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{
-        scale: 1.02,
-        transition: { duration: 0.2 },
-      }}
-      whileTap={{ scale: 0.98 }}
     >
-      <ColorSwingBox className="p-4 sm:p-5">
-        <Link href={href} className="block h-full">
+      <Link href={href} className="block h-full">
+        <ColorSwingBox className="p-4 sm:p-5">
           <article className="relative flex flex-col h-full">
             <motion.div
               className="absolute right-2 flex items-center text-blue-400 group-hover:text-blue-300 transition-all duration-150 group-hover:translate-x-1 flex-shrink-0"
@@ -79,8 +74,8 @@ export function CategoryCard({ title, href, year, day }: CategoryCardProps) {
               )}
             </div>
           </article>
-        </Link>
-      </ColorSwingBox>
+        </ColorSwingBox>
+      </Link>
     </motion.div>
   );
 }

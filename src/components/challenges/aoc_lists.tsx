@@ -237,13 +237,7 @@ export function AocList({ categories }: { categories: CategoryListMeta[] }) {
         }}
       >
         {filteredCategories.length > 0 ? (
-          <motion.div
-            variants={sectionVariants}
-            whileHover={{
-              scale: 1.002,
-              transition: { duration: 0.2 },
-            }}
-          >
+          <motion.div variants={sectionVariants}>
             <motion.div
               className="space-y-3"
               initial={{ opacity: 0 }}

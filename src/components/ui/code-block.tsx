@@ -54,37 +54,37 @@ export function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
   };
 
   return (
-    <div className="relative group my-4 sm:my-6 not-prose">
-      <div className="relative border-2 border-white/30 rounded-lg overflow-hidden bg-[#0d1117]">
+    <div className="relative group my-6 sm:my-8 not-prose">
+      <div className="relative rounded-lg overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl">
         {/* Tab Header */}
-        <div className="flex items-center justify-between px-3 sm:px-4 py-2 border-b-2 border-white/30 bg-white/[0.08]">
-          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+        <div className="flex items-center justify-between px-4 py-2 bg-white/5 border-b border-white/10">
+          <div className="flex items-center gap-2">
             {tabs.map((tab, index) => (
               <button
                 key={index}
                 onClick={() => setActiveTab(index)}
                 className={`
-              px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium transition-colors uppercase tracking-wide rounded
+              px-3 py-1 text-xs font-medium transition-colors rounded-md
               ${
                 activeTab === index
                   ? "text-white bg-white/10"
-                  : "text-gray-400 hover:text-gray-300"
+                  : "text-gray-400 hover:text-gray-300 hover:bg-white/5"
               }
             `}
               >
-                <span className="relative z-10">{tab.language}</span>
+                {tab.language}
               </button>
             ))}
           </div>
           <button
             onClick={copyToClipboard}
-            className="flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium text-gray-400 hover:text-white rounded transition-colors duration-200"
+            className="flex items-center gap-2 px-2 py-1 text-xs font-medium text-gray-400 hover:text-white transition-colors"
             title="Copy code"
           >
             {copied ? (
               <>
                 <FiCheck size={14} className="text-green-400" />
-                <span className="text-green-400">Copied!</span>
+                <span className="text-green-400">Copied</span>
               </>
             ) : (
               <>
@@ -104,12 +104,11 @@ export function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
             transition={{ duration: 0.1 }}
             className="relative"
           >
-            <pre className="overflow-x-auto m-0 !bg-[#0d1117]">
-              <div className="py-3 sm:py-4 px-3 sm:px-4">
+            <pre className="overflow-x-auto m-0 !bg-transparent">
+              <div className="py-5 px-5">
                 <code
                   ref={codeRef}
-                  className={`language-${tabs[activeTab].language} text-xs sm:text-sm leading-6 sm:leading-7 block`}
-                  style={{ background: "transparent" }}
+                  className={`language-${tabs[activeTab].language} text-base font-medium leading-relaxed block font-mono !bg-transparent`}
                 >
                   {tabs[activeTab].code}
                 </code>
@@ -118,6 +117,19 @@ export function TabbedCodeBlock({ tabs }: TabbedCodeBlockProps) {
           </motion.div>
         </AnimatePresence>
       </div>
+    </div>
+  );
+}
+
+export function Pre({
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLPreElement>) {
+  return (
+    <div className="relative rounded-lg overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl my-6 not-prose">
+      <pre {...props} className="!bg-transparent !m-0 !p-4 overflow-x-auto">
+        {children}
+      </pre>
     </div>
   );
 }

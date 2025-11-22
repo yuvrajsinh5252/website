@@ -1,12 +1,14 @@
-import { Inter } from "next/font/google";
 // @ts-ignore
 import "./globals.css";
-import { Provider } from "@/components/themes/provides";
-import Navbar from "@/components/navbar/navbar";
-import { Background } from "@/components/ui/background";
 import Footer from "@/components/footer/footer";
-import { createSEO } from "@/lib/seo";
+import Navbar from "@/components/navbar/navbar";
 import Script from "next/script";
+import { Inter } from "next/font/google";
+import { Metadata, Viewport } from "next";
+import { Provider } from "@/components/themes/provides";
+import { Background } from "@/components/ui/background";
+import { createSEO } from "@/lib/seo";
+import { siteConfig } from "@/config/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,19 +18,40 @@ const inter = Inter({
   adjustFontFallback: true,
 });
 
-export const metadata = createSEO();
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+};
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  ...createSEO(),
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.name,
+    alternateName: ["Yuvrajsinh Gohil", "Yuvrajsinh"],
+    url: siteConfig.url,
+  };
+
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
       <body className={inter.className}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {/* Umami Analytics */}
         <Script
           src="https://cloud.umami.is/script.js"

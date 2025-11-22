@@ -36,13 +36,13 @@ export default function Footer() {
           <div className="flex items-center gap-4 flex-wrap justify-center">
             <a
               href={`mailto:${email}`}
-              className="inline-flex items-center gap-1.5 text-gray-300 hover:text-blue-300 transition-colors text-sm"
+              className="inline-flex items-center gap-2 text-gray-300 hover:text-blue-300 transition-colors text-base"
             >
-              <FaEnvelope className="text-xs" />
-              <span>{email}</span>
+              <FaEnvelope className="w-5 h-5" />
+              <span>Contact</span>
             </a>
             <span className="text-gray-500">•</span>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               {socials.map((social) => {
                 const Icon = iconMap[social.icon];
                 return (
@@ -54,16 +54,12 @@ export default function Footer() {
                     className="text-gray-300 hover:text-white transition-colors"
                     aria-label={social.name}
                   >
-                    {Icon && <Icon className="w-4 h-4" />}
+                    {Icon && <Icon className="w-5 h-5" />}
                   </Link>
                 );
               })}
             </div>
           </div>
-
-          <p className="text-xs text-gray-400">
-            © {new Date().getFullYear()} Yuvrajsinh Gohil
-          </p>
         </div>
       </div>
     </footer>
