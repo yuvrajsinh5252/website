@@ -6,6 +6,7 @@ import { siteConfig } from "@/config/site";
 
 export const metadata = createSEO({
   description: siteConfig.description,
+  canonical: siteConfig.url,
 });
 
 export default function Home() {

@@ -3,11 +3,13 @@ import PageHeader from "@/components/ui/page-header";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { ChallengesList } from "@/components/challenges/challenges_list";
 import { createSEO } from "@/lib/seo";
+import { siteConfig } from "@/config/site";
 
 export const metadata = createSEO({
   title: "Challenges",
   description:
     "Coding challenges and solutions by Yuvrajsinh Gohil - Advent of Code, algorithms, and problem-solving.",
+  canonical: `${siteConfig.url}/challenges`,
 });
 
 export default function ChallengesPage() {

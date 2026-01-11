@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import type { Variants } from "framer-motion";
 import Image from "next/image";
 import { PROJECTS } from "@/config/project";
 import { WORK_EXPERIENCE, EDUCATION, WHAT_I_DO } from "@/config/about";
@@ -17,15 +16,14 @@ import {
 } from "react-icons/fa";
 import { MagicLink } from "@/components/effects/magiclink";
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, scale: 1.15, y: 20 },
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
-    scale: 1,
     y: 0,
-    transition: { duration: 0.4, ease: "easeOut" },
+    transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as const },
   },
-};
+} as const;
 
 export function AboutContent() {
   const featuredProjects = PROJECTS.slice(0, 1);
@@ -54,7 +52,7 @@ export function AboutContent() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          variants={itemVariants}
+          variants={fadeInUp}
         >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3">
             About Me
@@ -66,7 +64,7 @@ export function AboutContent() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          variants={itemVariants}
+          variants={fadeInUp}
         >
           <div className="space-y-5 text-gray-300 text-base sm:text-lg font-medium leading-relaxed max-w-4xl">
             <p>
@@ -95,7 +93,7 @@ export function AboutContent() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          variants={itemVariants}
+          variants={fadeInUp}
         >
           <AboutInteractive />
         </motion.div>
@@ -105,7 +103,7 @@ export function AboutContent() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          variants={itemVariants}
+          variants={fadeInUp}
         >
           <h3 className="text-2xl font-bold text-white mb-6">What I Do</h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -131,7 +129,7 @@ export function AboutContent() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
-            variants={itemVariants}
+            variants={fadeInUp}
           >
             <div className="flex items-center gap-3 mb-6">
               <FaCode className="w-5 h-5 text-cyan-300" />
@@ -158,7 +156,7 @@ export function AboutContent() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
-            variants={itemVariants}
+            variants={fadeInUp}
           >
             <div className="flex items-center gap-3 mb-4">
               <FaExternalLinkAlt className="w-4 h-4 text-purple-300" />
@@ -354,7 +352,7 @@ function AboutInteractive() {
             {ADDITIONAL_WORK.length > 0 && (
               <button
                 onClick={() => setExpandedWork(!expandedWork)}
-                className="w-full flex items-center justify-center gap-2 py-1 text-xs text-gray-400 hover:text-blue-400 transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-2 text-xs text-gray-400 hover:text-blue-400 transition-colors relative z-50 cursor-pointer"
               >
                 {expandedWork ? (
                   <>
@@ -523,7 +521,7 @@ function AboutInteractive() {
             {ADDITIONAL_EDUCATION.length > 0 && (
               <button
                 onClick={() => setExpandedEducation(!expandedEducation)}
-                className="w-full flex items-center justify-center gap-2 py-1 text-xs text-gray-400 hover:text-blue-400 transition-colors"
+                className="w-full flex items-center justify-center gap-2 py-2 text-xs text-gray-400 hover:text-blue-400 transition-colors relative z-50 cursor-pointer"
               >
                 {expandedEducation ? (
                   <>

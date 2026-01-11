@@ -24,11 +24,19 @@ export type WhatIDoItem = {
 
 export const WORK_EXPERIENCE: WorkExperienceItem[] = [
   {
+    title: "Associate Software Engineer",
+    company: "MAQ Software",
+    companyUrl: "https://maqsoftware.com",
+    location: "Noida, India",
+    dates: "Jan 2026 - Present",
+    logo: "/images/maq-software.png",
+  },
+  {
     title: "Full-Stack Developer Intern",
     company: "Factly Media & Research",
     companyUrl: "https://factlymedia.com",
     location: "Remote",
-    dates: "Feb 2025 - Present",
+    dates: "Feb 2025 - Dec 2025",
     logo: "/images/factlyIcon.png",
   },
 ];

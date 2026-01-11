@@ -1,11 +1,13 @@
 import { PROJECTS } from "@/config/project";
 import PageHeader from "@/components/ui/page-header";
 import { createSEO } from "@/lib/seo";
+import { siteConfig } from "@/config/site";
 import { ProjectsList } from "@/components/ui/project-card";
 
 export const metadata = createSEO({
   title: "Projects",
   description: "My Projects that showcase my work and skills.",
+  canonical: `${siteConfig.url}/projects`,
 });
 
 export default function Projects() {

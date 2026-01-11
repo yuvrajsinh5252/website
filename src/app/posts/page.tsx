@@ -3,11 +3,13 @@ import PageHeader from "@/components/ui/page-header";
 import { PostsList } from "@/components/post/posts_list";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { createSEO } from "@/lib/seo";
+import { siteConfig } from "@/config/site";
 
 export const metadata = createSEO({
   title: "Posts",
   description:
     "Blog posts by Yuvrajsinh Gohil - Personal insights, anonymous stories...",
+  canonical: `${siteConfig.url}/posts`,
 });
 
 export default function PostsPage() {

@@ -8,6 +8,7 @@ import { MagicLink } from "@/components/effects/magiclink";
 import { Metadata } from "next";
 import { FaCalendar } from "react-icons/fa";
 import { createSEO } from "@/lib/seo";
+import { siteConfig } from "@/config/site";
 import Image from "next/image";
 import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 import { MDX_STYLES } from "@/lib/utils";
@@ -30,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: post.description,
     type: "article",
     publishedTime: post.date,
+    canonical: `${siteConfig.url}/posts/${slug}`,
   });
 }
 

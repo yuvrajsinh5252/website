@@ -77,8 +77,10 @@ export default function RootLayout({
         <Provider>
           <Background />
           <Navbar />
-          <div className="z-30 relative">{children}</div>
-          <Footer />
+          <main className="z-30 relative">{children}</main>
+          <div className="z-30 relative">
+            <Footer />
+          </div>
         </Provider>
       </body>
     </html>
