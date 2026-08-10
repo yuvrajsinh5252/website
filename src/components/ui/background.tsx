@@ -6,7 +6,6 @@ import { MeteorShowerEffect } from "@/components/effects/meteor-shower";
 
 const BackgroundComponent = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   const gradientBackgrounds = useMemo(
@@ -39,9 +38,6 @@ const BackgroundComponent = () => {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mediaQuery.matches);
 
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);

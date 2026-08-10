@@ -1,6 +1,6 @@
 import { siteConfig } from "./site";
 
-export const PROJECTS = [
+const projects = [
   {
     title: "WhispherDocs",
     description:
@@ -16,7 +16,8 @@ export const PROJECTS = [
       "Uploadthings",
       "Cohere",
     ],
-    year: "2024",
+    year: "2023",
+    createdAt: "2023-12-02",
     githubLink: "https://github.com/yuvrajsinh5252/WhispherDocs",
   },
   {
@@ -37,6 +38,7 @@ export const PROJECTS = [
       "Trpc",
     ],
     year: "2024",
+    createdAt: "2024-07-25",
     githubLink: "https://github.com/yuvrajsinh5252/brilliant-plus-plus",
   },
   {
@@ -55,6 +57,7 @@ export const PROJECTS = [
       "Tailwind CSS",
     ],
     year: "2024",
+    createdAt: "2024-08-12",
     githubLink: "https://github.com/yuvrajsinh5252/ChessGame",
   },
   {
@@ -64,16 +67,8 @@ export const PROJECTS = [
     image: "../FlashLearn.png",
     tag: ["Rust", "Dioxus", "Red-Black Tree", "Tailwind CSS"],
     year: "2024",
+    createdAt: "2024-10-19",
     githubLink: "https://github.com/yuvrajsinh5252/rbt-visualizer",
-  },
-  {
-    title: "Dynamic Scheduler",
-    description:
-      "A site where users can set their availability, and admins schedule events based on time slots using a calendar view",
-    image: "../dynamic-scheduler.png",
-    tag: ["Nextjs14", "Tailwind CSS", "Fullcalendar", "Prisma", "Mongodb"],
-    year: "2024",
-    githubLink: "https://github.com/yuvrajsinh5252/dynamic-scheduler",
   },
   {
     title: "LeetCode CLI",
@@ -81,18 +76,9 @@ export const PROJECTS = [
       "A sleek command-line tool for LeetCode - solve, test, and submit problems directly from your terminal.",
     image: "../Mindhub.png",
     tag: ["Python", "CLI", "Typer", "LeetCode"],
-    year: "2024",
+    year: "2025",
+    createdAt: "2025-02-05",
     githubLink: "https://github.com/yuvrajsinh5252/leetcode-cli",
-  },
-  {
-    title: "scheduling-algorithms",
-    description:
-      "A website to visualize various scheduling algorithms with animations, helping users understand the concepts better.",
-    image: "../Mindhub.png",
-    link: "https://scheduling-algo.vercel.app",
-    tag: ["React", "OS Scheduling Algorithms", "Context API"],
-    year: "2023",
-    githubLink: "https://github.com/yuvrajsinh5252/scheduling-algorithms",
   },
   {
     title: "TODO App",
@@ -101,6 +87,7 @@ export const PROJECTS = [
     image: "../Mindhub.png",
     tag: ["Java", "JavaFX", "MySQL", "JFoenix"],
     year: "2023",
+    createdAt: "2023-10-27",
     githubLink: "https://github.com/yuvrajsinh5252/TODO-app",
   },
   {
@@ -111,6 +98,7 @@ export const PROJECTS = [
     link: `${siteConfig.url}/`,
     tag: ["Nextjs15", "Tailwind CSS"],
     year: "2024",
+    createdAt: "2024-07-30",
     githubLink: "https://github.com/yuvrajsinh5252/website",
   },
   {
@@ -121,6 +109,11 @@ export const PROJECTS = [
     link: "https://my-flashcard.vercel.app/",
     tag: ["React", "ElysiaJs", "Context API", "Postgresql"],
     year: "2024",
+    createdAt: "2024-07-30",
     githubLink: "https://github.com/yuvrajsinh5252/FlashLearn",
   },
 ];
+
+export const PROJECTS = [...projects].sort(
+  (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+);

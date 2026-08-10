@@ -1,20 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { SOCIAL_LINKS } from "@/config/social-links";
-import { SiGithub, SiLinkedin, SiX, SiDiscord } from "react-icons/si";
-import { FaEnvelope } from "react-icons/fa";
+import { SiGithub, SiX, SiDiscord } from "react-icons/si";
+import { FaEnvelope, FaLinkedin } from "react-icons/fa";
 import { siteConfig } from "@/config/site";
-import MaxWidthWrapper from "@/components/ui/max-width-wrapper";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   FaGithub: SiGithub,
-  FaLinkedin: SiLinkedin,
+  FaLinkedin,
   FaTwitter: SiX,
   FaDiscord: SiDiscord,
 };
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isProjectsPage = pathname === "/projects";
   const email =
     SOCIAL_LINKS.find((s) => s.name === "Email")?.url?.replace("mailto:", "") ||
     "";
@@ -22,8 +24,18 @@ export default function Footer() {
 
   return (
     <footer className="mt-auto border-t border-white/5">
-      <MaxWidthWrapper>
-        <div className="py-8 px-4 sm:px-6 md:px-8">
+      <div
+        className={`mx-auto w-full ${
+          isProjectsPage
+            ? "max-w-6xl px-4 sm:px-6 md:px-8"
+            : "max-w-screen-lg px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20"
+        }`}
+      >
+        <div
+          className={`py-8 ${
+            isProjectsPage ? "" : "px-4 sm:px-6 md:px-8"
+          }`}
+        >
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="text-center sm:text-left">
               <Link href="/" className="text-lg font-bold text-white">
@@ -58,7 +70,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </MaxWidthWrapper>
+      </div>
     </footer>
   );
 }

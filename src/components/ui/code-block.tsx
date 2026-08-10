@@ -9,7 +9,6 @@ import python from "highlight.js/lib/languages/python";
 import java from "highlight.js/lib/languages/java";
 import go from "highlight.js/lib/languages/go";
 import rust from "highlight.js/lib/languages/rust";
-// @ts-ignore
 import "highlight.js/styles/github-dark.css";
 import { FiCopy, FiCheck } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";

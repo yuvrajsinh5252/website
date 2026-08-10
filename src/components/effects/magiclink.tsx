@@ -10,6 +10,11 @@ interface MagicLinkProps {
   external?: boolean;
 }
 
+function pseudoRandom(seed: number) {
+  const value = Math.sin(seed) * 10000;
+  return value - Math.floor(value);
+}
+
 export function MagicLink({
   href,
   children,
@@ -19,8 +24,9 @@ export function MagicLink({
   const [isHovered, setIsHovered] = useState(false);
   const linkRef = useRef<HTMLAnchorElement>(null);
 
-  const particles = Array.from({ length: 24 }).map(() => {
-    const edge = Math.floor(Math.random() * 4);
+  const particles = Array.from({ length: 24 }).map((_, index) => {
+    const random = (offset: number) => pseudoRandom(index * 7 + offset);
+    const edge = Math.floor(random(1) * 4);
 
     let startX = "10%";
     let startY = "10%";
@@ -28,24 +34,24 @@ export function MagicLink({
 
     switch (edge) {
       case 0:
-        startX = `${Math.random() * 100}%`;
+        startX = `${random(2) * 100}%`;
         startY = "0%";
-        angle = Math.random() * 60 - 30; // -30 to 30 degrees
+        angle = random(3) * 60 - 30; // -30 to 30 degrees
         break;
       case 1:
         startX = "100%";
-        startY = `${Math.random() * 100}%`;
-        angle = Math.random() * 60 + 150; // 150 to 210 degrees
+        startY = `${random(2) * 100}%`;
+        angle = random(3) * 60 + 150; // 150 to 210 degrees
         break;
       case 2:
-        startX = `${Math.random() * 100}%`;
+        startX = `${random(2) * 100}%`;
         startY = "100%";
-        angle = Math.random() * 60 + 330; // 330 to 390 degrees
+        angle = random(3) * 60 + 330; // 330 to 390 degrees
         break;
       case 3:
         startX = "0%";
-        startY = `${Math.random() * 100}%`;
-        angle = Math.random() * 60 + 30; // 30 to 90 degrees
+        startY = `${random(2) * 100}%`;
+        angle = random(3) * 60 + 30; // 30 to 90 degrees
         break;
     }
 
@@ -53,9 +59,9 @@ export function MagicLink({
       startX,
       startY,
       angle,
-      length: Math.random() * 20 + 10,
-      delay: Math.random() * 0.2,
-      duration: Math.random() * 0.3 + 0.3,
+      length: random(4) * 20 + 10,
+      delay: random(5) * 0.2,
+      duration: random(6) * 0.3 + 0.3,
     };
   });
 

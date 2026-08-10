@@ -72,7 +72,6 @@ export const MeteorShowerEffect = ({
     const meteors: Meteor[] = [];
     const stars: Star[] = [];
     let animationFrameId: number;
-    let lastMeteorTime = Date.now();
     const startTime = Date.now();
     let activeMeteorCount = 0;
 
