@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaCode, FaHome, FaUser, FaLaptopCode } from "react-icons/fa";
+import { FaHome, FaUser, FaLaptopCode } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { TfiWrite } from "react-icons/tfi";
 
@@ -23,8 +23,6 @@ export default function NavLink({ href, text }: NavLinkProps) {
         return <FaUser className="text-base md:text-lg block m-0" />;
       case "posts":
         return <TfiWrite className="text-base md:text-lg block m-0" />;
-      case "challenges":
-        return <FaCode className="text-base md:text-lg block m-0" />;
       default:
         return null;
     }

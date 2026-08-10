@@ -3,7 +3,7 @@ export const siteConfig = {
   url: "https://www.yuvrajsinh.dev",
   title: "Yuvrajsinh Gohil - Software Developer",
   description:
-    "Software Developer passionate about emerging technologies and building innovative solutions. Explore my projects, blog posts, and coding challenges.",
+    "Software Developer passionate about emerging technologies and building innovative solutions. Explore my projects and blog posts.",
   links: {
     twitter: "https://twitter.com/Yuvrajsinh_099",
     github: "https://github.com/yuvrajsinh5252",
