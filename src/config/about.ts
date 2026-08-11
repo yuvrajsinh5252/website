@@ -1,10 +1,14 @@
-export type WorkExperienceItem = {
+export type WorkRole = {
   title: string;
+  dates: string;
+};
+
+export type WorkExperienceItem = {
   company: string;
   companyUrl: string;
   location: string;
-  dates: string;
   logo?: string;
+  roles: WorkRole[];
 };
 
 export type EducationItem = {
@@ -24,20 +28,32 @@ export type WhatIDoItem = {
 
 export const WORK_EXPERIENCE: WorkExperienceItem[] = [
   {
-    title: "Associate Software Engineer",
     company: "MAQ Software",
     companyUrl: "https://maqsoftware.com",
     location: "Noida, India",
-    dates: "Jan 2026 - Present",
     logo: "/images/maq-software.png",
+    roles: [
+      {
+        title: "Software Engineer 1",
+        dates: "July 2026 - Present",
+      },
+      {
+        title: "Associate Software Engineer",
+        dates: "Jan 2026 - June 2026",
+      },
+    ],
   },
   {
-    title: "Full-Stack Developer Intern",
     company: "Factly Media & Research",
     companyUrl: "https://factlymedia.com",
     location: "Remote",
-    dates: "Feb 2025 - Dec 2025",
     logo: "/images/factlyIcon.png",
+    roles: [
+      {
+        title: "Full-Stack Developer",
+        dates: "Feb 2025 - Dec 2025",
+      },
+    ],
   },
 ];
 

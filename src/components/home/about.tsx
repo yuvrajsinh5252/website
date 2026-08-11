@@ -231,6 +231,9 @@ export function AboutContent() {
 function AboutInteractive() {
   const [expandedWork, setExpandedWork] = useState(false);
   const [expandedEducation, setExpandedEducation] = useState(false);
+  const [expandedRoleTimeline, setExpandedRoleTimeline] = useState<string | null>(
+    null
+  );
 
   const ADDITIONAL_WORK = useMemo(
     () => WORK_EXPERIENCE.slice(1),
@@ -267,9 +270,9 @@ function AboutInteractive() {
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <h4 className="text-base font-bold text-white">
-                      {work.title}
+                      {work.roles[0]?.title}
                     </h4>
                     <span className="px-1.5 py-0.5 text-xs font-medium text-blue-200 bg-blue-500/20 rounded-full">
                       {work.location}
@@ -279,14 +282,67 @@ function AboutInteractive() {
                     href={work.companyUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors inline-flex items-center gap-1 mb-1"
+                    className="mt-1 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors inline-flex items-center gap-1"
                   >
                     {work.company}
                     <FaExternalLinkAlt className="text-[10px]" />
                   </a>
-                  <p className="text-gray-400 text-xs font-medium">
-                    {work.dates}
+                  <p className="text-gray-400 text-xs font-medium mt-1">
+                    {work.roles[0]?.dates}
                   </p>
+                  {work.roles.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setExpandedRoleTimeline((current) =>
+                            current === work.company ? null : work.company
+                          )
+                        }
+                        aria-expanded={expandedRoleTimeline === work.company}
+                        className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-gray-400 transition-colors hover:text-blue-300"
+                      >
+                        <FaChevronDown
+                          className={`text-[10px] transition-transform duration-200 ${
+                            expandedRoleTimeline === work.company
+                              ? "rotate-180"
+                              : ""
+                          }`}
+                        />
+                        {expandedRoleTimeline === work.company
+                          ? "Hide role history"
+                          : `Show ${work.roles.length - 1} More`}
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {expandedRoleTimeline === work.company && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2, ease: "easeOut" }}
+                            className="overflow-hidden"
+                          >
+                            <div className="mt-3 ml-2 border-l border-blue-400/30 pl-4 pb-1 space-y-3">
+                              {work.roles.slice(1).map((role) => (
+                                <div
+                                  key={`${work.company}-${role.title}-${role.dates}`}
+                                  className="relative"
+                                >
+                                  <span className="absolute -left-[21px] top-1.5 h-2.5 w-2.5 rounded-full border border-blue-300/70 bg-slate-900" />
+                                  <h5 className="text-sm font-semibold text-gray-200">
+                                    {role.title}
+                                  </h5>
+                                  <p className="text-xs font-medium text-gray-400">
+                                    {role.dates}
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </>
+                  )}
                 </div>
               </div>
             ))}
@@ -324,26 +380,83 @@ function AboutInteractive() {
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1 flex-wrap">
-                          <h4 className="text-base font-bold text-white">
-                            {work.title}
-                          </h4>
+                        <div className="flex items-center gap-2 mb-2 flex-wrap">
+                          <a
+                            href={work.companyUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors inline-flex items-center gap-1"
+                          >
+                            {work.company}
+                            <FaExternalLinkAlt className="text-[10px]" />
+                          </a>
                           <span className="px-1.5 py-0.5 text-xs font-medium text-blue-200 bg-blue-500/20 rounded-full">
                             {work.location}
                           </span>
                         </div>
-                        <a
-                          href={work.companyUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors inline-flex items-center gap-1 mb-1"
-                        >
-                          {work.company}
-                          <FaExternalLinkAlt className="text-[10px]" />
-                        </a>
+                        <h4 className="text-base font-bold text-white">
+                          {work.roles[0]?.title}
+                        </h4>
                         <p className="text-gray-400 text-xs font-medium">
-                          {work.dates}
+                          {work.roles[0]?.dates}
                         </p>
+                        {work.roles.length > 1 && (
+                          <>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setExpandedRoleTimeline((current) =>
+                                  current === work.company ? null : work.company
+                                )
+                              }
+                              aria-expanded={
+                                expandedRoleTimeline === work.company
+                              }
+                              className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-gray-400 transition-colors hover:text-blue-300"
+                            >
+                              <FaChevronDown
+                                className={`text-[10px] transition-transform duration-200 ${
+                                  expandedRoleTimeline === work.company
+                                    ? "rotate-180"
+                                    : ""
+                                }`}
+                              />
+                              {expandedRoleTimeline === work.company
+                                ? "Hide role history"
+                                : `View ${work.roles.length - 1} earlier role${
+                                    work.roles.length === 2 ? "" : "s"
+                                  }`}
+                            </button>
+                            <AnimatePresence initial={false}>
+                              {expandedRoleTimeline === work.company && (
+                                <motion.div
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: "auto" }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  transition={{ duration: 0.2, ease: "easeOut" }}
+                                  className="overflow-hidden"
+                                >
+                                  <div className="mt-3 ml-2 border-l border-blue-400/30 pl-4 pb-1 space-y-3">
+                                    {work.roles.slice(1).map((role) => (
+                                      <div
+                                        key={`${work.company}-${role.title}-${role.dates}`}
+                                        className="relative"
+                                      >
+                                        <span className="absolute -left-[21px] top-1.5 h-2.5 w-2.5 rounded-full border border-blue-300/70 bg-slate-900" />
+                                        <h5 className="text-sm font-semibold text-gray-200">
+                                          {role.title}
+                                        </h5>
+                                        <p className="text-xs font-medium text-gray-400">
+                                          {role.dates}
+                                        </p>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </>
+                        )}
                       </div>
                     </div>
                   </motion.div>
