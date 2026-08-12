@@ -89,6 +89,6 @@ export const WHAT_I_DO: WhatIDoItem[] = [
   },
   {
     title: "System Architecture",
-    desc: "Engineering efficient data processing pipelines, real-time systems, and secure code execution environments.",
+    desc: "Data engineering, efficient processing pipelines, real-time systems, and secure execution environments.",
   },
 ];

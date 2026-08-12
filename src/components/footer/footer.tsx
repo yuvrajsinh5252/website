@@ -6,6 +6,7 @@ import { SOCIAL_LINKS } from "@/config/social-links";
 import { SiGithub, SiX, SiDiscord } from "react-icons/si";
 import { FaEnvelope, FaLinkedin } from "react-icons/fa";
 import { siteConfig } from "@/config/site";
+import { DoodleIconLink } from "@/components/ui/doodle-icon";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   FaGithub: SiGithub,
@@ -21,6 +22,9 @@ export default function Footer() {
     SOCIAL_LINKS.find((s) => s.name === "Email")?.url?.replace("mailto:", "") ||
     "";
   const socials = SOCIAL_LINKS.filter((s) => s.name !== "Email");
+
+  const colors: Array<'red' | 'blue' | 'yellow' | 'green'> = ['red', 'blue', 'yellow', 'green', 'red'];
+  const radii: Array<1 | 2 | 3> = [1, 2, 3, 1, 2];
 
   return (
     <footer className="mt-auto border-t border-white/5">
@@ -38,35 +42,35 @@ export default function Footer() {
         >
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="text-center sm:text-left">
+
               <Link href="/" className="text-lg font-bold text-white">
                 {siteConfig.name}
               </Link>
               <p className="text-gray-400 text-sm mt-1">Software Developer</p>
             </div>
 
-            <div className="flex items-center gap-3">
-              {socials.map((social) => {
+            <div className="flex items-center gap-4 text-[12px]">
+              {socials.map((social, idx) => {
                 const Icon = iconMap[social.icon];
+                if (!Icon) return null;
                 return (
-                  <Link
+                  <DoodleIconLink
                     key={social.name}
                     href={social.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-200"
-                    aria-label={social.name}
-                  >
-                    {Icon && <Icon className="w-4 h-4" />}
-                  </Link>
+                    icon={Icon as any}
+                    tooltip={social.name}
+                    color={colors[idx % colors.length]}
+
+                  />
                 );
               })}
-              <a
+              <DoodleIconLink
                 href={`mailto:${email}`}
-                className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-200"
-                aria-label="Email"
-              >
-                <FaEnvelope className="w-4 h-4" />
-              </a>
+                icon={FaEnvelope as any}
+                tooltip="Email"
+                color="green"
+
+              />
             </div>
           </div>
         </div>

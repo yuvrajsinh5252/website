@@ -8,6 +8,7 @@ import { FaArrowDown } from "react-icons/fa6";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { siteConfig } from "@/config/site";
+import { DoodleIconLink } from "@/components/ui/doodle-icon";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -150,41 +151,32 @@ export function HeroContent() {
       </motion.div>
 
       <motion.div
-        className="mt-5 sm:mt-6 flex items-center justify-center gap-4"
+        className="mt-5 sm:mt-8 flex items-center justify-center gap-6"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <motion.a
-          variants={socialItemVariants}
-          href={siteConfig.links.github}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="GitHub"
-          className="text-gray-300 hover:text-white transition-colors"
-        >
-          <FaGithub className="w-5 h-5" />
-        </motion.a>
-        <motion.a
-          variants={socialItemVariants}
-          href={siteConfig.links.linkedin}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="LinkedIn"
-          className="text-gray-300 hover:text-white transition-colors"
-        >
-          <FaLinkedin className="w-5 h-5" />
-        </motion.a>
-        <motion.a
-          variants={socialItemVariants}
-          href={siteConfig.links.twitter}
-          target="_blank"
-          rel="noreferrer"
-          aria-label="X (Twitter)"
-          className="text-gray-300 hover:text-white transition-colors"
-        >
-          <FaXTwitter className="w-5 h-5" />
-        </motion.a>
+        <motion.div variants={socialItemVariants}>
+          <DoodleIconLink 
+            href={siteConfig.links.github} 
+            icon={FaGithub} 
+            color="red"
+          />
+        </motion.div>
+        <motion.div variants={socialItemVariants}>
+          <DoodleIconLink 
+            href={siteConfig.links.linkedin} 
+            icon={FaLinkedin} 
+            color="blue"
+          />
+        </motion.div>
+        <motion.div variants={socialItemVariants}>
+          <DoodleIconLink 
+            href={siteConfig.links.twitter} 
+            icon={FaXTwitter} 
+            color="yellow"
+          />
+        </motion.div>
       </motion.div>
 
       <HeroScrollButton />

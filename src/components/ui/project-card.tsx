@@ -4,6 +4,7 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 import Link from "next/link";
 import { SiGithub } from "react-icons/si";
 import { ColorSwingBox } from "@/components/effects/color-swing-box";
+import { DoodleIconLink } from "@/components/ui/doodle-icon";
 import { PROJECTS } from "@/config/project";
 import { motion } from "framer-motion";
 
@@ -113,27 +114,23 @@ export function ProjectCard({ project }: { project: Project }) {
               transition={{ delay: 0.2 }}
             >
               {project.link && (
-                <Link
-                  href={project.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="text-blue-400 hover:text-blue-300 transition-colors"
-                  aria-label={`Open ${project.title}`}
-                >
-                  <FaExternalLinkAlt size={16} />
-                </Link>
+                <div onClick={(e) => e.stopPropagation()}>
+                  <DoodleIconLink
+                    href={project.link}
+                    icon={FaExternalLinkAlt as any}
+                    color="blue"
+                    className="text-[9px]"
+                  />
+                </div>
               )}
-              <a
-                href={project.githubLink}
-                target="_blank"
-                rel="noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="text-gray-300 hover:text-white transition-colors"
-                aria-label={`View ${project.title} on GitHub`}
-              >
-                <SiGithub size={16} />
-              </a>
+              <div onClick={(e) => e.stopPropagation()}>
+                <DoodleIconLink
+                  href={project.githubLink}
+                  icon={SiGithub as any}
+                  color="red"
+                  className="text-[9px]"
+                />
+              </div>
             </motion.div>
           </div>
 

@@ -101,3 +101,81 @@ body {
     filter: none !important;
   }
 }
+/* Doodle Icon Variables */
+:root {
+  --ink: #1f2937;
+  --c-blue: #89b4ff;
+  --c-red: #ff8989;
+  --c-yellow: #ffdf70;
+  --c-green: #89ffb4;
+
+  --radius-1: 50% 45% 55% 40% / 55% 45% 50% 50%;
+  --radius-2: 40% 60% 45% 55% / 50% 55% 40% 60%;
+  --radius-3: 55% 45% 50% 55% / 45% 55% 60% 40%;
+}
+
+.doodle-icon-circle {
+  position: relative;
+  width: 3.2em;
+  height: 3.2em;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 3px solid var(--ink);
+  border-radius: 45% 55% 45% 55% / 55% 45% 55% 45%;
+  padding: 0;
+  box-shadow: 0.15em 0.15em 0px var(--ink);
+  transition:
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.2s ease;
+}
+
+.doodle-icon-circle:hover {
+  transform: scale(1.05) rotate(-3deg);
+  box-shadow: 0.28em 0.28em 0px var(--hover-color, var(--c-blue));
+  z-index: 20;
+}
+
+.doodle-icon-circle:active {
+  transform: scale(0.95);
+  box-shadow: 0.06em 0.06em 0px var(--ink);
+}
+
+.doodle-icon-circle svg {
+  width: 1.6em;
+  height: 1.6em;
+  color: var(--ink);
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Comic Book Style Tooltips */
+.doodle-icon-circle.has-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px) rotate(-3deg) scale(0.8);
+  background: #ffffff;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 12px 12px 12px 0;
+  padding: 0.4em 0.8em;
+  font-size: 0.85em;
+  font-weight: bold;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 3px 3px 0px var(--c-yellow);
+  transition:
+    opacity 0.2s ease,
+    transform 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 999;
+}
+
+.doodle-icon-circle.has-tooltip:hover::after,
+.doodle-icon-circle.has-tooltip:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) rotate(-3deg) scale(1);
+}
