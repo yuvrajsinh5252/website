@@ -63,8 +63,8 @@ export const EDUCATION: EducationItem[] = [
     institutionUrl: "https://nirmauni.ac.in/",
     degree: "B.Tech in Computer Science & Engineering",
     location: "Ahmedabad, Gujarat",
-    dates: "Sep 2022 - Present",
-    status: "Current",
+    dates: "Sep 2022 - Sep 2026",
+    status: "Completed",
     logo: "/images/Nirma_University_Logo.png",
   },
   {

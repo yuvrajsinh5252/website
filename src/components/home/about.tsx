@@ -15,6 +15,7 @@ import {
   FaGithub,
 } from "react-icons/fa";
 import { MagicLink } from "@/components/effects/magiclink";
+import { SkillSphere } from "@/components/effects/skill-sphere";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -130,25 +131,14 @@ export function AboutContent() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInUp}
+            className="flex flex-col h-full"
           >
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-3 mb-4">
               <FaCode className="w-5 h-5 text-cyan-300" />
               <h3 className="text-2xl font-bold text-white">Skills</h3>
             </div>
-            <div className="flex flex-wrap gap-2">
-              {SKILLS.map((skill) => (
-                <a
-                  key={skill.name}
-                  href={skill.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={`px-3 py-1.5 bg-gradient-to-r ${skill.color} border ${skill.border} rounded-lg text-white/90 hover:text-white transition-colors duration-150 text-sm font-medium`}
-                  style={{ transform: "translateZ(0)" }}
-                  aria-label={`Learn more about ${skill.name}`}
-                >
-                  {skill.name}
-                </a>
-              ))}
+            <div className="flex-1 w-full relative">
+              <SkillSphere skills={SKILLS} />
             </div>
           </motion.div>
 
