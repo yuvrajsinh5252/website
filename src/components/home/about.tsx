@@ -111,7 +111,7 @@ export function AboutContent() {
             {WHAT_I_DO.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-white/5 rounded-xl p-5 border border-white/10 hover:border-white/20 transition-[border-color] duration-150"
+                className="bg-white/5 backdrop-blur-md rounded-xl p-5 border border-white/10 hover:border-white/20 transition-[border-color] duration-150"
                 style={{ transform: "translateZ(0)" }}
               >
                 <h4 className="text-base font-bold text-white mb-2">
@@ -157,7 +157,7 @@ export function AboutContent() {
             {featuredProjects.map((project, index) => (
               <div key={index} className="group relative">
                 <div
-                  className="bg-white/5 rounded-xl p-4 border border-white/10 hover:border-white/20 transition-[border-color] duration-200"
+                  className="bg-white/5 backdrop-blur-md rounded-xl p-4 border border-white/10 hover:border-white/20 transition-[border-color] duration-200"
                   style={{ transform: "translateZ(0)" }}
                 >
                   <div className="flex items-start justify-between mb-2">

@@ -56,7 +56,27 @@ const BackgroundComponent = () => {
   }, []);
 
   if (isMobile) {
-    return null;
+    return (
+      <div
+        className="fixed inset-0 overflow-hidden pointer-events-none z-10"
+        style={{ transform: "translateZ(0)" }}
+      >
+        {/* Bottom glow */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: "radial-gradient(ellipse at bottom, #1b2735 0%, transparent 70%)",
+            opacity: 0.6,
+          }}
+        />
+        {/* Stars */}
+        <div className="absolute inset-0">
+          <div id="stars"></div>
+          <div id="stars2"></div>
+          <div id="stars3"></div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -64,6 +84,22 @@ const BackgroundComponent = () => {
       className="fixed inset-0 overflow-hidden pointer-events-none z-10"
       style={{ transform: "translateZ(0)" }}
     >
+      {/* Bottom glow — the "deep space horizon" from Uiverse starfield */}
+      <div
+        className="absolute inset-0 z-12"
+        style={{
+          background: "radial-gradient(ellipse at bottom, #1b2735 0%, transparent 70%)",
+          opacity: 0.6,
+        }}
+      />
+
+      {/* Drifting Stars Layer */}
+      <div className="absolute inset-0 z-15">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+      </div>
+
       <div className="absolute inset-0 z-20">
         <div
           className="absolute inset-0 opacity-30"

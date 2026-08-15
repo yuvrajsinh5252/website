@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./stars.css";
 import Footer from "@/components/footer/footer";
 import Navbar from "@/components/navbar/navbar";
 import Script from "next/script";
