@@ -1,14 +1,12 @@
-"use client";
-
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, useLocation } from "react-router-dom";
 import { SOCIAL_LINKS } from "@/config/social-links";
 import { SiGithub, SiX, SiDiscord } from "react-icons/si";
 import { FaEnvelope, FaLinkedin } from "react-icons/fa";
+import { IconType } from "react-icons";
 import { siteConfig } from "@/config/site";
 import { DoodleIconLink } from "@/components/ui/doodle-icon";
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+const iconMap: Record<string, IconType> = {
   FaGithub: SiGithub,
   FaLinkedin,
   FaTwitter: SiX,
@@ -16,7 +14,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export default function Footer() {
-  const pathname = usePathname();
+  const { pathname } = useLocation();
   const isProjectsPage = pathname === "/projects";
   const email =
     SOCIAL_LINKS.find((s) => s.name === "Email")?.url?.replace("mailto:", "") ||
@@ -24,7 +22,6 @@ export default function Footer() {
   const socials = SOCIAL_LINKS.filter((s) => s.name !== "Email");
 
   const colors: Array<'red' | 'blue' | 'yellow' | 'green'> = ['red', 'blue', 'yellow', 'green', 'red'];
-  const radii: Array<1 | 2 | 3> = [1, 2, 3, 1, 2];
 
   return (
     <footer className="mt-auto border-t border-white/5">
@@ -43,7 +40,7 @@ export default function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="text-center sm:text-left">
 
-              <Link href="/" className="text-lg font-bold text-white">
+              <Link to="/" className="text-lg font-bold text-white">
                 {siteConfig.name}
               </Link>
               <p className="text-gray-400 text-sm mt-1">Software Developer</p>
@@ -57,19 +54,19 @@ export default function Footer() {
                   <DoodleIconLink
                     key={social.name}
                     href={social.url}
-                    icon={Icon as any}
-                    tooltip={social.name}
+                    icon={Icon}
+                    label={social.name}
                     color={colors[idx % colors.length]}
-
+                    tooltip
                   />
                 );
               })}
               <DoodleIconLink
                 href={`mailto:${email}`}
-                icon={FaEnvelope as any}
-                tooltip="Email"
+                icon={FaEnvelope}
+                label="Email"
                 color="green"
-
+                tooltip
               />
             </div>
           </div>

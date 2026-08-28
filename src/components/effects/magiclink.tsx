@@ -1,8 +1,5 @@
-"use client";
-
 import { useState, useRef } from "react";
-import Link from "next/link";
-import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 interface MagicLinkProps {
   href: string;
   children: React.ReactNode;
@@ -65,54 +62,62 @@ export function MagicLink({
     };
   });
 
-  const LinkComponent = external ? "a" : Link;
-  const externalProps = external
-    ? { target: "_blank", rel: "noopener noreferrer" }
-    : {};
+  const inner = (
+    <>
+      <span className="relative z-10 magic">{children}</span>
 
-  return (
-    <span className="relative inline-block">
-      <LinkComponent
-        href={href}
-        ref={linkRef}
-        className={`relative inline-block ${className}`}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        {...externalProps}
-      >
-        <span className="relative z-10 magic">{children}</span>
-
-        <span className="absolute -inset-4 overflow-hidden pointer-events-none">
-          {isHovered &&
-            particles.map((particle, index) => (
-              <motion.span
-                key={index}
-                className="absolute bg-current"
-                style={{
+      <span className="absolute -inset-4 overflow-hidden pointer-events-none">
+        {isHovered &&
+          particles.map((particle, index) => (
+            <span
+              key={index}
+              className="absolute bg-current magic-particle"
+              style={
+                {
                   width: particle.length,
                   height: "4px",
                   left: particle.startX,
                   top: particle.startY,
-                  rotate: `${particle.angle}deg`,
-                  originX: 0,
-                  originY: 0.5,
-                }}
-                initial={{ scale: 0, opacity: 1 }}
-                animate={{
-                  scale: 1,
-                  opacity: 0,
-                  x: Math.cos((particle.angle * Math.PI) / 180) * 50,
-                  y: Math.sin((particle.angle * Math.PI) / 180) * 50,
-                }}
-                transition={{
-                  duration: particle.duration,
-                  delay: particle.delay,
-                  ease: "easeOut",
-                }}
-              />
-            ))}
-        </span>
-      </LinkComponent>
+                  "--particle-angle": `${particle.angle}deg`,
+                  "--particle-x": `${
+                    Math.cos((particle.angle * Math.PI) / 180) * 50
+                  }px`,
+                  "--particle-y": `${
+                    Math.sin((particle.angle * Math.PI) / 180) * 50
+                  }px`,
+                  animationDelay: `${particle.delay}s`,
+                  animationDuration: `${particle.duration}s`,
+                } as React.CSSProperties
+              }
+            />
+          ))}
+      </span>
+    </>
+  );
+
+  const shared = {
+    className: `relative inline-block ${className}`,
+    onMouseEnter: () => setIsHovered(true),
+    onMouseLeave: () => setIsHovered(false),
+  };
+
+  return (
+    <span className="relative inline-block">
+      {external ? (
+        <a
+          href={href}
+          ref={linkRef}
+          target="_blank"
+          rel="noopener noreferrer"
+          {...shared}
+        >
+          {inner}
+        </a>
+      ) : (
+        <Link to={href} ref={linkRef} {...shared}>
+          {inner}
+        </Link>
+      )}
     </span>
   );
 }

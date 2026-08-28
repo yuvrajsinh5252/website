@@ -1,10 +1,4 @@
-export interface Post {
-  slug: string;
-  title: string;
-  description: string;
-  date: string;
-  content: string;
-}
+import type { MDXContent } from "mdx/types";
 
 export interface PostMeta {
   slug: string;
@@ -13,4 +7,9 @@ export interface PostMeta {
   date: string;
   readingTime: string;
   tags: string[];
+  coverImage?: string;
+}
+
+export interface Post extends PostMeta {
+  Component: MDXContent;
 }

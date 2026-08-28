@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
@@ -76,13 +74,19 @@ export const MeteorShowerEffect = ({
     let activeMeteorCount = 0;
 
     const generateColor = () => {
-      if (!colorVariation) return meteorColor;
+      if (!colorVariation && meteorColor.startsWith("#") === false) {
+        return meteorColor;
+      }
 
       const baseColor = meteorColor.startsWith("#") ? meteorColor : "#FFFFFF";
 
       const r = parseInt(baseColor.slice(1, 3), 16);
       const g = parseInt(baseColor.slice(3, 5), 16);
       const b = parseInt(baseColor.slice(5, 7), 16);
+
+      if (!colorVariation) {
+        return `rgba(${r}, ${g}, ${b}, 1)`;
+      }
 
       const variance = 30;
       const newR = Math.min(
@@ -199,7 +203,6 @@ export const MeteorShowerEffect = ({
           ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
           ctx.fill();
 
-          // Reduced star sparkle frequency
           if (star.size > 1.8 && Math.random() < 0.005) {
             const sparkleSize = star.size * 1.5;
 
@@ -237,7 +240,7 @@ export const MeteorShowerEffect = ({
     };
 
     const drawMeteors = () => {
-      meteors.forEach((meteor, index) => {
+      meteors.forEach((meteor) => {
         if (!meteor.active) return;
 
         meteor.life++;
@@ -258,7 +261,6 @@ export const MeteorShowerEffect = ({
           entryProgress = Math.pow(entryProgress, 0.3);
         }
 
-        // Calculate travel fade - meteors fade as they travel across screen
         const travelDistance = Math.sqrt(
           Math.pow(
             meteor.x -
@@ -279,12 +281,12 @@ export const MeteorShowerEffect = ({
           1,
           travelDistance / (maxTravelDistance * 0.7)
         );
-        const travelFade = Math.pow(1 - travelProgress, 0.6); // Gradual fade as meteor travels
+        const travelFade = Math.pow(1 - travelProgress, 0.6);
 
         const atmosphereProgress = Math.min(
           1,
           Math.max(
-            0.4, // Reduced minimum to allow more fading
+            0.4,
             1 - Math.abs(meteor.x - canvas.width * 0.5) / (canvas.width * 0.5)
           )
         );
@@ -325,29 +327,22 @@ export const MeteorShowerEffect = ({
 
         if (currentOpacity < 0.003) return;
 
-        const tailEndX = meteor.x - Math.cos(meteor.angle) * currentTailLength;
-        const tailEndY = meteor.y - Math.sin(meteor.angle) * currentTailLength;
-
         ctx.save();
 
-        // Further optimized meteor tail with even fewer segments
-        const segments = 5; // Reduced from 8 for better performance
+        const segments = 5;
         const segmentLength = currentTailLength / segments;
 
-        // Pre-calculate common values
         const cosAngle = Math.cos(meteor.angle);
         const sinAngle = Math.sin(meteor.angle);
 
         for (let i = 0; i < segments; i++) {
           const progress = i / segments;
 
-          // Calculate positions for this segment
           const segmentStartX = meteor.x - cosAngle * segmentLength * i;
           const segmentStartY = meteor.y - sinAngle * segmentLength * i;
           const segmentEndX = meteor.x - cosAngle * segmentLength * (i + 1);
           const segmentEndY = meteor.y - sinAngle * segmentLength * (i + 1);
 
-          // Simplified taper calculation
           const widthMultiplier = 1 - progress * 0.7;
           const segmentWidth = Math.max(
             0.4,
@@ -357,12 +352,10 @@ export const MeteorShowerEffect = ({
 
           if (segmentOpacity < 0.03) continue;
 
-          // Set stroke properties once per segment
           ctx.strokeStyle = meteor.color.replace("1)", `${segmentOpacity})`);
           ctx.lineWidth = segmentWidth;
           ctx.lineCap = "round";
 
-          // Simplified glow effect - only for first 2 segments
           if (meteorGlow && i < 2 && segmentOpacity > 0.4) {
             ctx.shadowColor = meteor.color;
             ctx.shadowBlur = segmentWidth * 1.5;
@@ -376,12 +369,8 @@ export const MeteorShowerEffect = ({
           ctx.stroke();
         }
 
-        // Draw bright meteor head
         if (currentOpacity > 0.1) {
-          // Reset shadow for head
           ctx.shadowBlur = 0;
-
-          // Main bright core
           const headRadius = currentSize * 1.8;
           const headGradient = ctx.createRadialGradient(
             meteor.x,
@@ -409,7 +398,6 @@ export const MeteorShowerEffect = ({
           ctx.arc(meteor.x, meteor.y, headRadius, 0, Math.PI * 2);
           ctx.fill();
 
-          // Add bright inner core
           if (currentOpacity > 0.4) {
             const coreRadius = currentSize * 0.8;
             const coreGradient = ctx.createRadialGradient(
@@ -438,7 +426,6 @@ export const MeteorShowerEffect = ({
           }
         }
 
-        // Further reduced sparkle frequency
         if (Math.random() < 0.004 * currentOpacity && currentOpacity > 0.5) {
           const sparkleDistance = currentSize * 4;
           const sparkleAngle = Math.random() * Math.PI * 2;
@@ -460,7 +447,6 @@ export const MeteorShowerEffect = ({
     const render = () => {
       frameCount++;
 
-      // Only draw background every 3rd frame for stars
       if (frameCount % 3 === 0) {
         drawBackground();
       } else {

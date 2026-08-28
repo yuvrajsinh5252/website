@@ -1,9 +1,10 @@
+import { SITE_META } from "./site-meta";
+
 export const siteConfig = {
-  name: "Yuvrajsinh Gohil",
-  url: "https://www.yuvrajsinh.dev",
-  title: "Yuvrajsinh Gohil - Software Developer",
-  description:
-    "Software Developer passionate about emerging technologies and building innovative solutions. Explore my projects and blog posts.",
+  name: SITE_META.name,
+  url: import.meta.env.VITE_SITE_URL ?? SITE_META.defaultUrl,
+  title: SITE_META.title,
+  description: SITE_META.description,
   links: {
     twitter: "https://twitter.com/Yuvrajsinh_099",
     github: "https://github.com/yuvrajsinh5252",

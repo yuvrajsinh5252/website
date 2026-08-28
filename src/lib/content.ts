@@ -1,73 +1,65 @@
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
-import { Post, PostMeta } from "@/types/post";
+import type { MDXContent } from "mdx/types";
+import type { Post, PostMeta } from "@/types/post";
 
-const contentDirectory = path.join(process.cwd(), "src/content");
+interface MdxModule {
+  default: MDXContent;
+  frontmatter?: Record<string, unknown>;
+  /** Injected at build time by plugins/remark-reading-time.ts */
+  readingTime?: string;
+}
+
+const modules = import.meta.glob<MdxModule>("../content/posts/*.mdx", {
+  eager: true,
+});
+
+function toStringArray(value: unknown): string[] {
+  return Array.isArray(value)
+    ? value.filter((item): item is string => typeof item === "string")
+    : [];
+}
+
+/** Returns null when frontmatter is missing the fields every post needs. */
+function parsePost(path: string, module: MdxModule): Post | null {
+  const slug = path.split("/").pop()!.replace(/\.mdx$/, "");
+  const data = module.frontmatter ?? {};
+
+  if (typeof data.title !== "string" || typeof data.description !== "string") {
+    console.warn(`[content] Skipping "${slug}": missing title or description.`);
+    return null;
+  }
+
+  const parsedDate = new Date(String(data.date));
+
+  if (Number.isNaN(parsedDate.getTime())) {
+    console.warn(`[content] Skipping "${slug}": invalid or missing date.`);
+    return null;
+  }
+
+  return {
+    slug,
+    title: data.title,
+    description: data.description,
+    date: parsedDate.toISOString().slice(0, 10),
+    tags: toStringArray(data.tags),
+    readingTime:
+      typeof data.readingTime === "string"
+        ? data.readingTime
+        : (module.readingTime ?? ""),
+    coverImage:
+      typeof data.coverImage === "string" ? data.coverImage : undefined,
+    Component: module.default,
+  };
+}
+
+const posts: Post[] = Object.entries(modules)
+  .map(([path, module]) => parsePost(path, module))
+  .filter((post): post is Post => post !== null)
+  .sort((a, b) => b.date.localeCompare(a.date));
 
 export function getPosts(): PostMeta[] {
-  const postsDirectory = path.join(contentDirectory, "posts");
-
-  if (!fs.existsSync(postsDirectory)) {
-    return [];
-  }
-
-  const files = fs.readdirSync(postsDirectory);
-  const posts: PostMeta[] = [];
-
-  for (const file of files) {
-    if (file.endsWith(".mdx")) {
-      const slug = file.replace(/\.mdx$/, "");
-      const filePath = path.join(contentDirectory, "posts", `${slug}.mdx`);
-
-      if (!fs.existsSync(filePath)) {
-        continue;
-      }
-
-      const fileContents = fs.readFileSync(filePath, "utf8");
-      const { data, content } = matter(fileContents);
-
-      try {
-        posts.push({
-          slug,
-          title: data.title,
-          description: data.description,
-          date: data.date,
-          readingTime: data.readingTime,
-          tags: data.tags,
-        });
-      } catch (error) {
-        console.error(`Error reading post for ${slug}:`, error);
-        continue;
-      }
-    }
-  }
-
-  return posts.sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  return posts.map(({ Component: _Component, ...meta }) => meta);
 }
 
 export function getPost(slug: string): Post | null {
-  try {
-    const filePath = path.join(contentDirectory, "posts", `${slug}.mdx`);
-
-    if (!fs.existsSync(filePath)) {
-      return null;
-    }
-
-    const fileContents = fs.readFileSync(filePath, "utf8");
-    const { data, content } = matter(fileContents);
-
-    return {
-      slug,
-      title: data.title,
-      description: data.description,
-      date: data.date,
-      content,
-    };
-  } catch (error) {
-    console.error(`Error reading post for ${slug}:`, error);
-    return null;
-  }
+  return posts.find((post) => post.slug === slug) ?? null;
 }

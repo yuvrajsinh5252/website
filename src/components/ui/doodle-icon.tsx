@@ -1,26 +1,28 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { IconType } from 'react-icons';
 
 type DoodleIconLinkProps = {
   href: string;
   icon: IconType;
-  tooltip?: string;
+  /** Doubles as the tooltip text and the accessible name. */
+  label: string;
   color?: 'red' | 'blue' | 'yellow' | 'green';
   className?: string;
+  /** Shows the comic-style tooltip on hover; aria-label is always set. */
+  tooltip?: boolean;
 };
 
-export const DoodleIconLink: React.FC<DoodleIconLinkProps> = ({ 
-  href, 
-  icon: Icon, 
-  tooltip,
+export const DoodleIconLink: React.FC<DoodleIconLinkProps> = ({
+  href,
+  icon: Icon,
+  label,
   color = 'red',
-  className = ''
+  className = '',
+  tooltip = false
 }) => {
-  const isExternal = href.startsWith('http');
-  const Component = isExternal ? 'a' : Link;
-  const target = isExternal ? "_blank" : undefined;
-  const rel = isExternal ? "noopener noreferrer" : undefined;
+  // mailto: and http(s) links must stay plain anchors; only in-app paths use the router.
+  const isInternal = href.startsWith('/');
 
   const colorMap = {
     red: "var(--c-red)",
@@ -29,17 +31,29 @@ export const DoodleIconLink: React.FC<DoodleIconLinkProps> = ({
     green: "var(--c-green)",
   };
 
+  const shared = {
+    className: `doodle-icon-circle ${tooltip ? 'has-tooltip' : ''} ${className}`,
+    "data-tooltip": label,
+    "aria-label": label,
+    style: { '--hover-color': colorMap[color] } as React.CSSProperties,
+  };
+
+  if (isInternal) {
+    return (
+      <Link to={href} {...shared}>
+        <Icon aria-hidden="true" />
+      </Link>
+    );
+  }
+
   return (
-    <Component 
+    <a
       href={href}
-      target={target}
-      rel={rel}
-      className={`doodle-icon-circle ${tooltip ? 'has-tooltip' : ''} ${className}`}
-      data-tooltip={tooltip}
-      aria-label={tooltip || 'Link'}
-      style={{ '--hover-color': colorMap[color] } as React.CSSProperties}
+      target={href.startsWith('http') ? "_blank" : undefined}
+      rel={href.startsWith('http') ? "noopener noreferrer" : undefined}
+      {...shared}
     >
-      <Icon />
-    </Component>
+      <Icon aria-hidden="true" />
+    </a>
   );
 };
