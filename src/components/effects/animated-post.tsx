@@ -1,52 +1,22 @@
-"use client";
-
-import { motion, Variants } from "framer-motion";
-import { ReactNode } from "react";
+import { Children, ReactNode } from "react";
 
 interface AnimatedPostProps {
   children: ReactNode;
 }
 
+const STAGGER_SECONDS = 0.15;
+
 export function AnimatedPost({ children }: AnimatedPostProps) {
-  const container: Variants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const item: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
-    },
-  };
-
   return (
-    <motion.div
-      variants={container}
-      initial="hidden"
-      animate="show"
-      className="w-full"
-    >
-      {children instanceof Array ? (
-        children.map((child, index) => (
-          <motion.div key={index} variants={item}>
-            {child}
-          </motion.div>
-        ))
-      ) : (
-        <motion.div variants={item}>{children}</motion.div>
-      )}
-    </motion.div>
+    <div className="w-full">
+      {Children.map(children, (child, index) => (
+        <div
+          className="animate-fade-up"
+          style={{ animationDelay: `${index * STAGGER_SECONDS}s` }}
+        >
+          {child}
+        </div>
+      ))}
+    </div>
   );
 }

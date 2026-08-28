@@ -1,9 +1,5 @@
-"use client";
-
-import { motion } from "framer-motion";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import React from "react";
 
 interface PageHeaderProps {
   title: string;
@@ -17,20 +13,15 @@ export default function PageHeader({
   backHref = null,
 }: PageHeaderProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.2 }}
-      className="mb-12 sm:mb-14 md:mb-16"
-    >
+    <div className="mb-12 sm:mb-14 md:mb-16 animate-fade-in">
       <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
         <div className="flex justify-center items-center text-2xl sm:text-3xl md:text-4xl text-blue-400 hover:text-blue-300 transition-colors duration-150 rounded-full">
           {backHref ? (
-            <Link href={backHref}>
-              <IoIosArrowBack />
+            <Link to={backHref} aria-label="Go back">
+              <IoIosArrowBack aria-hidden="true" />
             </Link>
           ) : (
-            <IoIosArrowForward />
+            <IoIosArrowForward aria-hidden="true" />
           )}
         </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
@@ -43,6 +34,6 @@ export default function PageHeader({
           {description}
         </p>
       )}
-    </motion.div>
+    </div>
   );
 }

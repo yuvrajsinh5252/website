@@ -1,21 +1,33 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* The archive folder is retained but is not part of the built site. */
+@source not "../../archive";
 
 :root {
   /* Cosmic Neon theme tokens */
   --background: #070b14; /* deep space */
   --foreground: #e7edf7; /* soft white */
   --muted-foreground: #a9b4c7;
-  --surface: rgba(255, 255, 255, 0.05);
-  --surface-border: rgba(231, 237, 247, 0.08);
-  --surface-hover: rgba(255, 255, 255, 0.08);
   --selection: 56, 189, 248; /* sky-400 */
-  --glow: 59, 130, 246; /* blue-500 */
-  --accent-a: 59, 130, 246; /* blue */
-  --accent-b: 139, 92, 246; /* violet */
-  --accent-c: 6, 182, 212; /* cyan */
-  --primary: 37, 99, 235; /* legacy token, kept for compatibility */
+  --primary: 37, 99, 235; /* drives the .magic link underline sweep */
+
+  /* Doodle ink palette */
+  --ink: #1f2937;
+  --c-blue: #89b4ff;
+  --c-red: #ff8989;
+  --c-yellow: #ffdf70;
+  --c-green: #89ffb4;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --animate-fade-in: fade-in 0.3s ease-out both;
+  --animate-fade-up: fade-up 0.4s ease-out both;
 }
 
 html {
@@ -25,7 +37,7 @@ html {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
   transition: color 0.5s ease, background 0.5s ease;
 }
 
@@ -82,10 +94,102 @@ body {
   }
 }
 
+/* Visible keyboard focus, since the default outline is lost on dark surfaces */
+:focus-visible {
+  outline: 2px solid rgb(var(--selection));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Entrance animations, used in place of JS-driven mount transitions */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out both;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.4s ease-out both;
+}
+
+/* Slow ambient drift for the nebula glow behind the hero. */
+@keyframes nebula-drift {
+  0%,
+  100% {
+    opacity: 0.04;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.08;
+    transform: scale(1.15) rotate(2deg);
+  }
+}
+
+.animate-nebula-drift {
+  animation: nebula-drift 35s ease-in-out 5s infinite;
+}
+
+/* Traces the constellation lines on, using a normalised pathLength of 1. */
+@keyframes draw-line {
+  from {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.animate-draw-line {
+  stroke-dasharray: 1;
+  animation-name: draw-line;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+}
+
+/* Sparks that burst out of a MagicLink on hover. */
+@keyframes magic-particle {
+  from {
+    transform: rotate(var(--particle-angle)) scale(0);
+    opacity: 1;
+  }
+  to {
+    transform: translate(var(--particle-x), var(--particle-y))
+      rotate(var(--particle-angle)) scale(1);
+    opacity: 0;
+  }
+}
+
+.magic-particle {
+  transform-origin: 0 50%;
+  animation-name: magic-particle;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
 /* Mobile optimizations */
 @media (max-width: 768px) {
   /* Disable complex filters on mobile */
-  .backdrop-blur-sm {
+  [class*="backdrop-blur"] {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     background-color: rgba(255, 255, 255, 0.05);
@@ -100,18 +204,6 @@ body {
   [style*="filter: blur"] {
     filter: none !important;
   }
-}
-/* Doodle Icon Variables */
-:root {
-  --ink: #1f2937;
-  --c-blue: #89b4ff;
-  --c-red: #ff8989;
-  --c-yellow: #ffdf70;
-  --c-green: #89ffb4;
-
-  --radius-1: 50% 45% 55% 40% / 55% 45% 50% 50%;
-  --radius-2: 40% 60% 45% 55% / 50% 55% 40% 60%;
-  --radius-3: 55% 45% 50% 55% / 45% 55% 60% 40%;
 }
 
 .doodle-icon-circle {

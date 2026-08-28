@@ -1,12 +1,17 @@
-"use client";
+import { useEffect, useState, useMemo, memo, lazy, Suspense } from "react";
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 
-import { motion } from "framer-motion";
-import { useEffect, useState, useMemo, memo } from "react";
-import { MeteorShowerEffect } from "@/components/effects/meteor-shower";
+const MeteorShowerEffect = lazy(() =>
+  import("@/components/effects/meteor-shower").then((mod) => ({
+    default: mod.MeteorShowerEffect,
+  }))
+);
 
 const BackgroundComponent = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const animationsEnabled = isLoaded && !prefersReducedMotion;
 
   const gradientBackgrounds = useMemo(
     () => ({
@@ -58,6 +63,7 @@ const BackgroundComponent = () => {
   if (isMobile) {
     return (
       <div
+        aria-hidden="true"
         className="fixed inset-0 overflow-hidden pointer-events-none z-10"
         style={{ transform: "translateZ(0)" }}
       >
@@ -81,6 +87,7 @@ const BackgroundComponent = () => {
 
   return (
     <div
+      aria-hidden="true"
       className="fixed inset-0 overflow-hidden pointer-events-none z-10"
       style={{ transform: "translateZ(0)" }}
     >
@@ -121,54 +128,41 @@ const BackgroundComponent = () => {
           }}
         />
 
-        {isLoaded && (
-          <motion.div
-            className="absolute top-1/3 right-0 w-[35rem] h-[30rem]"
+        {animationsEnabled && (
+          <div
+            className="absolute top-1/3 right-0 w-[35rem] h-[30rem] animate-nebula-drift"
             style={{
               background:
                 "radial-gradient(ellipse 60% 80% at 70% 50%, rgba(139, 92, 246, 0.08) 0%, rgba(139, 92, 246, 0.06) 25%, rgba(168, 85, 247, 0.06) 40%, rgba(168, 85, 247, 0.03) 60%, rgba(168, 85, 247, 0.02) 80%, transparent 95%)",
               filter: "blur(50px)",
-              transform: "translateZ(0)",
               willChange: "opacity, transform",
-            }}
-            initial={{ opacity: 0 }}
-            animate={{
-              opacity: [0.04, 0.08, 0.04],
-              scale: [1, 1.15, 1],
-              rotate: [0, 2, 0],
-            }}
-            transition={{
-              duration: 35,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 5,
             }}
           />
         )}
       </div>
 
-      {isLoaded && (
+      {animationsEnabled && (
         <svg
           className="absolute inset-0 w-full h-full opacity-8"
           style={{ transform: "translateZ(0)" }}
         >
-          <motion.path
+          <path
             d="M 150 100 Q 250 150 350 120 T 550 140"
             stroke="rgba(168, 85, 247, 0.1)"
             strokeWidth="0.5"
             fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 0.1 }}
-            transition={{ duration: 8, ease: "easeInOut", delay: 2 }}
+            pathLength={1}
+            className="animate-draw-line"
+            style={{ animationDuration: "8s", animationDelay: "2s" }}
           />
-          <motion.path
+          <path
             d="M 100 300 L 200 280 L 180 350 L 280 320"
             stroke="rgba(196, 181, 253, 0.08)"
             strokeWidth="0.5"
             fill="none"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 0.08 }}
-            transition={{ duration: 10, ease: "easeInOut", delay: 4 }}
+            pathLength={1}
+            className="animate-draw-line"
+            style={{ animationDuration: "10s", animationDelay: "4s" }}
           />
         </svg>
       )}
@@ -178,22 +172,24 @@ const BackgroundComponent = () => {
         style={{ background: gradientBackgrounds.vignette }}
       />
 
-      {isLoaded && (
-        <MeteorShowerEffect
-          key="meteor-shower-main"
-          className="absolute inset-0 z-30 h-full w-full"
-          background="transparent"
-          meteorCount={3}
-          meteorSize={{ min: 1.0, max: 2.5 }}
-          meteorSpeed={{ min: 5, max: 10 }}
-          tailLength={{ min: 80, max: 150 }}
-          meteorColor="#FFFFFF"
-          meteorGlow={true}
-          colorVariation={false}
-          showStars={false}
-          meteorFrequency={{ min: 6000, max: 12000 }}
-          maxSimultaneousMeteors={2}
-        />
+      {animationsEnabled && (
+        <Suspense fallback={null}>
+          <MeteorShowerEffect
+            key="meteor-shower-main"
+            className="absolute inset-0 z-30 h-full w-full"
+            background="transparent"
+            meteorCount={3}
+            meteorSize={{ min: 1.0, max: 2.5 }}
+            meteorSpeed={{ min: 5, max: 10 }}
+            tailLength={{ min: 80, max: 150 }}
+            meteorColor="#FFFFFF"
+            meteorGlow={true}
+            colorVariation={false}
+            showStars={false}
+            meteorFrequency={{ min: 6000, max: 12000 }}
+            maxSimultaneousMeteors={2}
+          />
+        </Suspense>
       )}
     </div>
   );
