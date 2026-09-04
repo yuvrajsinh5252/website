@@ -1,12 +1,16 @@
-import { ViteReactSSG } from "vite-react-ssg";
-import { routes } from "./routes";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.tsx'
 
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/700.css";
-import "highlight.js/styles/github-dark.css";
-import "./styles/globals.css";
-import "./styles/stars.css";
+const container = document.getElementById('root')
 
-export const createRoot = ViteReactSSG({ routes });
+if (!container) {
+  throw new Error('Root element #root was not found in index.html')
+}
+
+createRoot(container).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
