@@ -1,43 +1,64 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import tailwindcss from "@tailwindcss/vite";
-import mdx from "@mdx-js/rollup";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkMdxFrontmatter from "remark-mdx-frontmatter";
-import rehypeHighlight from "rehype-highlight";
-import { fileURLToPath, URL } from "node:url";
-import { staticFiles } from "./plugins/static-files.ts";
-import { remarkReadingTime } from "./plugins/remark-reading-time.ts";
+import { fileURLToPath, URL } from 'node:url'
+import { defineConfig, type Plugin } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+import { posts } from './src/data/posts.ts'
+import { projects } from './src/data/projects.ts'
+import { siteConfig } from './src/config/site.config.ts'
 
-export default defineConfig({
-  plugins: [
-    {
-      enforce: "pre",
-      ...mdx({
-        remarkPlugins: [
-          remarkFrontmatter,
-          remarkReadingTime,
-          [remarkMdxFrontmatter, { name: "frontmatter" }],
-        ],
-        rehypePlugins: [rehypeHighlight],
-      }),
+/**
+ * Emits `sitemap.xml` from the content itself.
+ *
+ * Generated rather than checked in so it cannot drift: adding a project or a
+ * post puts it in the sitemap on the next build. The data modules import only
+ * types, so they load here without pulling any browser code into the config.
+ */
+function sitemap(): Plugin {
+  return {
+    name: 'sitemap',
+    apply: 'build',
+    generateBundle() {
+      const entries: { path: string; lastmod?: string }[] = [
+        { path: '/' },
+        { path: '/experience' },
+        { path: '/projects' },
+        { path: '/posts' },
+        ...projects.map((project) => ({
+          path: `/projects/${project.slug}`,
+          lastmod: project.createdAt,
+        })),
+        ...posts.map((post) => ({
+          path: `/posts/${post.slug}`,
+          lastmod: post.date,
+        })),
+      ]
+
+      const urls = entries
+        .map(({ path, lastmod }) => {
+          const loc = new URL(path, siteConfig.url).href
+          const stamp = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ''
+          return `  <url>\n    <loc>${loc}</loc>${stamp}\n  </url>`
+        })
+        .join('\n')
+
+      this.emitFile({
+        type: 'asset',
+        fileName: 'sitemap.xml',
+        source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
+      })
     },
-    react({ include: /\.(jsx|js|mdx|md|tsx|ts)$/ }),
-    tailwindcss(),
-    staticFiles(),
-  ],
+  }
+}
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react(), tailwindcss(), sitemap()],
   resolve: {
     alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
-  css: {
-    postcss: { plugins: [] },
-  },
   build: {
-    outDir: "dist",
+    target: 'es2023',
   },
-  ssr: {
-    noExternal: ["react-icons"],
-  },
-});
+})
