@@ -1,19 +1,46 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+/**
+ * Small, dependency-free helpers shared across the app.
+ */
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+/** "Jan 2024 — Present" style range used by the experience timeline. */
+export function formatDateRange(start: string, end?: string): string {
+  return `${start} — ${end ?? 'Present'}`
 }
 
-export const MDX_STYLES = `prose prose-invert transition-all max-w-none
-prose-h2:text-xl sm:prose-h2:text-2xl prose-h2:font-bold prose-h2:mb-4 sm:prose-h2:mb-6 prose-h2:mt-10 sm:prose-h2:mt-14 prose-h2:text-white
-prose-h3:text-lg sm:prose-h3:text-xl prose-h3:font-bold prose-h3:mb-3 sm:prose-h3:mb-4 prose-h3:mt-8 sm:prose-h3:mt-10 prose-h3:text-blue-200
-prose-p:text-gray-300 prose-p:leading-7 sm:prose-p:leading-8 prose-p:mb-6 sm:prose-p:mb-8 prose-p:text-base sm:prose-p:text-lg
-prose-img:rounded-xl prose-img:border prose-img:border-white/10 prose-img:max-w-full prose-img:h-auto
-prose-pre:!p-0 prose-pre:!bg-transparent prose-pre:!border-0
-prose-code:!bg-transparent prose-code:!border-0 prose-code:text-gray-200 prose-code:px-1.5 sm:prose-code:px-2 prose-code:py-0.5 prose-code:rounded-sm prose-code:text-sm sm:prose-code:text-base prose-code:font-medium
-prose-strong:text-white prose-strong:font-bold
-prose-ul:text-gray-300 prose-ul:my-4 sm:prose-ul:my-6 prose-ul:text-base sm:prose-ul:text-lg
-prose-li:text-gray-300 prose-li:my-2 sm:prose-li:my-3 prose-li:text-base sm:prose-li:text-lg
-prose-blockquote:pl-6 sm:prose-blockquote:pl-8 prose-blockquote:italic prose-blockquote:text-gray-400 prose-blockquote:py-2 prose-blockquote:text-base sm:prose-blockquote:text-lg
-prose-a:text-blue-400 prose-a:no-underline prose-a:hover:text-blue-300 prose-a:transition-colors prose-a:text-base sm:prose-a:text-lg`;
+/** "22 April 2024" from an ISO date, for post datelines. */
+export function formatPostDate(iso: string): string {
+  return new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date(iso))
+}
+
+/** Turns "Aurora Design System" into "aurora-design-system". */
+export function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
+/** "YG" from "Yuvrajsinh Gohil" — used by the logo mark. */
+export function initials(name: string): string {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? '')
+    .join('')
+}
+
+export function currentYear(): number {
+  return new Date().getFullYear()
+}
+
+/** Extracts `about` from `/#about` so nav links can drive scroll-spy. */
+export function hashTarget(href: string): string | null {
+  const index = href.indexOf('#')
+  return index === -1 ? null : href.slice(index + 1)
+}

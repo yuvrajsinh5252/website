@@ -1,0 +1,722 @@
+/* ==========================================================================
+ * Central theme + design-token layer.
+ *
+ * Everything visual is configured from this file:
+ *   1. custom variants ........ dark / hocus / current
+ *   2. @theme inline .......... maps design tokens -> Tailwind utilities
+ *   3. :root .................. light/dark token values via light-dark()
+ *   4. [data-accent] .......... swappable accent palettes
+ *   5. @utility ............... reusable custom utilities
+ *   6. base ................... minimal global normalization
+ *
+ * The default look is "cosmic": a deep navy field with warm peach light.
+ * Dark mode is class based (`html.dark`), driven by ThemeProvider.
+ * Accent is attribute based (`html[data-accent="peach"]`).
+ * ========================================================================== */
+
+@import 'tailwindcss';
+
+/* --------------------------------------------------------------------------
+ * 1. Custom variants
+ * ------------------------------------------------------------------------ */
+
+/* Class-based dark mode so the user can override the OS preference. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Hover *or* keyboard focus — avoids repeating `hover:x focus-visible:x`. */
+@custom-variant hocus (&:hover, &:focus-visible);
+
+/* Style an element while it is the current section / page. */
+@custom-variant current (&[data-current='true'], &[aria-current='page']);
+
+/* --------------------------------------------------------------------------
+ * 2. Theme -> utility mapping
+ *
+ * `inline` keeps the utilities pointing at the runtime `--theme-*` variables,
+ * so changing a variable at runtime restyles the whole app instantly.
+ * ------------------------------------------------------------------------ */
+
+@theme inline {
+  /* Semantic colors ------------------------------------------------------ */
+  --color-background: var(--theme-background);
+  --color-surface: var(--theme-surface);
+  --color-surface-muted: var(--theme-surface-muted);
+
+  --color-foreground: var(--theme-foreground);
+  --color-heading: var(--theme-heading);
+  --color-muted: var(--theme-muted);
+
+  --color-border: var(--theme-border);
+  --color-border-strong: var(--theme-border-strong);
+
+  --color-accent: var(--theme-accent);
+  --color-accent-hover: var(--theme-accent-hover);
+  --color-accent-foreground: var(--theme-accent-foreground);
+  --color-accent-muted: var(--theme-accent-muted);
+  --color-accent-border: var(--theme-accent-border);
+
+  /* Photographic paper, used by the polaroid frames. */
+  --color-paper: var(--theme-paper);
+  --color-paper-ink: var(--theme-paper-ink);
+  /* Fixed sepia the prints are toned with, independent of the UI accent. */
+  --color-print: var(--theme-print);
+
+  /* Font families -------------------------------------------------------- */
+  --font-sans:
+    Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+
+  --font-display:
+    'Bricolage Grotesque', Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --font-mono:
+    'Cascadia Code', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+
+  /* Shadows -------------------------------------------------------------- */
+  --shadow-card: var(--theme-shadow);
+  --shadow-card-hover: var(--theme-shadow-hover);
+  --shadow-print: var(--theme-shadow-print);
+  --shadow-glow: 0 0 0 1px var(--theme-accent-border),
+    0 16px 48px -16px var(--theme-accent-muted);
+
+  /* Radii ---------------------------------------------------------------- */
+  --radius-card: 0.75rem;
+  --radius-pill: 999px;
+
+  /* Layout --------------------------------------------------------------- */
+  --spacing-header: 4.5rem;
+  --container-content: 72rem;
+  --container-editorial: 56rem;
+  --container-prose: 44rem;
+
+  /* Easings -------------------------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Named animations ----------------------------------------------------- */
+  --animate-fade-up: fade-up 0.6s var(--ease-out-expo) both;
+  --animate-fade-in: fade-in 0.5s var(--ease-out-expo) both;
+  --animate-name-zoom: name-zoom 1.85s linear both;
+  --animate-rule-draw: rule-draw 0.8s var(--ease-out-expo) both;
+  --animate-scroll-cue: scroll-cue 2.4s ease-in-out infinite;
+  --animate-drift: drift 26s ease-in-out infinite;
+  --animate-twinkle: twinkle 4s ease-in-out infinite;
+  --animate-nebula-drift: nebula-drift 35s ease-in-out 5s infinite;
+  --animate-carrier: carrier 3.6s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      translate: 0 1rem;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /*
+   * The hero name arrives from far past the viewport and settles.
+   *
+   * The stops carry the easing, so the animation itself runs linear. It also
+   * pulls into focus on the way in — a large blur resolving to zero reads as
+   * depth of field, which sells the distance far better than scale alone.
+   */
+  @keyframes name-zoom {
+    0% {
+      opacity: 0;
+      filter: blur(18px);
+      transform: scale(9.2);
+    }
+    16% {
+      opacity: 0.7;
+      filter: blur(12px);
+      transform: scale(8.15);
+    }
+    42% {
+      opacity: 1;
+      filter: blur(4px);
+      transform: scale(2.35);
+    }
+    68% {
+      filter: blur(0.6px);
+      transform: scale(1.045);
+    }
+    82% {
+      filter: blur(0);
+      transform: scale(0.968);
+    }
+    100% {
+      opacity: 1;
+      filter: blur(0);
+      transform: scale(1);
+    }
+  }
+
+  @keyframes rule-draw {
+    from {
+      scale: 0 1;
+    }
+    to {
+      scale: 1 1;
+    }
+  }
+
+  @keyframes scroll-cue {
+    0%,
+    100% {
+      opacity: 0.35;
+      translate: 0 0;
+    }
+    50% {
+      opacity: 1;
+      translate: 0 0.4rem;
+    }
+  }
+
+  @keyframes drift {
+    0%,
+    100% {
+      opacity: 0.5;
+      translate: 0 0;
+    }
+    50% {
+      opacity: 0.9;
+      translate: -2rem 1.5rem;
+    }
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.25;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  /* Slow ambient wander for the nebula glow. */
+  @keyframes nebula-drift {
+    0%,
+    100% {
+      opacity: 0.45;
+      transform: scale(1) rotate(0deg);
+    }
+    50% {
+      opacity: 0.9;
+      transform: scale(1.14) rotate(2deg);
+    }
+  }
+
+  /*
+   * A pulse running left to right along a hairline — the carrier under the
+   * contact address. It rests for most of the cycle so it reads as a repeating
+   * signal rather than a loading bar.
+   */
+  @keyframes carrier {
+    0% {
+      transform: translateX(-110%);
+    }
+    62%,
+    100% {
+      transform: translateX(340%);
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * 3. Token values
+ *
+ * `light-dark()` keeps both variants of a token side by side, so a colour is
+ * only ever declared in one place. It resolves against `color-scheme`.
+ * ------------------------------------------------------------------------ */
+
+:root {
+  /* The site is dark-first; ThemeProvider flips this for light mode. */
+  color-scheme: dark;
+
+  /*
+   * Deep-space surfaces. Each palette below can retune the three `--space-*`
+   * hues, so the whole field shifts with the accent rather than only the
+   * highlights. Defaults here match the "moonlight" palette.
+   */
+  --space-base: #050912;
+  --space-raised: #0a1020;
+  --space-muted: #0f1728;
+
+  /* Surfaces — deep space, warm paper. */
+  --theme-background: light-dark(#fbf8f3, var(--space-base));
+  --theme-surface: light-dark(#ffffff, var(--space-raised));
+  --theme-surface-muted: light-dark(#f2ece1, var(--space-muted));
+
+  /* Text */
+  --theme-foreground: light-dark(#544c43, #d9dee8);
+  --theme-heading: light-dark(#14100c, #ffffff);
+  --theme-muted: light-dark(#847a6e, #99a1b3);
+
+  /* Hairlines */
+  --theme-border: light-dark(rgb(20 16 12 / 12%), rgb(255 255 255 / 10%));
+  --theme-border-strong: light-dark(rgb(20 16 12 / 22%), rgb(255 255 255 / 20%));
+
+  /* Photographic paper for polaroid frames — identical in both schemes. */
+  --theme-paper: #f3eee4;
+  --theme-paper-ink: #4a433a;
+  /* Sepia the prints are toned with, independent of the UI accent. */
+  --theme-print: #e9cdb4;
+
+  /* Elevation */
+  --theme-shadow: light-dark(
+    0 10px 30px -12px rgb(20 16 12 / 18%),
+    0 10px 30px -12px rgb(0 0 0 / 70%)
+  );
+  --theme-shadow-hover: light-dark(
+    0 24px 50px -18px rgb(20 16 12 / 26%),
+    0 24px 50px -18px rgb(0 0 0 / 85%)
+  );
+  --theme-shadow-print: 0 14px 28px rgb(0 0 0 / 38%);
+
+  /* Accent derivatives — computed once from `--theme-accent`. */
+  --theme-accent-hover: color-mix(
+    in oklab,
+    var(--theme-accent),
+    light-dark(black, white) 18%
+  );
+  --theme-accent-muted: color-mix(in oklab, var(--theme-accent) 14%, transparent);
+  --theme-accent-border: color-mix(in oklab, var(--theme-accent) 42%, transparent);
+}
+
+/* --------------------------------------------------------------------------
+ * 4. Palettes — switch with `html[data-accent="…"]`.
+ *    Add a palette here and to `accentPresets` in src/config/theme.config.ts.
+ *
+ *    Each palette sets the accent *and* retunes the space hues, so switching
+ *    changes the whole atmosphere rather than just the highlight colour.
+ *    Light mode needs a deeper tone of the same hue to stay readable on paper,
+ *    so each accent declares both via light-dark().
+ *
+ *    These rules must stay after `:root`: both target <html> with equal
+ *    specificity, so source order decides.
+ * ------------------------------------------------------------------------ */
+
+/* Cool ice-blue light on deep navy — closest to the night-sky photographs. */
+:root,
+[data-accent='moonlight'] {
+  --theme-accent: light-dark(#2f6dab, #a8d0ff);
+  --theme-accent-foreground: light-dark(#ffffff, #04101f);
+  --space-base: #050912;
+  --space-raised: #0a1020;
+  --space-muted: #0f1728;
+}
+
+/* Violet periwinkle on indigo-black. */
+[data-accent='nebula'] {
+  --theme-accent: light-dark(#5b45c4, #bcaaff);
+  --theme-accent-foreground: light-dark(#ffffff, #0d0722);
+  --space-base: #070615;
+  --space-raised: #0e0c22;
+  --space-muted: #14112c;
+}
+
+/* Mint aurora over a green-shifted navy. */
+[data-accent='aurora'] {
+  --theme-accent: light-dark(#0e7a58, #8ce0c0);
+  --theme-accent-foreground: light-dark(#ffffff, #02201a);
+  --space-base: #040f13;
+  --space-raised: #08171d;
+  --space-muted: #0d1f26;
+}
+
+/* Almost monochrome: cool white starlight on neutral black. */
+[data-accent='starlight'] {
+  --theme-accent: light-dark(#3f4a5c, #dbe4f2);
+  --theme-accent-foreground: light-dark(#ffffff, #0b0e14);
+  --space-base: #06080d;
+  --space-raised: #0d1017;
+  --space-muted: #12161f;
+}
+
+/* The original warm horizon glow. */
+[data-accent='ember'] {
+  --theme-accent: light-dark(#b6552b, #ffc4a3);
+  --theme-accent-foreground: light-dark(#ffffff, #1a0d05);
+  --space-base: #070b14;
+  --space-raised: #0c1220;
+  --space-muted: #111828;
+}
+
+/* --------------------------------------------------------------------------
+ * 5. Reusable custom utilities
+ *
+ * `@utility` (v4) makes these first-class utilities: they can be combined
+ * with any variant — `hover:`, `md:`, `dark:`, `@lg:` …
+ * ------------------------------------------------------------------------ */
+
+/* Page gutter + max width used by every section. */
+@utility container-page {
+  width: 100%;
+  max-width: var(--container-content);
+  margin-inline: auto;
+  padding-inline: --spacing(5);
+
+  @variant sm {
+    padding-inline: --spacing(8);
+  }
+
+  @variant md {
+    padding-inline: --spacing(12);
+  }
+}
+
+/* The small letterspaced label that opens every section. */
+@utility eyebrow {
+  display: inline-block;
+  color: var(--theme-accent);
+  font-size: 0.6875rem;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* Elevated panel: background, hairline border, radius and shadow in one class. */
+@utility surface-card {
+  background-color: var(--theme-surface);
+  border: 1px solid var(--theme-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--theme-shadow);
+}
+
+/* Frosted sticky bars. */
+@utility surface-glass {
+  background-color: color-mix(in oklab, var(--theme-background) 82%, transparent);
+  backdrop-filter: blur(14px) saturate(160%);
+}
+
+/* Accent-tinted chip / tag background. */
+@utility surface-accent {
+  color: var(--theme-accent);
+  background-color: var(--theme-accent-muted);
+  border: 1px solid var(--theme-accent-border);
+}
+
+/* Gradient headline text. */
+@utility gradient-text {
+  background-image: linear-gradient(
+    120deg,
+    var(--theme-heading) 8%,
+    var(--theme-accent) 58%,
+    var(--theme-heading) 100%
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+/* Underline that grows from the left on hover/focus. */
+@utility link-underline {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: -0.15em;
+    height: 1px;
+    background-color: currentcolor;
+    scale: 0 1;
+    transform-origin: left;
+    transition: scale 0.25s var(--ease-out-expo);
+  }
+
+  &:where(:hover, :focus-visible)::after {
+    scale: 1 1;
+  }
+}
+
+/* Consistent focus treatment for custom interactive elements. */
+@utility focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+
+  &:focus-visible {
+    outline-color: var(--theme-accent);
+  }
+}
+
+/* Hairline-separated editorial list, used for roles and project rows. */
+@utility rule-list {
+  border-block-start: 1px solid var(--theme-border);
+
+  & > * {
+    border-block-end: 1px solid var(--theme-border);
+  }
+}
+
+/* Faint dotted backdrop for section decoration. */
+@utility dot-grid {
+  background-image: radial-gradient(
+    color-mix(in oklab, var(--theme-border-strong) 90%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+}
+
+/* Fade the edges of scrollers, rails and decorative grids. */
+@utility fade-mask-y {
+  mask-image: linear-gradient(to bottom, transparent, black 12%, black 88%, transparent);
+}
+
+/*
+ * Dissolves the hero's canvas layers into the section below.
+ *
+ * The hero clips its own overflow, so anything still painted at its lower
+ * edge would otherwise end on a hard horizontal line. The mask only bites in
+ * the last tenth, leaving the horizon itself untouched at rest.
+ */
+@utility hero-effect-mask {
+  mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
+}
+
+/*
+ * The same idea for the orbit trails, but fading every edge rather than only
+ * the bottom.
+ *
+ * The tracks are wider than the frame — containing a whole ellipse inside the
+ * viewport would shrink it until it sat inside the particle dome — so instead
+ * they dissolve before they reach an edge. Chopped at the frame they read as
+ * lines running off the page; faded, they read as tracks going round behind
+ * it.
+ */
+@utility hero-orbit-mask {
+  mask-image:
+    linear-gradient(to bottom, black 90%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
+  mask-composite: intersect;
+}
+
+@utility fade-mask-x {
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+@utility fade-mask-b {
+  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Lifts a card on hover/focus — used by every card surface. */
+@utility card-hover {
+  transition:
+    box-shadow 0.3s var(--ease-out-expo),
+    translate 0.3s var(--ease-out-expo),
+    border-color 0.3s var(--ease-out-expo);
+
+  &:where(:hover, :focus-within) {
+    translate: 0 -4px;
+    border-color: var(--theme-accent-border);
+    box-shadow: var(--theme-shadow-hover);
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * 5b. Observation plates — the About collage
+ *
+ * Author's note: the plates are presented as glass, so the holder has a milled
+ * bevel and the glass carries a fixed diagonal catch-light. Both are driven by
+ * custom properties the wall writes, so React never re-renders while the
+ * pointer moves.
+ * ------------------------------------------------------------------------ */
+
+/* Brushed-metal plate holder: a lit top edge over a shaded body. */
+@utility plate-holder {
+  background:
+    linear-gradient(
+      160deg,
+      color-mix(in oklab, var(--theme-surface-muted) 88%, white 12%),
+      var(--theme-surface) 42%,
+      color-mix(in oklab, var(--theme-surface) 82%, black 18%)
+    );
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 14%),
+    inset 0 0 0 1px rgb(255 255 255 / 5%),
+    0 22px 40px -18px rgb(0 0 0 / 72%),
+    0 4px 12px -4px rgb(0 0 0 / 45%);
+}
+
+/* The fixed catch-light every sheet of glass has, regardless of the pointer. */
+@utility plate-glass {
+  background: linear-gradient(
+    112deg,
+    transparent 30%,
+    rgb(255 255 255 / 5%) 44%,
+    rgb(255 255 255 / 11%) 50%,
+    rgb(255 255 255 / 5%) 56%,
+    transparent 70%
+  );
+}
+
+/*
+ * Parallax. `--depth` is the plate's travel in pixels, so plates set nearer
+ * the front move further than those behind them. The transition does the
+ * smoothing, which keeps the pointer handler to a single write per frame.
+ */
+@utility plate-drift {
+  translate: calc((var(--wall-x, 0.5) - 0.5) * var(--depth, 0) * -1px)
+    calc((var(--wall-y, 0.5) - 0.5) * var(--depth, 0) * -1px);
+  transition: translate 900ms var(--ease-out-expo);
+}
+
+/* --------------------------------------------------------------------------
+ * 6. Base layer — minimal global normalization
+ * ------------------------------------------------------------------------ */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    min-width: 320px;
+    min-height: 100%;
+    scroll-behavior: smooth;
+    /* Keeps anchored sections clear of the sticky header. */
+    scroll-padding-top: calc(var(--spacing-header) + --spacing(6));
+    font-family: var(--font-sans);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100svh;
+    margin: 0;
+    overflow-x: hidden;
+    color: var(--theme-foreground);
+    background-color: var(--theme-background);
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  /*
+   * A thin, near-invisible scrollbar.
+   *
+   * The standard properties are what current Chromium and Firefox honour, and
+   * when they are present Chromium ignores the `::-webkit-scrollbar`
+   * pseudo-elements entirely — those are kept only for older Safari, which is
+   * the reverse. Both describe the same bar, so they cannot drift apart.
+   *
+   * `thin` rather than `none`: a scrollbar nobody can find is a worse problem
+   * than one that takes six pixels.
+   */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--theme-border-strong) transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--theme-border-strong);
+    border-radius: var(--radius-pill);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--theme-accent);
+  }
+
+  /* Corner where two scrollbars meet, which otherwise paints opaque white. */
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--theme-heading);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  img,
+  svg,
+  video,
+  canvas {
+    display: block;
+    max-width: 100%;
+  }
+
+  ::selection {
+    color: var(--theme-accent-foreground);
+    background-color: var(--theme-accent);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--theme-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    /* A 9× scale snapping to its end frame would still flash. */
+    .animate-name-zoom {
+      animation: none !important;
+      transform: none !important;
+      filter: none !important;
+    }
+  }
+}
