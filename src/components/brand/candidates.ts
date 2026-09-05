@@ -18,8 +18,7 @@ import {
 } from './marks'
 
 /**
- * ⚠️ TEMPORARY — the shortlist shown in the logo lab.
- * Delete alongside `LogoLabPage` once a mark is chosen.
+ * The brand mark candidates shown in the logo lab.
  */
 export interface MarkCandidate {
   id: string

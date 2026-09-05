@@ -4,13 +4,7 @@ import HomePage from '@/pages/HomePage'
 import ErrorPage from '@/pages/ErrorPage'
 
 /**
- * Routes that only exist while the look is still being decided.
- *
- * Gated rather than deleted: the lab is still useful. The flag is compared
- * inline here rather than through `DEV_TOOLS` because Vite only substitutes
- * `import.meta.env` within the module that reads it — going through the
- * imported constant left the bundler unable to prove the branch was dead, and
- * it emitted the lab as an unreachable 21 kB chunk.
+ * Development routes for logo lab testing and experimentation.
  */
 const devRoutes: RouteObject[] =
   (import.meta.env.VITE_DEV_TOOLS !== undefined

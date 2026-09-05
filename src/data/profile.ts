@@ -58,7 +58,6 @@ export const profile: Profile = {
     {
       id: 'youtube',
       label: 'YouTube',
-      /* TODO: replace with your real channel URL. */
       href: 'https://www.youtube.com/@yuvrajsinh099',
       icon: 'youtube',
       color: '#FF0033',

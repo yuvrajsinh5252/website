@@ -1,13 +1,10 @@
 import { useId, type SVGProps } from 'react'
 
 /**
- * Candidate brand marks.
+ * Brand mark candidates for testing and experimentation in the logo lab.
  *
  * Each is a single-colour SVG on a 32×32 grid, drawn with `currentColor` so it
- * inherits the palette, and legible down to 16px. Every mark carries a hover
- * easter egg, driven by a parent element carrying the `group` class.
- *
- * Once one is chosen, keep it, delete the rest, and export it as the favicon.
+ * inherits the palette, and legible down to 16px.
  */
 
 export type MarkProps = SVGProps<SVGSVGElement>

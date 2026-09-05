@@ -86,30 +86,30 @@ export function Hero() {
        * narrow viewport left an obvious void between the tagline and the
        * horizon.
        */}
-      <div className="absolute inset-x-0 top-[27%] z-20 flex justify-center px-5 sm:top-[22%] sm:px-6 md:top-[23%]">
+      <div className="absolute inset-x-0 top-[22%] z-20 flex justify-center px-5 sm:top-[22%] sm:px-6 md:top-[23%]">
         <div ref={copyRef} className="relative">
           <p
-            className="eyebrow absolute -top-7 left-0 animate-fade-up text-sm sm:-top-9 sm:text-base md:-top-10"
+            className="eyebrow absolute -top-8 left-0 animate-fade-up text-[0.9375rem] sm:-top-9 sm:text-base md:-top-10"
             style={delay(1.35)}
           >
             Hey, I&rsquo;m
           </p>
 
-          <h1 className="font-display motion-safe:animate-name-zoom text-[2.75rem] leading-[0.9] font-extrabold tracking-tight whitespace-nowrap text-heading sm:text-[5.5rem] md:text-[8rem] lg:text-[10.5rem]">
+          <h1 className="font-display motion-safe:animate-name-zoom text-[3.15rem] leading-[0.9] font-extrabold tracking-tight whitespace-nowrap text-heading min-[390px]:text-[3.55rem] sm:text-[5.5rem] md:text-[8rem] lg:text-[10.5rem]">
             Yuvrajsinh
             <span className="sr-only"> Gohil</span>
           </h1>
 
           <p
-            className="absolute top-full right-0 mt-3 max-w-[14rem] animate-fade-up text-right text-xs leading-relaxed sm:mt-4 sm:max-w-[18rem] sm:text-sm md:max-w-[20rem] md:text-base"
+            className="absolute top-full right-0 mt-3.5 max-w-[15.5rem] animate-fade-up text-right text-sm leading-relaxed sm:mt-4 sm:max-w-[18rem] md:max-w-[20rem] md:text-base"
             style={delay(1.5)}
           >
             {taglineTitle ? (
               <>
-                <span className="block text-sm font-semibold text-heading sm:text-base md:text-lg">
+                <span className="block text-base font-semibold text-heading sm:text-base md:text-lg">
                   {taglineTitle}
                 </span>
-                <span className="mt-1 block font-light text-foreground/80">
+                <span className="mt-1 block text-[0.84rem] font-light text-foreground/80 sm:text-sm md:text-base">
                   {taglineDesc}
                 </span>
               </>
@@ -125,7 +125,7 @@ export function Hero() {
         onClick={scrollToAbout}
         aria-label="Scroll to the about section"
         className={cn(
-          'focus-ring absolute inset-x-0 bottom-8 z-20 mx-auto flex w-fit flex-col items-center gap-2',
+          'focus-ring absolute inset-x-0 bottom-6 sm:bottom-8 z-20 mx-auto flex w-fit flex-col items-center gap-2',
           'text-muted transition-[opacity,translate,color] duration-500 ease-out-expo hocus:text-accent',
           scrolled
             ? 'pointer-events-none translate-y-3 opacity-0'
@@ -133,8 +133,14 @@ export function Hero() {
         )}
         style={scrolled ? undefined : delay(1.9)}
       >
-        <span className="text-[0.625rem] tracking-[0.22em] uppercase">Scroll</span>
-        <Icon name="arrowDown" size={16} className="motion-safe:animate-scroll-cue" />
+        <span className="text-[0.625rem] tracking-[0.22em] uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+          Scroll
+        </span>
+        <Icon
+          name="arrowDown"
+          size={16}
+          className="motion-safe:animate-scroll-cue drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]"
+        />
       </button>
 
       {/* The globe visualises these; keep them readable without it. */}

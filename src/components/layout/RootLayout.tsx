@@ -50,9 +50,7 @@ export function RootLayout() {
 
       <Footer />
 
-      {/* Development-only, gated on VITE_DEV_TOOLS. The flag folds to a
-       * literal at build time, so this and the component behind it drop out of
-       * a production bundle entirely. */}
+      {/* Development-only preview panel, enabled via DEV_TOOLS */}
       {DEV_TOOLS && <PalettePreview />}
     </>
   )

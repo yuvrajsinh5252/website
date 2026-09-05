@@ -1,6 +1,5 @@
 /**
- * ⚠️ TEMPORARY — the typefaces offered in the logo lab.
- * Delete alongside `LogoLabPage` once the type is settled.
+ * Typeface options tested in the logo lab workbench.
  */
 
 export interface FontOption {

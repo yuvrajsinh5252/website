@@ -18,9 +18,9 @@ export function About() {
     >
       <Container>
         <div className="grid items-center gap-14 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)] lg:gap-20">
-          <PlateWall frames={aboutFrames} />
+          <PlateWall frames={aboutFrames} className="order-2 lg:order-1" />
 
-          <Reveal direction="left">
+          <Reveal direction="left" className="order-1 lg:order-2">
             <p className="eyebrow mb-4">About</p>
 
             <h2

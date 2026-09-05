@@ -7,13 +7,9 @@ import { cn } from '@/lib/cn'
 import { Icon } from '@/components/ui'
 
 /**
- * ⚠️ TEMPORARY — palette preview switcher.
+ * Palette preview switcher.
  *
- * A floating panel for comparing the cosmic palettes live while the final look
- * is being chosen. Once a palette is settled on:
- *   1. set it as `themeConfig.defaultAccent`
- *   2. set `themeConfig.showPalettePreview` to false
- *   3. delete this file and its export from `components/layout/index.ts`
+ * A floating panel for testing cosmic palettes live during development.
  */
 export function PalettePreview() {
   const { accent, setAccent } = useTheme()
@@ -98,7 +94,7 @@ export function PalettePreview() {
             </ul>
 
             <p className="mt-3 border-t border-border pt-2 text-[0.625rem] leading-relaxed text-muted">
-              Temporary. Tell me which one to keep and I&rsquo;ll remove this panel.
+              Palette switcher for local testing. Visible in development mode.
             </p>
           </m.div>
         ) : (

@@ -71,18 +71,22 @@ export function ParticleGlobe({ particles = 2600, className }: ParticleGlobeProp
     let lastTime = performance.now()
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
-    const isCompact = window.innerWidth < 768
+    const isMobile = window.innerWidth < 640
+    const isTablet = window.innerWidth < 768
 
     /*
-     * Narrow viewports get a deeper cap. The dome is much smaller there (see
-     * `heroGlobeGeometry`), so a cap cut at the usual 0.62 would leave a thin
-     * ribbon of particles; reaching further down the sphere gives the horizon
-     * body without widening it past the screen edges.
+     * Narrow viewports scale down particle count so the dome remains starry
+     * and airy without dense clutter or overlapping dots over the scroll cue.
      */
-    const cloud = createGlobeParticles(
-      Math.round(particles * (isCompact ? 0.45 : 1)),
-      window.innerWidth < 640 ? 0.5 : 0.62,
-    )
+    const particleCount = isMobile
+      ? Math.round(particles * 0.2)
+      : isTablet
+        ? Math.round(particles * 0.45)
+        : particles
+
+    const minY = isMobile ? 0.65 : 0.62
+
+    const cloud = createGlobeParticles(particleCount, minY)
 
     const resize = () => {
       width = canvas.clientWidth

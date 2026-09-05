@@ -7,14 +7,10 @@ import { cn } from '@/lib/cn'
 import { Container, SectionHeading } from '@/components/ui'
 
 /**
- * ⚠️ TEMPORARY — logo lab.
+ * Brand mark laboratory and workbench.
  *
- * A workbench for choosing a brand mark: every candidate at real favicon
- * sizes, with its hover easter egg live, and a button that pushes it into the
- * browser tab so it can be judged where it actually lives.
- *
- * Once a mark is chosen: keep it in `marks.tsx`, delete the rest, wire it into
- * the header and `public/favicon.svg`, remove this page and its route.
+ * An interactive testbed for testing brand mark candidates at real favicon sizes,
+ * testing hover animations, and previewing marks in the browser tab.
  */
 
 /** Colour baked into exported favicons, since `currentColor` has nothing to inherit. */
@@ -139,7 +135,7 @@ export default function LogoLabPage() {
       <Container width="editorial" className="py-20 sm:py-24">
         <SectionHeading
           as="h1"
-          eyebrow="Temporary"
+          eyebrow="Workbench"
           title="Logo lab"
           description={`${markCandidates.length} candidate marks, and the type to set them in. Hover each mark for its easter egg, push any of them into the browser tab, and try a typeface across the whole site.`}
           className="mb-12"

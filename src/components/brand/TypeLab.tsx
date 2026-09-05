@@ -5,13 +5,9 @@ import { bodyFonts, displayFonts, loadFont, type FontOption } from './fonts'
 import type { MarkProps } from './marks'
 
 /**
- * ⚠️ TEMPORARY — the type half of the logo lab.
+ * The typography testing component of the logo lab.
  *
- * A mark is only half a wordmark, so the lab lets the type be tried too. The
- * chosen faces are written straight onto the `--font-display` / `--font-sans`
- * tokens on `<html>`, which restyles the whole site live — navigate away and
- * the header, hero and footer are all set in the candidate. Nothing is
- * persisted, so a reload puts it back.
+ * Lets different typography combinations be previewed live against candidate marks.
  */
 
 function FontRow({

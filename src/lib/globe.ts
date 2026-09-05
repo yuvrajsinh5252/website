@@ -22,20 +22,18 @@ export function heroGlobeGeometry(width: number, height: number) {
   const compact = width < 640
 
   const displayRadius = compact
-    ? Math.max(width * 0.86, 280)
+    ? Math.max(width * 1.15, 420)
     : Math.max(width * 0.7, 640)
 
   /*
    * On wide screens the centre is pushed below the fold by a share of the
    * radius, which gives the shallow, distant horizon the hero is built around.
    *
-   * Phones are tall and narrow, so that same rule leaves a sliver of dome at
-   * the very bottom with dead space above it. There the crown is placed at a
-   * fraction of the viewport instead, low enough to leave a clear run of sky
-   * above the horizon for the name to sit in.
+   * On mobile, the horizon sits cleanly at the bottom of the viewport so the planet
+   * grounds the base of the screen, leaving the vast sky open for the copy.
    */
   const originY = compact
-    ? height * 0.67 + displayRadius
+    ? height * 0.83 + displayRadius
     : height + displayRadius * 0.72
 
   return { originX: width / 2, originY, displayRadius }

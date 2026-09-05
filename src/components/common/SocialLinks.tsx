@@ -31,9 +31,11 @@ export function SocialLinks({
               rel={external ? 'noreferrer noopener' : undefined}
               aria-label={link.label}
               title={link.label}
-              className="focus-ring grid size-10 place-items-center rounded-pill border border-border bg-surface text-foreground transition-[color,border-color,translate] duration-200 hocus:-translate-y-0.5 hocus:border-accent-border hocus:text-accent"
+              className="focus-ring group relative grid size-10 place-items-center rounded-pill border border-border bg-surface text-foreground transition-[color,border-color,background-color] duration-200 hocus:border-accent-border hocus:text-accent"
             >
-              <Icon name={link.icon} size={size} />
+              <span className="grid place-items-center transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:scale-110 group-focus-visible:-translate-y-0.5 group-focus-visible:scale-110">
+                <Icon name={link.icon} size={size} />
+              </span>
             </a>
           </li>
         )

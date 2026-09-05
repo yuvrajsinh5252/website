@@ -22,9 +22,9 @@ const entries: Post[] = [
     featured: true,
     links: [
       {
-        label: 'Brilliant++ repository',
-        href: 'https://github.com/yuvrajsinh5252/brilliant-plus-plus',
-        kind: 'repo',
+        label: 'Source post',
+        href: 'https://www.linkedin.com/posts/darshilthakkar_connections-hacknuthon5-edtech-ugcPost-7188162441602625536-niHe?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD9zvlEBoQx1buv8-u-6WqAlpbyhjIrxnq4',
+        kind: 'linkedin',
       },
     ],
     body: [

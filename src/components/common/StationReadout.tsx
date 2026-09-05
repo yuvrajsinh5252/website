@@ -17,7 +17,7 @@ export interface StationReadoutProps {
   className?: string
 }
 
-/** `28.5355° N` — decimal degrees with a hemisphere letter rather than a sign. */
+/** Decimal degrees with a hemisphere letter rather than a sign, e.g. `12.3456° N`. */
 function formatDegrees(value: number, positive: string, negative: string): string {
   return `${Math.abs(value).toFixed(4)}° ${value >= 0 ? positive : negative}`
 }

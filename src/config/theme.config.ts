@@ -69,11 +69,7 @@ export interface ThemeConfig {
    */
   showThemeToggle: boolean
   showAccentPicker: boolean
-  /**
-   * A floating palette switcher used while choosing the final look. Driven by
-   * `VITE_DEV_TOOLS`, so it is available in development and absent from a
-   * production build.
-   */
+  /** Floating palette switcher for testing palettes in development. */
   showPalettePreview: boolean
   storageKeys: {
     mode: string
