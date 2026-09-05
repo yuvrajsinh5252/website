@@ -2,9 +2,9 @@
  * Small, dependency-free helpers shared across the app.
  */
 
-/** "Jan 2024 — Present" style range used by the experience timeline. */
+/** "Jan 2024 - Present" style range used by the experience timeline. */
 export function formatDateRange(start: string, end?: string): string {
-  return `${start} — ${end ?? 'Present'}`
+  return `${start} - ${end ?? 'Present'}`
 }
 
 /** "22 April 2024" from an ISO date, for post datelines. */

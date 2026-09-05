@@ -15,7 +15,7 @@ export default function PostsPage() {
         <SectionHeading
           as="h1"
           title="Posts"
-          description="I write here occasionally — whatever feels worth noting down and sharing."
+          description="I write here occasionally, whatever feels worth noting down and sharing."
           className="mb-14 sm:mb-16"
         />
 

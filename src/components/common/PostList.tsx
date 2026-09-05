@@ -109,6 +109,38 @@ function markFor(host: string | undefined): string {
   return 'externalLink'
 }
 
+function formatInlineContent(text: string): React.ReactNode {
+  const regex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g
+  const parts: React.ReactNode[] = []
+  let lastIndex = 0
+  let match: RegExpExecArray | null
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index))
+    }
+    const [, label, href] = match
+    parts.push(
+      <a
+        key={match.index}
+        href={href}
+        target="_blank"
+        rel="noreferrer noopener"
+        className="text-accent underline underline-offset-4 decoration-accent/40 transition-colors hover:text-heading hover:decoration-heading"
+      >
+        {label}
+      </a>,
+    )
+    lastIndex = regex.lastIndex
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex))
+  }
+
+  return parts.length > 0 ? parts : text
+}
+
 /** Renders a single typed content block. */
 function Block({ block }: { block: PostBlock }) {
   switch (block.type) {
@@ -128,7 +160,7 @@ function Block({ block }: { block: PostBlock }) {
                 aria-hidden="true"
                 className="mt-3 h-px w-5 shrink-0 bg-accent"
               />
-              <span>{item}</span>
+              <span>{formatInlineContent(item)}</span>
             </li>
           ))}
         </ul>
@@ -204,7 +236,7 @@ function Block({ block }: { block: PostBlock }) {
       )
 
     default:
-      return <p className="leading-relaxed">{block.text}</p>
+      return <p className="leading-relaxed">{formatInlineContent(block.text)}</p>
   }
 }
 

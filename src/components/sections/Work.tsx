@@ -1,11 +1,11 @@
 import { Link } from 'react-router'
 import { routes } from '@/config/site.config'
-import { currentPosition, projects } from '@/data'
+import { currentPosition, profile, projects } from '@/data'
 import { Container, Icon } from '@/components/ui'
 import { ProjectMark } from '@/components/common'
 import { Reveal, StaggerGroup, StaggerItem } from '@/components/motion'
 
-const recent = projects.filter((project) => project.slug !== 'portfolio').slice(0, 4)
+const recent = projects.slice(0, 3)
 
 /**
  * A status strip rather than a titled section: where I am now, and the last
@@ -102,17 +102,36 @@ export function Work() {
               ))}
             </StaggerGroup>
 
-            <Link
-              to={routes.projects}
-              className="focus-ring group mt-8 inline-flex items-center gap-2 text-[0.8125rem] tracking-[0.14em] text-accent uppercase transition-colors duration-200 hocus:text-heading"
-            >
-              All projects
-              <Icon
-                name="arrowRight"
-                size={14}
-                className="transition-transform duration-300 ease-out-expo group-hover:translate-x-1"
-              />
-            </Link>
+            <div className="mt-8 flex flex-wrap items-center gap-6">
+              <Link
+                to={routes.projects}
+                className="focus-ring group inline-flex items-center gap-2 text-[0.8125rem] tracking-[0.14em] text-accent uppercase transition-colors duration-200 hocus:text-heading"
+              >
+                All projects
+                <Icon
+                  name="arrowRight"
+                  size={14}
+                  className="transition-transform duration-300 ease-out-expo group-hover:translate-x-1"
+                />
+              </Link>
+
+              {profile.socials.find((s) => s.id === 'github') && (
+                <a
+                  href={profile.socials.find((s) => s.id === 'github')?.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="focus-ring group inline-flex items-center gap-2 text-[0.8125rem] tracking-[0.14em] text-muted uppercase transition-colors duration-200 hocus:text-heading"
+                >
+                  <Icon name="github" size={14} />
+                  GitHub
+                  <Icon
+                    name="arrowUpRight"
+                    size={12}
+                    className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </a>
+              )}
+            </div>
           </Reveal>
         </div>
       </Container>

@@ -28,11 +28,18 @@ export interface Profile {
   tagline: string
   location: string
   /** Places, shown as an editorial dateline. */
-  dateline: string
+  dateline?: string
   email: string
   resumeUrl?: string
   /** Elevator pitch, used in meta and the footer. */
   summary: string
+  /** Heading for the about section. */
+  aboutHeading?:
+    | string
+    | {
+        line1: string
+        line2?: string
+      }
   /** About-section paragraphs. */
   bio: string[]
   availability: {
@@ -89,7 +96,7 @@ export interface ProjectMetric {
 }
 
 export interface ProjectSection {
-  heading: string
+  heading?: string
   body: string[]
 }
 
@@ -147,6 +154,8 @@ export interface Experience {
   id: string
   company: string
   companyUrl?: string
+  projectUrl?: string
+  projectLabel?: string
   /** Logo shown next to the company name. */
   logo?: string
   location: string
@@ -154,6 +163,7 @@ export interface Experience {
   /** Newest role first. */
   roles: WorkRole[]
   summary: string
+  highlights?: string[]
   stack?: string[]
   /** Photo shown beside the entry on the experience timeline. */
   frame?: PhotoFrame

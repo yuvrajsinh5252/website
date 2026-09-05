@@ -26,16 +26,11 @@ const entries: Post[] = [
         href: 'https://github.com/yuvrajsinh5252/brilliant-plus-plus',
         kind: 'repo',
       },
-      {
-        label: 'Original post',
-        href: 'https://www.linkedin.com/posts/darshilthakkar_connections-hacknuthon5-edtech-ugcPost-7188162441602625536-niHe',
-        kind: 'linkedin',
-      },
     ],
     body: [
       {
         type: 'paragraph',
-        text: 'Our team, Formality, finished second twice at HackNUthon 5.0 — second overall, and second in the EdTech track sponsored by Crest Data Systems. There were more than 800 participants across roughly 200 teams, which is the part I still think about.',
+        text: 'Our team, Formality, finished second twice at HackNUthon 5.0 — second overall, and second in the EdTech track sponsored by [Crest Data Systems](https://www.crestdata.ai). There were more than 800 participants across roughly 200 teams, which is the part I still think about.',
       },
       {
         type: 'paragraph',
@@ -90,7 +85,7 @@ const entries: Post[] = [
       { type: 'heading', text: 'The demo' },
       {
         type: 'paragraph',
-        text: 'For the judges we ran the whole chain live — upload a video, generate its transcript, then generate quiz questions from what the video actually said. Speech to text to comprehension, in one pass. It was the first time the four pieces felt like one thing rather than four.',
+        text: 'For the judges we ran the whole chain live - upload a video, generate its transcript, then generate quiz questions from what the video actually said. Speech to text to comprehension, in one pass. It was the first time the four pieces felt like one thing rather than four.',
       },
       {
         type: 'image',
@@ -115,7 +110,7 @@ const entries: Post[] = [
       },
       {
         type: 'paragraph',
-        text: 'Thanks to CSI Nirma University and Crest Data Systems for running it, and to the mentors and organisers who kept 200 teams moving without the whole thing falling over. Darshil wrote the post that went out at the time, if you want the version from the day itself.',
+        text: 'Thanks to [CSI Nirma University](https://csi-nirma.in) and [Crest Data Systems](https://www.crestdata.ai) for running it, and to the mentors and organisers who kept 200 teams moving without the whole thing falling over.',
       },
     ],
   },

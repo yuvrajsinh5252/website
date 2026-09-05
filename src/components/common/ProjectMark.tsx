@@ -24,7 +24,32 @@ export interface ProjectMarkProps {
  */
 export function ProjectMark({ project, size = 'md', className }: ProjectMarkProps) {
   const { tile, icon } = sizes[size]
-  const art = project.cover ?? project.logo
+  const isLogo = Boolean(project.logo)
+  const art = project.logo ?? project.cover
+
+  if (isLogo && art) {
+    return (
+      <span
+        aria-hidden="true"
+        style={brandVars(project)}
+        className={cn(
+          'relative grid shrink-0 place-items-center',
+          'transition-[translate,filter] duration-500 ease-out-expo',
+          tile,
+          className,
+        )}
+      >
+        <img
+          src={art}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          draggable={false}
+          className="size-full object-contain drop-shadow-sm transition-transform duration-500 ease-out-expo group-hover:scale-105"
+        />
+      </span>
+    )
+  }
 
   return (
     <span
@@ -53,10 +78,7 @@ export function ProjectMark({ project, size = 'md', className }: ProjectMarkProp
           loading="lazy"
           decoding="async"
           draggable={false}
-          className={cn(
-            'size-full transition-transform duration-700 ease-out-expo',
-            project.cover ? 'object-cover' : 'scale-[0.68] object-contain',
-          )}
+          className="size-full object-cover transition-transform duration-700 ease-out-expo"
         />
       ) : (
         <Icon name={project.icon ?? 'sparkles'} size={icon} style={{ color: 'var(--brand)' }} />
@@ -77,7 +99,8 @@ export interface ProjectPlateProps {
  * thing that makes each case study open differently from the last.
  */
 export function ProjectPlate({ project, className }: ProjectPlateProps) {
-  const art = project.cover ?? project.logo
+  const isLogo = Boolean(project.logo)
+  const art = project.logo ?? project.cover
 
   return (
     <div
@@ -86,31 +109,44 @@ export function ProjectPlate({ project, className }: ProjectPlateProps) {
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-[10%] rounded-[40%] opacity-70 blur-3xl transition-opacity duration-500 group-hover/plate:opacity-100"
+        className="pointer-events-none absolute inset-[-10%] rounded-full opacity-65 blur-3xl transition-opacity duration-500 group-hover/plate:opacity-100"
         style={{
           background:
-            'radial-gradient(circle, color-mix(in oklab, var(--brand) 45%, transparent), transparent 70%)',
+            'radial-gradient(circle, color-mix(in oklab, var(--brand) 50%, transparent), transparent 70%)',
         }}
       />
 
-      <div className="relative aspect-square overflow-hidden rounded-[1.75rem] border border-border-strong bg-surface shadow-card transition-transform duration-500 ease-out-expo group-hover/plate:-translate-y-1">
+      <div className="relative aspect-square transition-transform duration-500 ease-out-expo group-hover/plate:-translate-y-1">
         {art ? (
-          <img
-            src={art}
-            alt={`${project.title} cover`}
-            loading="eager"
-            decoding="async"
-            draggable={false}
-            className="size-full object-cover"
-          />
+          isLogo ? (
+            <img
+              src={art}
+              alt={`${project.title} logo`}
+              loading="eager"
+              decoding="async"
+              draggable={false}
+              className="size-full object-contain drop-shadow-2xl transition-transform duration-500 ease-out-expo group-hover/plate:scale-105"
+            />
+          ) : (
+            <div className="size-full overflow-hidden rounded-[1.75rem] border border-border-strong bg-surface shadow-card">
+              <img
+                src={art}
+                alt={`${project.title} cover`}
+                loading="eager"
+                decoding="async"
+                draggable={false}
+                className="size-full object-cover"
+              />
+            </div>
+          )
         ) : (
-          <span className="grid size-full place-items-center">
+          <div className="grid size-full place-items-center rounded-[1.75rem] border border-border-strong bg-surface shadow-card">
             <Icon
               name={project.icon ?? 'sparkles'}
               size={64}
               style={{ color: 'var(--brand)' }}
             />
-          </span>
+          </div>
         )}
       </div>
     </div>
