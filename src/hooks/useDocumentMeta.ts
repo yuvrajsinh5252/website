@@ -44,7 +44,7 @@ export function useDocumentMeta(title?: string, description?: string): void {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    const fullTitle = title ? `${title} — ${siteConfig.titleSuffix}` : siteConfig.title
+    const fullTitle = title ? `${title} | ${siteConfig.titleSuffix}` : siteConfig.title
     const summary = description ?? siteConfig.description
     const url = new URL(pathname, siteConfig.url).href
 

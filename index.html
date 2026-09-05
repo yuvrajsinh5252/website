@@ -1,39 +1,36 @@
 <!doctype html>
 <html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#fbf8f3" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#050912" media="(prefers-color-scheme: dark)" />
 
-    <title>Yuvrajsinh Gohil — Software Engineer</title>
-    <meta
-      name="description"
-      content="Software engineer building full-stack applications, agentic systems for automation, and production data pipelines."
-    />
-    <link rel="canonical" href="https://www.yuvrajsinh.dev/" />
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fbf8f3" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#050912" media="(prefers-color-scheme: dark)" />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Yuvrajsinh Gohil" />
-    <meta property="og:url" content="https://www.yuvrajsinh.dev/" />
-    <meta property="og:title" content="Yuvrajsinh Gohil — Software Engineer" />
-    <meta
-      property="og:description"
-      content="Software engineer building full-stack applications and agentic systems for automation."
-    />
-    <!-- Absolute: social crawlers do not resolve relative image paths. -->
-    <meta property="og:image" content="https://www.yuvrajsinh.dev/images/og.png" />
-    <meta property="og:image:alt" content="Yuvrajsinh Gohil — Software Engineer" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:creator" content="@Yuvrajsinh_099" />
+  <title>Yuvrajsinh Gohil | Software Engineer</title>
+  <meta name="description"
+    content="Software engineer building full-stack applications, agentic systems for automation, and production data pipelines." />
+  <link rel="canonical" href="https://www.yuvrajsinh.dev/" />
 
-    <!--
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Yuvrajsinh Gohil" />
+  <meta property="og:url" content="https://www.yuvrajsinh.dev/" />
+  <meta property="og:title" content="Yuvrajsinh Gohil | Software Engineer" />
+  <meta property="og:description"
+    content="Software engineer building full-stack applications and agentic systems for automation." />
+  <!-- Absolute: social crawlers do not resolve relative image paths. -->
+  <meta property="og:image" content="https://www.yuvrajsinh.dev/images/og.png" />
+  <meta property="og:image:alt" content="Yuvrajsinh Gohil | Software Engineer" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="@Yuvrajsinh_099" />
+
+  <!--
       Identity for search engines, so the site resolves to a person rather than
       a loose set of pages. Kept in the static HTML because crawlers read this
       before any JavaScript runs.
     -->
-    <script type="application/ld+json">
+  <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
@@ -56,46 +53,47 @@
       }
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
 
-    <!--
+  <!--
       Applies the persisted theme before first paint to avoid a flash of the
       wrong colours. Keys must stay in sync with src/config/theme.config.ts
     -->
-    <script>
-      ;(function () {
-        var root = document.documentElement
-        var MODES = ['light', 'dark', 'system']
-        var ACCENTS = ['moonlight', 'nebula', 'aurora', 'starlight', 'ember']
-        var mode = 'dark'
-        var accent = 'starlight'
+  <script>
+    ; (function () {
+      var root = document.documentElement
+      var MODES = ['light', 'dark', 'system']
+      var ACCENTS = ['moonlight', 'nebula', 'aurora', 'starlight', 'ember']
+      var mode = 'dark'
+      var accent = 'starlight'
 
-        try {
-          var storedMode = localStorage.getItem('portfolio:theme')
-          var storedAccent = localStorage.getItem('portfolio:accent')
-          if (MODES.indexOf(storedMode) !== -1) mode = storedMode
-          if (ACCENTS.indexOf(storedAccent) !== -1) accent = storedAccent
-        } catch (e) {
-          /* storage unavailable — fall back to the defaults above */
-        }
+      try {
+        var storedMode = localStorage.getItem('portfolio:theme')
+        var storedAccent = localStorage.getItem('portfolio:accent')
+        if (MODES.indexOf(storedMode) !== -1) mode = storedMode
+        if (ACCENTS.indexOf(storedAccent) !== -1) accent = storedAccent
+      } catch (e) {
+        /* storage unavailable — fall back to the defaults above */
+      }
 
-        var isDark =
-          mode === 'dark' ||
-          (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      var isDark =
+        mode === 'dark' ||
+        (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
 
-        root.classList.toggle('dark', isDark)
-        root.dataset.accent = accent
-        root.style.colorScheme = isDark ? 'dark' : 'light'
-      })()
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+      root.classList.toggle('dark', isDark)
+      root.dataset.accent = accent
+      root.style.colorScheme = isDark ? 'dark' : 'light'
+    })()
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>

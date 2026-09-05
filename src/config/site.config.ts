@@ -6,9 +6,9 @@ import type { NavItem } from '@/types'
  */
 export const siteConfig = {
   name: 'Yuvrajsinh Gohil',
-  /** Used in <title> as "{page} — {titleSuffix}". */
+  /** Used in <title> as "{page} | {titleSuffix}". */
   titleSuffix: 'Yuvrajsinh Gohil',
-  title: 'Yuvrajsinh Gohil — Software Engineer',
+  title: 'Yuvrajsinh Gohil | Software Engineer',
   description:
     'Software engineer building full-stack applications, agentic systems for automation, and production data pipelines.',
   url: 'https://www.yuvrajsinh.dev',
