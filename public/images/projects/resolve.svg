@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="resolveGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#183a37" />
+      <stop offset="100%" stop-color="#466c63" />
+    </linearGradient>
+    <style>
+      .bg { fill: #f5f0e8; }
+      .fg { fill: url(#resolveGradient); }
+      @media (prefers-color-scheme: dark) {
+        .bg { fill: #1e293b; }
+        .fg { fill: #f8fafc; }
+      }
+    </style>
+  </defs>
+  <rect class="bg" width="64" height="64" rx="16" />
+  <path
+    class="fg"
+    d="M18 16h16c8.2 0 14 4.6 14 12.4 0 5.7-3.1 9.7-8.6 11.3L48 48h-9.3l-7.2-7.4H26V48h-8V16Zm8 18.3h7.2c4.2 0 6.6-1.9 6.6-5.2 0-3.4-2.4-5.1-6.6-5.1H26v10.3Z"
+  />
+</svg>
