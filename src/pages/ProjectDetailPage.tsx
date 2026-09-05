@@ -5,7 +5,7 @@ import { useDocumentMeta } from '@/hooks/useDocumentMeta'
 import { cn } from '@/lib/cn'
 import type { ProjectLink } from '@/types'
 import { Button, Container, Icon, type IconName } from '@/components/ui'
-import { ProjectList, ProjectPlate } from '@/components/common'
+import { ProjectList, ProjectMark, ProjectPlate } from '@/components/common'
 import { Reveal } from '@/components/motion'
 
 function formatInlineText(text: string): React.ReactNode {
@@ -158,9 +158,16 @@ export default function ProjectDetailPage() {
         {/* Masthead. */}
         <Reveal className="mt-8 grid items-center gap-9 md:grid-cols-[minmax(0,1fr)_minmax(0,15rem)] md:gap-12 lg:gap-16">
           <div className="md:order-1">
-            <h1 className="font-display text-4xl leading-[0.95] font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-              {project.title}
-            </h1>
+            <div className="flex items-center gap-3.5 sm:gap-4 md:block">
+              <ProjectMark
+                project={project}
+                size="sm"
+                className="size-11 rounded-[0.85rem] shrink-0 md:hidden"
+              />
+              <h1 className="font-display text-4xl leading-[0.95] font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+                {project.title}
+              </h1>
+            </div>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
               {formatInlineText(project.description)}
@@ -196,7 +203,7 @@ export default function ProjectDetailPage() {
             )}
           </div>
 
-          <ProjectPlate project={project} className="md:order-2" />
+          <ProjectPlate project={project} className="hidden md:block md:order-2" />
         </Reveal>
 
         {/* Spec strip: metrics if available */}

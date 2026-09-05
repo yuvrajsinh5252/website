@@ -83,7 +83,7 @@ export function ProjectRow({ project, className }: ProjectRowProps) {
           </p>
         </div>
 
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed sm:text-base">
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted line-clamp-2 sm:line-clamp-none sm:text-base">
           {project.summary}
         </p>
 

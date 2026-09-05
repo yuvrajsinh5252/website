@@ -60,7 +60,7 @@ export function PostRow({ post, className }: PostRowProps) {
           />
         </div>
 
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted line-clamp-2 sm:line-clamp-none sm:text-base">
           {post.description}
         </p>
       </div>
