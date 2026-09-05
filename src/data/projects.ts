@@ -26,12 +26,6 @@ const entries: Project[] = [
     status: 'in-progress',
     featured: true,
     stack: ['Rust', 'Axum', 'SeaORM', 'PostgreSQL', 'React', 'TypeScript', 'GCP', 'Docker'],
-    metrics: [
-      { label: 'Built for', value: 'Indian Households' },
-      { label: 'Tracking', value: 'Most of your financial headache' },
-      { label: 'Hosting', value: 'GCP (or Self-Hosted)' },
-      { label: 'Privacy', value: '100% Sovereign' },
-    ],
     sections: [
       {
         heading: 'The headache of fragmented finances',
@@ -135,12 +129,6 @@ const entries: Project[] = [
     status: 'live',
     featured: true,
     stack: ['Next.js', 'TypeScript', 'Pusher', 'Stockfish', 'Zustand', 'Redis', 'PostgreSQL'],
-    metrics: [
-      { label: 'Origin', value: 'College 1st Year' },
-      { label: 'Evolution', value: 'Complete Rebuild' },
-      { label: 'Matchmaking', value: 'Redis Queue' },
-      { label: 'Analysis', value: 'Stockfish + FEN' },
-    ],
     sections: [
       {
         heading: 'My first full-stack app, and why I rebuilt it',
@@ -228,12 +216,6 @@ const entries: Project[] = [
     createdAt: '2023-12-02',
     status: 'live',
     stack: ['Next.js', 'TypeScript', 'Pinecone', 'Cohere', 'Prisma', 'Tailwind CSS'],
-    metrics: [
-      { label: 'Core Tech', value: 'RAG Pipeline' },
-      { label: 'Vector Store', value: 'Pinecone' },
-      { label: 'Embeddings', value: 'Cohere' },
-      { label: 'Citations', value: 'Page-Level' },
-    ],
     sections: [
       {
         heading: 'Chatting with documents using RAG',

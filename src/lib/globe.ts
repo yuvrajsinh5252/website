@@ -164,6 +164,15 @@ export function drawGlobeParticles({
   const sin = Math.sin(rotation + unwind.spin)
   const dispersal = unwind.disperse * GLOBE_RADIUS
 
+  const scatterDispersal = scatter + dispersal
+  const scatterDispersalY = scatter * 0.55 + dispersal * 0.5
+  const scaleSwell = scale * unwind.swell
+  const effectiveOriginY = originY - unwind.lift
+  const shrink = unwind.shrink
+  const invTwoRadius = 1 / (2 * GLOBE_RADIUS)
+  const invRimRadius = 1 / (displayRadius * 0.96 + 0.001)
+  const fadeOpacity = fade * opacityScale
+
   context.fillStyle = color
 
   for (const particle of particles) {
@@ -171,20 +180,22 @@ export function drawGlobeParticles({
      * Two offsets are in play: `scatter` collapses inward on load, while
      * `dispersal` pushes outward along the particle's own axis on scroll.
      */
-    const x = particle.x + particle.ax * (scatter + dispersal)
-    const y = particle.y + particle.ay * (scatter * 0.55 + dispersal * 0.5)
-    const z = particle.z + particle.az * (scatter + dispersal)
+    const x = particle.x + particle.ax * scatterDispersal
+    const y = particle.y + particle.ay * scatterDispersalY
+    const z = particle.z + particle.az * scatterDispersal
 
     /* Rotate about the Y axis. */
     const rx = x * cos - z * sin
     const rz = x * sin + z * cos
 
-    const px = rx * scale * unwind.swell
-    const py = y * scale * unwind.swell
-    const depth = (rz + GLOBE_RADIUS) / (2 * GLOBE_RADIUS)
-    const facing = Math.max(0, depth)
-    const rim = Math.min(Math.hypot(px, py) / (displayRadius * 0.96 + 0.001), 1) ** 2.1
-    const opacity = (0.08 + 0.14 * facing + 0.4 * rim) * fade * opacityScale
+    const px = rx * scaleSwell
+    const py = y * scaleSwell
+    const depth = (rz + GLOBE_RADIUS) * invTwoRadius
+    const facing = depth > 0 ? depth : 0
+    const dist = Math.sqrt(px * px + py * py)
+    const rimNorm = dist * invRimRadius
+    const rim = (rimNorm < 1 ? rimNorm : 1) ** 2.1
+    const opacity = (0.08 + 0.14 * facing + 0.4 * rim) * fadeOpacity
 
     if (opacity < 0.04) continue
 
@@ -192,8 +203,8 @@ export function drawGlobeParticles({
     context.beginPath()
     context.arc(
       originX + px,
-      originY - py - unwind.lift,
-      Math.max(0.6, (1.15 + 0.55 * facing) * unwind.shrink),
+      effectiveOriginY - py,
+      Math.max(0.6, (1.15 + 0.55 * facing) * shrink),
       0,
       Math.PI * 2,
     )

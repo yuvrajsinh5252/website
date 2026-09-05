@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { memo, useEffect, useRef } from 'react'
 import {
   createGlobeParticles,
   drawGlobeParticles,
@@ -21,7 +21,10 @@ export interface ParticleGlobeProps {
  * Runs entirely on one canvas, pauses when scrolled out of view, and falls
  * back to a single static frame when the visitor prefers reduced motion.
  */
-export function ParticleGlobe({ particles = 2600, className }: ParticleGlobeProps) {
+export const ParticleGlobe = memo(function ParticleGlobe({
+  particles = 2600,
+  className,
+}: ParticleGlobeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   /* Probe whose resolved colour gives the accent as concrete rgb channels. */
   const accentProbeRef = useRef<HTMLSpanElement>(null)
@@ -88,10 +91,13 @@ export function ParticleGlobe({ particles = 2600, className }: ParticleGlobeProp
 
     const cloud = createGlobeParticles(particleCount, minY)
 
+    let cachedHeroHeight = window.innerHeight
+
     const resize = () => {
       width = canvas.clientWidth
       height = canvas.clientHeight
       if (width === 0 || height === 0) return
+      cachedHeroHeight = height
 
       canvas.width = Math.round(width * dpr)
       canvas.height = Math.round(height * dpr)
@@ -185,8 +191,7 @@ export function ParticleGlobe({ particles = 2600, className }: ParticleGlobeProp
     }
 
     const readScroll = () => {
-      const heroHeight = canvas.clientHeight || window.innerHeight
-      targetScroll = Math.min(1, Math.max(0, window.scrollY / heroHeight))
+      targetScroll = Math.min(1, Math.max(0, window.scrollY / (cachedHeroHeight || 1)))
     }
 
     const tick = (time: number) => {
@@ -267,4 +272,4 @@ export function ParticleGlobe({ particles = 2600, className }: ParticleGlobeProp
       <canvas ref={canvasRef} aria-hidden="true" className={className} />
     </>
   )
-}
+})

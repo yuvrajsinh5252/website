@@ -1,4 +1,4 @@
-import { useEffect, useRef, type RefObject } from 'react'
+import { memo, useEffect, useRef, type RefObject } from 'react'
 import { orbitSkills } from '@/data'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { useTheme } from '@/hooks/useTheme'
@@ -48,7 +48,10 @@ export interface OrbitingSkillsProps {
  * Satellites fade down as they pass behind the hero copy, so the type is never
  * competing with a drifting icon.
  */
-export function OrbitingSkills({ avoidRef, className }: OrbitingSkillsProps) {
+export const OrbitingSkills = memo(function OrbitingSkills({
+  avoidRef,
+  className,
+}: OrbitingSkillsProps) {
   const rootRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const nodesRef = useRef<(HTMLDivElement | null)[]>([])
@@ -74,8 +77,24 @@ export function OrbitingSkills({ avoidRef, className }: OrbitingSkillsProps) {
     const orbits = createOrbits(orbitSkills.length)
     const reach = orbitReach(orbits)
 
+    /*
+     * Precompute orbit trail coordinates at unit radius. Orbit lines are
+     * stationary ellipses that scale linearly with orbitRadius. Precomputing
+     * avoids 1,120+ Kepler solver / Newton-Raphson iterations every single frame.
+     */
+    const precomputedTrails = orbits.map((orbit) => {
+      const points: { x: number; y: number }[] = []
+      for (let step = 0; step <= TRAIL_SEGMENTS; step += 1) {
+        const angle = (step / TRAIL_SEGMENTS) * Math.PI * 2
+        const pt = orbitPoint({ ...orbit, phase: angle }, 0, 1)
+        points.push({ x: pt.x, y: pt.y })
+      }
+      return points
+    })
+
     let width = 0
     let height = 0
+    let cachedHeight = window.innerHeight
     let frame = 0
     let visible = true
     let elapsed = 0
@@ -93,6 +112,7 @@ export function OrbitingSkills({ avoidRef, className }: OrbitingSkillsProps) {
       width = root.clientWidth
       height = root.clientHeight
       if (width === 0 || height === 0) return
+      cachedHeight = height
 
       canvas.width = Math.round(width * dpr)
       canvas.height = Math.round(height * dpr)
@@ -112,7 +132,7 @@ export function OrbitingSkills({ avoidRef, className }: OrbitingSkillsProps) {
     }
 
     const readScroll = () => {
-      targetScroll = Math.min(1, Math.max(0, window.scrollY / (root.clientHeight || 1)))
+      targetScroll = Math.min(1, Math.max(0, window.scrollY / (cachedHeight || 1)))
     }
 
     const hideAll = () => {
@@ -188,22 +208,14 @@ export function OrbitingSkills({ avoidRef, className }: OrbitingSkillsProps) {
       context.lineWidth = 1
       context.globalAlpha = orbitFade
 
-      for (const orbit of orbits) {
-        /*
-         * Drawn whole, with no break where the track crosses the planet. The
-         * planet is a cloud of particles rather than a solid body, so you can
-         * see straight through it; cutting the line there left every track
-         * stopping in mid-air around the horizon, well short of the fold.
-         */
+      for (let i = 0; i < precomputedTrails.length; i += 1) {
+        const trail = precomputedTrails[i]!
         context.beginPath()
 
         for (let step = 0; step <= TRAIL_SEGMENTS; step += 1) {
-          /* Sweep the phase to trace the orbit itself, not its motion. */
-          const angle = (step / TRAIL_SEGMENTS) * Math.PI * 2
-          const point = orbitPoint({ ...orbit, phase: angle }, 0, orbitRadius, planetRadius)
-
-          const px = originX + point.x
-          const py = centreY - point.y
+          const pt = trail[step]!
+          const px = originX + pt.x * orbitRadius
+          const py = centreY - pt.y * orbitRadius
 
           if (step === 0) context.moveTo(px, py)
           else context.lineTo(px, py)
@@ -329,7 +341,6 @@ export function OrbitingSkills({ avoidRef, className }: OrbitingSkillsProps) {
             nodesRef.current[index] = node
           }}
           className="absolute top-0 left-0 opacity-0 will-change-transform"
-          style={{ transition: 'opacity 260ms linear' }}
         >
           <span className="relative grid size-11 place-items-center">
             {/* Halo, as if the chip catches light from the system's star. */}
@@ -382,4 +393,4 @@ export function OrbitingSkills({ avoidRef, className }: OrbitingSkillsProps) {
       ))}
     </div>
   )
-}
+})
