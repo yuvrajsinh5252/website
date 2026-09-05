@@ -27,9 +27,21 @@ export function About() {
               id="about-title"
               className="font-display text-4xl leading-[0.95] font-bold tracking-tight sm:text-5xl md:text-[3.4rem]"
             >
-              Mostly full-stack,
-              <br />
-              lately a lot of agents
+              {typeof profile.aboutHeading === 'string' ? (
+                profile.aboutHeading
+              ) : profile.aboutHeading ? (
+                <>
+                  {profile.aboutHeading.line1}
+                  {profile.aboutHeading.line2 && (
+                    <>
+                      <br />
+                      {profile.aboutHeading.line2}
+                    </>
+                  )}
+                </>
+              ) : (
+                'Engineering software'
+              )}
             </h2>
 
             <div className="mt-8 flex max-w-lg flex-col gap-4 text-base leading-relaxed sm:text-[1.05rem]">
@@ -38,9 +50,11 @@ export function About() {
               ))}
             </div>
 
-            <p className="mt-8 text-sm tracking-[0.18em] text-muted uppercase">
-              {profile.dateline}
-            </p>
+            {profile.dateline && (
+              <p className="mt-8 text-sm tracking-[0.18em] text-muted uppercase">
+                {profile.dateline}
+              </p>
+            )}
 
             <div className="mt-10 border-t border-border pt-8">
               <h3 className="text-[0.625rem] tracking-[0.22em] text-muted uppercase">

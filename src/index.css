@@ -103,6 +103,28 @@
   --animate-twinkle: twinkle 4s ease-in-out infinite;
   --animate-nebula-drift: nebula-drift 35s ease-in-out 5s infinite;
   --animate-carrier: carrier 3.6s ease-in-out infinite;
+  --animate-sun-spin: sun-spin 8s linear infinite;
+
+  @keyframes sun-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes corona-pulse {
+    0%,
+    100% {
+      transform: scale(1.15);
+      opacity: 0.22;
+    }
+    50% {
+      transform: scale(1.36);
+      opacity: 0.45;
+    }
+  }
 
   @keyframes fade-up {
     from {
@@ -579,6 +601,110 @@
   translate: calc((var(--wall-x, 0.5) - 0.5) * var(--depth, 0) * -1px)
     calc((var(--wall-y, 0.5) - 0.5) * var(--depth, 0) * -1px);
   transition: translate 900ms var(--ease-out-expo);
+}
+
+/* Sun mark brand animation ------------------------------------------------- */
+.sun-mark {
+  overflow: visible;
+  transition: filter 0.4s var(--ease-out-expo), transform 0.4s var(--ease-spring);
+  filter: drop-shadow(0 0 5px color-mix(in oklab, var(--theme-accent) 35%, transparent));
+}
+
+.group:hover .sun-mark,
+.group:focus-visible .sun-mark,
+.sun-mark:hover {
+  filter: drop-shadow(0 0 8px color-mix(in oklab, var(--theme-accent) 75%, transparent))
+    drop-shadow(0 0 18px color-mix(in oklab, var(--theme-accent) 45%, transparent));
+}
+
+.sun-mark-glow {
+  transform-origin: 16px 16px;
+  transform-box: view-box;
+  opacity: 0.5;
+  transform: scale(1.15);
+  transition: transform 0.6s var(--ease-spring), opacity 0.5s ease;
+}
+
+.group:hover .sun-mark-glow,
+.group:focus-visible .sun-mark-glow,
+.sun-mark:hover .sun-mark-glow {
+  opacity: 1;
+  transform: scale(1.6);
+  animation: sun-glow-pulse 2.6s ease-in-out infinite alternate;
+}
+
+@keyframes sun-glow-pulse {
+  0% {
+    transform: scale(1.5);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1.75);
+    opacity: 1;
+  }
+}
+
+.sun-mark-flare {
+  transform-origin: 16px 16px;
+  transform-box: view-box;
+  transition: transform 0.7s var(--ease-spring);
+}
+
+.group:hover .sun-mark-flare,
+.group:focus-visible .sun-mark-flare,
+.sun-mark:hover .sun-mark-flare {
+  animation: sun-spin 8s linear infinite;
+}
+
+.sun-mark-ray {
+  transform-origin: 16px 16px;
+  transform-box: view-box;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.group:hover .sun-mark-ray,
+.group:focus-visible .sun-mark-ray,
+.sun-mark:hover .sun-mark-ray {
+  transform: translateY(-1.1px);
+}
+
+.sun-mark-orb {
+  transform-origin: 16px 16px;
+  transform-box: view-box;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.group:hover .sun-mark-orb,
+.group:focus-visible .sun-mark-orb,
+.sun-mark:hover .sun-mark-orb {
+  transform: translateY(-0.8px);
+}
+
+.sun-mark-corona {
+  transform-origin: 16px 16px;
+  transform-box: view-box;
+  opacity: 0;
+  transform: scale(0.75);
+  transition: transform 0.5s var(--ease-out-expo), opacity 0.4s ease;
+}
+
+.group:hover .sun-mark-corona,
+.group:focus-visible .sun-mark-corona,
+.sun-mark:hover .sun-mark-corona {
+  opacity: 0.35;
+  animation: corona-pulse 2.2s ease-in-out infinite;
+}
+
+.sun-mark-disc {
+  transform-origin: 16px 16px;
+  transform-box: view-box;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.group:hover .sun-mark-disc,
+.group:focus-visible .sun-mark-disc,
+.sun-mark:hover .sun-mark-disc {
+  transform: scale(1.06);
 }
 
 /* --------------------------------------------------------------------------

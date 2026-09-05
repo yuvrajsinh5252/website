@@ -39,8 +39,8 @@ export const aboutFrames: PhotoFrame[] = [
   {
     id: 'desk',
     src: '/images/frame-desk.jpg',
-    alt: 'A laptop on a stand with a mechanical keyboard in front of it',
-    caption: 'Where the work happens',
+    alt: 'Elevated laptop glowing in the dark with a backlit mechanical keyboard',
+    caption: 'Workspace',
     subject: 'Desk',
     ratio: 'landscape',
   },

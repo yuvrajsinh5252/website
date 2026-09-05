@@ -48,8 +48,7 @@ export const routes = {
 export const footerConfig = {
   tagline: 'Software engineer',
   /** Shown under the name at the top of the footer. */
-  signoff:
-    'Building software most days, and pointing a telescope at the sky on the clear ones.',
+  signoff: 'Building software, solving problems, and staying curious.',
   /** Sits opposite the copyright on the bottom rule. */
   origin: 'India',
   /** IANA zone used for the local-time readout. */

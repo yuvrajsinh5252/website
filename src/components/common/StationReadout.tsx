@@ -7,7 +7,7 @@ export interface StationReadoutProps {
   /** Place name, e.g. `Noida, India`. */
   location: string
   /** Decimal coordinates, rendered as a signed-hemisphere pair. */
-  coordinates: { latitude: number; longitude: number }
+  coordinates?: { latitude: number; longitude: number }
   /** Pre-formatted local time, e.g. `23:38`. */
   time: string
   /** Short zone label shown under the clock. */
@@ -54,11 +54,13 @@ export function StationReadout({
           {location}
         </p>
 
-        <p className="mt-1.5 font-mono text-[0.5625rem] text-muted tabular-nums">
-          {formatDegrees(coordinates.latitude, 'N', 'S')}
-          <span aria-hidden="true"> / </span>
-          {formatDegrees(coordinates.longitude, 'E', 'W')}
-        </p>
+        {coordinates && (
+          <p className="mt-1.5 font-mono text-[0.5625rem] text-muted tabular-nums">
+            {formatDegrees(coordinates.latitude, 'N', 'S')}
+            <span aria-hidden="true"> / </span>
+            {formatDegrees(coordinates.longitude, 'E', 'W')}
+          </p>
+        )}
       </div>
 
       <div aria-hidden="true" className="h-px bg-border" />

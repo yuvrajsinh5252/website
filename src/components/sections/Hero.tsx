@@ -55,6 +55,10 @@ export function Hero() {
     window.scrollTo({ top, behavior: 'smooth' })
   }, [])
 
+  const dotIndex = profile.tagline.indexOf('.')
+  const taglineTitle = dotIndex !== -1 ? profile.tagline.slice(0, dotIndex + 1) : null
+  const taglineDesc = dotIndex !== -1 ? profile.tagline.slice(dotIndex + 1).trim() : profile.tagline
+
   return (
     <section
       aria-label="Introduction"
@@ -97,10 +101,21 @@ export function Hero() {
           </h1>
 
           <p
-            className="absolute top-full right-0 mt-3 max-w-[13rem] animate-fade-up text-right text-xs leading-relaxed font-light text-foreground/85 sm:mt-4 sm:max-w-[16rem] sm:text-sm md:max-w-[18rem] md:text-base"
+            className="absolute top-full right-0 mt-3 max-w-[14rem] animate-fade-up text-right text-xs leading-relaxed sm:mt-4 sm:max-w-[18rem] sm:text-sm md:max-w-[20rem] md:text-base"
             style={delay(1.5)}
           >
-            {profile.tagline}
+            {taglineTitle ? (
+              <>
+                <span className="block text-sm font-semibold text-heading sm:text-base md:text-lg">
+                  {taglineTitle}
+                </span>
+                <span className="mt-1 block font-light text-foreground/80">
+                  {taglineDesc}
+                </span>
+              </>
+            ) : (
+              <span className="font-light text-foreground/85">{taglineDesc}</span>
+            )}
           </p>
         </div>
       </div>

@@ -135,7 +135,6 @@ export function Footer() {
 
               <StationReadout
                 location={profile.location}
-                coordinates={footerConfig.coordinates}
                 time={time}
                 zoneLabel={footerConfig.zoneLabel}
                 weather={weather}
