@@ -1,4 +1,5 @@
 import { useCallback, useRef } from 'react'
+import { useLenis } from 'lenis/react'
 import { effectsConfig } from '@/config/theme.config'
 import { profile, skills } from '@/data'
 import { OrbitingSkills, ParticleGlobe } from '@/components/effects'
@@ -31,6 +32,8 @@ export function Hero() {
   /* Once the visitor has started scrolling, the cue has done its job. */
   const scrolled = useScrolled(80)
 
+  const lenis = useLenis()
+
   /*
    * Scrolls to the About section directly rather than through an `#about`
    * href. A hash link triggers both the browser's own anchor jump and the
@@ -50,10 +53,18 @@ export function Hero() {
         getComputedStyle(document.documentElement).getPropertyValue('--spacing-header'),
       ) * 16 || 72
 
+    if (lenis) {
+      lenis.scrollTo(about, {
+        offset: -header,
+        duration: 1.2,
+      })
+      return
+    }
+
     const top = about.getBoundingClientRect().top + window.scrollY - header
 
     window.scrollTo({ top, behavior: 'smooth' })
-  }, [])
+  }, [lenis])
 
   const dotIndex = profile.tagline.indexOf('.')
   const taglineTitle = dotIndex !== -1 ? profile.tagline.slice(0, dotIndex + 1) : null
