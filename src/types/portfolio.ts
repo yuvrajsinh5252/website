@@ -1,6 +1,4 @@
-/* -------------------------------------------------------------------------- */
-/*  Profile                                                                    */
-/* -------------------------------------------------------------------------- */
+/* Profile */
 
 export interface SocialLink {
   /** Stable id, also used as the React key. */
@@ -49,9 +47,7 @@ export interface Profile {
   socials: SocialLink[]
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Photo frames                                                               */
-/* -------------------------------------------------------------------------- */
+/* Photo frames */
 
 /** A photo rendered inside a polaroid frame. */
 export interface PhotoFrame {
@@ -78,9 +74,7 @@ export interface PhotoFrame {
   ratio?: 'square' | 'portrait' | 'landscape'
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Projects                                                                   */
-/* -------------------------------------------------------------------------- */
+/* Projects */
 
 export type ProjectStatus = 'live' | 'in-progress' | 'archived' | 'concept'
 
@@ -137,9 +131,7 @@ export interface Project {
   links?: ProjectLink[]
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Experience & education                                                     */
-/* -------------------------------------------------------------------------- */
+/* Experience & education */
 
 /** One title held at a company; a company may have several over time. */
 export interface WorkRole {
@@ -190,9 +182,7 @@ export interface Certification {
   url?: string
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Skills                                                                     */
-/* -------------------------------------------------------------------------- */
+/* Skills */
 
 export interface Skill {
   name: string
@@ -209,9 +199,7 @@ export interface SkillGroup {
   items: Skill[]
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Posts                                                                      */
-/* -------------------------------------------------------------------------- */
+/* Posts */
 
 /** A block of long-form content inside a post. */
 export type PostBlock =
@@ -248,9 +236,7 @@ export interface Post {
   body: PostBlock[]
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Navigation                                                                 */
-/* -------------------------------------------------------------------------- */
+/* Navigation */
 
 export interface NavItem {
   id: string

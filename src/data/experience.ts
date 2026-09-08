@@ -47,7 +47,7 @@ export const education: Education[] = [
     id: 'gyanmanjari',
     institution: 'Gyanmanjari Vidhyapith',
     institutionUrl: 'https://gyanmanjarividyapith.edu.in/',
-    logo: '/images/gyanManjari.jpg',
+    logo: '/images/gyanManjari.png',
     degree: 'Higher Secondary',
     dates: '2020 - 2022',
     location: 'Bhavnagar, Gujarat',

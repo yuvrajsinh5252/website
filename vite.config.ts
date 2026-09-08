@@ -50,7 +50,6 @@ function sitemap(): Plugin {
   }
 }
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss(), sitemap()],
   resolve: {

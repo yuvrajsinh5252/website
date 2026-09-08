@@ -65,6 +65,7 @@ const entries: Project[] = [
   {
     slug: 'leetcode-cli',
     title: 'LeetCode CLI',
+    logo: '/images/projects/leetcode.svg',
     icon: 'leetcode',
     iconColor: '#FFA116',
     cover: '/images/projects/leetcode-cli.png',
@@ -118,7 +119,7 @@ const entries: Project[] = [
     title: 'Chess Game',
     logo: '/images/projects/chess-logo.png',
     icon: 'chess',
-    iconColor: '#81B64C',
+    iconColor: '#6c8294',
     cover: '/images/projects/chess-game.png',
     summary:
       'A multiplayer chess platform with realtime play, matchmaking, chat and ELO ratings.',

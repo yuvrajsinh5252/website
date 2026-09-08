@@ -19,7 +19,6 @@ export function SunMark({ className, ...props }: SunMarkProps) {
       {...props}
     >
       <defs>
-        {/* Soft radial solar glow that shines out from the center */}
         <radialGradient id={glowId} cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="var(--theme-accent, #ea9e4b)" stopOpacity="0.75" />
           <stop offset="35%" stopColor="var(--theme-accent, #ea9e4b)" stopOpacity="0.35" />
@@ -28,7 +27,6 @@ export function SunMark({ className, ...props }: SunMarkProps) {
         </radialGradient>
       </defs>
 
-      {/* Atmospheric background glow shining outward */}
       <circle
         cx="16"
         cy="16"
@@ -37,7 +35,6 @@ export function SunMark({ className, ...props }: SunMarkProps) {
         className="sun-mark-glow pointer-events-none"
       />
 
-      {/* Corona halo, blooming and breathing as the sun flares */}
       <circle
         cx="16"
         cy="16"
@@ -47,7 +44,6 @@ export function SunMark({ className, ...props }: SunMarkProps) {
         className="sun-mark-corona"
       />
 
-      {/* The flare: revolving celestial rays and orbs */}
       <g className="sun-mark-flare">
         {[0, 90, 180, 270].map((angle, index) => (
           <g
@@ -91,7 +87,6 @@ export function SunMark({ className, ...props }: SunMarkProps) {
         ))}
       </g>
 
-      {/* The disc: solid, bold, and the central heart of the mark */}
       <circle
         cx="16"
         cy="16"

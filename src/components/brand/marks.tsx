@@ -21,9 +21,7 @@ const about = (x: number, y: number) => ({
   transformBox: 'view-box' as const,
 })
 
-/* -------------------------------------------------------------------------- */
-/*  1. Waxing — the moon you actually photograph                               */
-/* -------------------------------------------------------------------------- */
+/* 1. Waxing — the moon you actually photograph */
 
 /**
  * A gibbous moon with craters bitten out of it.
@@ -40,7 +38,6 @@ export function WaxingMark(props: MarkProps) {
     <svg {...base} {...props}>
       <mask id={maskId}>
         <circle cx="16" cy="16" r="13" fill="white" />
-        {/* The terminator, sliding away on hover to fill the disc. */}
         <circle
           cx="6"
           cy="14"
@@ -58,9 +55,7 @@ export function WaxingMark(props: MarkProps) {
   )
 }
 
-/* -------------------------------------------------------------------------- */
-/*  2. Station — your own hero, distilled                                      */
-/* -------------------------------------------------------------------------- */
+/* 2. Station — your own hero, distilled */
 
 /**
  * A planet's limb with a satellite above it — the hero horizon as a mark.
@@ -80,7 +75,6 @@ export function StationMark(props: MarkProps) {
         strokeDasharray="2 3"
       />
 
-      {/* The limb: the crown of a sphere whose centre sits below the frame. */}
       <path
         d="M2 27.5a15.5 15.5 0 0 1 28 0"
         stroke="currentColor"
@@ -98,9 +92,7 @@ export function StationMark(props: MarkProps) {
   )
 }
 
-/* -------------------------------------------------------------------------- */
-/*  3. Constellation — your initial, drawn in stars                            */
-/* -------------------------------------------------------------------------- */
+/* 3. Constellation — your initial, drawn in stars */
 
 /**
  * A "Y" plotted as an asterism.
@@ -131,9 +123,7 @@ export function ConstellationMark(props: MarkProps) {
   )
 }
 
-/* -------------------------------------------------------------------------- */
-/*  4. Eyepiece — the view down the telescope                                  */
-/* -------------------------------------------------------------------------- */
+/* 4. Eyepiece — the view down the telescope */
 
 /**
  * A telescope eyepiece with a star drifting off-centre.
@@ -162,9 +152,7 @@ export function EyepieceMark(props: MarkProps) {
   )
 }
 
-/* -------------------------------------------------------------------------- */
-/*  5. Prompt — a terminal and a telescope                                     */
-/* -------------------------------------------------------------------------- */
+/* 5. Prompt — a terminal and a telescope */
 
 /**
  * A shell prompt whose cursor is a star.
@@ -191,9 +179,7 @@ export function PromptMark(props: MarkProps) {
   )
 }
 
-/* -------------------------------------------------------------------------- */
-/*  7. Telescope — the instrument itself                                       */
-/* -------------------------------------------------------------------------- */
+/* 7. Telescope — the instrument itself */
 
 /**
  * A telescope on its tripod, tube angled at the sky, with a star above it.
@@ -202,7 +188,6 @@ export function PromptMark(props: MarkProps) {
 export function TelescopeMark(props: MarkProps) {
   return (
     <svg {...base} {...props}>
-      {/* The target star. */}
       <path
         d="M25.5 2.5c.5 3.2 1.3 4 4.5 4.5-3.2.5-4 1.3-4.5 4.5-.5-3.2-1.3-4-4.5-4.5 3.2-.5 4-1.3 4.5-4.5Z"
         fill="currentColor"
@@ -210,7 +195,6 @@ export function TelescopeMark(props: MarkProps) {
         style={about(25.5, 7)}
       />
 
-      {/* Tube and finder, pivoting on the mount to track the star. */}
       <g
         className="transition-transform duration-700 ease-out group-hover:-rotate-[16deg]"
         style={about(15, 18)}
@@ -232,7 +216,6 @@ export function TelescopeMark(props: MarkProps) {
         />
       </g>
 
-      {/* Tripod. */}
       <path
         d="M15 17.5v5.5m0 0-5.5 6.5M15 23l5.5 6.5"
         stroke="currentColor"
@@ -245,9 +228,7 @@ export function TelescopeMark(props: MarkProps) {
 }
 
 
-/* -------------------------------------------------------------------------- */
-/*  6. Apoapsis — the monogram, in orbit                                       */
-/* -------------------------------------------------------------------------- */
+/* 6. Apoapsis — the monogram, in orbit */
 
 /**
  * The "Y" of your name with a satellite tracking round it.
@@ -285,9 +266,7 @@ export function ApoapsisMark(props: MarkProps) {
   )
 }
 
-/* -------------------------------------------------------------------------- */
-/*  8. Aperture — the iris you look through                                    */
-/* -------------------------------------------------------------------------- */
+/* 8. Aperture — the iris you look through */
 
 /**
  * An iris of three blades around a bright centre.
@@ -323,9 +302,7 @@ export function ApertureMark(props: MarkProps) {
   )
 }
 
-/* -------------------------------------------------------------------------- */
-/*  9. Meridian — a world, turning                                             */
-/* -------------------------------------------------------------------------- */
+/* 9. Meridian — a world, turning */
 
 /**
  * A globe with its meridian drawn on.
@@ -359,9 +336,7 @@ export function MeridianMark(props: MarkProps) {
   )
 }
 
-/* -------------------------------------------------------------------------- */
-/*  10. Signal — something transmitting                                        */
-/* -------------------------------------------------------------------------- */
+/* 10. Signal — something transmitting */
 
 /**
  * A source with three arcs leaving it.
@@ -393,9 +368,7 @@ export function SignalMark(props: MarkProps) {
   )
 }
 
-/* -------------------------------------------------------------------------- */
-/*  11. Comet — the visitor                                                    */
-/* -------------------------------------------------------------------------- */
+/* 11. Comet — the visitor */
 
 /**
  * A comet head with a tail trailing behind it.
@@ -427,9 +400,7 @@ export function CometMark(props: MarkProps) {
   )
 }
 
-/* -------------------------------------------------------------------------- */
-/*  12. Sextant — measuring the angle to a star                                */
-/* -------------------------------------------------------------------------- */
+/* 12. Sextant — measuring the angle to a star */
 
 /**
  * A graduated limb with an index arm swung across it.
@@ -438,7 +409,6 @@ export function CometMark(props: MarkProps) {
 export function SextantMark(props: MarkProps) {
   return (
     <svg {...base} {...props}>
-      {/* The star being shot. */}
       <path
         d="M26.5 3c.45 2.9 1.15 3.6 4.05 4.05-2.9.45-3.6 1.15-4.05 4.05-.45-2.9-1.15-3.6-4.05-4.05 2.9-.45 3.6-1.15 4.05-4.05Z"
         fill="currentColor"
@@ -446,7 +416,6 @@ export function SextantMark(props: MarkProps) {
         style={about(26.5, 7.05)}
       />
 
-      {/* The graduated limb. */}
       <path
         d="M6 26.5A12.5 12.5 0 0 1 26 26.5"
         stroke="currentColor"
@@ -455,7 +424,6 @@ export function SextantMark(props: MarkProps) {
         fill="none"
       />
 
-      {/* The index arm, swinging up to the star. */}
       <g
         className="transition-transform duration-700 ease-out group-hover:rotate-[26deg]"
         style={about(16, 9)}
@@ -473,9 +441,7 @@ export function SextantMark(props: MarkProps) {
   )
 }
 
-/* -------------------------------------------------------------------------- */
-/*  14. Sun — the nearest star, and the chosen mark                            */
-/* -------------------------------------------------------------------------- */
+/* 14. Sun — the nearest star, and the chosen mark */
 
 /*
  * Lives in its own module rather than here, because it is the mark the site
@@ -484,9 +450,7 @@ export function SextantMark(props: MarkProps) {
  */
 export { SunMark } from './SunMark'
 
-/* -------------------------------------------------------------------------- */
-/*  13. Plate — the photograph, on glass                                       */
-/* -------------------------------------------------------------------------- */
+/* 13. Plate — the photograph, on glass */
 
 /**
  * A glass plate with a bright star held in it, after the photographs on the

@@ -63,19 +63,21 @@ export function About() {
 
               <ul className="mt-6 flex flex-col gap-6">
                 {education.map((entry) => (
-                  <li key={entry.id} className="flex items-center gap-5">
+                  <li key={entry.id} className="group flex items-center gap-5">
                     {entry.logo && (
                       <img
                         src={entry.logo}
-                        alt=""
+                        alt={entry.institution}
                         loading="lazy"
                         decoding="async"
-                        className="size-14 shrink-0 object-contain sm:size-16"
+                        className="size-14 shrink-0 object-contain transition-transform duration-300 ease-out-expo group-hover:scale-105 sm:size-16"
                       />
                     )}
 
                     <div className="min-w-0">
-                      <p className="text-base font-medium text-heading">{entry.degree}</p>
+                      <p className="text-base font-medium text-heading transition-colors duration-200 group-hover:text-accent">
+                        {entry.degree}
+                      </p>
 
                       <p className="mt-1 text-sm text-foreground">
                         {entry.institutionUrl ? (

@@ -41,65 +41,53 @@ export function StationReadout({
   className,
 }: StationReadoutProps) {
   return (
-    <section
-      aria-label="Station"
-      className={cn(
-        'group/station relative overflow-hidden rounded-card border border-border bg-surface/40',
-        'transition-colors duration-500 hover:border-accent-border',
-        className,
-      )}
+    <div
+      aria-label="Station readout"
+      className={cn('mt-6 border-t border-border/60 pt-5', className)}
     >
-      <div className="px-3.5 pt-3 pb-2.5">
-        <p className="truncate text-[0.625rem] tracking-[0.2em] text-heading uppercase">
+      <div className="flex items-center gap-2">
+        <p className="text-[0.625rem] font-medium tracking-[0.2em] text-muted uppercase">
           {location}
         </p>
 
         {coordinates && (
-          <p className="mt-1.5 font-mono text-[0.5625rem] text-muted tabular-nums">
-            {formatDegrees(coordinates.latitude, 'N', 'S')}
-            <span aria-hidden="true"> / </span>
-            {formatDegrees(coordinates.longitude, 'E', 'W')}
-          </p>
+          <span className="font-mono text-[0.5625rem] text-muted/70 tabular-nums">
+            ({formatDegrees(coordinates.latitude, 'N', 'S')},{' '}
+            {formatDegrees(coordinates.longitude, 'E', 'W')})
+          </span>
         )}
       </div>
 
-      <div aria-hidden="true" className="h-px bg-border" />
+      <div className="mt-2.5 flex items-baseline gap-3">
+        <span className="font-display text-2xl font-bold tracking-tight text-heading tabular-nums">
+          {time}
+        </span>
+        <span className="font-mono text-xs text-muted tabular-nums">
+          {zoneLabel}
+        </span>
+      </div>
 
-      <dl className="flex items-end justify-between gap-4 px-3.5 pt-2.5 pb-3">
-        <div className="min-w-0">
-          <dt className="sr-only">Local time</dt>
-          <dd className="font-display text-2xl leading-none font-bold text-heading tabular-nums">
-            {time}
-          </dd>
-          <dd className="mt-1.5 text-[0.5625rem] tracking-[0.18em] text-muted uppercase">
-            {zoneLabel}
-          </dd>
-        </div>
-
-        {weather && (
-          <m.div
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="min-w-0 text-right"
-          >
-            <dt className="sr-only">Weather</dt>
-            <dd className="flex items-center justify-end gap-1.5">
-              <WeatherBadge
-                condition={weather.condition}
-                isDay={weather.isDay}
-                className="text-accent"
-              />
-              <span className="font-display text-2xl leading-none font-bold text-heading tabular-nums">
-                {weather.temperature}°
-              </span>
-            </dd>
-            <dd className="mt-1.5 truncate text-[0.5625rem] tracking-[0.18em] text-muted uppercase">
-              {weather.label}
-            </dd>
-          </m.div>
-        )}
-      </dl>
-    </section>
+      {weather && (
+        <m.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="mt-2 flex items-center gap-2 text-xs text-muted"
+        >
+          <WeatherBadge
+            condition={weather.condition}
+            isDay={weather.isDay}
+            className="text-accent"
+          />
+          <span className="font-semibold text-heading tabular-nums">
+            {weather.temperature}°
+          </span>
+          <span aria-hidden="true" className="text-border-strong">·</span>
+          <span className="text-[0.6875rem] tracking-[0.14em] text-muted uppercase">
+            {weather.label}
+          </span>
+        </m.div>
+      )}
+    </div>
   )
 }

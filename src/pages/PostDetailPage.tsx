@@ -34,7 +34,7 @@ export default function PostDetailPage() {
 
   return (
     <div className="pt-header">
-      <Container width="prose" className="pt-12 pb-16 sm:pt-16">
+      <Container width="editorial" className="pt-12 pb-16 sm:pt-16">
         <Button
           to={routes.posts}
           variant="ghost"
