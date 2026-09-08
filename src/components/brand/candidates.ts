@@ -2,18 +2,35 @@ import type { JSX } from 'react'
 import {
   ApertureMark,
   ApoapsisMark,
+  CircuitSunMark,
+  CodeYMark,
   CometMark,
   ConstellationMark,
+  CrownYMark,
   EyepieceMark,
+  FacetedSunMark,
+  InterlockingYGMark,
+  LionYMark,
   MeridianMark,
+  MobiusYMark,
   PlateMark,
+  PrismYMark,
   PromptMark,
+  QuantumYMark,
+  RajputDhalMark,
+  SegmentedSealMark,
   SextantMark,
   SignalMark,
+  SolarDawnYMark,
+  StarryCodeYMark,
   StationMark,
   SunMark,
+  SwordYMark,
   TelescopeMark,
+  TerminalChevronYMark,
   WaxingMark,
+  WingedYMark,
+  ZenithYMark,
   type MarkProps,
 } from './marks'
 
@@ -23,12 +40,180 @@ import {
 export interface MarkCandidate {
   id: string
   name: string
+  category?: string
   Mark: (props: MarkProps) => JSX.Element
   idea: string
   easterEgg: string
 }
 
 export const markCandidates: MarkCandidate[] = [
+  /* --------------------------------------------------------------------------
+   * Selected Brand Identity
+   * ------------------------------------------------------------------------ */
+  {
+    id: 'apoapsis',
+    name: 'Apoapsis (Selected Logo)',
+    category: 'Personal + Orbit (Selected)',
+    Mark: ApoapsisMark,
+    idea: 'The monogram with a satellite tracking round it. Closest to a conventional logo, and the most obviously yours.',
+    easterEgg: 'Hover completes one orbit.',
+  },
+
+  /* --------------------------------------------------------------------------
+   * Personal Monograms (Yuvraj / YG / Kshatriya Heritage)
+   * ------------------------------------------------------------------------ */
+  {
+    id: 'crown-y',
+    name: 'Sovereign Y (Crown Prince)',
+    category: 'Personal Monogram',
+    Mark: CrownYMark,
+    idea: 'Honors the Sanskrit meaning of your name — Yuvraj means Crown Prince. An architectural monogram "Y" whose upper geometry forms a 3-peak royal coronet with a floating apex diamond crest.',
+    easterEgg: 'Hover elevates the coronet peaks and illuminates the crown diamond crest.',
+  },
+  {
+    id: 'lion-y',
+    name: 'Lion Y (Kshatriya Sinh)',
+    category: 'Personal + Heritage',
+    Mark: LionYMark,
+    idea: 'Honors the second half of your name — Yuvraj-Sinh ("Sinh" means Lion in Sanskrit and Kshatriya tradition). A geometric lion’s head contour whose brow and facial bridge form an imposing architectural "Y".',
+    easterEgg: 'Hover illuminates the almond lion eyes and elevates the crown crest.',
+  },
+  {
+    id: 'solar-dawn-y',
+    name: 'Solar Dawn Y',
+    category: 'Personal + Solar Fusion',
+    Mark: SolarDawnYMark,
+    idea: 'The ultimate synthesis of personal identity and solar heritage: an architectural "Y" cradle vessel holding a rising sun orb with coronal dawn beams.',
+    easterEgg: 'Hover causes the dawn sun to ascend and cast out its radiant solar beams.',
+  },
+  {
+    id: 'yg-cipher',
+    name: 'YG Monogram Cipher',
+    category: 'Personal Monogram',
+    Mark: InterlockingYGMark,
+    idea: 'A modern luxury tech monogram interlocking your initials Y and G (Yuvrajsinh Gohil) in continuous geometric ribbons.',
+    easterEgg: 'Hover smoothly rotates the circular "G" halo while scaling the inner "Y" monogram.',
+  },
+  {
+    id: 'winged-y',
+    name: 'Winged Y (Ascendant Wings)',
+    category: 'Personal Monogram',
+    Mark: WingedYMark,
+    idea: 'A dynamic soaring monogram: three tiers of aerodynamic wings spreading outward from an ascending central fuselage to form a proud "Y". Inspired by Kshatriya emblems and aerial precision.',
+    easterEgg: 'Hover lifts the ascending wings into high flight.',
+  },
+  {
+    id: 'mobius-y',
+    name: 'Mobius Y (Infinite Loop)',
+    category: 'Personal Monogram',
+    Mark: MobiusYMark,
+    idea: 'An impossible isometric ribbon monogram: three continuous loops intertwining in 3D space to form the letter "Y". Represents continuous systems, resilience, and software engineering depth.',
+    easterEgg: 'Hover turns the infinite ribbon through a 120-degree continuous isometric rotation.',
+  },
+  {
+    id: 'sword-y',
+    name: 'Talwar Blade Y',
+    category: 'Personal + Heritage',
+    Mark: SwordYMark,
+    idea: 'A Kshatriya heraldic monogram: the stem of the "Y" forms a double-edged Talwar blade, flanked by curved protective quillon crossguards.',
+    easterEgg: 'Hover flashes a vertical gleam down the spine of the talwar blade.',
+  },
+  {
+    id: 'rajput-dhal',
+    name: 'Rajput Dhal (Kshatriya Shield)',
+    category: 'Personal + Heritage',
+    Mark: RajputDhalMark,
+    idea: 'Traditional Kshatriya warrior shield (Dhal) bearing four sacred brass bosses, with a sharp modern chevron "Y" emblem forged into the center faceplate.',
+    easterEgg: 'Hover scales the inner chevron crest while the outer perimeter shield locks into guard.',
+  },
+  {
+    id: 'terminal-chevron-y',
+    name: 'Terminal Chevron Y',
+    category: 'Personal Monogram',
+    Mark: TerminalChevronYMark,
+    idea: 'The developer’s signature: a command-line prompt chevron (>) meeting its mirrored syntax to form the upper arms of "Y", grounded by a pulsing terminal block cursor stem.',
+    easterEgg: 'Hover pulses the terminal cursor and blinks the execution spark.',
+  },
+  {
+    id: 'code-y',
+    name: 'Branching Code Y (Bold)',
+    category: 'Personal Monogram',
+    Mark: CodeYMark,
+    idea: 'A software engineer’s monogram: Git commit branches and AST syntax trees (\\ / |) converging into a bold, thick-stemmed architectural "Y" with active commit nodes and subtle constellation sparkles.',
+    easterEgg: 'Hover illuminates each branching commit node in sequence and activates the celestial background sparkles.',
+  },
+  {
+    id: 'starry-code-y',
+    name: 'Starry Branch Code Y (Tab Icon)',
+    category: 'Personal + Celestial Badge',
+    Mark: StarryCodeYMark,
+    idea: 'The definitive tab icon: a deep cosmic midnight squircle badge with an atmospheric nebula glow and twinkling starfield, framing the bold Branching Code Y monogram in starlight.',
+    easterEgg: 'Hover expands the cosmic nebula and triggers a celestial twinkle across the starfield.',
+  },
+  {
+    id: 'prism-y',
+    name: 'Prism Y (Optical Dispersion)',
+    category: 'Personal Monogram',
+    Mark: PrismYMark,
+    idea: 'Where astrophysics and optics meet personal identity: a laser beam enters an equilateral triangular prism and refracts into two divergent rays, forming a pure scientific "Y".',
+    easterEgg: 'Hover excites the dispersion prism and fans the refracted spectral rays.',
+  },
+  {
+    id: 'quantum-y',
+    name: 'Quantum Y (Orbital Shell)',
+    category: 'Personal Monogram',
+    Mark: QuantumYMark,
+    idea: 'Deep physics in a monogram: dual intersecting elliptical electron orbital tracks converge over an atomic nucleus core, anchored by an energy particle beam stem.',
+    easterEgg: 'Hover rotates the orbital shells into alignment around the core nucleus.',
+  },
+  {
+    id: 'zenith-y',
+    name: 'Zenith Compass Y',
+    category: 'Personal Monogram',
+    Mark: ZenithYMark,
+    idea: 'A 4-point solar navigation star whose diamond facets form an iconic monogram "Y". Stands for true north and architectural precision.',
+    easterEgg: 'Hover rotates the navigation star by 45 degrees.',
+  },
+
+  /* --------------------------------------------------------------------------
+   * Geometric Sun Marks (User References & Surya Heritage)
+   * ------------------------------------------------------------------------ */
+  {
+    id: 'circuit-sun',
+    name: 'U-Track Sun',
+    category: 'Geometric Sun',
+    Mark: CircuitSunMark,
+    idea: 'Inspired by your uploaded reference: concentric solar core encircled by alternating straight spokes and geometric U-track hairpin loops.',
+    easterEgg: 'Hover rotates the U-track energy loops in counter-balance with the radiant core.',
+  },
+  {
+    id: 'segmented-seal',
+    name: 'Radial Aperture Seal',
+    category: 'Geometric Sun',
+    Mark: SegmentedSealMark,
+    idea: 'Inspired by your uploaded reference: high-contrast negative-space radial cuts with segmented outer rim blocks and a solid inner core disc.',
+    easterEgg: 'Hover rotates the segmented outer ring like a camera lens aperture.',
+  },
+  {
+    id: 'faceted-sun',
+    name: 'Diamond Sol',
+    category: 'Geometric Sun',
+    Mark: FacetedSunMark,
+    idea: 'Inspired by your uploaded reference: 8 sharp rhomboid diamond rays radiating from a central core, catching light like a brilliant solar jewel.',
+    easterEgg: 'Hover turns the diamond rays by 45 degrees, revealing their alternate facet symmetry.',
+  },
+  {
+    id: 'surya-kshatriya',
+    name: 'Surya (Kshatriya)',
+    category: 'Heritage Emblem',
+    Mark: SunMark,
+    idea: 'The Suryavanshi Kshatriya Royal Sun emblem: an authentic 16-ray solar crown with 8 sharp Talwar (sword) rays alternating with 8 dynamic Agni (flame) tongues.',
+    easterEgg: 'Hover ignites the solar crown: flame rays drift with celestial solar wind, sword rays elevate with sharp spring physics, and the royal corona blooms.',
+  },
+
+  /* --------------------------------------------------------------------------
+   * Celestial & Instrument Marks
+   * ------------------------------------------------------------------------ */
   {
     id: 'waxing',
     name: 'Waxing',
@@ -64,13 +249,6 @@ export const markCandidates: MarkCandidate[] = [
     Mark: PromptMark,
     idea: 'A shell prompt whose cursor is a star: “somewhere between a terminal and a telescope”, as one glyph.',
     easterEgg: 'Hover makes the star flare and turn, the way a cursor blinks.',
-  },
-  {
-    id: 'apoapsis',
-    name: 'Apoapsis',
-    Mark: ApoapsisMark,
-    idea: 'The monogram with a satellite tracking round it. Closest to a conventional logo, and the most obviously yours.',
-    easterEgg: 'Hover completes one orbit.',
   },
   {
     id: 'telescope',
@@ -120,13 +298,5 @@ export const markCandidates: MarkCandidate[] = [
     Mark: PlateMark,
     idea: 'A glass plate holding one bright star, after the photographs the site is built around. The only mark here that points at the pictures rather than the sky.',
     easterEgg: 'Hover brings the faint stars up around it.',
-  },
-  {
-    id: 'sun',
-    name: 'Sun',
-    Mark: SunMark,
-    idea: 'The nearest star, and the only one anybody sees during a working day. A solid disc with four heavy rays on the cardinals and four orbs between them — the alternation is what keeps it legible at 16px, where eight matched spokes turn to mush.',
-    easterEgg:
-      'Hover throws off a corona, turns the flare a full step so the rays land where the orbs were, and blooms each element outward in sequence rather than all at once.',
   },
 ]

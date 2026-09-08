@@ -607,104 +607,111 @@
 .sun-mark {
   overflow: visible;
   transition: filter 0.4s var(--ease-out-expo), transform 0.4s var(--ease-spring);
-  filter: drop-shadow(0 0 5px color-mix(in oklab, var(--theme-accent) 35%, transparent));
+  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--theme-accent) 40%, transparent));
 }
 
 .group:hover .sun-mark,
 .group:focus-visible .sun-mark,
 .sun-mark:hover {
-  filter: drop-shadow(0 0 8px color-mix(in oklab, var(--theme-accent) 75%, transparent))
-    drop-shadow(0 0 18px color-mix(in oklab, var(--theme-accent) 45%, transparent));
+  filter: drop-shadow(0 0 10px color-mix(in oklab, var(--theme-accent) 85%, transparent))
+    drop-shadow(0 0 24px color-mix(in oklab, var(--theme-accent) 55%, transparent));
 }
 
-.sun-mark-glow {
+/* Atmospheric Solar Aura / Respiration */
+.sun-mark-aura {
   transform-origin: 16px 16px;
   transform-box: view-box;
-  opacity: 0.5;
+  opacity: 0.55;
   transform: scale(1.15);
+  animation: sun-aura-pulse 3.8s ease-in-out infinite alternate;
   transition: transform 0.6s var(--ease-spring), opacity 0.5s ease;
 }
 
-.group:hover .sun-mark-glow,
-.group:focus-visible .sun-mark-glow,
-.sun-mark:hover .sun-mark-glow {
+.group:hover .sun-mark-aura,
+.group:focus-visible .sun-mark-aura,
+.sun-mark:hover .sun-mark-aura {
   opacity: 1;
-  transform: scale(1.6);
-  animation: sun-glow-pulse 2.6s ease-in-out infinite alternate;
+  transform: scale(1.65);
 }
 
-@keyframes sun-glow-pulse {
+@keyframes sun-aura-pulse {
   0% {
-    transform: scale(1.5);
-    opacity: 0.85;
+    transform: scale(1.1);
+    opacity: 0.45;
   }
   100% {
-    transform: scale(1.75);
-    opacity: 1;
+    transform: scale(1.35);
+    opacity: 0.75;
   }
 }
 
-.sun-mark-flare {
+/* 8 Kshatriya Sword Rays: elevate and sharpen outward on hover */
+.sun-mark-swords {
+  transform-origin: 16px 16px;
+  transform-box: view-box;
+  transition: transform 0.5s var(--ease-spring);
+}
+
+.group:hover .sun-mark-swords,
+.group:focus-visible .sun-mark-swords,
+.sun-mark:hover .sun-mark-swords {
+  transform: scale(1.08);
+}
+
+/* 8 Solar Flame Rays: dynamic celestial solar wind drift */
+.sun-mark-flames {
   transform-origin: 16px 16px;
   transform-box: view-box;
   transition: transform 0.7s var(--ease-spring);
+  animation: sun-flame-breathe 4.5s ease-in-out infinite alternate;
 }
 
-.group:hover .sun-mark-flare,
-.group:focus-visible .sun-mark-flare,
-.sun-mark:hover .sun-mark-flare {
-  animation: sun-spin 8s linear infinite;
+@keyframes sun-flame-breathe {
+  0% {
+    transform: scale(0.97) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.02) rotate(1.5deg);
+  }
+  100% {
+    transform: scale(0.98) rotate(-1deg);
+  }
 }
 
-.sun-mark-ray {
-  transform-origin: 16px 16px;
-  transform-box: view-box;
-  transition: transform 0.4s var(--ease-spring);
+.group:hover .sun-mark-flames,
+.group:focus-visible .sun-mark-flames,
+.sun-mark:hover .sun-mark-flames {
+  animation: none;
+  transform: scale(1.06) rotate(22.5deg);
 }
 
-.group:hover .sun-mark-ray,
-.group:focus-visible .sun-mark-ray,
-.sun-mark:hover .sun-mark-ray {
-  transform: translateY(-1.1px);
-}
-
-.sun-mark-orb {
-  transform-origin: 16px 16px;
-  transform-box: view-box;
-  transition: transform 0.4s var(--ease-spring);
-}
-
-.group:hover .sun-mark-orb,
-.group:focus-visible .sun-mark-orb,
-.sun-mark:hover .sun-mark-orb {
-  transform: translateY(-0.8px);
-}
-
+/* Concentric Corona Ring */
 .sun-mark-corona {
   transform-origin: 16px 16px;
   transform-box: view-box;
-  opacity: 0;
-  transform: scale(0.75);
-  transition: transform 0.5s var(--ease-out-expo), opacity 0.4s ease;
+  opacity: 0.7;
+  transition: transform 0.5s var(--ease-spring), opacity 0.4s ease;
 }
 
 .group:hover .sun-mark-corona,
 .group:focus-visible .sun-mark-corona,
 .sun-mark:hover .sun-mark-corona {
-  opacity: 0.35;
-  animation: corona-pulse 2.2s ease-in-out infinite;
+  opacity: 1;
+  transform: scale(1.1);
+  animation: corona-pulse 2.4s ease-in-out infinite;
 }
 
-.sun-mark-disc {
+/* Royal Solar Core Disc */
+.sun-mark-core {
   transform-origin: 16px 16px;
   transform-box: view-box;
   transition: transform 0.4s var(--ease-spring);
 }
 
-.group:hover .sun-mark-disc,
-.group:focus-visible .sun-mark-disc,
-.sun-mark:hover .sun-mark-disc {
-  transform: scale(1.06);
+.group:hover .sun-mark-core,
+.group:focus-visible .sun-mark-core,
+.sun-mark:hover .sun-mark-core {
+  transform: scale(1.12);
 }
 
 /* --------------------------------------------------------------------------

@@ -5,7 +5,7 @@ import * as m from 'motion/react-m'
 import { navItems, routes } from '@/config/site.config'
 import { profile } from '@/data'
 import { cn } from '@/lib/cn'
-import { SunMark } from '@/components/brand/SunMark'
+import { ApoapsisMark } from '@/components/brand/marks'
 import { Icon } from '@/components/ui'
 
 function isActive(pathname: string, href: string): boolean {
@@ -14,7 +14,7 @@ function isActive(pathname: string, href: string): boolean {
 }
 
 /**
- * A deliberately minimal bar: the sun mark on the left, letterspaced links on
+ * A deliberately minimal bar: the brand mark on the left, letterspaced links on
  * the right, no background of its own so the sky shows straight through.
  *
  * The wrapper ignores pointer events so it never blocks the hero beneath it;
@@ -47,7 +47,7 @@ export function Header() {
           aria-label={`${profile.name} — home`}
           className="focus-ring group text-heading transition-colors duration-200 hocus:text-accent"
         >
-          <SunMark className="size-6 sm:size-7" />
+          <ApoapsisMark className="size-7 sm:size-8" />
         </Link>
 
         <nav aria-label="Primary" className="hidden items-baseline gap-6 sm:flex sm:gap-9">

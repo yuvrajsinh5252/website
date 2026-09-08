@@ -53,6 +53,11 @@ function CandidateCard({
     <article className="surface-card flex flex-col gap-6 p-6 sm:p-8">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
+          {candidate.category && (
+            <span className="eyebrow mb-2 block text-[0.625rem] text-accent">
+              {candidate.category}
+            </span>
+          )}
           <h2 className="font-display text-2xl font-bold tracking-tight text-heading">
             {candidate.name}
           </h2>
@@ -111,6 +116,7 @@ function CandidateCard({
 
 export default function LogoLabPage() {
   const [activeId, setActiveId] = useState<string | null>(null)
+  const [selectedFilter, setSelectedFilter] = useState<string>('all')
 
   useDocumentMeta('Logo lab', 'Candidate brand marks for the site.')
 
@@ -130,6 +136,19 @@ export default function LogoLabPage() {
   const specimenMark =
     markCandidates.find((candidate) => candidate.id === activeId) ?? markCandidates[0]
 
+  const filteredCandidates =
+    selectedFilter === 'all'
+      ? markCandidates
+      : selectedFilter === 'personal'
+        ? markCandidates.filter((c) => c.category?.includes('Personal'))
+        : selectedFilter === 'geometric-sun'
+          ? markCandidates.filter((c) => c.category === 'Geometric Sun' || c.category === 'Heritage Emblem')
+          : markCandidates.filter((c) => !c.category)
+
+  const personalCount = markCandidates.filter((c) => c.category?.includes('Personal')).length
+  const sunCount = markCandidates.filter((c) => c.category === 'Geometric Sun' || c.category === 'Heritage Emblem').length
+  const celestialCount = markCandidates.filter((c) => !c.category).length
+
   return (
     <div className="pt-header">
       <Container width="editorial" className="py-20 sm:py-24">
@@ -137,14 +156,38 @@ export default function LogoLabPage() {
           as="h1"
           eyebrow="Workbench"
           title="Logo lab"
-          description={`${markCandidates.length} candidate marks, and the type to set them in. Hover each mark for its easter egg, push any of them into the browser tab, and try a typeface across the whole site.`}
-          className="mb-12"
+          description={`${markCandidates.length} candidate marks, including personal monograms (Y & YG) and geometric sun designs. Hover each mark for its unique animation, click "Try in tab" to test any mark in your browser's real tab, and try typefaces below.`}
+          className="mb-8"
         />
+
+        {/* Filter controls */}
+        <div className="mb-10 flex flex-wrap gap-2">
+          {[
+            { id: 'all', label: `All (${markCandidates.length})` },
+            { id: 'personal', label: `Personal Monograms (${personalCount})` },
+            { id: 'geometric-sun', label: `Geometric Suns (${sunCount})` },
+            { id: 'celestial', label: `Celestial / Instruments (${celestialCount})` },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => setSelectedFilter(tab.id)}
+              className={cn(
+                'focus-ring rounded-pill border px-4 py-2 text-xs font-medium tracking-[0.14em] uppercase transition-colors duration-200',
+                selectedFilter === tab.id
+                  ? 'border-accent-border bg-accent text-accent-foreground'
+                  : 'border-border text-muted hocus:border-accent-border hocus:text-heading',
+              )}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
 
         <TypeLab Mark={specimenMark.Mark} />
 
         <div className="mt-6 flex flex-col gap-6">
-          {markCandidates.map((candidate) => (
+          {filteredCandidates.map((candidate) => (
             <CandidateCard
               key={candidate.id}
               candidate={candidate}
