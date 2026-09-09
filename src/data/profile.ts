@@ -12,7 +12,7 @@ export const profile: Profile = {
   location: 'Noida, India',
   email: 'hello@yuvrajsinh.dev',
   summary:
-    'Software engineer building full-stack applications, agentic systems for automation, and the data pipelines underneath them.',
+    'Building software, solving problems, and staying curious.',
   aboutHeading: 'Engineering software',
   bio: [
     'I’ve spent my time building software end-to-end; handling everything from interactive interfaces to backend architectures, data pipelines, and building AI agents.',

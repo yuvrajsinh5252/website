@@ -5,7 +5,7 @@ import * as m from 'motion/react-m'
 import { navItems, routes } from '@/config/site.config'
 import { profile } from '@/data'
 import { cn } from '@/lib/cn'
-import { ApoapsisMark } from '@/components/brand/marks'
+import { ApoapsisYGMark } from '@/components/brand/marks'
 import { Icon } from '@/components/ui'
 
 function isActive(pathname: string, href: string): boolean {
@@ -47,7 +47,7 @@ export function Header() {
           aria-label={`${profile.name} — home`}
           className="focus-ring group text-heading transition-colors duration-200 hocus:text-accent"
         >
-          <ApoapsisMark className="size-7 sm:size-8" />
+          <ApoapsisYGMark className="size-7 sm:size-8" />
         </Link>
 
         <nav aria-label="Primary" className="hidden items-baseline gap-6 sm:flex sm:gap-9">

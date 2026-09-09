@@ -68,6 +68,8 @@ export function About() {
                       <img
                         src={entry.logo}
                         alt={entry.institution}
+                        width={64}
+                        height={64}
                         loading="lazy"
                         decoding="async"
                         className="size-14 shrink-0 object-contain transition-transform duration-300 ease-out-expo group-hover:scale-105 sm:size-16"

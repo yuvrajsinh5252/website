@@ -266,6 +266,156 @@ export function ApoapsisMark(props: MarkProps) {
   )
 }
 
+/**
+ * Apoapsis YG — Geometric "G" Satellite.
+ * Replaces the orbital dot with a clean vector "G" (Gohil),
+ * harmonized with the stroke weight and rounded terminals of the "Y".
+ * Easter egg: hovering orbits the "G" around the "Y".
+ */
+export function ApoapsisYGMark(props: MarkProps) {
+  return (
+    <svg {...base} {...props}>
+      <ellipse
+        cx="16"
+        cy="16"
+        rx="14"
+        ry="7.2"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeDasharray="0 3.6"
+        strokeLinecap="round"
+        opacity="0.65"
+        transform="rotate(-24 16 16)"
+      />
+
+      <path
+        d="M8.5 7.5 16 16m7.5-8.5L16 16m0 0v11"
+        stroke="currentColor"
+        strokeWidth="3.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      <g
+        className="transition-transform duration-[1300ms] ease-in-out group-hover:rotate-[360deg]"
+        style={about(16, 16)}
+      >
+        <path
+          d="M 30.5 8.2 A 3.2 3.2 0 1 0 31.0 12.0 H 28.0"
+          className="text-accent"
+          stroke="var(--color-accent, currentColor)"
+          strokeWidth="2.0"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
+      </g>
+    </svg>
+  )
+}
+
+/**
+ * Apoapsis YG Badge — Orbital Satellite with Knockout "G".
+ * Keeps the celestial craft/orb silhouette, with the letter "G"
+ * carved out of its center. High contrast across both dark and light modes.
+ * Easter egg: hovering completes one orbit.
+ */
+export function ApoapsisYGBadgeMark(props: MarkProps) {
+  return (
+    <svg {...base} {...props}>
+      <ellipse
+        cx="16"
+        cy="16"
+        rx="14"
+        ry="7.2"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeDasharray="0 3.6"
+        strokeLinecap="round"
+        opacity="0.65"
+        transform="rotate(-24 16 16)"
+      />
+
+      <path
+        d="M8.5 7.5 16 16m7.5-8.5L16 16m0 0v11"
+        stroke="currentColor"
+        strokeWidth="3.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      <g
+        className="transition-transform duration-[1300ms] ease-in-out group-hover:rotate-[360deg]"
+        style={about(16, 16)}
+      >
+        <circle
+          cx="28.5"
+          cy="10.4"
+          r="3.4"
+          className="text-accent"
+          fill="var(--color-accent, currentColor)"
+        />
+        <path
+          d="M 29.8 9.3 A 1.8 1.8 0 1 0 30.2 11.0 H 28.5"
+          stroke="var(--color-background, #050912)"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
+      </g>
+    </svg>
+  )
+}
+
+/**
+ * Apoapsis YG Bold — Extra Bold Monogram Satellite.
+ * Features a thick, prominent "G" glyph at the apoapsis point,
+ * matching the visual weight of the central 3.8px "Y".
+ * Easter egg: hovering orbits the "G" 360°.
+ */
+export function ApoapsisYGBoldMark(props: MarkProps) {
+  return (
+    <svg {...base} {...props}>
+      <ellipse
+        cx="16"
+        cy="16"
+        rx="14"
+        ry="7.2"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeDasharray="0 3.6"
+        strokeLinecap="round"
+        opacity="0.65"
+        transform="rotate(-24 16 16)"
+      />
+
+      <path
+        d="M8.5 7.5 16 16m7.5-8.5L16 16m0 0v11"
+        stroke="currentColor"
+        strokeWidth="3.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      <g
+        className="transition-transform duration-[1300ms] ease-in-out group-hover:rotate-[360deg]"
+        style={about(16, 16)}
+      >
+        <path
+          d="M 30.3 8.3 A 2.7 2.7 0 1 0 30.9 11.3 H 28.0"
+          className="text-accent"
+          stroke="var(--color-accent, currentColor)"
+          strokeWidth="2.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
+      </g>
+    </svg>
+  )
+}
+
 /* 8. Aperture — the iris you look through */
 
 /**

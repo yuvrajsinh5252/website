@@ -1,17 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Yuvrajsinh Gohil">
   <!--
-    Apoapsis — Brand Favicon
-    The monogram "Y" with an elliptical orbit and tracking satellite.
+    Apoapsis YG — Brand Favicon
+    The monogram "Y" with an elliptical orbit and tracking "G" (Gohil).
     Enlarged scale and bolder strokes for crisp browser tab clarity.
   -->
   <style>
     .orbit { stroke: #64748b; }
     .glyph { stroke: #0f172a; }
-    .satellite { fill: #0f172a; }
+    .satellite { stroke: #0284c7; fill: none; }
     @media (prefers-color-scheme: dark) {
       .orbit { stroke: #cbd5e1; }
       .glyph { stroke: #ffffff; }
-      .satellite { fill: #ffffff; }
+      .satellite { stroke: #38bdf8; fill: none; }
     }
   </style>
 
@@ -23,7 +23,9 @@
     ry="7.2"
     class="orbit"
     stroke-width="1.6"
-    opacity="0.6"
+    stroke-dasharray="0 3.6"
+    stroke-linecap="round"
+    opacity="0.65"
     fill="none"
     transform="rotate(-24 16 16)"
   />
@@ -38,6 +40,12 @@
     fill="none"
   />
 
-  <!-- Tracking Satellite Orb -->
-  <circle cx="28.8" cy="10.3" r="2.9" class="satellite" />
+  <!-- Satellite Monogram "G" (Gohil) on the Orbit -->
+  <path
+    d="M 30.5 8.2 A 3.2 3.2 0 1 0 31.0 12.0 H 28.0"
+    class="satellite"
+    stroke-width="2.0"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
 </svg>

@@ -10,7 +10,7 @@ export const siteConfig = {
   titleSuffix: 'Yuvrajsinh Gohil',
   title: 'Yuvrajsinh Gohil | Software Engineer',
   description:
-    'Software engineer building full-stack applications, agentic systems for automation, and production data pipelines.',
+    'Building software, solving problems, and staying curious.',
   url: 'https://www.yuvrajsinh.dev',
   locale: 'en',
   ogImage: '/images/og.png',

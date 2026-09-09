@@ -2,6 +2,9 @@ import type { JSX } from 'react'
 import {
   ApertureMark,
   ApoapsisMark,
+  ApoapsisYGBadgeMark,
+  ApoapsisYGBoldMark,
+  ApoapsisYGMark,
   CircuitSunMark,
   CodeYMark,
   CometMark,
@@ -51,12 +54,36 @@ export const markCandidates: MarkCandidate[] = [
    * Selected Brand Identity
    * ------------------------------------------------------------------------ */
   {
-    id: 'apoapsis',
-    name: 'Apoapsis (Selected Logo)',
+    id: 'apoapsis-yg-stroke',
+    name: 'Apoapsis YG (Selected Logo)',
     category: 'Personal + Orbit (Selected)',
+    Mark: ApoapsisYGMark,
+    idea: 'The monogram "Y" with a tracking "G" (Gohil) in elliptical orbit. Seamlessly unites your personal initials into an astronomical brand mark.',
+    easterEgg: 'Hover orbits the "G" 360° around the "Y".',
+  },
+  {
+    id: 'apoapsis',
+    name: 'Apoapsis (Previous - Dot)',
+    category: 'Personal + Orbit (Apoapsis)',
     Mark: ApoapsisMark,
-    idea: 'The monogram with a satellite tracking round it. Closest to a conventional logo, and the most obviously yours.',
+    idea: 'The monogram with a satellite dot tracking round it on an elliptical orbit.',
     easterEgg: 'Hover completes one orbit.',
+  },
+  {
+    id: 'apoapsis-yg-badge',
+    name: 'Apoapsis YG Badge (Knockout "G")',
+    category: 'Personal + Orbit (Apoapsis)',
+    Mark: ApoapsisYGBadgeMark,
+    idea: 'Preserves the celestial orb/satellite silhouette while engraving the letter "G" into its core for high-contrast visibility at every scale.',
+    easterEgg: 'Hover orbits the celestial badge 360° around the "Y".',
+  },
+  {
+    id: 'apoapsis-yg-bold',
+    name: 'Apoapsis YG Bold (Heavyweight "G")',
+    category: 'Personal + Orbit (Apoapsis)',
+    Mark: ApoapsisYGBoldMark,
+    idea: 'A bold, solid typographic "G" counterweight at the apoapsis point, matching the heavy 3.8px stroke of the primary monogram "Y".',
+    easterEgg: 'Hover orbits the bold "G" 360° around the "Y".',
   },
 
   /* --------------------------------------------------------------------------
