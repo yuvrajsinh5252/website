@@ -2,7 +2,6 @@ import { Outlet, useLocation } from 'react-router'
 import * as m from 'motion/react-m'
 import { DEV_TOOLS } from '@/config/env'
 import { SkyBackground } from '@/components/effects'
-import { Analytics } from '@/components/analytics'
 import { Footer } from './Footer'
 import { Header } from './Header'
 import { PalettePreview } from './PalettePreview'
@@ -22,7 +21,6 @@ export function RootLayout() {
       </a>
 
       <ScrollRestoration />
-      <Analytics />
       <SkyBackground />
       <Header />
 

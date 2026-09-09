@@ -13,8 +13,3 @@ export const DEV_TOOLS =
   import.meta.env.VITE_DEV_TOOLS !== undefined
     ? import.meta.env.VITE_DEV_TOOLS === 'true'
     : import.meta.env.DEV
-
-export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || ''
-
-
-
