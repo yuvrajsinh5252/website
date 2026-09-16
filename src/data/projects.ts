@@ -10,58 +10,58 @@ import type { Project } from '@/types'
  * `public/images/projects/`.
  */
 const entries: Project[] = [
-  {
-    slug: 'resolve',
-    title: 'Resolve',
-    logo: '/images/projects/resolve.svg',
-    icon: 'rust',
-    iconColor: '#305A53',
-    cover: '/images/projects/resolve.png',
-    summary:
-      'A self-hosted personal finance app, that tracks more than just net worth and provide a complete picture of your finances in one place.',
-    description:
-      'A modular, self-hosted personal finance platform built for Indian households. It tracks portfolios over multiple financial domains and facilitates a comprehensive view of your financial health, so the whole picture sits in one place rather than across multiple apps.',
-    year: '2026',
-    createdAt: '2026-09-20',
-    status: 'in-progress',
-    featured: true,
-    stack: ['Rust', 'Axum', 'SeaORM', 'PostgreSQL', 'React', 'TypeScript', 'GCP', 'Docker'],
-    sections: [
-      {
-        heading: 'The headache of fragmented finances',
-        body: [
-          'Managing personal and household finances usually ends up scattered across half a dozen tools: one app for daily bank spending, another for tracking portfolios, spreadsheets for loan EMIs or bills, and no simple way to coordinate shared expenses across family members.',
-          'Spreadsheets quickly fall behind because maintaining them manually is tedious. Meanwhile, commercial platforms often require linking bank credentials and monetize user data.',
-        ],
-      },
-      {
-        heading: 'Why Resolve?',
-        body: [
-          'I built Resolve specifically tailored for Indian households to take on most of that financial headache under one roof:',
-          '- **A Unified Picture**: Connects scattered accounts, liabilities, and recurring commitments so you can see your true financial standing at a glance instead of guessing from a vanity net-worth number.',
-          '- **Household Collaboration**: Lets family members coordinate budgets, organize shared household responsibilities, and track where money actually goes.',
-          '- **Built for Reliability**: Engineered with Rust, Axum, and SeaORM on PostgreSQL, containerized and hosted on GCP.',
-          '- **Lightweight Self-Hosting**: Made lightweight enough that very low-spec hardware can self-host it for personal use even a **Raspberry Pi 4** (with 2 GB RAM) can run the entire containerized stack without breaking a sweat.',
-        ],
-      },
-      {
-        heading: 'Current status & what’s next',
-        body: [
-          'Resolve is actively in its progress phase. Because it is still evolving, certain features or options might be missing, and some parts might not work as expected yet.',
-          'Upcoming milestones currently in the pipeline:',
-          '- **Autonomous Financial Advisor Agents**: Intelligent agents designed to act like a personal financial advisor in high-impact, practical situations.',
-          '- **End-to-End Encryption (E2EE)**: Client-side encryption ensuring sensitive financial data and transaction notes remain private, even across cloud hosting.',
-          '- **Automated Statement Ingestion**: Parsing bank and broker statements directly to eliminate tedious manual reconciliation.',
-          '- **Proactive Cashflow Warnings**: Anticipating upcoming cash crunches before large recurring liabilities or bills hit.',
-          'If you explore the live demo and have any feedback, ideas, or feature suggestions or if you would like to self-host it for your personal use please feel free to [contact me](mailto:hello@yuvrajsinh.dev)!',
-        ],
-      },
-    ],
-    links: [
-      { label: 'Live', href: 'https://resolve.yuvrajsinh.dev', kind: 'demo' },
-      { label: 'Contact to Self-Host', href: 'mailto:hello@yuvrajsinh.dev', kind: 'other' },
-    ],
-  },
+  // {
+  //   slug: 'resolve',
+  //   title: 'Resolve',
+  //   logo: '/images/projects/resolve.svg',
+  //   icon: 'rust',
+  //   iconColor: '#305A53',
+  //   cover: '/images/projects/resolve.png',
+  //   summary:
+  //     'A self-hosted personal finance app, that tracks more than just net worth and provide a complete picture of your finances in one place.',
+  //   description:
+  //     'A modular, self-hosted personal finance platform built for Indian households. It tracks portfolios over multiple financial domains and facilitates a comprehensive view of your financial health, so the whole picture sits in one place rather than across multiple apps.',
+  //   year: '2026',
+  //   createdAt: '2026-09-20',
+  //   status: 'in-progress',
+  //   featured: true,
+  //   stack: ['Rust', 'Axum', 'SeaORM', 'PostgreSQL', 'React', 'TypeScript', 'GCP', 'Docker'],
+  //   sections: [
+  //     {
+  //       heading: 'The headache of fragmented finances',
+  //       body: [
+  //         'Managing personal and household finances usually ends up scattered across half a dozen tools: one app for daily bank spending, another for tracking portfolios, spreadsheets for loan EMIs or bills, and no simple way to coordinate shared expenses across family members.',
+  //         'Spreadsheets quickly fall behind because maintaining them manually is tedious. Meanwhile, commercial platforms often require linking bank credentials and monetize user data.',
+  //       ],
+  //     },
+  //     {
+  //       heading: 'Why Resolve?',
+  //       body: [
+  //         'I built Resolve specifically tailored for Indian households to take on most of that financial headache under one roof:',
+  //         '- **A Unified Picture**: Connects scattered accounts, liabilities, and recurring commitments so you can see your true financial standing at a glance instead of guessing from a vanity net-worth number.',
+  //         '- **Household Collaboration**: Lets family members coordinate budgets, organize shared household responsibilities, and track where money actually goes.',
+  //         '- **Built for Reliability**: Engineered with Rust, Axum, and SeaORM on PostgreSQL, containerized and hosted on GCP.',
+  //         '- **Lightweight Self-Hosting**: Made lightweight enough that very low-spec hardware can self-host it for personal use even a **Raspberry Pi 4** (with 2 GB RAM) can run the entire containerized stack without breaking a sweat.',
+  //       ],
+  //     },
+  //     {
+  //       heading: 'Current status & what’s next',
+  //       body: [
+  //         'Resolve is actively in its progress phase. Because it is still evolving, certain features or options might be missing, and some parts might not work as expected yet.',
+  //         'Upcoming milestones currently in the pipeline:',
+  //         '- **Autonomous Financial Advisor Agents**: Intelligent agents designed to act like a personal financial advisor in high-impact, practical situations.',
+  //         '- **End-to-End Encryption (E2EE)**: Client-side encryption ensuring sensitive financial data and transaction notes remain private, even across cloud hosting.',
+  //         '- **Automated Statement Ingestion**: Parsing bank and broker statements directly to eliminate tedious manual reconciliation.',
+  //         '- **Proactive Cashflow Warnings**: Anticipating upcoming cash crunches before large recurring liabilities or bills hit.',
+  //         'If you explore the live demo and have any feedback, ideas, or feature suggestions or if you would like to self-host it for your personal use please feel free to [contact me](mailto:hello@yuvrajsinh.dev)!',
+  //       ],
+  //     },
+  //   ],
+  //   links: [
+  //     { label: 'Live', href: 'https://resolve.yuvrajsinh.dev', kind: 'demo' },
+  //     { label: 'Contact to Self-Host', href: 'mailto:hello@yuvrajsinh.dev', kind: 'other' },
+  //   ],
+  // },
   {
     slug: 'leetcode-cli',
     title: 'LeetCode CLI',
